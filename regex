@@ -28,7 +28,10 @@ https://cheatography.com/davechild/cheat-sheets/regular-expressions/
 https://www.rexegg.com/regex-quickstart.html#chars
 "Quick-Start: Regex Cheat Sheet"
 [hat tip: TryHackMe]
-
+-------------------------------------
+Regular Expressions for Regular Folk
+https://refrf.dev/
+[very helpful; hat tip: https://trainingportal.linuxfoundation.org/learn/course/developing-secure-software-lfd121/input-validation/input-validation-numbers-and-text?page=13]
 -------------------------------------
 from: https://tryhackme.com/room/introtologanalysis ; Task 7 - " Log Analysis Tools: Regular Expressions"
 
