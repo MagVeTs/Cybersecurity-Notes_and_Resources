@@ -1,3 +1,14 @@
+nmap
+----
+
+
+----------------------------------------------------------------
+Nmap encourages one to scan the following machine that they have made available to test nmap on: scanme.nmap.org
+e.g. nmap -V scanme.nmap.org
+
+to learn more go here in the browser:
+http://scanme.nmap.org/
+----------------------------------------------------------------
 =======================================================================================================================================================================
 NOTE: EVERYTHING IN THIS SECTION COMES FROM TryHackMe's FOUR Nmap ROOMS (https://tryhackme.com/room/nmap01 - https://tryhackme.com/room/nmap04); SOME IS VERBATIM ; SOME IS EDITED OR REPHRASED
 
