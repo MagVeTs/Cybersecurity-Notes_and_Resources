@@ -49,8 +49,10 @@ Sites with more XSS payloads:
 * https://github.com/payloadbox/xss-payload-list
 * https://github.com/payloadbox/xss-payload-list/blob/master/Intruder/xss-payload-list.txt
 * http://www.xss-payloads.com/ [hat tip: TryHackMe]
+* https://github.com/terjanq/Tiny-XSS-Payloads [hat tip: TryHackMe; helps to bypass restrictions on length]
 * https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting
 * https://www.cobalt.io/blog/a-pentesters-guide-to-cross-site-scripting-xss
+* https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html [hat tip: TryHackMe]
 
 
 ------------------------------------------------------
