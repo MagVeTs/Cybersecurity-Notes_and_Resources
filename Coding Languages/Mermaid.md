@@ -8,4 +8,4 @@
 
 **[Mermaid Cheat Sheet](https://jojozhuang.github.io/tutorial/mermaid-cheat-sheet/)**
 
-**[JakeSteam - Mermaid](https://github.com/JakeSteam/Mermaid)** - > A regularly updated collection of cheatsheets for using Mermaid diagrams on GitHub and elsewhere
+**[JakeSteam - Mermaid](https://github.com/JakeSteam/Mermaid)** - >A regularly updated collection of cheatsheets for using Mermaid diagrams on GitHub and elsewhere
