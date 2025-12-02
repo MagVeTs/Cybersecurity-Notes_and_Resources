@@ -1,4 +1,4 @@
-# Privacy Regulations
+# Cookies
 
 **CookieMetrix**
 https://www.cookiemetrix.com/
