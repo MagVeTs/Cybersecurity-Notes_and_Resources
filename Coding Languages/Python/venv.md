@@ -37,7 +37,7 @@ Here is the standard workflow for using virtual environments in your terminal or
 
 *Step 1: Create the Environment*
 
-Navigate to your project folder and run the following command. `venv` is the module name, and the second `venv` is the name of the folder you want to create (you can name it `venv`, `.venv`, `env`, etc.).
+Navigate to your project folder/directory and run the following command. `venv` is the module name, and the second `venv` is the name of the folder you want to create (you can name it `venv`, `.venv`, `env`, etc.).
 
 ```
 Bash
@@ -48,20 +48,22 @@ python -m venv venv
 
 *Step 2: Activate the Environment*
 
-This step is crucial. It switches your context from "Global" to "Local."
+This step is crucial. It switches your context from "Global" to "Local".
+
+NOTE: make sure you are inside the folder/directory containing the venv file you want to activate before giving the below commands. 
+
+macOS / Linux:
 
 ```
 Bash
-
-# macOS / Linux:
 
 source venv/bin/activate
 ```
 
+Windows:
+
 ```
 Bash
-
-# Windows:
 
 .\venv\Scripts\activate
 ```
@@ -80,7 +82,8 @@ pip install requests pandas
 
 *Step 4: Deactivate*
 
-When you are done working on that project, you can leave the environment and return to the global system.
+When you are done working on that project, you can leave the environment and return to the global system
+NOTE: even after leaving the folder/directory containing the venv file that was activated the venv remains active until the `deactivate` command is given.
 
 ```
 Bash
