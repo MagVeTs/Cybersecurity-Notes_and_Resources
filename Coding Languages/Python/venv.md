@@ -1,6 +1,5 @@
 # venv - Virtual Environments
 
---
 A Python virtual environment (often referred to as a `venv`) is a self-contained directory that houses a specific Python installation and a specific set of libraries (packages) for a single project.
 
 Think of it as creating a custom "toolbox" for each project you work on, rather than throwing every tool for every project into one giant, messy pile.
