@@ -84,7 +84,7 @@ pip install requests pandas
 
 When you are done working on that project, you can leave the environment and return to the global system
 
-NOTE: even after leaving the folder/directory containing the venv file that was activated the venv remains active until the `deactivate` command is given.
+NOTE: even after leaving the folder/directory containing the `venv` file that was activated the venv remains active until the `deactivate` command is given.
 
 ```
 Bash
