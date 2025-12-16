@@ -4,8 +4,7 @@ A Python virtual environment (often referred to as a `venv`) is a self-contained
 
 Think of it as creating a custom "toolbox" for each project you work on, rather than throwing every tool for every project into one giant, messy pile.
 
---
-
+---
 1. **Why do we need them? (The Problem)**
 Without virtual environments, every Python library you install goes into a Global Python Environment (system-wide). This leads to a major issue known as "Dependency Hell."
 
