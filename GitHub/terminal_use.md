@@ -54,11 +54,11 @@ git pull origin main
 ```
 Bash
 
-git add .
+git add . # Stage all changes 
 
-git commit -m "Your commit message"
+git commit -m "Your commit message" # Commit with message
 
-git push origin main
+git push origin main # Push to main branch (replace 'main' as needed)
 ```
 
 - To create and switch to a new branch:
