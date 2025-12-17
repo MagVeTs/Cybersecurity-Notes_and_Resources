@@ -33,7 +33,7 @@ If you've already run git clone and made changes locally, do not clone again —
 - Change directory to the new directory containing the cloned repo
 
 ```
-BASH
+Bash
 
 cd <REPO_NAME>
 ```
