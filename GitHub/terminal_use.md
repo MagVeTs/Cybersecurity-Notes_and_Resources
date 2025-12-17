@@ -6,6 +6,7 @@ Run this only once, when you’re setting up your local copy of the repo:
 
 ```
 Bash
+
 # clone repo
 git clone https://github.com/<GITHUB_ACCOUNT_NAME>/<REPO_NAME>.git
 ```
