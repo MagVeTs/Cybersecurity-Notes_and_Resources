@@ -2,6 +2,23 @@ URL and URI
 ------------
 
 ----------------------------------------------------------------------------------------------------------------------
+URL Syntax
+
+URl Syntax is usually: scheme:[//authority]path[?query][#fragment]
+
+Here is an example:
+https://prod.app.example.com/customers/overview/?page=6#terms-of-service
+
+
+scheme = https (scheme is followed by `://`)
+authority = prod.app.example.com [com = Top-level domain (TLD) ; example = domain ; prod.app = sub-subdomain and subdomain] (`.` between subdomain(s), domain, and TLD)
+path = /customers/overview (`/` before each part of path)
+query = page=6 ('?' before query)
+fragment = terms-of-service (`#` before fragment ; a fragment directs the browser to a particular place in the html text on the loaded webpage)
+
+
+[hat tip: https://trainingportal.linuxfoundation.org/learn/course/developing-secure-software-lfd121/sending-output/sending-output?page=6]
+----------------------------------------------------------------------------------------------------------------------
 HTTP Request Methods
 GET
 POST
