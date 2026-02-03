@@ -21,6 +21,15 @@ CyberChef
 https://gchq.github.io/CyberChef/
 - CyberChef has a module where you can input your regex and run it on the text you paste in the Input window. Not only that, there is an option to upload files (including compressed files) and run the regex on the files. See: https://tryhackme.com/room/introtologanalysis ; Task 8 - "Log Analysis Tools: CyberChef"
 
+regular expressions 101
+https://regex101.com/
+[hat tip: https://automatetheboringstuff.com/]
+
+pythex
+https://pythex.org/
+A Python re module tester that runs entirely in your browser.
+[hat tip: https://automatetheboringstuff.com/]
+-------------------------------------------------------------------------------------------------
 Regex Cheat Sheets
 -------------------
 https://cheatography.com/davechild/cheat-sheets/regular-expressions/
