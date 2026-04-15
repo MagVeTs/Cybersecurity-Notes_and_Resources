@@ -6,5 +6,5 @@ https://status.claude.com/
 
 https://claude.ai/
 
-https://anthropic.skilljar.com/introduction-to-agent-skills
+https://anthropic.skilljar.com/
 
