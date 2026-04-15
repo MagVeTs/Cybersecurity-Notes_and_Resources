@@ -9,6 +9,7 @@ https://github.com/forrestchang/andrej-karpathy-skills
 based on: https://x.com/karpathy/status/2015883857489522876
 
 --
+
 GSD
 
 https://github.com/gsd-build/get-shit-done
