@@ -1,16 +1,16 @@
-Open-Source-Intelligence-Resources (Heat Adams - The Cyber Mentor)
-https://github.com/TCM-Course-Resources/Open-Source-Intellingence-Resources
+Open-Source-Intelligence-Resources (Heat Adams - The Cyber Mentor)  
+https://github.com/TCM-Course-Resources/Open-Source-Intellingence-Resources  
 "Compilation of Resources from TCM's OSINT Course"
 
 
-https://web-check.xyz/
-Excellent!
+https://web-check.xyz/  
+Excellent!  
 [hat tip: SW]
 
-same creator also does:
-https://digital-defense.io/
+same creator also does:  
+https://digital-defense.io/  
 https://github.com/Lissy93/awesome-privacy
 
 
-https://analystresearchtools.com/
+https://analystresearchtools.com/  
 [hat tip: RM]

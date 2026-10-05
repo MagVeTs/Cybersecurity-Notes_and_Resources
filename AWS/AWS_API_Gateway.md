@@ -45,23 +45,23 @@ Configurable Access Decisions:
 
 Lambda authorizers provide fine-grained control by analyzing incoming API requests and making authorization decisions based on pre-defined criteria. This criteria can be tailored to your specific needs, leveraging factors like:
 
-Request parameters: Validate specific parameters within the request to ensure they meet authorization requirements.
-API keys or tokens: Implement token-based authentication mechanisms like JWT to identify and authorize requests.
-Custom logic: Craft authorization rules based on any relevant data available to the Lambda function, enabling highly secure and dynamic access control.
+Request parameters: Validate specific parameters within the request to ensure they meet authorization requirements.  
+API keys or tokens: Implement token-based authentication mechanisms like JWT to identify and authorize requests.  
+Custom logic: Craft authorization rules based on any relevant data available to the Lambda function, enabling highly secure and dynamic access control.  
 Security Implications of Misconfiguration:
 
 Improperly configured Lambda authorizers can introduce significant security vulnerabilities. If not implemented cautiously, they could grant unintended access to sensitive resources behind your API Gateway. It's crucial to thoroughly test and secure your authorizer functions to maintain a robust authorization layer.
 
-AWS API Gateway: Functionality Overview
-Integration Capabilities:
-AWS Managed API G ateways are available 
-Serverless Integration: API Gateway integrates with AWS Lambda to trigger serverless functions upon receiving API requests. Lambda functions handle request processing and response generation.
-Microservices Communication: Facilitate communication and integration between microservices (servers, containers, or serverless functions) by creating, deploying, and managing APIs for each service. Further integration with messaging services (SNS, SQS, EventBridge) is supported.
-Data Access: API Gateway seamlessly integrates with data storage services like Amazon DynamoDB and S3. This enables retrieval and modification of data as needed by API operations.
-Real-time Communication: Establish bi-directional, real-time communication channels between clients and servers using WebSockets integrated with API Gateway.
-API Management Suite: API Gateway offers a comprehensive suite for API monitoring, logging, and management. Gain insights into API usage patterns and maintain control over API behavior.
-Security Features: Prioritizes security with OAuth 2.0 and IAM integration for access control. Additionally, SSL/TLS encryption safeguards data transmission.
-Additional Notes:
+AWS API Gateway: Functionality Overview  
+Integration Capabilities:  
+AWS Managed API G ateways are available  
+Serverless Integration: API Gateway integrates with AWS Lambda to trigger serverless functions upon receiving API requests. Lambda functions handle request processing and response generation.  
+Microservices Communication: Facilitate communication and integration between microservices (servers, containers, or serverless functions) by creating, deploying, and managing APIs for each service. Further integration with messaging services (SNS, SQS, EventBridge) is supported.  
+Data Access: API Gateway seamlessly integrates with data storage services like Amazon DynamoDB and S3. This enables retrieval and modification of data as needed by API operations.  
+Real-time Communication: Establish bi-directional, real-time communication channels between clients and servers using WebSockets integrated with API Gateway.  
+API Management Suite: API Gateway offers a comprehensive suite for API monitoring, logging, and management. Gain insights into API usage patterns and maintain control over API behavior.  
+Security Features: Prioritizes security with OAuth 2.0 and IAM integration for access control. Additionally, SSL/TLS encryption safeguards data transmission.  
+Additional Notes:  
 API Gateway is a highly flexible and scalable service, enabling a wide range of integration possibilities beyond the listed functionalities.
 
 API Gateway as a Reverse Proxy:
@@ -78,35 +78,35 @@ IP Address Rotation: When configured as a "passthrough" proxy with a pool of IP 
 
 This could be used to:
 
-Bypass IP-based Restrictions: Certain web applications or systems might block requests originating from specific IP addresses associated with suspicious activity. Rotating IP addresses could circumvent such restrictions.
-Evasion of Detection: Security measures might identify and block requests from known security tester IP addresses. Rotating addresses could help evade such detection.
+Bypass IP-based Restrictions: Certain web applications or systems might block requests originating from specific IP addresses associated with suspicious activity. Rotating IP addresses could circumvent such restrictions.  
+Evasion of Detection: Security measures might identify and block requests from known security tester IP addresses. Rotating addresses could help evade such detection.  
 Simulating Real-world Scenarios: Real-world users access applications from diverse IP addresses. Rotating addresses allows for simulating these scenarios and potentially uncovering security vulnerabilities that might be exposed under varying IP origins.
 
-There are different options available for rotating IP addresses when using a proxy: 1) use a rotating proxy service; automatically switches within a pool of proxy servers; each request sent from different IP address. 2)  manually switch between different proxy servers; one can manually configure proxy settings in browser to do so 3) use tool designed to facilitate quick switching between proxy servers
-A tool called FireProx (created by Mike Felch ; Black Hills Information Security) grants this capability: https://github.com/ustayready/fireprox.
-FireProx uses AWS API Gateway to rotate IP addresses for web requests. It uses an API Gateway endpoint to redirect requests to configured domain/IP.
-Can be used for password spraying and other cred attacks (see: https://github.com/knavesec/CredMaster).
-Can be used to make requests to HTTP/S or WebSocket endpoints that have IP-based restrictions or use rate-limiting.
+There are different options available for rotating IP addresses when using a proxy: 1) use a rotating proxy service; automatically switches within a pool of proxy servers; each request sent from different IP address. 2)  manually switch between different proxy servers; one can manually configure proxy settings in browser to do so 3) use tool designed to facilitate quick switching between proxy servers  
+A tool called FireProx (created by Mike Felch ; Black Hills Information Security) grants this capability: https://github.com/ustayready/fireprox.  
+FireProx uses AWS API Gateway to rotate IP addresses for web requests. It uses an API Gateway endpoint to redirect requests to configured domain/IP.  
+Can be used for password spraying and other cred attacks (see: https://github.com/knavesec/CredMaster).  
+Can be used to make requests to HTTP/S or WebSocket endpoints that have IP-based restrictions or use rate-limiting.  
 See: MagVeTs/Cybersecurity/tools/FireProx
 
-Lambda Authorizers for AWS API Gateway
+Lambda Authorizers for AWS API Gateway  
 Functionality:
 
-Lambda authorizers are custom AWS Lambda functions that enforce authorization policies for API requests processed by API Gateway.
-These functions execute prior to API request processing and determine access rights for specific resources protected by API Gateway.
-The Lambda authorizer returns a policy document specifying whether a request is authorized or not.
+Lambda authorizers are custom AWS Lambda functions that enforce authorization policies for API requests processed by API Gateway.  
+These functions execute prior to API request processing and determine access rights for specific resources protected by API Gateway.  
+The Lambda authorizer returns a policy document specifying whether a request is authorized or not.  
 Benefits:
 
-Complex Authorization Logic: Enables implementation of intricate authorization rules within the Lambda function.
-Reduced Infrastructure Management: Eliminates the need for separate infrastructure to handle authorization tasks.
-Customizable Access Control: Provides flexibility in defining access requirements for API resources.
+Complex Authorization Logic: Enables implementation of intricate authorization rules within the Lambda function.  
+Reduced Infrastructure Management: Eliminates the need for separate infrastructure to handle authorization tasks.  
+Customizable Access Control: Provides flexibility in defining access requirements for API resources.  
 Offloading Resource-intensive Tasks: Leverages Lambda's serverless architecture for potentially resource-heavy authorization logic.
 
-Cautions When Using Wildcards with Lambda Authorizers in API Gateway Paths
+Cautions When Using Wildcards with Lambda Authorizers in API Gateway Paths  
 Greedy Wildcard Behavior:
 
-The * wildcard in regular expressions is a greedy operator, matching the largest possible string within a path.
-When employed in API Gateway path matching with Lambda authorizers, this can lead to unintended consequences if not used cautiously.
+The * wildcard in regular expressions is a greedy operator, matching the largest possible string within a path.  
+When employed in API Gateway path matching with Lambda authorizers, this can lead to unintended consequences if not used cautiously.  
 Example:
 
 A path pattern like /resource/* with a greedy * might unintentionally match additional path segments beyond the intended /resource portion. This could grant access to unintended resources.
@@ -117,11 +117,11 @@ Grouping and Lazy Quantifiers: Utilize grouping constructs (parentheses) and non
 
 Security Implications:
 
-Inadvertent authorization due to greedy wildcards can introduce security vulnerabilities. Unauthenticated users might gain access to restricted resources if unintended paths are matched by the authorization policy.
+Inadvertent authorization due to greedy wildcards can introduce security vulnerabilities. Unauthenticated users might gain access to restricted resources if unintended paths are matched by the authorization policy.  
 External Reference:
 
 For a detailed analysis of this security concern in the context of AWS API Gateway, refer to "The Fault In Our Stars" by Tenchi Security (https://www.tenchisecurity.com/the-fault-in-our-stars/).
 
-Abusing Greedy Expansion of Lambda Authorizer Policies
+Abusing Greedy Expansion of Lambda Authorizer Policies  
 "[When pentesting] Once we identify an API, we would typically use a tool such as ffuf (https://github.com/ffuf/ffuf) or kiterunner (https://github.com/assetnote/kiterunner) to perform the discovery of API endpoints through fuzzing. These techniques and tools can help identify potentially interesting endpoints and opportunities to expose data or gain additional access."
 

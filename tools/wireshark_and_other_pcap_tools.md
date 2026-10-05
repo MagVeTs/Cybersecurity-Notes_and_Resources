@@ -1,39 +1,39 @@
-https://www.infosecmatter.com/detecting-network-attacks-with-wireshark/
-great resource showing images of what many different types of network scans/attacks look like in Wireshark
+https://www.infosecmatter.com/detecting-network-attacks-with-wireshark/  
+great resource showing images of what many different types of network scans/attacks look like in Wireshark  
 (hat tip: Ary Korenvais)
 
-General: https://www.wireshark.org/docs/ 
+General: https://www.wireshark.org/docs/  
 Display Filter Reference: https://www.wireshark.org/docs/dfref/
 ---------------------------------------------------------------------
-https://www.malware-traffic-analysis.net/tutorials/index.html
-Includes:
-"Wireshark Tutorial: Changing Your Column Display
-Wireshark Tutorial: Display Filter Expressions
-Wireshark Tutorial: Identifying Hosts and Users
-Wireshark Tutorial: Exporting Objects from a Pcap
-Wireshark Tutorial: Examining Trickbot Infections
-Wireshark Tutorial: Examining Ursnif Infections
-Wireshark Tutorial: Examining Qakbot Infections
-Wireshark Tutorial: Decrypting HTTPS traffic
-Wireshark Tutorial: Examining Dridex Infection Traffic
-Wireshark Tutorial: Examining Emotet Infection Traffic
-Wireshark Tutorial: Decrypting RDP Traffic   (primary author: Vijay Prakash)
-Wireshark Tutorial: Examining Traffic from Hancitor Infections
+https://www.malware-traffic-analysis.net/tutorials/index.html  
+Includes:  
+"Wireshark Tutorial: Changing Your Column Display  
+Wireshark Tutorial: Display Filter Expressions  
+Wireshark Tutorial: Identifying Hosts and Users  
+Wireshark Tutorial: Exporting Objects from a Pcap  
+Wireshark Tutorial: Examining Trickbot Infections  
+Wireshark Tutorial: Examining Ursnif Infections  
+Wireshark Tutorial: Examining Qakbot Infections  
+Wireshark Tutorial: Decrypting HTTPS traffic  
+Wireshark Tutorial: Examining Dridex Infection Traffic  
+Wireshark Tutorial: Examining Emotet Infection Traffic  
+Wireshark Tutorial: Decrypting RDP Traffic   (primary author: Vijay Prakash)  
+Wireshark Tutorial: Examining Traffic from Hancitor Infections  
 Wireshark Tutorial: Wireshark Workshop Videos Now Available
  
-OLDER TUTORIALS
-Changing the column display in Wireshark
+OLDER TUTORIALS  
+Changing the column display in Wireshark  
 Adding HTTPS server names to the column display in Wireshark
 
 NOTE:  The two articles below were posted in 2013, so they're somewhat dated, but they contain some good information for people starting out.
 
-Identifying a host on the network
+Identifying a host on the network  
 Examining Tor traffic"
 -------------------------------------------------------------------------
-A-Packets
-https://apackets.com/
-"Online pcap file analyzer
-Allow read and view pcap file online. Explore IPv4/IPv6, HTTP, Telnet, FTP, DNS, SSDP, WPA2 protocols details. You can build map of network structure and view nodes communications. Sniff and analyze network traffic and other pcap data.
-Analyse pcap files to view HTTP headers, request and response data. Extract transferred files, office documents, pictures. Find passwords for various protocols."
-[NOTE: whatever you upload becomes public if you upload as a public file]
+A-Packets  
+https://apackets.com/  
+"Online pcap file analyzer  
+Allow read and view pcap file online. Explore IPv4/IPv6, HTTP, Telnet, FTP, DNS, SSDP, WPA2 protocols details. You can build map of network structure and view nodes communications. Sniff and analyze network traffic and other pcap data.  
+Analyse pcap files to view HTTP headers, request and response data. Extract transferred files, office documents, pictures. Find passwords for various protocols."  
+[NOTE: whatever you upload becomes public if you upload as a public file]  
 [hat tip: Network Chuck]

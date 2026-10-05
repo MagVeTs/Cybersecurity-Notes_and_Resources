@@ -1,6 +1,6 @@
-Red Team Guides
-https://redteamguides.com/
-https://redteamrecipe.com/index.html
+Red Team Guides  
+https://redteamguides.com/  
+https://redteamrecipe.com/index.html  
 "RedTeamGuides is a platform that provides red team tutorial and guidance along with cheatsheets. It is aimed at helping security professionals and enthusiasts to learn about red teaming and penetration testing techniques.
 
 The platform provides a wide range of resources, including step-by-step tutorials, how-to guides, and cheat sheets, that cover different topics related to red teaming, such as reconnaissance, exploitation, post-exploitation, and privilege escalation. The guides are regularly updated to keep up with the latest techniques and tools in the field.
@@ -9,35 +9,35 @@ RedTeamGuides is also known for its comprehensive and easy-to-follow walkthrough
 
 The platform is community-driven, and users can contribute to it by submitting their own guides or sharing their experiences in the field. Additionally, RedTeamGuides hosts a community forum where users can ask questions, share tips, and collaborate with others in the field.
 
-Overall, RedTeamGuides is an excellent resource for anyone interested in learning about red teaming and penetration testing, whether they are beginners or experienced professionals."
-[This site looks excellent; alot of material and it seems user-friendly.]
+Overall, RedTeamGuides is an excellent resource for anyone interested in learning about red teaming and penetration testing, whether they are beginners or experienced professionals."  
+[This site looks excellent; alot of material and it seems user-friendly.]  
 [hat tip: Eli on Cyber Together 2 (WhatsApp)]
 
 ------------------------------------------------------
-Threat Express - Domain Hunter
-https://github.com/threatexpress/domainhunter
-http://threatexpress.com/
+Threat Express - Domain Hunter  
+https://github.com/threatexpress/domainhunter  
+http://threatexpress.com/  
 "Checks expired domains for categorization/reputation and Archive.org history to determine good candidates for phishing and C2 domain names
 
 Domain name selection is an important aspect of preparation for penetration tests and especially Red Team engagements. Commonly, domains that were used previously for benign purposes and were properly categorized can be purchased for only a few dollars. Such domains can allow a team to bypass reputation based web filters and network egress restrictions for phishing and C2 related tasks.
 
 This Python based tool was written to quickly query the Expireddomains.net search engine for expired/available domains with a previous history of use. It then optionally queries for domain reputation against services like Symantec Site Review (BlueCoat), IBM X-Force, and Cisco Talos. The primary tool output is a timestamped HTML table style report."
 ------------------------------------------------------
-OffSec Tools
-https://offsec.tools/
-offsec.tools
+OffSec Tools  
+https://offsec.tools/  
+offsec.tools  
 "A vast collection of security tools for bug bounty, pentest and red teaming"
 ------------------------------------------------------
-https://github.com/infosecn1nja/Red-Teaming-Toolkit
+https://github.com/infosecn1nja/Red-Teaming-Toolkit  
 "This repository contains cutting-edge open-source security tools (OST) for a red teamer and threat hunter." --hat tip: TryHackMe
 ------------------------------------------------------
-LOL Farm
-https://lolol.farm/
-Living Off the Living Off the Land
+LOL Farm  
+https://lolol.farm/  
+Living Off the Living Off the Land  
 A great collection of resources to thrive off the land
 ------------------------------------------------------
-HackingTool
-https://github.com/Z4nzu/hackingtool
+HackingTool  
+https://github.com/Z4nzu/hackingtool  
 "ALL IN ONE Hacking Tool For Hackers"
 ------------------------------------------------------
 

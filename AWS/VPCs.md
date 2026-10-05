@@ -44,18 +44,18 @@ Security Groups vs NACLs
 -------------------------
 Below is a table provided by AWS (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html#VPC_Security_Comparison) that outlines the distinctions between Security Groups and NACLs:
 
-Security Group:
-- Functions at the instance level.
-- Exclusively supports allow rules.
-- Operates in a stateful manner: Return traffic is automatically permitted, regardless of specific rules.
-- All rules are assessed prior to determining traffic allowance.
+Security Group:  
+- Functions at the instance level.  
+- Exclusively supports allow rules.  
+- Operates in a stateful manner: Return traffic is automatically permitted, regardless of specific rules.  
+- All rules are assessed prior to determining traffic allowance.  
 - Applies to an instance only if the security group is designated during instance launch or later associated with the instance.
 
-Network ACL:
-- Functions at the subnet level.
-- Supports both allow and deny rules.
-- Operates in a stateless manner: Return traffic necessitates explicit allowance via rules.
-- Rules are processed sequentially, beginning with the lowest numbered rule, to determine traffic allowance.
+Network ACL:  
+- Functions at the subnet level.  
+- Supports both allow and deny rules.  
+- Operates in a stateless manner: Return traffic necessitates explicit allowance via rules.  
+- Rules are processed sequentially, beginning with the lowest numbered rule, to determine traffic allowance.  
 - Automatically applies to all instances within associated subnets, offering an additional layer of defense if security group rules are overly permissive.
 
 Resource Location - Security Aspects
@@ -66,7 +66,7 @@ Elastic Network Interface (ENI) and Security Groups
 ----------------------------------------------------
 Each resource within a VPC possesses an Elastic Network Interface (ENI) [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html], serving as a virtual network card within the VPC. ENIs can be attached to, detached from, and migrated between instances, often facilitating high-availability failover scenarios. Representing a DHCP lease from the VPC's DHCP server, ENIs may also feature a public IPv4 address if configured accordingly. While ENIs are associated with specific subnets, they can bridge an EC2 Instance across two subnets within the same availability zone.
 
-Security Groups are linked to ENIs, providing a comprehensive view of VPC resources by listing all associated ENIs within an account. This information can be accessed via the EC2 Console or the AWS CLI Command, utilizing the following command:
+Security Groups are linked to ENIs, providing a comprehensive view of VPC resources by listing all associated ENIs within an account. This information can be accessed via the EC2 Console or the AWS CLI Command, utilizing the following command:  
 $ aws ec2 describe-network-interfaces
 
 VPC Endpoints and AWS PrivateLink
@@ -77,7 +77,7 @@ Initially introduced alongside the Amazon S3 service, VPC Endpoints alleviate th
 
 To implement VPC Endpoints, a route must be added to the VPC Route Table. This route's destination is an abstract representation of the service, referred to as a Managed Prefix List [https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html], rather than a specific CIDR Range.
 
-AWS employs Prefix Lists to map AWS CIDR Ranges into your VPC, simplifying the management of public IP addresses without necessitating alterations to VPC Route tables or security groups. You can view the CIDR Ranges for various services using the command:
+AWS employs Prefix Lists to map AWS CIDR Ranges into your VPC, simplifying the management of public IP addresses without necessitating alterations to VPC Route tables or security groups. You can view the CIDR Ranges for various services using the command:  
 $ aws ec2 describe-prefix-lists
 
 VPC Endpoints have the capability to utilize IAM to restrict their usage to particular S3 Buckets or DynamoDB Tables. Nevertheless, an attacker could exploit a VPC endpoint to illicitly transfer data from a VPC. They would accomplish this by adding a VPC endpoint and using it to exfiltrate data from the VPC into an S3 bucket that they control.
@@ -105,23 +105,23 @@ In a Virtual Private Cloud (VPC), there are various methods for collecting secur
 VPC Flow Logs (https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) function akin to NetFlow, recording packet headers while omitting packet contents. These logs can be directed to either CloudWatch Logs or an S3 Bucket. The latter option is more cost-effective and offers a multi-account, multi-regional approach, enabling organizations to centralize logging in a single S3 Bucket.
 
 
-Example log entry with explanation:
-A       B           C           D           E         F     G  H  I   J       K          L        M   N
+Example log entry with explanation:  
+A       B           C           D           E         F     G  H  I   J       K          L        M   N  
 2 123456789012 eni-abcdef 52.46.145.233 10.100.0.118 443 52688 6 21 7010 1637966883 1637966911 ACCEPT OK
 
-A = Flow Log version number (typically 2 by default). 
-B = AWS account
-C= Elastic Network Interface (ENI) identifier
-D = source IP
-E = destination IP
-F = source Port
-G = destination Port
-H = protocol number (here TCP which is represented by 6)
-I = number of packets (21)
-J = number of bytes (7010)
-K = start time of flow (in Unix Epoch time)
-L = end time of flow (in Unix Epoch time)
-M = action taken (ACCEPT or REJECT)
+A = Flow Log version number (typically 2 by default).  
+B = AWS account  
+C= Elastic Network Interface (ENI) identifier  
+D = source IP  
+E = destination IP  
+F = source Port  
+G = destination Port  
+H = protocol number (here TCP which is represented by 6)  
+I = number of packets (21)  
+J = number of bytes (7010)  
+K = start time of flow (in Unix Epoch time)  
+L = end time of flow (in Unix Epoch time)  
+M = action taken (ACCEPT or REJECT)  
 N = log status (usually OK)
 
 more info on log entries: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs-fields
@@ -136,7 +136,7 @@ VPC Connectivity
 -----------------
 AWS offers various methods for connecting to VPCs, potentially providing attackers with avenues for transitioning from the cloud to on-premise networks (Cloud-to-Ground) and between distinct VPCs (Cloud-to-Cloud). Additionally, there's an end-user access option through AWS's managed service, ClientVPN.
 
-Cloud-to-Ground Connectivity:
+Cloud-to-Ground Connectivity:  
 For enterprises, AWS offers DirectConnect (https://aws.amazon.com/directconnect/), an interconnection service that establishes a dedicated link between your on-premise infrastructure and the Virtual Private Gateway (VGW) in your VPC. DirectConnect bandwidth can range from 1gbps to 100gbps and can be shared across multiple VPCs and AWS accounts.
 
 Smaller organizations may opt for AWS Site-to-Site VPN (https://aws.amazon.com/vpn/site-to-site-vpn/), establishing an IPSec tunnel between AWS and their on-premises router or firewall. This requires configuring a Customer Gateway and creating a VPN connection linking it with the VGW in the VPC.
@@ -145,12 +145,12 @@ Both DirectConnect and Site-to-Site VPN necessitate a route in the VPC routing t
 
 Defensively, it's crucial to ensure that all Site-to-Site VPNs or DirectConnects terminate at a firewall, implementing least-privilege firewall rules. Compliance-wise, while Site-to-Site VPNs encrypt traffic, DirectConnect links lack encryption as traffic traverses from your infrastructure to AWS's.
 
-Cloud-to-Cloud Connectivity:
+Cloud-to-Cloud Connectivity:  
 Many firms adopt a multi-account approach (https://aws.amazon.com/organizations/getting-started/best-practices/) to segregate development and production environments. AWS offers VPC Peering (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) to facilitate communication between VPCs, allowing them to reference each other's security groups and work across accounts and regions. VPC Peering necessitates an entry in the VPC route table and has non-transitive routing limitations. This means that if VPC-A is peered with VPC-B, and VPC-B with VPC-C, there's no direct network route for a machine in VPC-A to communicate with an IP address in VPC-C. Instead, the machine in VPC-A must communicate with a device in VPC-B, which can then forward the traffic to VPC-C. This limitation also applies to VPN and DirectConnect connections, where communication must pass through intermediate nodes rather than being directly transitive across multiple peered connections.
 
 AWS Transit Gateway (https://aws.amazon.com/transit-gateway/) addresses the complexity of managing VPC connections by acting as an inter-VPC router, enabling interconnectedness between VPCs without direct peering connections and supporting DirectConnect and Site-to-Site VPN.
 
-Client VPN:
+Client VPN:  
 AWS Client VPN (https://aws.amazon.com/vpn/client-vpn/) allows privileged users to set up their own AWS-managed OpenVPN service, bypassing corporate VPN and access controls. Configuration options include shared certificates, AWS Single Sign-On, or AWS-managed Microsoft Active Directory for authentication (https://aws.amazon.com/vpn/faqs/#AWS_Client_VPN_authentication_and_authorization). However, misconfiguration poses security and compliance risks, as control over Multi-Factor Authentication, identity management, and audit logging shifts to the AWS account team.
 
 

@@ -3,34 +3,34 @@ crackmapexec
 
 from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course ; https://academy.tcm-sec.com/courses/1152300/lectures/48489913
 
-$ crackmapexec smb <ip/CIDR> -u <user> -d <domain> -p <password>
-- this command takes a user with compromised creds and checks (using smb) whether they can log in to other machines in the domain with the same compromised creds and also whether they have local admin rights on the machines they have access to
+$ crackmapexec smb <ip/CIDR> -u <user> -d <domain> -p <password>  
+- this command takes a user with compromised creds and checks (using smb) whether they can log in to other machines in the domain with the same compromised creds and also whether they have local admin rights on the machines they have access to  
 - in the output: "[+]" in green next to a machine means they have access to that machine; "(Pwn3d!)" in yellow next to a machine means they also have local admin rights on that machine
 
-$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth
-- this command takes a user with with a dumped hash and checks (using smb) whether they can log in to other machines in the domain with a "pass the hash" attack and also whether they have local admin rights on the machines they have access to
+$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth  
+- this command takes a user with with a dumped hash and checks (using smb) whether they can log in to other machines in the domain with a "pass the hash" attack and also whether they have local admin rights on the machines they have access to  
 - in the output: "[+]" in green next to a machine means they have access to that machine; "(Pwn3d!)" in yellow next to a machine means they also have local admin rights on that machine
 
-$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth --sam
-- with this command you are gaining access with the "pass the hash" attack and then dumping more SAM hashes from the machines you gained access to
+$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth --sam  
+- with this command you are gaining access with the "pass the hash" attack and then dumping more SAM hashes from the machines you gained access to  
 [note: "The Security Account Manager (SAM) is a database file in Windows XP, Windows Vista, Windows 7, 8.1, 10 and 11 that stores users' passwords" (https://en.wikipedia.org/wiki/Security_Account_Manager)]
 
-$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth --shares
+$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth --shares  
 - with this command you are gaining access with the "pass the hash" attack and then enumerating shares on the machines you gained access to
 
-$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth --lsa
+$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth --lsa  
 - with this command you are gaining access with the "pass the hash" attack and then dumping the Local Security Authority on the machines you gained access to
 
-$ crackmapexec smb -L
+$ crackmapexec smb -L  
 - with this command you are listing all the smb modules crackmapexec offers
 
-$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth -M lsassy
-- with this command you are gaining access with the "pass the hash" attack and then using the lsassy module to dump the lssas 
+$ crackmapexec smb <ip/CIDR> -u <user> -H <hash> --local-auth -M lsassy  
+- with this command you are gaining access with the "pass the hash" attack and then using the lsassy module to dump the lssas  
 - the lsass is responsible for security; but it stores user credentials that can be dumped (if a user is logged in at the time you might get creds that would not be otherwise available)
 
-$ cmedb
+$ cmedb  
 - this command accesses a database of all your actions using crackmapexec and what you recovered with your commands
 
-NOTE:
+NOTE:  
 HA says that pass-the-hash attacks work for NTLMv1; not NTLMv2. NTLMv2 works for relay attacks ("Pass Attacks" - https://academy.tcm-sec.com/courses/1152300/lectures/48489919).
 ------------------------------------------------------------------------------------------------------------------

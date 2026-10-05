@@ -1,7 +1,7 @@
-VulnHub
-https://www.vulnhub.com/
+VulnHub  
+https://www.vulnhub.com/  
 [hat tip: Network Chuck]
 
 
-Deliberately Vulnerable Web Apps
+Deliberately Vulnerable Web Apps  
 https://github.com/webpwnized

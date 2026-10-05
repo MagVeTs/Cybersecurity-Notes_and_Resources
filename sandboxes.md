@@ -1,7 +1,7 @@
 Sandboxes
 ---------
 
-OMAT (Offline Malware Analysis Tool) from AntiCrypt
+OMAT (Offline Malware Analysis Tool) from AntiCrypt  
 https://anticrypt.de/scan/
 
 "OMAT (Offline Malware Analysis Tool) is a browser-based malware analysis tool designed to enhance user privacy and speed by leveraging WebAssembly (WASM) for client-side processing. Unlike traditional online malware analysis tools that rely on server-side processing, OMAT executes all malware analysis tasks within the user's browser, ensuring that sensitive data remains on the client's machine."
@@ -9,38 +9,38 @@ https://anticrypt.de/scan/
 
 free, online sandbox (it is called "offline" because it creates the sandbox within the client's browser using WebAssembly as opposed to sending the file to a sandbox in a server somewhere)
 
-from ChatGPT: "WebAssembly (WASM) is a binary instruction format for a stack-based virtual machine, designed to be a portable compilation target for programming languages, enabling high-performance execution of code on the web. It allows developers to compile code written in languages like C, C++, Rust, and others into a compact binary format that can be run in modern web browsers at near-native speed."
+from ChatGPT: "WebAssembly (WASM) is a binary instruction format for a stack-based virtual machine, designed to be a portable compilation target for programming languages, enabling high-performance execution of code on the web. It allows developers to compile code written in languages like C, C++, Rust, and others into a compact binary format that can be run in modern web browsers at near-native speed."  
 [hat tip: SW]
 ------------------------------------------------------------------------------
-Any Run
-https://app.any.run/
+Any Run  
+https://app.any.run/  
 "Interactive Malware Analysis"
 
-Joe Sandbox
-https://www.joesandbox.com/
-https://www.joesecurity.org/
+Joe Sandbox  
+https://www.joesandbox.com/  
+https://www.joesecurity.org/  
 "Deep Malware Analysis"
 
 -------------------------------------------------------------------------------
-https://www.techrepublic.com/article/anyrun-vs-joe-sandbox/
-"ANY.RUN vs. Joe Sandbox: Which malware analysis sandbox should you choose?
+https://www.techrepublic.com/article/anyrun-vs-joe-sandbox/  
+"ANY.RUN vs. Joe Sandbox: Which malware analysis sandbox should you choose?  
 Of the two solutions, Joe Sandbox is the one to go to if you need to check files for multiple different operating systems and devices, while ANY.RUN covers only Windows systems. Joe Sandbox also offers lets you use real physical machines in addition to virtual machines, which is an awesome feature when it comes to evasive malware that are testing their environment to be sure they don’t run in a sandbox.
 
 Yet ANY.RUN sandbox is a good choice if you need real-time interactions with the environment the suspicious files are run in. This is an invaluable feature for analyzing threats that need some clicking or user interaction before launching their payload."
 --------------------------------------------------------------------------------
-Browser LOL
-https://browser.lol/
-[great virtual browser]
-"Access Anything, Anywhere.
+Browser LOL  
+https://browser.lol/  
+[great virtual browser]  
+"Access Anything, Anywhere.  
 Experience the freedom of the internet with our easy-to-use virtual browser. No installation or configuration needed, simply access it from your existing browser. Safely visit blocked or risky websites without fear of viruses or trojans."
 --------------------------------------------------------------------------------
-Browserling
-https://www.browserling.com/
-"Online cross-browser testing"
-[Free plan is:
-Limited 3-minute sessions
-Edge and Chrome only
-Windows 10 only
-1024x768 resolution only]
+Browserling  
+https://www.browserling.com/  
+"Online cross-browser testing"  
+[Free plan is:  
+Limited 3-minute sessions  
+Edge and Chrome only  
+Windows 10 only  
+1024x768 resolution only]  
 Even allows web to TOR browsing!!!
 --------------------------------------------------------------------------------

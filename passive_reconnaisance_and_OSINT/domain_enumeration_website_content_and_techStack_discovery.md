@@ -2,165 +2,165 @@ Domain enumeration_website_content_and_techStack_discovery
 -----------------------------------------
 1) add "/robots.txt" at end of URL to discover pages the website owners do not want web-crawlers to catalog--TryHackMe
 
-2) if the website has not used a custom favicon you can use the favicon that is present to determine what framework was used to create website - this may reveal vulnerabilities
-You can check the webpage source code to see if there is a link to a favicon icon url
-You can download the hash of the favicon by using the following command in your terminal: curl <url of favicon as discovered in webpage source code> | md5sum
-For a list of favicon hashes and what frameworks they represent, see here: https://wiki.owasp.org/index.php/OWASP_favicon_database
-You can also find information about the framework at the bottom of the webpage source code.
+2) if the website has not used a custom favicon you can use the favicon that is present to determine what framework was used to create website - this may reveal vulnerabilities  
+You can check the webpage source code to see if there is a link to a favicon icon url  
+You can download the hash of the favicon by using the following command in your terminal: curl <url of favicon as discovered in webpage source code> | md5sum  
+For a list of favicon hashes and what frameworks they represent, see here: https://wiki.owasp.org/index.php/OWASP_favicon_database  
+You can also find information about the framework at the bottom of the webpage source code.  
 It is worthwhile to go to the framework's website and look at the documentation to help find vulnerabilities.--TryHackMe
 
 3) "the sitemap.xml file gives a list of every file the website owner wishes to be listed on a search engine. These can sometimes contain areas of the website that are a bit more difficult to navigate to or even list some old webpages that the current site no longer uses but are still working behind the scenes."--TryHackMe
 
 4) in the CLI run "curl http://<ip address> -v[erbose]" to retrieve http headers that may contain info such as "the webserver software and possibly the programming/scripting language in use". Then you can search for vulnerabilities in the hardware/software being used.--TryHackMe
 
-5) https://www.wappalyzer.com/
+5) https://www.wappalyzer.com/  
 "Identify technologies on websites ... Find out the technology stack of any website. Create lists of websites that use certain technologies, with company and contact details..."--Wappalyzer [hat tip: TryHackMe]
 
-6) Wayback Machine on Archive.org
-https://archive.org/web/
+6) Wayback Machine on Archive.org  
+https://archive.org/web/  
 "a historical archive of websites that dates back to the late 90s. You can search a domain name, and it will show you all the times the service scraped the web page and saved the contents. This service can help uncover old pages that may still be active on the current website."--TryHackMe
 
-7)https://github.com/
+7)https://github.com/  
 "Git is a version control system that tracks changes to files in a project ... GitHub is a hosted version of Git on the internet. Repositories can either be set to public or private and have various access controls. You can use GitHub's search feature to look for company names or website names to try and locate repositories belonging to your target. Once discovered, you may have access to source code, passwords or other content that you hadn't yet found."--TryHackMe
 
 8) "S3 Buckets are a storage service provided by Amazon AWS, allowing people to save files and even static website content in the cloud accessible over HTTP and HTTPS. The owner of the files can set access permissions to either make files public, private and even writable. Sometimes these access permissions are incorrectly set and inadvertently allow access to files that shouldn't be available to the public. The format of the S3 buckets is http(s)://{name}.s3.amazonaws.com where {name} is decided by the owner, such as tryhackme-assets.s3.amazonaws.com. S3 buckets can be discovered in many ways, such as finding the URLs in the website's page source, GitHub repositories, or even automating the process. One common automation method is by using the company name followed by common terms such as {name}-assets, {name}-www, {name}-public, {name}-private, etc."--TryHackMe
 
-9) https://github.com/danielmiessler/SecLists
-"SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more."--SecLists
+9) https://github.com/danielmiessler/SecLists  
+"SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more."--SecLists  
 Download the lists and use them to automate website content discovery using such tools as CLI tools as ffuf, dirb and gobuster.--TryHackMe
 
-10) Subdomain Enumeration:
-"Certificate Transparency (CT) logs ... publicly accessible logs of every SSL/TLS certificate created for a domain name ... use this service to our advantage to discover subdomains belonging to a domain"--TryHackMe
-The sites below "offer a searchable database of certificates that shows current and historical results"--TryHackMe
-https://crt.sh/
+10) Subdomain Enumeration:  
+"Certificate Transparency (CT) logs ... publicly accessible logs of every SSL/TLS certificate created for a domain name ... use this service to our advantage to discover subdomains belonging to a domain"--TryHackMe  
+The sites below "offer a searchable database of certificates that shows current and historical results"--TryHackMe  
+https://crt.sh/  
 https://ui.ctsearch.entrust.com/ui/ctsearchui
 
-11) Subdomain Enumeration:
-the following Google Dork [using "site:" ; "*" (wildcard) ; and "-" (exclude)] will bring back all a particular domain's subdomains (except the www subdomain)
+11) Subdomain Enumeration:  
+the following Google Dork [using "site:" ; "*" (wildcard) ; and "-" (exclude)] will bring back all a particular domain's subdomains (except the www subdomain)  
 "-site:www.<domain-name>.com site:*.<domain-name>.com" -- TryHackMe
 
-12) Subdomain Enumeration:
-"Bruteforce DNS (Domain Name System) enumeration is the method of trying tens, hundreds, thousands or even millions of different possible subdomains from a pre-defined list of commonly used subdomains. Because this method requires many requests, we automate it with tools to make the process quicker. In this instance, we are using a tool called dnsrecon"--TryHackMe
+12) Subdomain Enumeration:  
+"Bruteforce DNS (Domain Name System) enumeration is the method of trying tens, hundreds, thousands or even millions of different possible subdomains from a pre-defined list of commonly used subdomains. Because this method requires many requests, we automate it with tools to make the process quicker. In this instance, we are using a tool called dnsrecon"--TryHackMe  
 dnsrecon is available from the CLI in Kali Linux
 
-13) Subdomain Enumeration:
-https://github.com/aboul3la/Sublist3r
-"Sublist3r is a python tool designed to enumerate subdomains of websites using OSINT. It helps penetration testers and bug hunters collect and gather subdomains for the domain they are targeting. Sublist3r enumerates subdomains using many search engines such as Google, Yahoo, Bing, Baidu and Ask. Sublist3r also enumerates subdomains using Netcraft, Virustotal, ThreatCrowd, DNSdumpster and ReverseDNS.
-subbrute was integrated with Sublist3r to increase the possibility of finding more subdomains using bruteforce with an improved wordlist. The credit goes to TheRook who is the author of subbrute."--github
+13) Subdomain Enumeration:  
+https://github.com/aboul3la/Sublist3r  
+"Sublist3r is a python tool designed to enumerate subdomains of websites using OSINT. It helps penetration testers and bug hunters collect and gather subdomains for the domain they are targeting. Sublist3r enumerates subdomains using many search engines such as Google, Yahoo, Bing, Baidu and Ask. Sublist3r also enumerates subdomains using Netcraft, Virustotal, ThreatCrowd, DNSdumpster and ReverseDNS.  
+subbrute was integrated with Sublist3r to increase the possibility of finding more subdomains using bruteforce with an improved wordlist. The credit goes to TheRook who is the author of subbrute."--github  
 [credit: TryHackMe]
 
-14) Subdomain Enumeration:
-Sometimes hidden subdomains are only mapped on private DNS servers in "/etc/hosts" or "C:\Windows\System32\Drivers\etc\hosts"
-If DNS service is not available for certain subdomains - they can be recovered by running a bruteforce of possible hostnames (here meaning "subdomains") directly on the webserver that provides the website. The webserver itself will need to know the hostnames of the subdomains because it may be hosting many domains and subdomains for many websites (this is known as "virtual hosts"). Using ffuf and a wordlist we can request many possiblily subdomain hostnames from a server until we find one that exists.
-ffuf github: https://github.com/ffuf/ffuf
+14) Subdomain Enumeration:  
+Sometimes hidden subdomains are only mapped on private DNS servers in "/etc/hosts" or "C:\Windows\System32\Drivers\etc\hosts"  
+If DNS service is not available for certain subdomains - they can be recovered by running a bruteforce of possible hostnames (here meaning "subdomains") directly on the webserver that provides the website. The webserver itself will need to know the hostnames of the subdomains because it may be hosting many domains and subdomains for many websites (this is known as "virtual hosts"). Using ffuf and a wordlist we can request many possiblily subdomain hostnames from a server until we find one that exists.  
+ffuf github: https://github.com/ffuf/ffuf  
 [hat tip: TryHackMe]
 
-15) To examine cached versions of the website (which may show content that was subsequently changed [and, if done correctly will prevent the webserver from seeing that you are visiting it]) you can search in Google and then click black downward-facing arrow to choose "cached" option. If the cached option is not provided when clicking the  black downward-facing arrow, try searching cache:<url/uri> or site:<url/uri> and you may be able to find cached version.
-Important!: if you do not want Google to tell the website's webserver that you are asking for a cache you should not left-click on the cache link. Instead right-click on it and copy the url. Then paste the url in your browser and add the string: "&strip=1" [without the quotation marks] at the end of the url. This will enable you to access a text only cache - and the webserver will not be alerted. 
+15) To examine cached versions of the website (which may show content that was subsequently changed [and, if done correctly will prevent the webserver from seeing that you are visiting it]) you can search in Google and then click black downward-facing arrow to choose "cached" option. If the cached option is not provided when clicking the  black downward-facing arrow, try searching cache:<url/uri> or site:<url/uri> and you may be able to find cached version.  
+Important!: if you do not want Google to tell the website's webserver that you are asking for a cache you should not left-click on the cache link. Instead right-click on it and copy the url. Then paste the url in your browser and add the string: "&strip=1" [without the quotation marks] at the end of the url. This will enable you to access a text only cache - and the webserver will not be alerted.  
 [hat tip: ThriveDX]
 
-16) IDOR (Insecure Direct Object Reference)
-[see here for more info: https://www.acunetix.com/blog/web-security-zone/what-are-insecure-direct-object-references/]
-- the ORs (object references) may be encoded in Base64 or hashed (often MD5)
-- use a Base64 decoder to discover them - then change them to discover other objects and encode them again before submitting
-- use Crackstation to determine the original object reference - then change and rehash
-- even if the object reference IDs are random, you can create two accounts and then try switching the ORs in your browser - if that works to see the other account - you know you found an IDOR vulnerability
--Parameter Mining (aka Parameter Discovery)
-"Sometimes endpoints could have an unreferenced parameter that may have been of some use during development and got pushed to production. For example, you may notice a call to /user/details displaying your user information (authenticated through your session). But through an attack known as parameter mining, you discover a parameter called user_id that you can use to display other users' information, for example, /user/details?user_id=123."--TryHackMe
+16) IDOR (Insecure Direct Object Reference)  
+[see here for more info: https://www.acunetix.com/blog/web-security-zone/what-are-insecure-direct-object-references/]  
+- the ORs (object references) may be encoded in Base64 or hashed (often MD5)  
+- use a Base64 decoder to discover them - then change them to discover other objects and encode them again before submitting  
+- use Crackstation to determine the original object reference - then change and rehash  
+- even if the object reference IDs are random, you can create two accounts and then try switching the ORs in your browser - if that works to see the other account - you know you found an IDOR vulnerability  
+-Parameter Mining (aka Parameter Discovery)  
+"Sometimes endpoints could have an unreferenced parameter that may have been of some use during development and got pushed to production. For example, you may notice a call to /user/details displaying your user information (authenticated through your session). But through an attack known as parameter mining, you discover a parameter called user_id that you can use to display other users' information, for example, /user/details?user_id=123."--TryHackMe  
 see here for parameter mining/discovery tools: https://blog.yeswehack.com/yeswerhackers/parameter-discovery-quick-guide-to-start/
 
 --------------------------------------------------------
-Discover the technologies used to build a certain website and discover websites built with a certain technology:
-https://builtwith.com/
-https://sitereport.netcraft.com/
-https://www.wappalyzer.com/
+Discover the technologies used to build a certain website and discover websites built with a certain technology:  
+https://builtwith.com/  
+https://sitereport.netcraft.com/  
+https://www.wappalyzer.com/  
 [hat tip: Moshe Levy - https://www.linkedin.com/in/moshelevy01/]
 
 --------------------------------------------------------
-URLscan.io
-https://urlscan.io/
-"Urlscan.io is a free service developed to assist in scanning and analysing websites. It is used to automate the process of browsing and crawling through websites to record activities and interactions.
-When a URL is submitted, the information recorded includes the domains and IP addresses contacted, resources requested from the domains, a snapshot of the web page, technologies utilised and other metadata about the website...
+URLscan.io  
+https://urlscan.io/  
+"Urlscan.io is a free service developed to assist in scanning and analysing websites. It is used to automate the process of browsing and crawling through websites to record activities and interactions.  
+When a URL is submitted, the information recorded includes the domains and IP addresses contacted, resources requested from the domains, a snapshot of the web page, technologies utilised and other metadata about the website...  
 URL scan results provide ample information, with the following key areas being essential to look at:
 
-Summary: Provides general information about the URL, ranging from the identified IP address, domain registration details, page history and a screenshot of the site.
-HTTP: Provides information on the HTTP connections made by the scanner to the site, with details about the data fetched and the file types received.
-Redirects: Shows information on any identified HTTP and client-side redirects on the site.
-Links: Shows all the identified links outgoing from the site's homepage.
-Behaviour: Provides details of the variables and cookies found on the site. These may be useful in identifying the frameworks used in developing the site.
+Summary: Provides general information about the URL, ranging from the identified IP address, domain registration details, page history and a screenshot of the site.  
+HTTP: Provides information on the HTTP connections made by the scanner to the site, with details about the data fetched and the file types received.  
+Redirects: Shows information on any identified HTTP and client-side redirects on the site.  
+Links: Shows all the identified links outgoing from the site's homepage.  
+Behaviour: Provides details of the variables and cookies found on the site. These may be useful in identifying the frameworks used in developing the site.  
 Indicators: Lists all IPs, domains and hashes associated with the site. These indicators do not imply malicious activity related to the site." --https://tryhackme.com/room/threatinteltools ; Task 3
 
 
-IPinfo.io
-https://ipinfo.io/
-"The Trusted Source for IP Address Data"
+IPinfo.io  
+https://ipinfo.io/  
+"The Trusted Source for IP Address Data"  
 [hat tip: TryHackMe]
 
-Online WhoIs lookup
+Online WhoIs lookup  
 https://www.whois.com/
 --------------------------------------------------------
-Wannabrowser
-"Simulate any Browser"
-"With Wannabrowser you can mimic any User-Agent and look at the HTML-Sourcecode. Be a Bot, Browser, Tool on Smartphone, Desktop or Tablet."
-https://www.wannabrowser.net/
+Wannabrowser  
+"Simulate any Browser"  
+"With Wannabrowser you can mimic any User-Agent and look at the HTML-Sourcecode. Be a Bot, Browser, Tool on Smartphone, Desktop or Tablet."  
+https://www.wannabrowser.net/  
 [hat tip: TryHackMe]
 --------------------------------------------------------
-URL2PNG
-https://www.url2png.com/
-"Screenshots as a Service
-Capture snapshots of any website, right in your app, quickly and reliably."
+URL2PNG  
+https://www.url2png.com/  
+"Screenshots as a Service  
+Capture snapshots of any website, right in your app, quickly and reliably."  
 [hat tip: TryHackMe]
 
 --------------------------------------------------------
-DMARC Domain Health Checker:
-"Use our DMARC Domain Checker to find out if an email domain is protected against phishing, spoofing or fraud. Our domain checker offers you quick insights by inspecting DMARC, SPF and DKIM records and shows you if there are any actions you need to take."
-https://dmarcian.com/domain-checker/
-[Note: this tool can be used to check if emails from this domain are vulnerable to spoofing]
+DMARC Domain Health Checker:  
+"Use our DMARC Domain Checker to find out if an email domain is protected against phishing, spoofing or fraud. Our domain checker offers you quick insights by inspecting DMARC, SPF and DKIM records and shows you if there are any actions you need to take."  
+https://dmarcian.com/domain-checker/  
+[Note: this tool can be used to check if emails from this domain are vulnerable to spoofing]  
 [hat tip: TryHackMe]
 --------------------------------------------------------
-Stealth Security
+Stealth Security  
 https://www.youtube.com/@stealth_security
 
-How do Discover Hidden Directories & Subdomains | Gobuster Tutorial
+How do Discover Hidden Directories & Subdomains | Gobuster Tutorial  
 https://www.youtube.com/watch?v=PKLAF_p1LtM
 ---------------------------------------------------------
 https://tools.emailhippo.com/Apps/Domain-Age-Checker - check age of a domain (extracted from WHOIS)
 ---------------------------------------------------------
-https://github.com/tomnomnom/httprobe
-[Allows one to automate the probing of possible subdomains to discover which ones are presently accepting http/https requests; recommended by Heath Adams - The Cyber Mentor.
-also see:
-https://www.kali.org/tools/httprobe/
-and
-https://www.youtube.com/watch?v=r3885xjXJqs
+https://github.com/tomnomnom/httprobe  
+[Allows one to automate the probing of possible subdomains to discover which ones are presently accepting http/https requests; recommended by Heath Adams - The Cyber Mentor.  
+also see:  
+https://www.kali.org/tools/httprobe/  
+and  
+https://www.youtube.com/watch?v=r3885xjXJqs  
 ^excellent walkthrough of httprobe usage.]
 ----------------------------------------------------------
-https://github.com/owasp-amass/amass
-[Massive tool for subdomain enumeration drawing from many sources; recommended by Heath Adams - The Cyber Mentor.
-also see:
-https://www.kali.org/tools/amass/
-https://securitytrails.com/blog/owasp-amass
+https://github.com/owasp-amass/amass  
+[Massive tool for subdomain enumeration drawing from many sources; recommended by Heath Adams - The Cyber Mentor.  
+also see:  
+https://www.kali.org/tools/amass/  
+https://securitytrails.com/blog/owasp-amass  
 https://medium.com/hacker-toolbelt/owasp-amass-osint-reconnaissance-9b57d81fb958]
 ----------------------------------------------------------
-Security Headers
-https://securityheaders.com/
-https://scotthelme.co.uk/hardening-your-http-response-headers/
+Security Headers  
+https://securityheaders.com/  
+https://scotthelme.co.uk/hardening-your-http-response-headers/  
 - scans websites' security related http response headers and grades the site based on the configuration; flags what needs to be remediated
 ----------------------------------------------------------
 In order to see what other domains a particular website reaches out to when it is accessed (e.g. in order to run outside scripts whose code remains in an outside library but is called upon during runtime to provide functionality for the website) follow these steps:
 
-1) Open the Developers Tools interface on the website (https://balsamiq.com/support/faqs/browserconsole/)
-2) Click on the "Network" tab
-3) Enter `DOMAIN:` in the search bar
-4) you will see a list of domains found in the website's code
+1) Open the Developers Tools interface on the website (https://balsamiq.com/support/faqs/browserconsole/)  
+2) Click on the "Network" tab  
+3) Enter `DOMAIN:` in the search bar  
+4) you will see a list of domains found in the website's code  
 [hat tip: RM]
 ----------------------------------------------------------
-https://securitytrails.com/
-- search for all types of DNS records related to domain, IP, keyword, or hostname
-- search for historical DNS records to see changes
-- search for subdomains
+https://securitytrails.com/  
+- search for all types of DNS records related to domain, IP, keyword, or hostname  
+- search for historical DNS records to see changes  
+- search for subdomains  
 [recommended by RM]
 ----------------------------------------------------------
-TetrisCube
+TetrisCube  
 https://tetrisecube.vercel.app/check
 ----------------------------------------------------------
 

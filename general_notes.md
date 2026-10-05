@@ -1,11 +1,11 @@
 general notes
 -------------
 
-Heath Adams - The Cyber Mentor
-Practical Ethical Hacking - The Complete Course
+Heath Adams - The Cyber Mentor  
+Practical Ethical Hacking - The Complete Course  
 https://academy.tcm-sec.com/
 
-CompTia PenTest+ Certification : Exam Guide (New York : 2022)
+CompTia PenTest+ Certification : Exam Guide (New York : 2022)  
 Second Edition
 
 "CompTIA Pentest+ (Ethical Hacking) Course & Practice Exam" - Jason Dion - https://www.udemy.com/course/pentestplus/

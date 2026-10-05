@@ -1,5 +1,5 @@
-https://ss64.com/
-Indices of CLI commands for Linux, Windows CLI, Windows PowerShell, MacOS, and much more!
+https://ss64.com/  
+Indices of CLI commands for Linux, Windows CLI, Windows PowerShell, MacOS, and much more!  
 (hat tip: TryHackMe)
 
 -------------------------------------------------------------------------------
@@ -23,61 +23,61 @@ https://www.enisa.europa.eu/ (hat tip: Jonathan Erez ; Franco Pinzone Mesterman)
 
 --------------------------------------------------------------------------------
 
-https://beautifier.io/
-"Beautify JavaScript, JSON, React.js, HTML, CSS, SCSS, and SASS"
+https://beautifier.io/  
+"Beautify JavaScript, JSON, React.js, HTML, CSS, SCSS, and SASS"  
 (aka "Pretty Print")
 -------------------------------
-https://www.netresec.com/?page=PcapFiles 
-Publicly available PCAP files
+https://www.netresec.com/?page=PcapFiles  
+Publicly available PCAP files  
 [hat tip: Jonathan Erez]
 ----------------------------------
-https://dfir.blog/unfurl/
-"Unfurl takes a URL and expands ("unfurls") it into a directed graph, extracting every bit of information from the URL and exposing the obscured. It does this by breaking up a URL up into components, extracting as much information as it can from each piece, and presenting it all visually. This “show your work” approach (along with embedded references and documentation) makes the analysis transparent to the user and helps them learn about (and discover) semantic and syntactical URL structures."--https://dfir.blog/introducing-unfurl/
+https://dfir.blog/unfurl/  
+"Unfurl takes a URL and expands ("unfurls") it into a directed graph, extracting every bit of information from the URL and exposing the obscured. It does this by breaking up a URL up into components, extracting as much information as it can from each piece, and presenting it all visually. This “show your work” approach (along with embedded references and documentation) makes the analysis transparent to the user and helps them learn about (and discover) semantic and syntactical URL structures."--https://dfir.blog/introducing-unfurl/  
 [hat tip: https://www.linkedin.com/in/micahhoffman/]
 ----------------------------------
-URL Decoder (e.g. it changes % to characters)
-https://url-decode.com/
-Note: there is also a tab on the website to go to many other useful tools
+URL Decoder (e.g. it changes % to characters)  
+https://url-decode.com/  
+Note: there is also a tab on the website to go to many other useful tools  
 [hat tip: Jonathan Erez]
 
 ---------------------------------
-To understand the user-agent info that is associated with a browser use a user-agent decoder [hat tip: Jonathan Erez]
+To understand the user-agent info that is associated with a browser use a user-agent decoder [hat tip: Jonathan Erez]  
 e.g. https://developers.whatismybrowser.com/useragents/parse/
 
-URL and IP reputation and location look-up
-https://www.brightcloud.com/tools/url-ip-lookup.php
+URL and IP reputation and location look-up  
+https://www.brightcloud.com/tools/url-ip-lookup.php  
 [hat tip: ThriveDX]
 
 ---------------------------------
-https://requestbin.com/
-"A modern request bin to inspect any event
-Collect HTTP or webhook requests or subscribe to events from popular apps.
-Inspect each event in a human-friendly way or via REST or SSE APIs."
+https://requestbin.com/  
+"A modern request bin to inspect any event  
+Collect HTTP or webhook requests or subscribe to events from popular apps.  
+Inspect each event in a human-friendly way or via REST or SSE APIs."  
 [Note: can be used to test for SSRF vulnerabilities when no output is reflected back towards user (Blind SSRF) - will act as external HTTP logging tool -- hat tip: ThriveDX]
 
 ---------------------------------
-Chart of ASCII encoding in URL (% encoding)
-https://www.w3schools.com/tags/ref_urlencode.ASP
+Chart of ASCII encoding in URL (% encoding)  
+https://www.w3schools.com/tags/ref_urlencode.ASP  
 [hat tip: ThriveDX]
 
 ---------------------------------
-NIST Computer Forensics Tools & Techniques Catalog
-https://toolcatalog.nist.gov/
+NIST Computer Forensics Tools & Techniques Catalog  
+https://toolcatalog.nist.gov/  
 [hat tip: ThriveDX]
 
 ---------------------------------
-Certifications recommended by Jonathan Erez:
-Security+
-CEH
-CISSP
+Certifications recommended by Jonathan Erez:  
+Security+  
+CEH  
+CISSP  
 OSCP
 
-Singaporean Cybersecurity workforce framework:
-https://www.imda.gov.sg/imtalent/programmes/skills-framework-for-ict
+Singaporean Cybersecurity workforce framework:  
+https://www.imda.gov.sg/imtalent/programmes/skills-framework-for-ict  
 [hat tip: Jonathan Erez]
 
-NIST NICE workforce framework:
-https://www.nist.gov/document/supplementnicespecialtyareasandworkroleksasandtasksxlsx
+NIST NICE workforce framework:  
+https://www.nist.gov/document/supplementnicespecialtyareasandworkroleksasandtasksxlsx  
 [hat tip: Jonathan Erez]
 
 -------------------------------------
@@ -85,19 +85,19 @@ https://haveibeenpwned.com/
 -------------------------------------
 Public DNS Servers:
 
-Cloudflare:
-1.1.1.1
+Cloudflare:  
+1.1.1.1  
 1.0.0.1
 
-Google:
-8.8.8.8
+Google:  
+8.8.8.8  
 8.8.4.4
 
-Quad9:
-9.9.9.9
+Quad9:  
+9.9.9.9  
 149.112.112.112
 
-List of Public DNS Servers:
+List of Public DNS Servers:  
 https://duckduckgo.com/?q=public+dns
 
 [hat tip: TryHackMe]
@@ -116,11 +116,11 @@ https://www.cybrary.it/
 
 https://www.cve.org/
 
-https://attack.mitre.org/
+https://attack.mitre.org/  
 https://mitre.github.io/attack-navigator/enterprise/
 
 
-Cyber Range - Black Hills Information Security
+Cyber Range - Black Hills Information Security  
 https://metactf.com/dashboard 
 
 https://gchq.github.io/CyberChef/
@@ -153,80 +153,80 @@ https://crackstation.net/ - Free Password Hash Cracker
 
 https://www.diffchecker.com/ - Diffchecker will compare text to find the difference between two text files.
 
-https://www.online-utility.org/text/analyzer.jsp
+https://www.online-utility.org/text/analyzer.jsp  
 Free software utility which allows you to find the most frequent phrases and frequencies of words. Non-English language texts are supported. It also counts number of words, characters, sentences and syllables. Also calculates lexical density.
 
 -----------------------------------------------
-https://portswigger.net/web-security
-WebSecurity Academy
+https://portswigger.net/web-security  
+WebSecurity Academy  
 Free, online web security training from the creators of Burp Suite
 
 -----------------------------------------------
 https://www.w3schools.com/
 
-—---------------------------------------------
-CompTIA recommended PCAP analysis training sites:
-Publicly available PCAP files
+—---------------------------------------------  
+CompTIA recommended PCAP analysis training sites:  
+Publicly available PCAP files  
 https://www.netresec.com/index.ashx?page=PcapFiles
 
-Malware-Traffic-Analysis
+Malware-Traffic-Analysis  
 https://www.malware-traffic-analysis.net/training-exercises.html
 
 
-—-----------------------------------------------
+—-----------------------------------------------  
 CompTIA CySA+ recommended:
 
-https://www.google.com/advanced_search
-https://filesignatures.net/index.php?page=search
+https://www.google.com/advanced_search  
+https://filesignatures.net/index.php?page=search  
 All the file signatures (aka magic numbers) - the Hex numbers at the beginning of the machine code that tell the computer what kind of file it is and what kind of OS it can run on. This database maps the file signatures to the file extensions they represent. It alo gives the ASCII equivalent (e.g. 4D 5A = MZ [in ASCII] = .ocx]
 
-docs.microsoft.com/en-us/sysinternals/downloads/strings
+docs.microsoft.com/en-us/sysinternals/downloads/strings  
 Microsoft freeware utility for identifying coding strings in an executable - helps with identifying malware strings hiding in an executable
 
-Identify vulnerable web servers and applications:
+Identify vulnerable web servers and applications:  
 https://www.exploit-db.com/google-hacking-database
 
-Shodan Search Engine - searches for Internet of Everything devices (IoT, ICS, etc.)
+Shodan Search Engine - searches for Internet of Everything devices (IoT, ICS, etc.)  
 https://www.shodan.io/
 
-Social media analytics
+Social media analytics  
 Pipl.com / peekyou.com / echosec.net
 
 
-Go to resources on this site for free resources:
+Go to resources on this site for free resources:  
 https://www.netcraft.com/
 
-https://www.httrack.com/ 
-HTTrack is a free (GPL, libre/free software) and easy-to-use offline browser utility.
-It allows you to download a World Wide Web site from the Internet to a local directory, building recursively all directories, getting HTML, images, and other files from the server to your computer. HTTrack arranges the original site's relative link-structure. Simply open a page of the "mirrored" website in your browser, and you can browse the site from link to link, as if you were viewing it online. HTTrack can also update an existing mirrored site, and resume interrupted downloads. HTTrack is fully configurable, and has an integrated help system.
+https://www.httrack.com/  
+HTTrack is a free (GPL, libre/free software) and easy-to-use offline browser utility.  
+It allows you to download a World Wide Web site from the Internet to a local directory, building recursively all directories, getting HTML, images, and other files from the server to your computer. HTTrack arranges the original site's relative link-structure. Simply open a page of the "mirrored" website in your browser, and you can browse the site from link to link, as if you were viewing it online. HTTrack can also update an existing mirrored site, and resume interrupted downloads. HTTrack is fully configurable, and has an integrated help system.  
 From CompTIA CySA+ course (https://learn.comptia.org/app/certmaster-learn-and-comptia-labs-for-cysa-exam-cs0-002#read/section/dns-and-website-harvesting-techniques): “A website ripper (or copier) is a tool that caches the code behind a website. A tool such as httrack (httrack.com) recurses through each directory of the local site and can follow links to third-party sites to a specified depth. Analyzing the ripped site might reveal vulnerabilities in the code or the web application used to deliver the content. There might be old or forgotten orphaned pages with useful information. Website ripping is also a means of harvesting email addresses.”
 
 -------------------------------------------------------
-Learn RegEx (Regular Expressions):
+Learn RegEx (Regular Expressions):  
 https://regexr.com/
 
 https://rexegg.com/
 
 https://www.regular-expressions.info/
 --------------------------------------------------------
-GHDB - Google Hacking Database
+GHDB - Google Hacking Database  
 https://www.exploit-db.com/google-hacking-database
 
 ----------------------------------------------------------
 https://centralops.net/co/
 
-—----------------------------------------------------------------------------------
-Learn Different Networking Options in VirtualBox
+—----------------------------------------------------------------------------------  
+Learn Different Networking Options in VirtualBox  
 https://www.linuxshelltips.com/virtualbox-networking/
 
 
 https://www.nakivo.com/blog/virtualbox-network-setting-guide/
 
-How do I choose which networking mode to use in VirtualBox
+How do I choose which networking mode to use in VirtualBox  
 https://www.youtube.com/watch?v=QO_Tv02ND-k
  
-—-----------------------------------------------------------------------------------
-How to Access the Dark Web Safely in 2022
+—-----------------------------------------------------------------------------------  
+How to Access the Dark Web Safely in 2022  
 https://www.youtube.com/watch?v=EgXeXmNecto
 
 https://torproject.org
@@ -242,11 +242,11 @@ https://privacypros.io/tor/best-onion-sites/
 
 https://www.guerrillamail.com/
 
-https://duckduckgo.com/
+https://duckduckgo.com/  
 https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/
 ------------------------------------------------------------------------------------------
 
-OSINT
+OSINT  
 https://www.google.com/advanced_search
 
 
@@ -254,10 +254,10 @@ https://www.google.com/advanced_search
 
 https://russian.typeit.org/  
 ---------------------------------------------------------------------------------------------
-ThriveDX
+ThriveDX  
 https://learn.thrivedx.io/
 
-ThriveDX recommends the following Windows/Linux quizzes to check knowledge:
+ThriveDX recommends the following Windows/Linux quizzes to check knowledge:  
 Microsoft Windows Basics - ProProfs Quiz
 
 Linux Essentials Certification Exam Practice Test! - ProProfs Quiz
@@ -275,25 +275,25 @@ Recommended by Jonathan Erez:
 
 https://overthewire.org/wargames/
 
-Set up Cloudflare as your DNS:
+Set up Cloudflare as your DNS:  
 https://developers.cloudflare.com/1.1.1.1/setup/windows/
 
-Pentesting tool:
+Pentesting tool:  
 https://flipperzero.one/
 
 Linux Journey - teaches one Linux
 
 
-—--------------------------------------------------------------
-Cisco
-https://www.netacad.com/courses/packet-tracer
-https://skillsforall.com/resources/lab-downloads
-—--------------------------------------------------------------------
+—--------------------------------------------------------------  
+Cisco  
+https://www.netacad.com/courses/packet-tracer  
+https://skillsforall.com/resources/lab-downloads  
+—--------------------------------------------------------------------  
 https://www.ssh.com/academy/ssh/putty/windows
 
 ---------------------------------------------------------------------
 
-Try Hack Me
+Try Hack Me  
 https://tryhackme.com/
 
 ------------------------------
@@ -301,36 +301,36 @@ Cybersecurity News:
 
 https://www.bleepingcomputer.com/
 
-https://thehackernews.com/
-—-----------------------------
+https://thehackernews.com/  
+—-----------------------------  
 CVE Sites on Pentest+
 
 https://www.cisa.gov/uscert/
 
 -------------------------------
-SSL Server Test
-https://www.ssllabs.com/ssltest/
+SSL Server Test  
+https://www.ssllabs.com/ssltest/  
 Recommended by Jason Dion - you put in any SSL web server (a web server that uses SSL or TLS to protect the transmitted http) and it will tell you its cipher suite
 --------------------------------------
-https://www.sans.org/emea/
+https://www.sans.org/emea/  
 Many free resources
 
 --------------------------------------
-Creating website:
-https://www.godaddy.com/en-il
+Creating website:  
+https://www.godaddy.com/en-il  
 [hat tip: Jonathan Erez]
 
 --------------------------------------
-https://www.w3schools.com/
-"Learn to Code"
+https://www.w3schools.com/  
+"Learn to Code"  
 [hat tip: Jonathan Erez]
 
 ---------------------------------------
-https://jsfiddle.net/
-"code playground" for html and javascript
+https://jsfiddle.net/  
+"code playground" for html and javascript  
 [hat tip: Jonathan Erez - allows you to see HTML with JavaScript commands being run at same time]
 --------------------------------------
-Unsplash
-"The internet’s source of freely-usable images"
-https://unsplash.com/
+Unsplash  
+"The internet’s source of freely-usable images"  
+https://unsplash.com/  
 [hat tip: Joseph Todd - https://www.youtube.com/watch?v=YQvUbIV3sW8]

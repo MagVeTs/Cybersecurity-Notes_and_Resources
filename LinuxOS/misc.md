@@ -1,61 +1,61 @@
 Linux Resources:
 
-* https://linuxjourney.com/
+* https://linuxjourney.com/  
 [excellent free respource]
 
-Linux Terminal Shortcut Cheat Sheet
+Linux Terminal Shortcut Cheat Sheet  
 https://www.faqforge.com/linux/linux-terminal-shortcut-cheat-sheet/
 -------------------------------------------------------
-tee - duplicates the output received from a command sending one stream to the terminal and the other into a file (requires pipe |)
-syntax: <COMMAND> | tee <FILENAME>
-example: ls | tee list_of_files_in_directory 
+tee - duplicates the output received from a command sending one stream to the terminal and the other into a file (requires pipe |)  
+syntax: <COMMAND> | tee <FILENAME>  
+example: ls | tee list_of_files_in_directory  
 [from: Linux Tutorials | Pipe and tee | GeeksforGeeks ; https://www.youtube.com/watch?v=19mmVar-s5Y&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=21]
 -------------------------------------------------------
-In order to print lines in the middle of a file you can combine 'head' and 'tail' commands using the pipe (|) command. For example, if you wanted to print lines 5-10 of a 20 line file you would use the following command:
-head -n 10 <FILENAME> | tail -n 6
-The command first instructs the computer to pull the first 10 lines of the file; those ten lines are then piped into the tail command which instructs the computer to pull the last 6 lines of those 10 lines (i.e. lines 5-10) and print those last 6 lines.
+In order to print lines in the middle of a file you can combine 'head' and 'tail' commands using the pipe (|) command. For example, if you wanted to print lines 5-10 of a 20 line file you would use the following command:  
+head -n 10 <FILENAME> | tail -n 6  
+The command first instructs the computer to pull the first 10 lines of the file; those ten lines are then piped into the tail command which instructs the computer to pull the last 6 lines of those 10 lines (i.e. lines 5-10) and print those last 6 lines.  
 [From: Linux Tutorials | Print line between M and N lines head and tail combined | GeeksforGeeks ; https://www.youtube.com/watch?v=tMXF-YKyP0w&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=23]
 --------------------------------------------------------
-For the 'sort' command, the -k [#] option tells the terminal which "column" to sort on (the default delimeter is a blank space; but you can use -d " " to tell it to sort on something else [e.g. -d "|" will tell it to treat each pipe as the divider between columns])
-the -c command tells the terminal to check if the file is sorted and tell you wherever the sort is out of order
-there is other important things in the video - check it out
+For the 'sort' command, the -k [#] option tells the terminal which "column" to sort on (the default delimeter is a blank space; but you can use -d " " to tell it to sort on something else [e.g. -d "|" will tell it to treat each pipe as the divider between columns])  
+the -c command tells the terminal to check if the file is sorted and tell you wherever the sort is out of order  
+there is other important things in the video - check it out  
 [from: Linux Tutorials | sort command GeeksforGeeks ; https://www.youtube.com/watch?v=fEx5rnbDKO4&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=27]
 ---------------------------------------------------------
-The 'tr' command will "translate" characters in a file from one set of characters to another. For example "[a-z]" "[A-Z]" will change all lower-case characters to upper-case.
-See here for a tutorial:
+The 'tr' command will "translate" characters in a file from one set of characters to another. For example "[a-z]" "[A-Z]" will change all lower-case characters to upper-case.  
+See here for a tutorial:  
 Linux Tutorials | tr command | GeeksforGeeks ; https://www.youtube.com/watch?v=iNWdEWWYo50&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=28
 ---------------------------------------------------------
-The 'stat' command allows you to check all the timestamps on a file.
-access time - the last time the file was read
-modification time - the last time the contents of the file were modified
-change time - the last time the file's metadata (e.g. size and type) were changed
-syntax: stat <FILENAME>
+The 'stat' command allows you to check all the timestamps on a file.  
+access time - the last time the file was read  
+modification time - the last time the contents of the file were modified  
+change time - the last time the file's metadata (e.g. size and type) were changed  
+syntax: stat <FILENAME>  
 The 'touch' command can create a file. It can also change a file's timestamps (access time [-a] or modification time [-m]). You can choose an arbitrary time using: -d "YYYY-DD-MM HH:MM:SS".
 
 [From: Linux Tutorials | touch command | GeeksforGeeks ; https://www.youtube.com/watch?v=tpUyBbD4LQE&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=29]
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-Wildcards can be used with most commands in Linux (such as ls or cp).
-Wildcards can be used at the beginning, middle, or end of search string.
-* = 0, 1, or many characters
-? = only 1 character
-[ ] - the is called a character class. You can put a list of characters in the brackets and if the searched for string matches anyone of the characters the string will be found. For example, a search for wa[nt] will return wan and wat. This search only matches for one character.
-[^ ] - this syntax will negate a character class (e.g. ab[^cd] will not return abc or abd but will return abe).
+Wildcards can be used with most commands in Linux (such as ls or cp).  
+Wildcards can be used at the beginning, middle, or end of search string.  
+* = 0, 1, or many characters  
+? = only 1 character  
+[ ] - the is called a character class. You can put a list of characters in the brackets and if the searched for string matches anyone of the characters the string will be found. For example, a search for wa[nt] will return wan and wat. This search only matches for one character.  
+[^ ] - this syntax will negate a character class (e.g. ab[^cd] will not return abc or abd but will return abe).  
 [ - ] - this syntax allows a search for a range (e.g. ab[h-k] will return abh, abi, abj, and abk).
 
-Note: you can combine wildcards (e.g. *[c-f]).
+Note: you can combine wildcards (e.g. *[c-f]).  
 \ - this is an "escape" character it allows you to search for wildcard characters as regular characters and not wildcards (e.g. *\?, will return all files that end with ?)
 
 [from: Linux Tutorials | Wildcards and Pattern Matching | GeeksforGeeks ; https://www.youtube.com/watch?v=LH4eF75Z_7U&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=34]
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-The 'which' command allows you to determine which file the commands you are running in the terminal are drawing their binaries from (e.g. 'which ls' might return /usr/bin/ls).
+The 'which' command allows you to determine which file the commands you are running in the terminal are drawing their binaries from (e.g. 'which ls' might return /usr/bin/ls).  
 [From: Network Chuck ; the Linux File System explained in 1,233 seconds // Linux for Hackers // EP 2 ; https://www.youtube.com/watch?v=A3G-3hp88mo&list=PLIhvC56v63IJIujb5cyE13oLuyORZpdkL&index=2]
 
-The 'apropros' command allows you to search for commands by keyword. It searches the commands and their documentation.
+The 'apropros' command allows you to search for commands by keyword. It searches the commands and their documentation.  
 [From: Network Chuck - HELP!! (for when you suck at Linux) // Linux for Hackers // EP3 ; https://www.youtube.com/watch?v=Y17KTiJLcyQ&list=PLIhvC56v63IJIujb5cyE13oLuyORZpdkL&index=3]
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Linux Networking Commands
 -------------------------
-`ip a` replaces `ifconfig`
+`ip a` replaces `ifconfig`  
 [`ifconfig` output does not include `iwconfig` output; `ip a` should include both `ifconfig` and `iwconfig` output]
 
 `ip n` replaces `arp -a`
@@ -69,115 +69,115 @@ Linux CLI (Terminal Emulator)
 
 Basics
 ------
-Commands must be separated from arguments (e.g. -a) and file names by at least one space or tab; but multiple spaces or tabs is not a problem.
-Multiple arguments can be combined in one dash (-) with no spaces, e.g. -l -a -c = -lac
-You can run more than one command per line if you use a semicolon (;), e.g.:
+Commands must be separated from arguments (e.g. -a) and file names by at least one space or tab; but multiple spaces or tabs is not a problem.  
+Multiple arguments can be combined in one dash (-) with no spaces, e.g. -l -a -c = -lac  
+You can run more than one command per line if you use a semicolon (;), e.g.:  
 > cd;pwd
 
-The 'type' command will tell you where the script for a Linux CLI command (usually written in C language) is found (internal [in the shell itself] or external [in a file path]), for example:
-> type ls
-ls is hashed (/bin/ls)
-> type cd
+The 'type' command will tell you where the script for a Linux CLI command (usually written in C language) is found (internal [in the shell itself] or external [in a file path]), for example:  
+> type ls  
+ls is hashed (/bin/ls)  
+> type cd  
 cd is a shell builtin
 
 [hat tip: Linux Tutorials | Command Usage | GeeksforGeeks https://www.youtube.com/watch?v=L5_ZzpR9jaU&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=4]
 
-You may be unable to use the backspace key in the terminal to correct a typo.
-If you try Backspace you may get ^?. In order to fix typos, use the Delete key or CTRL-c.
-If the line has many mistakes it may be easier to kill the whole line by pressing CTRL-U. This will erase the whole line and you can start over.
-If a program is stuck in an infinite loop pressing Ctrl-c will stop the program and return to prompt.
-Some commands that require an argument will also create a problem if one forgets to add the argument. For example, if you type 'cat' with no filename and press enter the terminal will move the cursor to the next line but no output or prompt will appear. Pressing CTRL-c or CTRL-d will bring back the prompt.
-If the Enter key is not working try: CTRL-j or CTRL-m.
+You may be unable to use the backspace key in the terminal to correct a typo.  
+If you try Backspace you may get ^?. In order to fix typos, use the Delete key or CTRL-c.  
+If the line has many mistakes it may be easier to kill the whole line by pressing CTRL-U. This will erase the whole line and you can start over.  
+If a program is stuck in an infinite loop pressing Ctrl-c will stop the program and return to prompt.  
+Some commands that require an argument will also create a problem if one forgets to add the argument. For example, if you type 'cat' with no filename and press enter the terminal will move the cursor to the next line but no output or prompt will appear. Pressing CTRL-c or CTRL-d will bring back the prompt.  
+If the Enter key is not working try: CTRL-j or CTRL-m.  
 [hat tip: Linux Tutorials | Commands in Linux when things go wrong | GeeksforGeeks ; https://www.youtube.com/watch?v=7zG1RAVcrKM&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=9]
 
-If you want to switch to a new line to write the rest of you command (because the command is long and you want it to be more readable to yourself) you can do a backslash (\) and then hit enter. The CLI will not run the command that you have entered so far; instead, the CLI will switch to a new line and you can enter the rest of the command. After entering the full command, press enter again and the entire command will be run at once just as if it was all on the same line.
+If you want to switch to a new line to write the rest of you command (because the command is long and you want it to be more readable to yourself) you can do a backslash (\) and then hit enter. The CLI will not run the command that you have entered so far; instead, the CLI will switch to a new line and you can enter the rest of the command. After entering the full command, press enter again and the entire command will be run at once just as if it was all on the same line.  
 [hat tip: Network Chuck]
 
-If you add an ampersand (&) at the end of a command the CLI will carry out the command in the "background".
-This means that the command prompt will immediately return and you will be able to issue another command even before the previous command has finished executing.
-This is helpful for situations when it might take some time for the first command to finish executing (see: https://www.javatpoint.com/linux-ampersand).
-It is also helpful for situations where you used the CLI to launch the GUI of a particular app. You may be unable to enter further commands in the CLI while the GUI window is open. Adding an ampersand at the end of the command that launched the GUI prevents this from happening. Now the GUI can remain open and you can still use the CLI to enter additional commands. 
-Note: after entering the command with the ampersand the cursor will move to the next line. You may NOT see a command prompt (e.g. $) but you will still be able to enter commands.
+If you add an ampersand (&) at the end of a command the CLI will carry out the command in the "background".  
+This means that the command prompt will immediately return and you will be able to issue another command even before the previous command has finished executing.  
+This is helpful for situations when it might take some time for the first command to finish executing (see: https://www.javatpoint.com/linux-ampersand).  
+It is also helpful for situations where you used the CLI to launch the GUI of a particular app. You may be unable to enter further commands in the CLI while the GUI window is open. Adding an ampersand at the end of the command that launched the GUI prevents this from happening. Now the GUI can remain open and you can still use the CLI to enter additional commands.  
+Note: after entering the command with the ampersand the cursor will move to the next line. You may NOT see a command prompt (e.g. $) but you will still be able to enter commands.  
 Note: the ampersand works whether it immediately follows the command (with no space) or if there is a space between the command and the ampersand (dirbuster& = dirbuster &)
 
-who - displays list of users currently logged on to the system and information about them (e.g. login time)
-whoami - displays the name of the user logged into the terminal
-uname - displays information about the OS (use -r to get version info too ; use -n to get host name)
-tty - displays the filename of the terminal connected to stdin (standard input)
-stty - is used to display current terminal line settings (how many lines are shown) and to change those settings
+who - displays list of users currently logged on to the system and information about them (e.g. login time)  
+whoami - displays the name of the user logged into the terminal  
+uname - displays information about the OS (use -r to get version info too ; use -n to get host name)  
+tty - displays the filename of the terminal connected to stdin (standard input)  
+stty - is used to display current terminal line settings (how many lines are shown) and to change those settings  
 [hat tip: Linux Tutorials | About the user and the terminal | GeeksforGeeks ; https://www.youtube.com/watch?v=WnjofnvIIvg&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=11]
 
-cal - prints calendar on the terminal
-date - displays the current date and time
-echo - prints given text on the terminal
-printf - prints text in a formatted way on the terminal
+cal - prints calendar on the terminal  
+date - displays the current date and time  
+echo - prints given text on the terminal  
+printf - prints text in a formatted way on the terminal  
 [hat tip: Linux Tutorials | General Purpose Utilities | GeeksforGeeks ; https://www.youtube.com/watch?v=g6cPFj9ptdc&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=12]
 -----------------------------------------
 
 [hat tip: https://tryhackme.com/room/zeekbro]
 
-View the command history:
+View the command history:  
 ubuntu@ubuntu$ history
 
-Execute the 10th command in history:
+Execute the 10th command in history:  
 ubuntu@ubuntu$ !10
 
-Execute the previous command:
+Execute the previous command:  
 ubuntu@ubuntu$ !!
 
 Read File
 ---------
-Read sample.txt file:
+Read sample.txt file:  
 ubuntu@ubuntu$ cat sample.txt
 
-Read the first 10 lines of the file:
+Read the first 10 lines of the file:  
 ubuntu@ubuntu$ head sample.txt
 
-Read the last 10 lines of the file:
+Read the last 10 lines of the file:  
 ubuntu@ubuntu$ tail sample.txt
 
 Find & Filter
 -------------
-Cut the 1st field:
+Cut the 1st field:  
 ubuntu@ubuntu$ cat test.txt | cut -f 1
 
-Cut the 1st column:
+Cut the 1st column:  
 ubuntu@ubuntu$ cat test.txt | cut -c1
 
-Filter specific keywords:
+Filter specific keywords:  
 ubuntu@ubuntu$ cat test.txt | grep 'keywords'
 
-Sort outputs alphabetically:
+Sort outputs alphabetically:  
 ubuntu@ubuntu$ cat test.txt | sort
 
-Sort outputs numerically:
+Sort outputs numerically:  
 ubuntu@ubuntu$ cat test.txt | sort -n
 
-Eliminate duplicate lines:
+Eliminate duplicate lines:  
 ubuntu@ubuntu$ cat test.txt | uniq
 
-Count line numbers:
+Count line numbers:  
 ubuntu@ubuntu$ cat test.txt | wc -l
 
-Show line numbers
+Show line numbers  
 ubuntu@ubuntu$ cat test.txt | nl
 
 Advanced
 --------
-Print line 11:
+Print line 11:  
 ubuntu@ubuntu$ cat test.txt | sed -n '11p'
 
-Print lines between 10-15:
+Print lines between 10-15:  
 ubuntu@ubuntu$ cat test.txt | sed -n '10,15p'
 
-Print lines below 11:
+Print lines below 11:  
 ubuntu@ubuntu$ cat test.txt | awk 'NR < 11 {print $0}'
 
-Print line 11:
+Print line 11:  
 ubuntu@ubuntu$ cat test.txt | awk 'NR == 11 {print $0}'
 
-Use Case	                                           Description
---------                                             ----------- 
+Use Case	                                           Description  
+--------                                             -----------  
 sort | uniq                                     Remove duplicate values.
 
 sort | uniq -c                                  Remove duplicates and count the number of occurrences for each value.
@@ -200,38 +200,38 @@ grep -rin Testvalue1 * | column -t | less -S    Search the "Testvalue1" string e
 
 [hat tip: https://tryhackme.com/room/zeekbro]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
-Use case for 'rev' command in Linux CLI:
-The 'rev' command reverses the text. So the word "hello" becomes "olleh".
-In the TryHackMe room "Zeek Exercises" [https://tryhackme.com/room/zeekbroexercises ; Task 2, Question 3] it was necessary to find all the unique domain names in a file using the CLI.
-The CLI can use the 'uniq' command to list each unique domain.
-The problem is that each domain appeared many times with various sub-domains of varying lengths and textual content. There could also have been sub-sub-domains delineated by ".". How does one tell the computer to only look at the domain and TLD when determing uniqueness?
+Use case for 'rev' command in Linux CLI:  
+The 'rev' command reverses the text. So the word "hello" becomes "olleh".  
+In the TryHackMe room "Zeek Exercises" [https://tryhackme.com/room/zeekbroexercises ; Task 2, Question 3] it was necessary to find all the unique domain names in a file using the CLI.  
+The CLI can use the 'uniq' command to list each unique domain.  
+The problem is that each domain appeared many times with various sub-domains of varying lengths and textual content. There could also have been sub-sub-domains delineated by ".". How does one tell the computer to only look at the domain and TLD when determing uniqueness?  
 The hint TryHackMe gave for this question used rev as part of the command. Basically, you reverse the text and then use "cut -d '.' -f 1-2" to pull out only the TLD and domain names. You have avoided the variability in the sub-domains and can be sure that you are only extracting the TLD and domain. Then you rev the data back into the proper order and list each unique occurence.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 Learning Linux CLI (aka Terminal aka Bash)
 ------------------------------------------
-https://ubuntu.com/tutorials/command-line-for-beginners#1-overview
-https://www.hackthebox.com/blog/learn-linux
-https://www.freecodecamp.org/news/the-linux-commands-handbook/
+https://ubuntu.com/tutorials/command-line-for-beginners#1-overview  
+https://www.hackthebox.com/blog/learn-linux  
+https://www.freecodecamp.org/news/the-linux-commands-handbook/  
 [hat tip: https://www.reddit.com/r/tryhackme -- WRWhizard]
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
-https://linuxcommand.org/index.php
-https://overthewire.org/wargames/
+https://linuxcommand.org/index.php  
+https://overthewire.org/wargames/  
 [hat tip: https://niiconsulting.com/checkmate/2017/06/a-detail-guide-on-oscp-preparation-from-newbie-to-oscp/]
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Explain Shell
-https://explainshell.com/
-"write down a command-line to see the help text that matches each argument"
-[hat tip: https://fosspost.org/linux-command-line-basics-examples/
-"How To Know What a Linux Command Does?
-Since you are a new user, you may see many people passing different Linux commands on the Internet that may do different tasks. But how can you understand what these commands will do on your system if you apply them?
-ExplainShell.com is the answer.
+Explain Shell  
+https://explainshell.com/  
+"write down a command-line to see the help text that matches each argument"  
+[hat tip: https://fosspost.org/linux-command-line-basics-examples/  
+"How To Know What a Linux Command Does?  
+Since you are a new user, you may see many people passing different Linux commands on the Internet that may do different tasks. But how can you understand what these commands will do on your system if you apply them?  
+ExplainShell.com is the answer.  
 Let’s say that you encountered a very long command while browsing an online article or a book, and you didn’t know what does it do and how? Just paste it into the website and it will tell you what each part of it does. It’s an amazing online website to explain Linux commands.]
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 From: https://flashpoint.io/blog/osint-tools-library/
 
-Manipulate datasets from Terminal
+Manipulate datasets from Terminal  
 OSINT practitioners frequently run across TXT and CSV files. Often, the formatting for CSV files is not compatible with your investigation and you need to remove certain columns, add others, change column titles, etc. If you’re looking to remove all columns except for a select few, use this trick:
 
 $ cut -d, -f<column number> --complement input.csv > output.csv
@@ -250,8 +250,8 @@ rsync
 -----
 Used to copy files and directories to a destination, similar to the cp command. However, it also allows copying to remote locations and can provide a progress bar, as is often used for backups
 
-# Example Usage
-$ rsync -vap --ignore-existing <source_file> <destination_file>#  Key flags:
+# Example Usage  
+$ rsync -vap --ignore-existing <source_file> <destination_file>#  Key flags:  
 v = verbose, r = recursive, p = preserve permissions, g = group, o = owner, a = archive, --progress = progresss bar
 
 
@@ -259,33 +259,33 @@ mkpasswd
 --------
 mkpasswd is a simple but very useful command, it generates a complex random password at the specified length.
 
-$ mkpasswd -l 8
+$ mkpasswd -l 8  
 > iwF1g2Lo
 
 screen
 -------
 Screen is a full-screen window manager; it creates a single window with a shell running and allows multiple screen windows to run inside a single session. It’s most beneficial when you’re running a long task remotely and worried about your SSH session dropping and ruining everything. Screen will continue through disconnection and continue to run your commands even when the window is not visible to you.
 
-# Example Usage
-$ screen # Start a screen session
-$ screen -ls # List running services
+# Example Usage  
+$ screen # Start a screen session  
+$ screen -ls # List running services  
 $ screen -r # Attach to session
 
 diff
 -----
-Diff the Output of any two commands
+Diff the Output of any two commands  
 # Example usage of comparing output of two ls commands$ diff -u <(ls -l /directory/) <(ls -l /directory/) | colordiff
 
 date -d
 --------
-Convert a Unix (Epoch) timestamp to human-readable format
-# Convert Unix timestamp to human readable
-$ date -d 1656685875
-Fri, 01 Jul 2022 14:31:15 +0000
-# Current time as UNIX timestamp
+Convert a Unix (Epoch) timestamp to human-readable format  
+# Convert Unix timestamp to human readable  
+$ date -d 1656685875  
+Fri, 01 Jul 2022 14:31:15 +0000  
+# Current time as UNIX timestamp  
 $ date "+%s"
 -------------------------------------------------------
 
-Introduction to Named Pipes
+Introduction to Named Pipes  
 https://www.linuxjournal.com/article/2156
 -----------------------------------------------------------------------------

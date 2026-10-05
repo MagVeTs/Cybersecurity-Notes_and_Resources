@@ -5,38 +5,38 @@ from: Heath Adams - The Cyber Mentor: "Practical Ethical Hacking - The Complete 
 
 * "Installing Kali Linux" - https://academy.tcm-sec.com/courses/1152300/lectures/24747402
 
-- https://www.kali.org/get-kali/#kali-virtual-machines
+- https://www.kali.org/get-kali/#kali-virtual-machines  
 - https://www.7-zip.org/download.html
 
 * "Installing and Updating Tools" - https://academy.tcm-sec.com/courses/1152300/lectures/24747385
 
 * also see MagVeTs/Cybersecurity/LinuxOS/Kali_Linux/pimp_my_kali
 
-TIP: It may be necessary to first switch to root user before running update/upgrade (sudo might not be enough):
-$ sudo su -
+TIP: It may be necessary to first switch to root user before running update/upgrade (sudo might not be enough):  
+$ sudo su -  
 $ sudo apt update && sudo apt upgrade
 
-TIP: Updating/upgrading Kali linux could conceivably break the OS; it is recommended to use a VM and first make a copy of the VM before attempting to update/upgrade it.
-TIP: It is highly recommended to use https://github.com/Dewalt-arch/pimpmykali - "Kali Linux Fixes for Newly Imported VM's" which is a curated update/upgrade that is frequently updated, and will not break anything, and was created by one of HA's colleagues (known as Dewalt).
+TIP: Updating/upgrading Kali linux could conceivably break the OS; it is recommended to use a VM and first make a copy of the VM before attempting to update/upgrade it.  
+TIP: It is highly recommended to use https://github.com/Dewalt-arch/pimpmykali - "Kali Linux Fixes for Newly Imported VM's" which is a curated update/upgrade that is frequently updated, and will not break anything, and was created by one of HA's colleagues (known as Dewalt).  
 TIP: When installing tools it is recommended to install them in the /opt directory.
 
-***
+***  
 "Here are explanations and examples of the commands mentioned in this video:
 
 sudo apt update && sudo apt upgrade:
 
-Explanation: Updates the package lists and upgrades installed packages on a Debian-based Linux system using the APT package manager.
+Explanation: Updates the package lists and upgrades installed packages on a Debian-based Linux system using the APT package manager.  
 Example: Running sudo apt update && sudo apt upgrade would update the package lists to retrieve information about available updates, and then upgrade the installed packages to their latest versions.
 
 sudo apt install cron-daemon-common:
 
-Explanation: Installs the "cron-daemon-common" package using APT. Cron is a time-based job scheduler in Linux systems, and the "cron-daemon-common" package provides common files and utilities for the cron daemon.
+Explanation: Installs the "cron-daemon-common" package using APT. Cron is a time-based job scheduler in Linux systems, and the "cron-daemon-common" package provides common files and utilities for the cron daemon.  
 Example: Running sudo apt install cron-daemon-common would download and install the "cron-daemon-common" package on the system.
 
 sudo git clone https://github.com/Dewalt-arch/pimpmykali.git:
 
-Explanation: Clones a Git repository from the specified URL using the Git version control system.
-Example: Running sudo git clone https://github.com/Dewalt-arch/pimpmykali.git would clone the repository from the given URL and create a local copy of the repository's files and version history.
-These commands are commonly used in Linux systems for updating packages, installing new software, and managing version-controlled repositories. The sudo command is used to execute commands with superuser privileges. The apt command is used for package management in Debian-based distributions. The git command is used for version control and working with Git repositories."
+Explanation: Clones a Git repository from the specified URL using the Git version control system.  
+Example: Running sudo git clone https://github.com/Dewalt-arch/pimpmykali.git would clone the repository from the given URL and create a local copy of the repository's files and version history.  
+These commands are commonly used in Linux systems for updating packages, installing new software, and managing version-controlled repositories. The sudo command is used to execute commands with superuser privileges. The apt command is used for package management in Debian-based distributions. The git command is used for version control and working with Git repositories."  
 ("Installing and Updating Tools" - https://academy.tcm-sec.com/courses/1152300/lectures/24747385)
 --------------------------------------------------------------------------------

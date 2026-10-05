@@ -1,48 +1,48 @@
 resources
 ---------
 
-my-arsenal-of-aws-security-tools
-https://github.com/toniblyx/my-arsenal-of-aws-security-tools
-"List of open source tools for AWS security: defensive, offensive, auditing, DFIR, etc."
-[includes a list of a lot of offensive tools]
+my-arsenal-of-aws-security-tools  
+https://github.com/toniblyx/my-arsenal-of-aws-security-tools  
+"List of open source tools for AWS security: defensive, offensive, auditing, DFIR, etc."  
+[includes a list of a lot of offensive tools]  
 [hat tip: YS]
 -------------------------------------------------------------------------
-AWS Security Maturity Model
-https://maturitymodel.security.aws.dev/en/
-[looks very helpful for understanding AWS Security]
+AWS Security Maturity Model  
+https://maturitymodel.security.aws.dev/en/  
+[looks very helpful for understanding AWS Security]  
 [hat tip: RM]
 -------------------------------------------------------------------------
-Common security vulnerabilities in Core AWS services: Exploitation and mitigation
-https://labs.detectify.com/ethical-hacking/common-security-vulnerabilities-in-core-aws-services-exploitation-and-mitigation/
+Common security vulnerabilities in Core AWS services: Exploitation and mitigation  
+https://labs.detectify.com/ethical-hacking/common-security-vulnerabilities-in-core-aws-services-exploitation-and-mitigation/  
 [hat tip: RM]
 
-The above article recommends:
-https://aws.amazon.com/security/
-https://rhinosecuritylabs.com/blog/
-https://application.security/free/kontra-aws-clould-top-10
-https://github.com/RhinoSecurityLabs/cloudgoat
-https://github.com/OWASP/DVSA
-Payloads_All_Things_AWS - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Cloud%20-%20AWS%20Pentest.md
+The above article recommends:  
+https://aws.amazon.com/security/  
+https://rhinosecuritylabs.com/blog/  
+https://application.security/free/kontra-aws-clould-top-10  
+https://github.com/RhinoSecurityLabs/cloudgoat  
+https://github.com/OWASP/DVSA  
+Payloads_All_Things_AWS - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Cloud%20-%20AWS%20Pentest.md  
 AWS Attacks Mind Map - https://xmind.app/m/nixuCQ/
 -------------------------------------------------------------------------
-Cloud Pentest Apocalypse Part 1 | Beau Bullock
+Cloud Pentest Apocalypse Part 1 | Beau Bullock  
 https://www.youtube.com/watch?v=garHtW-bL7U
 
-Cloud Pentest Apocalypse Part 2 | Beau Bullock
+Cloud Pentest Apocalypse Part 2 | Beau Bullock  
 https://www.youtube.com/watch?v=HbX9d5v7VxY
 
-Breaching The Cloud Perimeter w/ Beau Bullock
+Breaching The Cloud Perimeter w/ Beau Bullock  
 https://www.blackhillsinfosec.com/breaching-the-cloud-perimeter-w-beau-bullock/
 
 [hat tip: RM]
 -------------------------------------------------------------------------
-https://securitycipher.com/aws-security-checklist/
-Great checklist when one is doing a security review of an AWS environment; also great as a checklist for PT on an AWS environment
+https://securitycipher.com/aws-security-checklist/  
+Great checklist when one is doing a security review of an AWS environment; also great as a checklist for PT on an AWS environment  
 [hat tip: SW]
 -------------------------------------------------------------------------
-Pathfinding Cloud
-https://pathfinding.cloud/
-"Understand, Detect & Demonstrate AWS IAM Privilege Escalation ...
-Whether you're a security engineer, DevOps engineer, or penetration tester, pathfinding.cloud gives you the tools to understand and detect IAM-based privilege-escalation attacks in AWS so you can remediate misconfigurations before they’re exploited."
+Pathfinding Cloud  
+https://pathfinding.cloud/  
+"Understand, Detect & Demonstrate AWS IAM Privilege Escalation ...  
+Whether you're a security engineer, DevOps engineer, or penetration tester, pathfinding.cloud gives you the tools to understand and detect IAM-based privilege-escalation attacks in AWS so you can remediate misconfigurations before they’re exploited."  
 [hat tip: RM]
 -------------------------------------------------------------------------

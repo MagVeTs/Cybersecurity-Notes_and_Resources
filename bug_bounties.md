@@ -1,7 +1,7 @@
 Bug Bounties
 ----------------------------------------
 
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
 "Additional Resources" - https://academy.tcm-sec.com/courses/1152300/lectures/33690723
 
 HA says that a big part of Bug Hunting and Web Application Penetration Testing is reconnaisance and enumeration. He recommends the following YouTube channels as resources for learning the methodology:
@@ -11,10 +11,10 @@ The Bug Hunter's Methodology, Jason Haddix - https://www.youtube.com/watch?v=uKW
 Nahamsec Recon Playlist - https://www.youtube.com/watch?v=MIujSpuDtFY&list=PLKAaMVNxvLmAkqBkzFaOxqs3L66z2n8LA
 
 ----------------------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
 "Identifying Our Target" - https://academy.tcm-sec.com/courses/1152300/lectures/24747382
 
-Bug Bounty Program:
+Bug Bounty Program:  
 https://bugcrowd.com/programs
 
 ----------------------------------------

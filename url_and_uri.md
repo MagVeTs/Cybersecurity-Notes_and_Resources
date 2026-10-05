@@ -6,87 +6,87 @@ URL Syntax
 
 URl Syntax is usually: scheme:[//authority]path[?query][#fragment]
 
-Here is an example:
+Here is an example:  
 https://prod.app.example.com/customers/overview/?page=6#terms-of-service
 
 
-scheme = https (scheme is followed by `://`)
-authority = prod.app.example.com [com = Top-level domain (TLD) ; example = domain ; prod.app = sub-subdomain and subdomain] (`.` between subdomain(s), domain, and TLD)
-path = /customers/overview (`/` before each part of path)
-query = page=6 ('?' before query)
+scheme = https (scheme is followed by `://`)  
+authority = prod.app.example.com [com = Top-level domain (TLD) ; example = domain ; prod.app = sub-subdomain and subdomain] (`.` between subdomain(s), domain, and TLD)  
+path = /customers/overview (`/` before each part of path)  
+query = page=6 ('?' before query)  
 fragment = terms-of-service (`#` before fragment ; a fragment directs the browser to a particular place in the html text on the loaded webpage)
 
 
 [hat tip: https://trainingportal.linuxfoundation.org/learn/course/developing-secure-software-lfd121/sending-output/sending-output?page=6]
 ----------------------------------------------------------------------------------------------------------------------
-HTTP Request Methods
-GET
-POST
-PUT
-HEAD
-DELETE
-PATCH
-OPTIONS
-CONNECT
-TRACE
+HTTP Request Methods  
+GET  
+POST  
+PUT  
+HEAD  
+DELETE  
+PATCH  
+OPTIONS  
+CONNECT  
+TRACE  
 [https://www.w3schools.com/tags/ref_httpmethods.asp]
 
-HTTP Response Codes
-Five classes:
-"1xx informational response – the request was received, continuing process
-2xx successful – the request was successfully received, understood, and accepted
-3xx redirection – further action needs to be taken in order to complete the request
-4xx client error – the request contains bad syntax or cannot be fulfilled
-5xx server error – the server failed to fulfil an apparently valid request"
+HTTP Response Codes  
+Five classes:  
+"1xx informational response – the request was received, continuing process  
+2xx successful – the request was successfully received, understood, and accepted  
+3xx redirection – further action needs to be taken in order to complete the request  
+4xx client error – the request contains bad syntax or cannot be fulfilled  
+5xx server error – the server failed to fulfil an apparently valid request"  
 - https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 
 
-In URLs:
-* data submitted by url is delimited by `?` symbol
-* query parameters - format is name=value pairs; ampersands (&) used to delimit the pairs; multiple query parameters may be submitted in one url
+In URLs:  
+* data submitted by url is delimited by `?` symbol  
+* query parameters - format is name=value pairs; ampersands (&) used to delimit the pairs; multiple query parameters may be submitted in one url  
 * # - delimits "fragment" or "anchor ID"; webserver does not process this section; processed on the client side to direct browser to a part of the webpage (see: https://www.geeksforgeeks.org/what-is-the-use-of-symbol-in-link-url/); can be abused by threat actor to inject JavaScript
 
-URL Encoding (aka Percent Encoding)
-* used to encode 8 bit characters used in URLs
-* URLs can have unreserved and reserved ASCII set characters
-- unreserved characters = a-z A-Z 0-9 - . _  ~ (these characters can be used in URLs but have no special unique meaning in URLs)
-- reserved characters = : / ? # [ ] @ ! $ & ' ( ) * + , ; = (these characters can be used in URLs but have a special unique meaning in URLs)
-* URLs can not contain "unsafe characters"
-- unsafe characters = \ < > { } and: null string termination, carriage return, line feed, end of file, tab, space
-* percent encoding will allow the submission of any safe OR unsafe ASCII character (or binary data) in the URL
-* percent encoding can be abused to run malicious scripts and other attacks
-* table of characters and their percent encoding equivalents: https://www.w3schools.com/tags/ref_urlencode.asp?_sm_au_=iVVDMg0TSmrMV6Dm
-* some examples:
-! = %21
-& = %26
-= = %3D
-@ = %40
-? = %3F
-% = %25
-# = %23
-$ = %24
-* online tool to decode/encode percent encoding:
-- https://url-decode.com/
-- https://url-decode.com/tool/url-encode
+URL Encoding (aka Percent Encoding)  
+* used to encode 8 bit characters used in URLs  
+* URLs can have unreserved and reserved ASCII set characters  
+- unreserved characters = a-z A-Z 0-9 - . _  ~ (these characters can be used in URLs but have no special unique meaning in URLs)  
+- reserved characters = : / ? # [ ] @ ! $ & ' ( ) * + , ; = (these characters can be used in URLs but have a special unique meaning in URLs)  
+* URLs can not contain "unsafe characters"  
+- unsafe characters = \ < > { } and: null string termination, carriage return, line feed, end of file, tab, space  
+* percent encoding will allow the submission of any safe OR unsafe ASCII character (or binary data) in the URL  
+* percent encoding can be abused to run malicious scripts and other attacks  
+* table of characters and their percent encoding equivalents: https://www.w3schools.com/tags/ref_urlencode.asp?_sm_au_=iVVDMg0TSmrMV6Dm  
+* some examples:  
+! = %21  
+& = %26  
+= = %3D  
+@ = %40  
+? = %3F  
+% = %25  
+# = %23  
+$ = %24  
+* online tool to decode/encode percent encoding:  
+- https://url-decode.com/  
+- https://url-decode.com/tool/url-encode  
 * NOTE: attackers sometimes "double-encode" by encoding the % sign used at the beginning of each code
 
 [from: "CompTIA Pentest+ (Ethical Hacking) Course & Practice Exam" - Jason Dion - https://www.udemy.com/course/pentestplus/ ; "URL Analysis"]
 
 ----------------------------------------------------------------------------------------------------------------------
-WhereGoes
-https://wheregoes.com/
-"URL Redirect Checker
-What is a URL redirect checker?
+WhereGoes  
+https://wheregoes.com/  
+"URL Redirect Checker  
+What is a URL redirect checker?  
 Have you ever wondered: Where does this link go? The URL redirect checker follows the path of the URL. It will show you the full redirection path of URLs, shortened links, or tiny URLs. Also referred to as a link checker, url checker, redirect checker, link tracker, url tracker, redirect tracer, link follower, 301 redirect checker, redirect tracker, URL tester, and so on.
 
 When the link checker traces a link, the results display all the links that you are being redirected through including php redirects, htaccess redirects, NGINX redirects, JavaScript redirects and meta-refreshes eventually leading you to the final destination...
 
-Tiny URL Expander
+Tiny URL Expander  
 If you want to know where a tiny link goes, then you can also use WhereGoes as a link expander. It will show you exactly where that tiny URL goes and the full path of it. This is great to use if you are unsure where the link will take you or you want to see what affiliates are involved in the redirection process."
 
 --------------------------------
-Redirect Detective
-https://redirectdetective.com/
+Redirect Detective  
+https://redirectdetective.com/  
 "Redirect Detective is a free URL redirection checker that allows you to see the complete path a redirected URL goes through."
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -94,14 +94,14 @@ URL Shorteners
 ----------------
 "Attackers usually hide the malicious domains under URL Shorteners. A URL Shortener is a tool that creates a short and unique URL that will redirect to the specific website specified during the initial step of setting up the URL Shortener link. According to Cofense, attackers use the following URL Shortening services to generate malicious links: 
 
-bit.ly
-goo.gl
-ow.ly
-s.id
-smarturl.it
-tiny.pl
-tinyurl.com
-x.co
+bit.ly  
+goo.gl  
+ow.ly  
+s.id  
+smarturl.it  
+tiny.pl  
+tinyurl.com  
+x.co  
 You can see the actual website the shortened link is redirecting you to by appending "+" to it ... Type the shortened URL in the address bar of the web browser and add the above characters to see the redirect URL." -- https://tryhackme.com/room/pyramidofpainax (Task 4)
 -----------------------------------------------------------------------------------------------------------------------
 Create Abbreviated URLs:
@@ -110,21 +110,21 @@ https://tinyurl.com/app (hat tip: JE)
 
 https://bitly.com/ (hat tip: JE)
 ------------------------------------------------------------------------------------------------------------------------
-Unfurl
+Unfurl  
 https://dfir.blog/unfurl/
 
-"Unfurl takes a URL and expands ("unfurls") it into a directed graph, extracting every bit of information from the URL and exposing the obscured. It does this by breaking up a URL up into components, extracting as much information as it can from each piece, and presenting it all visually. This “show your work” approach (along with embedded references and documentation) makes the analysis transparent to the user and helps them learn about (and discover) semantic and syntactical URL structures." --https://dfir.blog/introducing-unfurl/
+"Unfurl takes a URL and expands ("unfurls") it into a directed graph, extracting every bit of information from the URL and exposing the obscured. It does this by breaking up a URL up into components, extracting as much information as it can from each piece, and presenting it all visually. This “show your work” approach (along with embedded references and documentation) makes the analysis transparent to the user and helps them learn about (and discover) semantic and syntactical URL structures." --https://dfir.blog/introducing-unfurl/  
 [hat tip: https://www.linkedin.com/in/micahhoffman/]
 
 "Takes a URL and expands ("unfurls") it into a directed graph, extracting every bit of information from the URL and exposing the obscured." -- Operator Handbook [Netmux : 2020], p.245.
 
 Great tool!
 ------------------------------------------------------------------------------------------------------------------------
-URL Decoder (e.g. it changes % to characters)
-https://url-decode.com/
-Note: there is also a tab on the website to go to many other useful tools
+URL Decoder (e.g. it changes % to characters)  
+https://url-decode.com/  
+Note: there is also a tab on the website to go to many other useful tools  
 [hat tip: JE]
 ------------------------------------------------------------------------------------------------------------------------
-Chart of ASCII encoding in URL (% encoding)
-https://www.w3schools.com/tags/ref_urlencode.ASP
+Chart of ASCII encoding in URL (% encoding)  
+https://www.w3schools.com/tags/ref_urlencode.ASP  
 [hat tip: ThriveDX]

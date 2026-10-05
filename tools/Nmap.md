@@ -3,10 +3,10 @@ nmap
 
 
 ----------------------------------------------------------------
-Nmap encourages one to scan the following machine that they have made available to test nmap on: scanme.nmap.org
+Nmap encourages one to scan the following machine that they have made available to test nmap on: scanme.nmap.org  
 e.g. nmap -V scanme.nmap.org
 
-to learn more go here in the browser:
+to learn more go here in the browser:  
 http://scanme.nmap.org/
 ----------------------------------------------------------------
 =======================================================================================================================================================================
@@ -16,51 +16,51 @@ TCP Header Flags [important for understanding various types of Nmap scans]
 --------------------------------------------------------------------------
 "TCP header flags are:
 
-1. URG: Urgent flag indicates that the urgent pointer filed is significant. The urgent pointer indicates that the incoming data is urgent, and that a TCP segment with the URG flag set is processed immediately without consideration of having to wait on previously sent TCP segments.
-2. ACK: Acknowledgement flag indicates that the acknowledgement number is significant. It is used to acknowledge the receipt of a TCP segment.
-3. PSH: Push flag asking TCP to pass the data to the application promptly.
-4. RST: Reset flag is used to reset the connection. Another device, such as a firewall, might send it to tear a TCP connection. This flag is also used when data is sent to a host and there is no service on the receiving end to answer.
-5. SYN: Synchronize flag is used to initiate a TCP 3-way handshake and synchronize sequence numbers with the other host. The sequence number should be set randomly during TCP connection establishment.
+1. URG: Urgent flag indicates that the urgent pointer filed is significant. The urgent pointer indicates that the incoming data is urgent, and that a TCP segment with the URG flag set is processed immediately without consideration of having to wait on previously sent TCP segments.  
+2. ACK: Acknowledgement flag indicates that the acknowledgement number is significant. It is used to acknowledge the receipt of a TCP segment.  
+3. PSH: Push flag asking TCP to pass the data to the application promptly.  
+4. RST: Reset flag is used to reset the connection. Another device, such as a firewall, might send it to tear a TCP connection. This flag is also used when data is sent to a host and there is no service on the receiving end to answer.  
+5. SYN: Synchronize flag is used to initiate a TCP 3-way handshake and synchronize sequence numbers with the other host. The sequence number should be set randomly during TCP connection establishment.  
 6. FIN: The sender has no more data to send."
 ----------------------------------------------------------------------------
 
 Host Discovery
 ------------------------------------------------------------------------------------------
-Nmap target specification options:
-- list: 10.11.12.15 scanme.nmap.org example.com will scan 3 IP addresses.
-- range: 10.11.12.15-20 will scan 6 IP addresses: 10.11.12.15, 10.11.12.16,… and 10.11.12.20.
-- subnet: TARGET_MACHINE_IP/30 will scan 4 IP addresses.
+Nmap target specification options:  
+- list: 10.11.12.15 scanme.nmap.org example.com will scan 3 IP addresses.  
+- range: 10.11.12.15-20 will scan 6 IP addresses: 10.11.12.15, 10.11.12.16,… and 10.11.12.20.  
+- subnet: TARGET_MACHINE_IP/30 will scan 4 IP addresses.  
 You can also provide a file as input for your list of targets, e.g.: nmap -iL list_of_hosts.txt
 
-TIP:
-In order to check the list of hosts that Nmap will scan (helpful for situations where you are planning to scan a subnet and do not want to calculate the IP addresses in that subnet - Nmap will do the math for you and list all the possible IPs in the subnet you gave), use:
-nmap -sL TARGETS.
+TIP:  
+In order to check the list of hosts that Nmap will scan (helpful for situations where you are planning to scan a subnet and do not want to calculate the IP addresses in that subnet - Nmap will do the math for you and list all the possible IPs in the subnet you gave), use:  
+nmap -sL TARGETS.  
 (this option will give you a detailed list of the hosts that Nmap will scan without scanning them; however, Nmap will attempt a reverse-DNS resolution on all the targets to obtain their names. Names might reveal various information to the pentester. [If you don’t want Nmap to the DNS server, you can add -n.])
 
 Nmap Host Discovery Scan Types (i.e. without port scans) With Example Command
 -------------------------------------
-1) ARP Scan:	sudo nmap -PR -sn TARGET_MACHINE_IP/24
-[ARP scans only allowed for root and sudoers; ARP scans only work for machines in your own subnet; there is also a dedicated ARP scan tool called arp-scan (http://www.royhills.co.uk/wiki/index.php/Main_Page]); to install it on Linux, use: apt install arp-scan]
-2) ICMP Echo Scan:	sudo nmap -PE -sn TARGET_MACHINE_IP/24 [may be blocked by firewalls - worth trying all ICMP types in case one isn't blocked]
-3) ICMP Timestamp Scan:	sudo nmap -PP -sn TARGET_MACHINE_IP/24 [may be blocked by firewalls - worth trying all ICMP types in case one isn't blocked]
-4) ICMP Address Mask Scan:	sudo nmap -PM -sn TARGET_MACHINE_IP/24 [may be blocked by firewalls - worth trying all ICMP types in case one isn't blocked]
-5) TCP SYN Ping Scan:	sudo nmap -PS22,80,443 -sn TARGET_MACHINE_IP/30 [will work even for unprivileged users; however, only root/sudoers can avoid completion of 3-way handshake]
-6) TCP ACK Ping Scan:	sudo nmap -PA22,80,443 -sn TARGET_MACHINE_IP/30 [only available for root/sudoers]
+1) ARP Scan:	sudo nmap -PR -sn TARGET_MACHINE_IP/24  
+[ARP scans only allowed for root and sudoers; ARP scans only work for machines in your own subnet; there is also a dedicated ARP scan tool called arp-scan (http://www.royhills.co.uk/wiki/index.php/Main_Page]); to install it on Linux, use: apt install arp-scan]  
+2) ICMP Echo Scan:	sudo nmap -PE -sn TARGET_MACHINE_IP/24 [may be blocked by firewalls - worth trying all ICMP types in case one isn't blocked]  
+3) ICMP Timestamp Scan:	sudo nmap -PP -sn TARGET_MACHINE_IP/24 [may be blocked by firewalls - worth trying all ICMP types in case one isn't blocked]  
+4) ICMP Address Mask Scan:	sudo nmap -PM -sn TARGET_MACHINE_IP/24 [may be blocked by firewalls - worth trying all ICMP types in case one isn't blocked]  
+5) TCP SYN Ping Scan:	sudo nmap -PS22,80,443 -sn TARGET_MACHINE_IP/30 [will work even for unprivileged users; however, only root/sudoers can avoid completion of 3-way handshake]  
+6) TCP ACK Ping Scan:	sudo nmap -PA22,80,443 -sn TARGET_MACHINE_IP/30 [only available for root/sudoers]  
 7) UDP Ping Scan:	sudo nmap -PU53,161,162 -sn TARGET_MACHINE_IP/30 [if the port is closed this generates an ICMP Type 3, Code 3 (port unreachable response) - then you know the host is up; if no response is received you do not know if the host is down or the host is up but the port is open; therefore, it is important to send the UDP Ping Scan specifically to weird ports that would probably be closed (if you are using it for host discovery purposes)]
 
-Option	| Purpose
-------    -------
--n	      no reverse-DNS lookup
--R	      do reverse-DNS lookup for ALL hosts (including those presently offline)
+Option	| Purpose  
+------    -------  
+-n	      no reverse-DNS lookup  
+-R	      do reverse-DNS lookup for ALL hosts (including those presently offline)  
 -sn	      perform host discovery only; do not scan for open ports
 --------------------------------------------------------------------------------------
 masscan
 ---------
-masscan is a scanning tool similar to Nmap. However, it is quicker because its packet generating rate is aggressive. Install on Linux with: apt install masscan.
-Example syntax:
-masscan MACHINE_IP/24 -p443
-masscan MACHINE_IP/24 -p80,443
-masscan MACHINE_IP/24 -p22-25
+masscan is a scanning tool similar to Nmap. However, it is quicker because its packet generating rate is aggressive. Install on Linux with: apt install masscan.  
+Example syntax:  
+masscan MACHINE_IP/24 -p443  
+masscan MACHINE_IP/24 -p80,443  
+masscan MACHINE_IP/24 -p22-25  
 masscan MACHINE_IP/24 ‐‐top-ports 100 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -68,58 +68,58 @@ Port Scanning
 -----------------------------------------------------------------------------------------
 Six Port States in Nmap
 -----------------------
-1) Open: indicates that a service is listening on the specified port.
-2) Closed: indicates that no service is listening on the specified port, although the port is accessible. By accessible, we mean that it is reachable and is not blocked by a firewall or other security appliances/programs.
-3) Filtered: means that Nmap cannot determine if the port is open or closed because the port is not accessible. This state is usually due to a firewall preventing Nmap from reaching that port. Nmap’s packets may be blocked from reaching the port; alternatively, the responses are blocked from reaching Nmap’s host.
-4) Unfiltered: means that Nmap cannot determine if the port is open or closed, although the port is accessible. This state is encountered when using an ACK scan -sA.
-5) Open|Filtered: This means that Nmap cannot determine whether the port is open or filtered.
+1) Open: indicates that a service is listening on the specified port.  
+2) Closed: indicates that no service is listening on the specified port, although the port is accessible. By accessible, we mean that it is reachable and is not blocked by a firewall or other security appliances/programs.  
+3) Filtered: means that Nmap cannot determine if the port is open or closed because the port is not accessible. This state is usually due to a firewall preventing Nmap from reaching that port. Nmap’s packets may be blocked from reaching the port; alternatively, the responses are blocked from reaching Nmap’s host.  
+4) Unfiltered: means that Nmap cannot determine if the port is open or closed, although the port is accessible. This state is encountered when using an ACK scan -sA.  
+5) Open|Filtered: This means that Nmap cannot determine whether the port is open or filtered.  
 6) Closed|Filtered: This means that Nmap cannot decide whether a port is closed or filtered.
 
 Port Scan Types
 -----------------
-Port Scan Type     |	  Example Command
-1) TCP Connect Scan	    nmap -sT TARGET_MACHINE_IP
-[available even for unprivileged users; completes 3-way handshake before sending RST packet]
-2) TCP SYN Scan	        sudo nmap -sS TARGET_MACHINE_IP
-[available only for privileged users (root/sudoers); default Nmap scan; does not complete 3-way handshake; instead, sends RST immediately after receiving ACK reply to its SYN packet; by not completing 3-way handshake this scan may avoid getting logged by target]
-3) UDP Scan	            sudo nmap -sU TARGET_MACHINE_IP
-[since UDP is connectionless protocol, Nmap knows port is closed if it receives IMCP type 3 (destination unreachable/code 3 (port unreachable) message; no message means port open (or perhaps port is being filtered by a firewall)]
-4) TCP Null Scan	      sudo nmap -sN TARGET_MACHINE_IP [no flags set; closed port will respond with RST; open/filtered port will trigger no response; a stealthy scan] 
-5) TCP FIN Scan	        sudo nmap -sF TARGET_MACHINE_IP [FIN flag set; closed port will respond with RST; open/filtered port will trigger no response] 
-6) TCP Xmas Scan	      sudo nmap -sX TARGET_MACHINE_IP [FIN, PSH, and URG flags set; closed port will respond with RST; open/filtered port will trigger no response] 
-7) TCP Maimon Scan	    sudo nmap -sM TARGET_MACHINE_IP [FIN and ACK flags set; closed and open ports will both respond with RST packet; some BSD systems will not repond if the port is open; not usually used with modern systems]
-8) TCP ACK Scan	        sudo nmap -sA TARGET_MACHINE_IP [ACK flag set; closed and open ports will both respond with RST packet; however, if there is a firewall you may be able to learn which ports are unfiltered; note: this does not clarify whether these ports are open or closed and merely not being filtered by firewall rules]
-9) TCP Window Scan	    sudo nmap -sW TARGET_MACHINE_IP [ACK flag set; closed and open ports will both respond with RST packet; Nmap examines the TCP Window field of the RST responses; based on the TCP Window, Nmap may list certain ports as "closed" - this may indicate that there is a firewall and these specific ports are NOT filtered; note: this does not clarify whether these ports are open or closed and merely not being filtered by firewall rules]
+Port Scan Type     |	  Example Command  
+1) TCP Connect Scan	    nmap -sT TARGET_MACHINE_IP  
+[available even for unprivileged users; completes 3-way handshake before sending RST packet]  
+2) TCP SYN Scan	        sudo nmap -sS TARGET_MACHINE_IP  
+[available only for privileged users (root/sudoers); default Nmap scan; does not complete 3-way handshake; instead, sends RST immediately after receiving ACK reply to its SYN packet; by not completing 3-way handshake this scan may avoid getting logged by target]  
+3) UDP Scan	            sudo nmap -sU TARGET_MACHINE_IP  
+[since UDP is connectionless protocol, Nmap knows port is closed if it receives IMCP type 3 (destination unreachable/code 3 (port unreachable) message; no message means port open (or perhaps port is being filtered by a firewall)]  
+4) TCP Null Scan	      sudo nmap -sN TARGET_MACHINE_IP [no flags set; closed port will respond with RST; open/filtered port will trigger no response; a stealthy scan]  
+5) TCP FIN Scan	        sudo nmap -sF TARGET_MACHINE_IP [FIN flag set; closed port will respond with RST; open/filtered port will trigger no response]  
+6) TCP Xmas Scan	      sudo nmap -sX TARGET_MACHINE_IP [FIN, PSH, and URG flags set; closed port will respond with RST; open/filtered port will trigger no response]  
+7) TCP Maimon Scan	    sudo nmap -sM TARGET_MACHINE_IP [FIN and ACK flags set; closed and open ports will both respond with RST packet; some BSD systems will not repond if the port is open; not usually used with modern systems]  
+8) TCP ACK Scan	        sudo nmap -sA TARGET_MACHINE_IP [ACK flag set; closed and open ports will both respond with RST packet; however, if there is a firewall you may be able to learn which ports are unfiltered; note: this does not clarify whether these ports are open or closed and merely not being filtered by firewall rules]  
+9) TCP Window Scan	    sudo nmap -sW TARGET_MACHINE_IP [ACK flag set; closed and open ports will both respond with RST packet; Nmap examines the TCP Window field of the RST responses; based on the TCP Window, Nmap may list certain ports as "closed" - this may indicate that there is a firewall and these specific ports are NOT filtered; note: this does not clarify whether these ports are open or closed and merely not being filtered by firewall rules]  
 10) Custom TCP Scan	    sudo nmap --scanflags URGACKPSHRSTSYNFIN TARGET_MACHINE_IP [only beneficial if you know how to interpret the response you receive]
 -----------------------------------------------------------
 
 Spoofing and Decoys
 --------------------
-1) Spoofed Source IP	sudo nmap -S SPOOFED_IP TARGET_MACHINE_IP
-"In some network setups, you will be able to scan a target system using a spoofed IP address and even a spoofed MAC address. Such a scan is only beneficial in a situation where you can guarantee to capture the response ... The target machine will respond to the incoming packets sending the replies to the [spoofed IP address]. For this scan to work and give accurate results, the attacker needs to monitor the network traffic to analyze the replies ... In general, you expect to specify the network interface using -e and to explicitly disable ping scan -Pn. Therefore, instead of nmap -S SPOOFED_IP TARGET_MACHINE_IP, you will need to issue:
-nmap -e NET_INTERFACE -Pn -S SPOOFED_IP TARGET_MACHINE_IP
+1) Spoofed Source IP	sudo nmap -S SPOOFED_IP TARGET_MACHINE_IP  
+"In some network setups, you will be able to scan a target system using a spoofed IP address and even a spoofed MAC address. Such a scan is only beneficial in a situation where you can guarantee to capture the response ... The target machine will respond to the incoming packets sending the replies to the [spoofed IP address]. For this scan to work and give accurate results, the attacker needs to monitor the network traffic to analyze the replies ... In general, you expect to specify the network interface using -e and to explicitly disable ping scan -Pn. Therefore, instead of nmap -S SPOOFED_IP TARGET_MACHINE_IP, you will need to issue:  
+nmap -e NET_INTERFACE -Pn -S SPOOFED_IP TARGET_MACHINE_IP  
 to tell Nmap explicitly which network interface to use and not to expect to receive a ping reply."
 
 2) Spoofed MAC Address	--spoof-mac SPOOFED_MAC [see 1), above ; MAC spoofing only works if you are on same subnet as TARGET_MACHINE_IP]
 
-3) Decoy Scan	nmap -D DECOY_IP,ME TARGET_MACHINE_IP
-"Spoofing only works in a minimal number of cases where certain conditions are met. Therefore, the attacker might resort to using decoys to make it more challenging to be pinpointed. The concept is simple, make the scan appears to be coming from many IP addresses so that the attacker’s IP address would be lost among them."
+3) Decoy Scan	nmap -D DECOY_IP,ME TARGET_MACHINE_IP  
+"Spoofing only works in a minimal number of cases where certain conditions are met. Therefore, the attacker might resort to using decoys to make it more challenging to be pinpointed. The concept is simple, make the scan appears to be coming from many IP addresses so that the attacker’s IP address would be lost among them."  
 You can launch a decoy scan by specifying a specific or random IP address after -D. For example, nmap -D 10.10.0.1,10.10.0.2,ME TARGET_MACHINE_IP will make the scan of TARGET_MACHINE_IP appear as coming from the IP addresses 10.10.0.1, 10.10.0.2, and then ME to indicate that your IP address should appear in the third order. Another example command would be nmap -D 10.10.0.1,10.10.0.2,RND,RND,ME TARGET_MACHINE_IP, where the third and fourth source IP addresses are assigned randomly, while the fifth source is going to be the attacker’s IP address. In other words, each time you execute the latter command, you would expect two new random IP addresses to be the third and fourth decoy sources."
 
-4) Idle (Zombie) Scan	sudo nmap -sI ZOMBIE_IP TARGET_MACHINE_IP
-Spoofing the source IP address can be a great approach to scanning stealthily. However, spoofing will only work in specific network setups. It requires you to be in a position where you can monitor the traffic. Considering these limitations, spoofing your IP address can have little use; however, we can give it an upgrade with the idle scan ... The idle (zombie) scan requires the following three steps to discover whether a port is open:
-1) Trigger the idle host to respond so that you can record the current IP ID on the idle host.
-2) Send a SYN packet to a TCP port on the target. The packet should be spoofed to appear as if it was coming from the idle host (zombie) IP address.
-3) Trigger the idle machine again to respond.
-4) compare the new IP ID with the one received earlier.
-An example:
-1) The attacker system probes an idle (zombie) machine, e.g. a multi-function printer - the attacker sends a SYN/ACK; the idle machine is not expecting a SYN/ACK since it did not send a SYN packet; the idle machine responds with an RST packet containing its newly incremented IP ID; the attacker takes note of this IP ID.
-2) The attacker will send a SYN packet to the TCP port they want to check on the target machine in the next step. However, this packet will use the idle host (zombie) IP address as the source.
-One of three scenarios can now occur:
-    a) The TCP port is closed; the target machine responds with an RST which it sends to the idle machine; the idle machine is not expecting an RST packet since it did not send any packet; nevertheless, since the RST packet ends a connection, the idle machine will NOT respond to the RST packet; the idle machine's IP ID will NOT be incremented.
-    b) The TCP port is open; the target machine responds with a SYN/ACK which it sends to the idle machine; the idle machine is not expecting a SYN/ACK since it did not send a SYN packet; the idle machine WILL respond with an RST packet; the idle machine's IP ID WILL be incremented by 1.
-    c) The TCP port is filtered; the target machine does not respond at all; ; the idle machine's IP ID will NOT be incremented.
-3) The attacker system sends a second SYN/ACK to the idle (zombie) machine; the idle machine is not expecting a SYN/ACK since it did not send a SYN packet; the idle machine WILL respond with an RST packet; the idle machine's IP ID WILL be incremented by 1.
+4) Idle (Zombie) Scan	sudo nmap -sI ZOMBIE_IP TARGET_MACHINE_IP  
+Spoofing the source IP address can be a great approach to scanning stealthily. However, spoofing will only work in specific network setups. It requires you to be in a position where you can monitor the traffic. Considering these limitations, spoofing your IP address can have little use; however, we can give it an upgrade with the idle scan ... The idle (zombie) scan requires the following three steps to discover whether a port is open:  
+1) Trigger the idle host to respond so that you can record the current IP ID on the idle host.  
+2) Send a SYN packet to a TCP port on the target. The packet should be spoofed to appear as if it was coming from the idle host (zombie) IP address.  
+3) Trigger the idle machine again to respond.  
+4) compare the new IP ID with the one received earlier.  
+An example:  
+1) The attacker system probes an idle (zombie) machine, e.g. a multi-function printer - the attacker sends a SYN/ACK; the idle machine is not expecting a SYN/ACK since it did not send a SYN packet; the idle machine responds with an RST packet containing its newly incremented IP ID; the attacker takes note of this IP ID.  
+2) The attacker will send a SYN packet to the TCP port they want to check on the target machine in the next step. However, this packet will use the idle host (zombie) IP address as the source.  
+One of three scenarios can now occur:  
+    a) The TCP port is closed; the target machine responds with an RST which it sends to the idle machine; the idle machine is not expecting an RST packet since it did not send any packet; nevertheless, since the RST packet ends a connection, the idle machine will NOT respond to the RST packet; the idle machine's IP ID will NOT be incremented.  
+    b) The TCP port is open; the target machine responds with a SYN/ACK which it sends to the idle machine; the idle machine is not expecting a SYN/ACK since it did not send a SYN packet; the idle machine WILL respond with an RST packet; the idle machine's IP ID WILL be incremented by 1.  
+    c) The TCP port is filtered; the target machine does not respond at all; ; the idle machine's IP ID will NOT be incremented.  
+3) The attacker system sends a second SYN/ACK to the idle (zombie) machine; the idle machine is not expecting a SYN/ACK since it did not send a SYN packet; the idle machine WILL respond with an RST packet; the idle machine's IP ID WILL be incremented by 1.  
 4) The attacker compares the idle (zombie) machine's original IP ID with the new one. If the IP ID was only incremented by 1 the TCP port is either closed or filtered. If the IP ID is incremented by 2 the attacker knows that the TCP port is open.
 
 NOTE: The idle (zombie) scan requires an IDLE system connected to the network that you can communicate with ... If the "idle" system is in communication with other systems (e.g. if the "idle" system is a printer and receives a print job) the IP ID will be incremented due to the communication with other systems and nothing can be learned from the IP ID incrementation.
@@ -127,104 +127,104 @@ NOTE: The idle (zombie) scan requires an IDLE system connected to the network th
 
 Avoiding IDS and Sophisticated Firewalls
 ----------------------------------------
-     Option             |              Purpose
-     ------                            --------
-1) 	-f                                 fragment IP data into 8 bytes [may help avoid IDS/firewalls triggered by certain data segment lengths; you can change the default value by using the --mtu; however, you should always choose a multiple of 8]
-2) 	-ff                                fragment IP data into 16 bytes [may help avoid IDS/firewalls triggered by certain data segment lengths; you can change the default value by using the --mtu; however, you should always choose a multiple of 8]]
+     Option             |              Purpose  
+     ------                            --------  
+1) 	-f                                 fragment IP data into 8 bytes [may help avoid IDS/firewalls triggered by certain data segment lengths; you can change the default value by using the --mtu; however, you should always choose a multiple of 8]  
+2) 	-ff                                fragment IP data into 16 bytes [may help avoid IDS/firewalls triggered by certain data segment lengths; you can change the default value by using the --mtu; however, you should always choose a multiple of 8]]  
 3)  --data-length NUM                  append random data to reach given length [may help avoid IDS/firewalls triggered by certain data segment lengths]
 --------------------------------------------------------
 
 Other Options
 --------------
-Option        |         Purpose
-------                  ------- 
--p-	                    all ports
--p1-1023                scan ports 1 to 1023
--F	                    100 most common ports
---top-ports 10          will check the ten most common ports.
--r	                    scan ports in consecutive order
--T<0-5>	                control the scan timing (-T0 being the slowest and -T5 the fastest; see below in the "Scan Rates and Stealthiness" section)
---max-rate 50	        rate <= 50 packets/sec; control the scan timing
---min-rate 15	        rate >= 15 packets/sec; control the scan timing
---min-parallelism 100	at least 100 probes in parallel
---source-port PORT_NUM  specify source port number
---reason	            output explains how Nmap made its conclusion
--v	                    verbose output [gives more details about scan]
--vv	                    very verbose output [gives even more details about scan]
--d	                    debugging [output gives more details about scan]
--dd	                    more details for debugging [output gives even more details about scan]
+Option        |         Purpose  
+------                  -------  
+-p-	                    all ports  
+-p1-1023                scan ports 1 to 1023  
+-F	                    100 most common ports  
+--top-ports 10          will check the ten most common ports.  
+-r	                    scan ports in consecutive order  
+-T<0-5>	                control the scan timing (-T0 being the slowest and -T5 the fastest; see below in the "Scan Rates and Stealthiness" section)  
+--max-rate 50	        rate <= 50 packets/sec; control the scan timing  
+--min-rate 15	        rate >= 15 packets/sec; control the scan timing  
+--min-parallelism 100	at least 100 probes in parallel  
+--source-port PORT_NUM  specify source port number  
+--reason	            output explains how Nmap made its conclusion  
+-v	                    verbose output [gives more details about scan]  
+-vv	                    very verbose output [gives even more details about scan]  
+-d	                    debugging [output gives more details about scan]  
+-dd	                    more details for debugging [output gives even more details about scan]  
 --traceroute	        run traceroute to target [note: many routers are configured not to send ICMP Time-to-Live exceeded, this will prevent discovery of their IP addresses]
 ----------------------------------------------------------------------------------------
 
 Scan Rates and Stealthiness
 ---------------------------
-"You can control the scan timing using -T<0-5>. -T0 is the slowest (paranoid), while -T5 is the fastest. According to Nmap manual page, there are six templates:
-paranoid (0)
-sneaky (1)
-polite (2)
-normal (3)
-aggressive (4)
-insane (5)
+"You can control the scan timing using -T<0-5>. -T0 is the slowest (paranoid), while -T5 is the fastest. According to Nmap manual page, there are six templates:  
+paranoid (0)  
+sneaky (1)  
+polite (2)  
+normal (3)  
+aggressive (4)  
+insane (5)  
 To avoid IDS alerts, you might consider -T0 or -T1. For instance, -T0 scans one port at a time and waits 5 minutes between sending each probe, so you can guess how long scanning one target would take to finish. If you don’t specify any timing, Nmap uses normal -T3. Note that -T5 is the most aggressive in terms of speed; however, this can affect the accuracy of the scan results due to the increased likelihood of packet loss. Note that -T4 is often used during CTFs and when learning to scan on practice targets, whereas -T1 is often used during real engagements where stealth is more important."
 ----------------------------------------------------------------------------------------
 
 Service and OS Detection
 ------------------------
 
-Option            |	               Meaning
-------                             -------
-1) -sV	                           determine service/version info on open ports; -sV forces 3-way handshake; incompatible with stealth scan
-2) -sV --version-intensity NUM     specify the version probe intensity level; NUM = <0-9>
-3) -sV --version-light	           try the most likely probes (= version probe intensity level 2)
-4) -sV --version-all	           try all available probes (= version probe intensity level 9)
+Option            |	               Meaning  
+------                             -------  
+1) -sV	                           determine service/version info on open ports; -sV forces 3-way handshake; incompatible with stealth scan  
+2) -sV --version-intensity NUM     specify the version probe intensity level; NUM = <0-9>  
+3) -sV --version-light	           try the most likely probes (= version probe intensity level 2)  
+4) -sV --version-all	           try all available probes (= version probe intensity level 9)  
 5) -O	                           detect OS; this is an educated guess; requires target to have at least one port open and one port closed for reliable guess; virtualization on target may distort OS fingerprint
 ----------------------------------------------------------------------------------------
 Nmap Scripting Engine (NSE)
 ---------------------------
 NOTE: a list of pre-written scripts can be found in /usr/share/nmap/scripts; scripts end with .nse extension; to learn what a particular script does, open it in less or another text editor and read its description.
 
-Option           |             Meaning
-------                         -------
-1) --script="SCRIPT_NAME(S)"   tells Nmap which script(s) to run by name; you can use wildcards [e.g. --script "ftp*" will run all scripts whose name starts with ftp]
-2) -sC or --script=default     Nmap will run its default scripts
-3) -A	                       equivalent to -sV -O -sC --traceroute
-4) --script=auth	           Nmap will run authentication related scripts
-5) --script=broadcast	       Nmap will run scripts to discover hosts by sending broadcast messages
-6) --script=brute	           Nmap will run scripts that perform brute-force password auditing against logins
-7) --script=discovery	       Nmap will run scripts that retrieve accessible information, such as database tables and DNS names
-8) --script=dos	               Nmap will run scripts that detect servers vulnerable to Denial of Service (DoS)
-9) --script=exploit	           Nmap will run scripts that attempts to exploit various vulnerable services
-10) --script=external	       Nmap will run scripts that check with third-party services (such as Geoplugin and Virustotal)
-11) --script=fuzzer	           Nmap will run scripts that launch fuzzing attacks
-12) --script=intrusive	       Nmap will run intrusive scripts such as brute-force attacks and exploitation
-13) --script=malware	       Nmap will run scripts that scan for backdoors
-14) --script=safe	           Nmap will run safe scripts that won’t crash the target
-15) --script=version	       Nmap will run scripts that retrieve service versions
+Option           |             Meaning  
+------                         -------  
+1) --script="SCRIPT_NAME(S)"   tells Nmap which script(s) to run by name; you can use wildcards [e.g. --script "ftp*" will run all scripts whose name starts with ftp]  
+2) -sC or --script=default     Nmap will run its default scripts  
+3) -A	                       equivalent to -sV -O -sC --traceroute  
+4) --script=auth	           Nmap will run authentication related scripts  
+5) --script=broadcast	       Nmap will run scripts to discover hosts by sending broadcast messages  
+6) --script=brute	           Nmap will run scripts that perform brute-force password auditing against logins  
+7) --script=discovery	       Nmap will run scripts that retrieve accessible information, such as database tables and DNS names  
+8) --script=dos	               Nmap will run scripts that detect servers vulnerable to Denial of Service (DoS)  
+9) --script=exploit	           Nmap will run scripts that attempts to exploit various vulnerable services  
+10) --script=external	       Nmap will run scripts that check with third-party services (such as Geoplugin and Virustotal)  
+11) --script=fuzzer	           Nmap will run scripts that launch fuzzing attacks  
+12) --script=intrusive	       Nmap will run intrusive scripts such as brute-force attacks and exploitation  
+13) --script=malware	       Nmap will run scripts that scan for backdoors  
+14) --script=safe	           Nmap will run safe scripts that won’t crash the target  
+15) --script=version	       Nmap will run scripts that retrieve service versions  
 16) --script=vuln	           Nmap will run scripts that check for vulnerabilities or exploit vulnerable services
 ---------------------------------------------------------------------------------------
 
 Saving Nmap Output
 ------------------
-Option           |             Meaning
-------                         -------
-1) -oN FILENAME                save output in normal format (the format that appears as output on the terminal when Nmap is run); most readable
-2) -oG FILENAME                save output in grepable format
-<3) -oS FILENAME               save output in the normal format but wrtitten in leetspeak>
-4) -oX FILENAME                save output in XML format; most convenient for processing the output in other programs
+Option           |             Meaning  
+------                         -------  
+1) -oN FILENAME                save output in normal format (the format that appears as output on the terminal when Nmap is run); most readable  
+2) -oG FILENAME                save output in grepable format  
+<3) -oS FILENAME               save output in the normal format but wrtitten in leetspeak>  
+4) -oX FILENAME                save output in XML format; most convenient for processing the output in other programs  
 5) -oA FILENAME	               save output in normal, XML and Grepable formats
 
 NOTE: EVERYTHING IN THE ABOVE SECTION COMES FROM TryHackMe's FOUR Nmap ROOMS (https://tryhackme.com/room/nmap01 - https://tryhackme.com/room/nmap04); SOME IS VERBATIM ; SOME IS EDITED OR REPHRASED
 =======================================================================================================================================================================
-Nmap Scripting Engine
-https://www.youtube.com/watch?v=M-Uq7YSfZ4I
+Nmap Scripting Engine  
+https://www.youtube.com/watch?v=M-Uq7YSfZ4I  
 [hat tip: Jonathan Erez]
 --------------------------------------------------------
 Nmap info/advice from Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300/)
 
-* The nmap stealth scan (-sS) is now the default scan so you do not need to use the -sS argument.
-* 99% of the time the only scans you will use in pentesting are -sS and -sU (the UDP scan)
-* if you have good reason to believe a port is open you may want to use the -Pn ("treat all hosts as online -- skip host discovery") argument to tell nmap not to assume ports are open and not bother with a ping (this will help in a situation where a port is open but is configured not to respond to a ping; if you do not use -Pn nmap will ping and receive no response and assume the port is closed)
-* use the -A argument to accomplish the equivalent of -sV [service detection], -sC [script detection], and -O [OS detection]; however, you might want to first do a basic scan without -A just to find the open ports; once you know which ports are open you scan only those ports that are open again with the -A argument; this will save alot of time
-* the -sS scan only looks for TCP so you still need to run -sU to determine if UDP services are running on a port
-* run -sS with -p- to find all services by checking all ports
+* The nmap stealth scan (-sS) is now the default scan so you do not need to use the -sS argument.  
+* 99% of the time the only scans you will use in pentesting are -sS and -sU (the UDP scan)  
+* if you have good reason to believe a port is open you may want to use the -Pn ("treat all hosts as online -- skip host discovery") argument to tell nmap not to assume ports are open and not bother with a ping (this will help in a situation where a port is open but is configured not to respond to a ping; if you do not use -Pn nmap will ping and receive no response and assume the port is closed)  
+* use the -A argument to accomplish the equivalent of -sV [service detection], -sC [script detection], and -O [OS detection]; however, you might want to first do a basic scan without -A just to find the open ports; once you know which ports are open you scan only those ports that are open again with the -A argument; this will save alot of time  
+* the -sS scan only looks for TCP so you still need to run -sU to determine if UDP services are running on a port  
+* run -sS with -p- to find all services by checking all ports  
 * it is probably better to run -sU without -p- in order to just check the top 1000 ports (the default when no `-p` argument is given) because if you run -p- it will take very long to get results since UDP is a connectionless protocol

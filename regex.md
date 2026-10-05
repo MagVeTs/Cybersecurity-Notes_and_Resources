@@ -1,102 +1,102 @@
 Regular Expressions (regex)
 ---------------------------
 
-RegExr
-https://regexr.com/
-"RegExr is an online tool to learn, build, & test Regular Expressions (RegEx / RegExp)."
-"Results update in real-time as you type.
-Roll over a match or expression for details.
-Validate patterns with suites of Tests.
-Save & share expressions with others.
-Use Tools to explore your results.
+RegExr  
+https://regexr.com/  
+"RegExr is an online tool to learn, build, & test Regular Expressions (RegEx / RegExp)."  
+"Results update in real-time as you type.  
+Roll over a match or expression for details.  
+Validate patterns with suites of Tests.  
+Save & share expressions with others.  
+Use Tools to explore your results.  
 Full RegEx Reference with help & examples."
 
-RegExLib - Regular Expression Library
-https://www.regexlib.com/Default.aspx - home page
-https://www.regexlib.com/Search.aspx - search for expressions
-https://www.regexlib.com/DisplayPatterns.aspx - browse by category
+RegExLib - Regular Expression Library  
+https://www.regexlib.com/Default.aspx - home page  
+https://www.regexlib.com/Search.aspx - search for expressions  
+https://www.regexlib.com/DisplayPatterns.aspx - browse by category  
 - this site contains pre-written regex expressions that can be used in many common use cases
 
-CyberChef
-https://gchq.github.io/CyberChef/
+CyberChef  
+https://gchq.github.io/CyberChef/  
 - CyberChef has a module where you can input your regex and run it on the text you paste in the Input window. Not only that, there is an option to upload files (including compressed files) and run the regex on the files. See: https://tryhackme.com/room/introtologanalysis ; Task 8 - "Log Analysis Tools: CyberChef"
 
-regular expressions 101
-https://regex101.com/
+regular expressions 101  
+https://regex101.com/  
 [hat tip: https://automatetheboringstuff.com/]
 
-pythex
-https://pythex.org/
-A Python re module tester that runs entirely in your browser.
+pythex  
+https://pythex.org/  
+A Python re module tester that runs entirely in your browser.  
 [hat tip: https://automatetheboringstuff.com/]
 -------------------------------------------------------------------------------------------------
 Regex Cheat Sheets
 -------------------
 https://cheatography.com/davechild/cheat-sheets/regular-expressions/
 
-https://www.rexegg.com/regex-quickstart.html#chars
-"Quick-Start: Regex Cheat Sheet"
+https://www.rexegg.com/regex-quickstart.html#chars  
+"Quick-Start: Regex Cheat Sheet"  
 [hat tip: TryHackMe]
 -------------------------------------
-Regular Expressions for Regular Folk
-by Shreyas Minocha
-https://refrf.dev/
+Regular Expressions for Regular Folk  
+by Shreyas Minocha  
+https://refrf.dev/  
 [very helpful; hat tip: https://trainingportal.linuxfoundation.org/learn/course/developing-secure-software-lfd121/input-validation/input-validation-numbers-and-text?page=13]
 -------------------------------------
 from: https://tryhackme.com/room/introtologanalysis ; Task 7 - " Log Analysis Tools: Regular Expressions"
 
-$ grep -E 'post=1[0-9]' apache-ex2.log
-# in this use case we are dealing with a log containing this type of entry:
-# 203.0.113.1 - - [02/Aug/2023:10:15:23 +0000] "GET /blog.php?post=12 HTTP/1.1" 200 - "Mozilla/5.0"
-# blog posts are identified by ID numbers as found, in this example, to be 12 (i.e. post=12)
-# we want to grep all blog post entries between 10 and 19
-# -E = search for a pattern as opposed to a grep search for a string which is without the -E (another option is to use the command `egrep` which defaults to a pattern search
-# the `post=` section is a string (strings and patterns can be searched for together)
+$ grep -E 'post=1[0-9]' apache-ex2.log  
+# in this use case we are dealing with a log containing this type of entry:  
+# 203.0.113.1 - - [02/Aug/2023:10:15:23 +0000] "GET /blog.php?post=12 HTTP/1.1" 200 - "Mozilla/5.0"  
+# blog posts are identified by ID numbers as found, in this example, to be 12 (i.e. post=12)  
+# we want to grep all blog post entries between 10 and 19  
+# -E = search for a pattern as opposed to a grep search for a string which is without the -E (another option is to use the command `egrep` which defaults to a pattern search  
+# the `post=` section is a string (strings and patterns can be searched for together)  
 # 1[0-9] = this is the regex pattern that is being sought; in this case the pattern is a two digit number whose first digit is 1 and whose second digit is either 0,1,2,3,4,5,6,7,8, or 9; any line from the log that contains  # the string `post=` immediately followed by a number that matches the pattern will be displayed
 
 
-Example regex used to find all IP addresses in a file:
-\b([0-9]{1,3}\.){3}[0-9]{1,3}\b
-# \b = opening word boundary anchor; ensures the match is on a FULL IP address
-# [0-9]{1,3} = match a 1, 2, or 3 digit number; each digit may be between 0-9; this pattern will return any number between 0-999
-# NOTE: even though IPv4 addresses octets are always between 1-255, using the simpler pattern employed here will also accomplish the goal of retrieving all IP addresses
-# \. = escapes interpreting the `.` as part of the pattern command; instead the `.` is treated as a literal and searched for
-# {3} = commands that the previous "capturing group" ([0-9]{1,3}\.) will repeat 3 times as part of the sought pattern
-# [0-9]{1,3} - match a 1, 2, or 3 digit number; each digit may be between 0-9; this pattern will return any number between 0-999; this is for the 4th octet in the IP address
+Example regex used to find all IP addresses in a file:  
+\b([0-9]{1,3}\.){3}[0-9]{1,3}\b  
+# \b = opening word boundary anchor; ensures the match is on a FULL IP address  
+# [0-9]{1,3} = match a 1, 2, or 3 digit number; each digit may be between 0-9; this pattern will return any number between 0-999  
+# NOTE: even though IPv4 addresses octets are always between 1-255, using the simpler pattern employed here will also accomplish the goal of retrieving all IP addresses  
+# \. = escapes interpreting the `.` as part of the pattern command; instead the `.` is treated as a literal and searched for  
+# {3} = commands that the previous "capturing group" ([0-9]{1,3}\.) will repeat 3 times as part of the sought pattern  
+# [0-9]{1,3} - match a 1, 2, or 3 digit number; each digit may be between 0-9; this pattern will return any number between 0-999; this is for the 4th octet in the IP address  
 # \b= closing word boundary anchor; ensures the match is on a FULL IP address
 -------------------------------------
 
 from: https://tryhackme.com/room/catregex - Regular Expressions
 
-the basic syntax for regex is:
-$ egrep <pattern> <file> 
+the basic syntax for regex is:  
+$ egrep <pattern> <file>  
 # NOTE: `egrep` <pattern> <file>` is the equivalent of `grep -E <pattern> <file>`
 
-When you are looking for an exact string of text you use: grep '<string>' <file>; but when you are trying to retrieve all lines that match a certain pattern (e.g. all IP addresses) you use regex and use either `grep -E` or `egrep` and then the regex pattern.
+When you are looking for an exact string of text you use: grep '<string>' <file>; but when you are trying to retrieve all lines that match a certain pattern (e.g. all IP addresses) you use regex and use either `grep -E` or `egrep` and then the regex pattern.  
 The patterns as expressed using regex are called "charsets" and are defined using square brackets: [ ]
 
-The following is verbatim from TryHackMe:
-"
+The following is verbatim from TryHackMe:  
+"  
 [abc] will match a, b, and c (every occurrence of each letter)
 
 [abc]zz will match azz, bzz, and czz.
 
-You can also use a - dash to define ranges:
+You can also use a - dash to define ranges:  
 [a-c]zz is the same as above.
 
-And then you can combine ranges together:
+And then you can combine ranges together:  
 [a-cx-z]zz will match azz, bzz, czz, xzz, yzz, and zzz.
 
-Most notably, this can be used to match any alphabetical character:
+Most notably, this can be used to match any alphabetical character:  
 [a-zA-Z] will match any single letter (lowercase or uppercase).
 
-You can use numbers too:
+You can use numbers too:  
 file[1-3] will match file1, file2, and file3.
 
-Then, there is a way to exclude characters from a charset with the ^ hat symbol, and include everything else.
+Then, there is a way to exclude characters from a charset with the ^ hat symbol, and include everything else.  
 [^k]ing will match ring, sing, $ing, but not king.
 
-Of course, you can exclude charsets, not just single characters.
+Of course, you can exclude charsets, not just single characters.  
 [^a-c]at will match fat and hat, but not bat or cat.
 
 Note 1: Don't confuse strings with charsets. The charset [abc] will match the string abc, but also cba and ca. It doesn't match the string, but rather every occurrence of the specified characters in that string.
@@ -107,12 +107,12 @@ Also, you can set a character as optional in your pattern using the ? question m
 
 Note: If you want to search for . a literal dot, you have to escape it with a \ reverse slash. That means that a.c will match a.c, but also abc, a@c, and so on. But a\.c will match just a.c.
 
-There are easier ways to match bigger charsets. For example, \d is used to match any single digit. Here's a reference:
-\d matches a digit, like 9
-\D matches a non-digit, like A or @
-\w matches an alphanumeric character, like a or 3
-\W matches a non-alphanumeric character, like ! or #
-\s matches a whitespace character (spaces, tabs, and line breaks)
+There are easier ways to match bigger charsets. For example, \d is used to match any single digit. Here's a reference:  
+\d matches a digit, like 9  
+\D matches a non-digit, like A or @  
+\w matches an alphanumeric character, like a or 3  
+\W matches a non-alphanumeric character, like ! or #  
+\s matches a whitespace character (spaces, tabs, and line breaks)  
 \S matches everything else (alphanumeric characters and symbols)
 
 Note: Underscores _ are included in the \w metacharacter and not in \W. That means that \w will match every single character in test_file.
@@ -121,25 +121,25 @@ Often we want a pattern that matches many characters of a single type in a row, 
 
 Here's a reference for each repetition along with how many times it matches the preceding pattern:
 
-{12} - exactly 12 times.
-{1,5} - 1 to 5 times.
-{2,} - 2 or more times.
-* - 0 or more times.
+{12} - exactly 12 times.  
+{1,5} - 1 to 5 times.  
+{2,} - 2 or more times.  
+* - 0 or more times.  
 + - 1 or more times.
 
-Sometimes it's very useful to specify that we want to search by a certain pattern in the beginning or the end of a line. We do that with these characters:
-^ - starts with
+Sometimes it's very useful to specify that we want to search by a certain pattern in the beginning or the end of a line. We do that with these characters:  
+^ - starts with  
 $ - ends with
 
-So for example, if you want to search for a line that starts with abc, you can use ^abc.
+So for example, if you want to search for a line that starts with abc, you can use ^abc.  
 If you want to search for a line that ends with xyz, you can use xyz$.
 
 Note: The ^ hat symbol is used to exclude a charset when enclosed in [square brackets], but when it is not, it is used to specify the beginning of a word.
 
 You can also define groups by enclosing a pattern in (parentheses). This function can be used for many ways that are not in the scope of this tutorial. We will use it to define an either/ or pattern, and also to repeat patterns. To say "or" in Regex, we use the | pipe.
 
-For an "either/or" pattern example, the pattern during the (day|night) will match both of these sentences: during the day and during the night.
-For a repetition example, the pattern (no){5} will match the sentence nonononono.
+For an "either/or" pattern example, the pattern during the (day|night) will match both of these sentences: during the day and during the night.  
+For a repetition example, the pattern (no){5} will match the sentence nonononono.  
 "
 -------------------------------------
 

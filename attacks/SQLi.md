@@ -9,53 +9,53 @@ SQLi cheat sheets
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ThriveDX
 
-1)
-Common SQLi Attack
-<VALUE/CHARACTER(S)>=<SAME VALUE/CHARACTER(S)>
+1)  
+Common SQLi Attack  
+<VALUE/CHARACTER(S)>=<SAME VALUE/CHARACTER(S)>  
 e.g. 1=1
 
-2)
-Error-based SQLi Attack
-attacker tries to learn structure of database by causing error messages
-WHERE <VALUE/CHARACTER(S)>=<SAME VALUE/CHARACTER(S)> AND <VALUE/CHARACTER(S)>=<DIFFERENT VALUE/CHARACTER(S)>
+2)  
+Error-based SQLi Attack  
+attacker tries to learn structure of database by causing error messages  
+WHERE <VALUE/CHARACTER(S)>=<SAME VALUE/CHARACTER(S)> AND <VALUE/CHARACTER(S)>=<DIFFERENT VALUE/CHARACTER(S)>  
 e.g. WHERE 1=1 AND 1=0
 
-3)
-Union-based SQLi Attack
-uses union sql operator which combines a number of database produced statement into one HTTP response - used to obtain exploitable data 
-uses UNION SELECT or UNION ALL SELECT
+3)  
+Union-based SQLi Attack  
+uses union sql operator which combines a number of database produced statement into one HTTP response - used to obtain exploitable data  
+uses UNION SELECT or UNION ALL SELECT  
 e.g. UNION ALL SELECT 1,2,3
 
-4)
+4)  
 Blind SQLi Attack
 
 - attacker is trying to learn how the server behaves
 
 - attacker may use Boolean operators to query server and note how the HTTP response changes thereby learning how server responds to true and false results
 
-- alternatively the attacker can send queries and see from the time it takes for the server to respond response whether a particular value was true or false - even without the server showing any difference in the text of its response
+- alternatively the attacker can send queries and see from the time it takes for the server to respond response whether a particular value was true or false - even without the server showing any difference in the text of its response  
 time based Blind SQLi attacks can be identified by the following terms found in the URI: waitfor, delay, sleep, benchmark
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SQLMAP
 
-cheatsheet:
-https://github.com/sqlmapproject/sqlmap/wiki/Usage
+cheatsheet:  
+https://github.com/sqlmapproject/sqlmap/wiki/Usage  
 [hat tip: ThriveDX]
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
-* SQL Injection - Introduction - https://academy.tcm-sec.com/courses/1152300/lectures/47778439
-* SQL Injection - UNION - https://academy.tcm-sec.com/courses/1152300/lectures/47778484
-* SQL Injection - Blind Part 1 - https://academy.tcm-sec.com/courses/1152300/lectures/47778495
-* SQL Injection - Blind Part 2 - https://academy.tcm-sec.com/courses/1152300/lectures/47778501
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
+* SQL Injection - Introduction - https://academy.tcm-sec.com/courses/1152300/lectures/47778439  
+* SQL Injection - UNION - https://academy.tcm-sec.com/courses/1152300/lectures/47778484  
+* SQL Injection - Blind Part 1 - https://academy.tcm-sec.com/courses/1152300/lectures/47778495  
+* SQL Injection - Blind Part 2 - https://academy.tcm-sec.com/courses/1152300/lectures/47778501  
 * SQL Injection - Challenge Waklthrough [sic] - https://academy.tcm-sec.com/courses/1152300/lectures/47779065
 
 To learn how SQL works try the free interactive tutorials found here: https://www.w3schools.com/sql/
 
-# is a terminator symbol
+# is a terminator symbol  
 e.g. jeremy' or 1=1#
 
--- - is a terminator symbol for MySQL databases
+-- - is a terminator symbol for MySQL databases  
 e.g. jeremy' or 1=1-- -
 
 - When using Burp Suite to check for SQLi, one can also add the SQLi to a session cookie and it may be possible to do the SQLi in that fashion, see SQL Injection - Blind Part 1 - https://academy.tcm-sec.com/courses/1152300/lectures/47778495 at approximately 08:40

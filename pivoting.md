@@ -1,8 +1,8 @@
 Pivoting Between Networks
 -------------------------
-From Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
-"Pivoting Overview" - https://academy.tcm-sec.com/courses/1152300/lectures/48272040
-"Pivoting Walkthrough" - https://academy.tcm-sec.com/courses/1152300/lectures/48272042
+From Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
+"Pivoting Overview" - https://academy.tcm-sec.com/courses/1152300/lectures/48272040  
+"Pivoting Walkthrough" - https://academy.tcm-sec.com/courses/1152300/lectures/48272042  
 Also see: https://bryanleong98.medium.com/network-pivoting-using-ssh-return-reverse-shell-from-internal-network-machine-f1c5043b2d86
 
 After compromising a machine you may discover that while it resides on one network it also has a NIC that is connected to a separate network that you can not access (even to ping). The information here is intended to assist you in gaining access to that separate network.
@@ -11,36 +11,36 @@ Tools for pivoting:
 
 1) proxychains
 
-$ cat /etc/proxychains4.conf
-- [note: on a later version of Kali Linux the version number may not be 4; just start writing "cat /etc/proxychains and hit <TAB> and it will properly autocomplete]
-- at bottom of file it should say:
-socks4 127.0.0.1 9050
+$ cat /etc/proxychains4.conf  
+- [note: on a later version of Kali Linux the version number may not be 4; just start writing "cat /etc/proxychains and hit <TAB> and it will properly autocomplete]  
+- at bottom of file it should say:  
+socks4 127.0.0.1 9050  
 Note 9050 which is the port that will be used for binding; it is ok if a different port is there instead; you can also change the port if you want
 
 Now connect using ssh (with proxychains) to the compromised machine:
 
-$ ssh -f -N -D 9050 -i <NAME_OF_FILE_WITH_SSH_CREDS> <USERNAME>@<IP_ADDRESS_COMPROMISED_MACHINE>
--f = background SSH
--N = do not execute remote commands; simply conduct port forwarding
+$ ssh -f -N -D 9050 -i <NAME_OF_FILE_WITH_SSH_CREDS> <USERNAME>@<IP_ADDRESS_COMPROMISED_MACHINE>  
+-f = background SSH  
+-N = do not execute remote commands; simply conduct port forwarding  
 -D = bind port
 
-Now you can issue commands, using proxychains, through the machine you have compromised to machines on the network accessible through the machine you have compromised's second NIC.
+Now you can issue commands, using proxychains, through the machine you have compromised to machines on the network accessible through the machine you have compromised's second NIC.  
 For example:
 
 $ proxychains nmap -p88 <IP_ADDRESS_OF_MACHINE_ON_SECOND_NETWORK>
 
-NOTE: when scanning all ports using proxychain to run nmap, it sometimes works better to use a TCP Connect scan instead of the default SYN scan, syntax:
+NOTE: when scanning all ports using proxychain to run nmap, it sometimes works better to use a TCP Connect scan instead of the default SYN scan, syntax:  
 $ proxychains nmap <IP_ADDRESS> -sT
 
-Proxychains can also run attacks, e.g. Kerberoasting:
+Proxychains can also run attacks, e.g. Kerberoasting:  
 $ proxychains GetUserSPNs.py <DOMAIN>/<USERNAME>:<PASSWORD> -dc-ip <IP_OF_DC> -request
 
-Proxychains can allow remote access to a machine, e.g. through RDP to a Windows OS:
+Proxychains can allow remote access to a machine, e.g. through RDP to a Windows OS:  
 $ proxychains xfreerdp /u:<USERNAME> /p:<PASSWORD> /v:<IP_ADDRESS>
 
 Proxychains can also allow you to pivot into being able to access (using a browser) an internal webserver through the compromised machine you are using as the proxy:
 
-$ proxychains firefox <INTERNAL_WEBSERVER_IP>
+$ proxychains firefox <INTERNAL_WEBSERVER_IP>  
 [NOTE: In order for this command to work, Firefox must be closed on your own device before running the command.]
 
 NOTE: HA prefers "proxychains" to the following two tools (possibly just because he is used to it).
@@ -55,12 +55,12 @@ syntax
 
 $ sshuttle -r <USERNAME>@<IP_ADDRESS_OF_COMPROMISED_MACHINE> <IP_ADDRESS_OF_NETWORK_BEING_PIVOTED_INTO/SUBNET_MASK#> --ssh-cmd "ssh -i <FILENAME>"
 
-- "ssh -i <FILENAME>" = command to begin ssh and use the info in the cited file to provide credentials
+- "ssh -i <FILENAME>" = command to begin ssh and use the info in the cited file to provide credentials  
 - once sshuttle is begun, e.g. by the above command, one can run commands on the new network without invoking the sshuttle command each time [unlike with proxychains which requires writing proxychains before each command. For example, one could issue the command `nmap <IP_ADDRESS_IN_NEW_NETWORK> -p88` and scan port 88 for an IP address in the new network.
 
-3) chisel
-another tool that can be used for pivoting, see here:
-https://github.com/jpillora/chisel
+3) chisel  
+another tool that can be used for pivoting, see here:  
+https://github.com/jpillora/chisel  
 "Chisel is a fast TCP/UDP tunnel, transported over HTTP, secured via SSH. Single executable including both client and server. Written in Go (golang). Chisel is mainly useful for passing through firewalls, though it can also be used to provide a secure endpoint into your network."
 -----------------------------------------
 OSINT pivoting

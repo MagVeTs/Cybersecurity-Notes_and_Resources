@@ -1,21 +1,21 @@
 Docker
 -------
 
-Docker documentation
+Docker documentation  
 https://docs.docker.com/engine/reference/run/
 
-Docker Compose documentation
-https://docs.docker.com/compose/
+Docker Compose documentation  
+https://docs.docker.com/compose/  
 https://docs.docker.com/compose/reference/
 ---------------------------------------------------------
-Installing Docker on Linux:
-> sudo apt update
+Installing Docker on Linux:  
+> sudo apt update  
 > sudo apt install docker.io -y
 
 [credit: Network Chuck - https://www.youtube.com/watch?v=iX0HbrfRyvc&list=PLIhvC56v63IJlnU4k60d0oFIrsbXEivQo&index=6]
 
 ---------------------------------------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
 "Lab Setup" - https://academy.tcm-sec.com/courses/1152300/lectures/47848127
 
 $ sudo apt update
@@ -24,12 +24,12 @@ $ sudo apt upgrade
 
 $ sudo apt install docker.io
 
-$ docker --version
+$ docker --version  
 # if you want to see the version of Docker you have installed
 
 $ sudo apt install docker-compose
 
-$ docker-compose --version
+$ docker-compose --version  
 # if you want to see the version of Docker Compose you have installed
 
 In the lab setup being discussed in the lecture, one downloads the tar file available below the lecture video (peh-web-labs.tar.gz) and then cd to the directory containing the file. The one runs the following commands.
@@ -44,62 +44,62 @@ then finally and significant for proper use of Docker, one runs Docker Compose f
 
 $ sudo docker-compose up
 
-In order to stop a Docker container from running use:
+In order to stop a Docker container from running use:  
 <CTRL><C>.
 
 In order to run the Docker container in the background so that it will be running but you can still use the terminal add -d to the "up" command, as follows:
 
 $ sudo docker-compose up -d
 
-In order to see what Docker containers are presently running, use the command:
+In order to see what Docker containers are presently running, use the command:  
 $ sudo docker ps -a
 
-In order to stop all currently running Docker containers, use the command:
+In order to stop all currently running Docker containers, use the command:  
 $ sudo docker-compose stop
 
-In order to remove Docker containers use the following command:
-$ sudo docker rm <CONTAINER_ID>
-or, to remove all containers on the system:
+In order to remove Docker containers use the following command:  
+$ sudo docker rm <CONTAINER_ID>  
+or, to remove all containers on the system:  
 $ sudo docker rm $(sudo docker ps -aq)
 
 ---------------------------------------------------------
 
 see: https://tryhackme.com/r/room/introtodockerk8pdqk
 
-$ docker image
+$ docker image  
 # lists all command options
 
-$ docker image COMMAND --help
+$ docker image COMMAND --help  
 # more info on a particular command
 
-Creating and Removing a Docker Image
-         ----------------
-In order to run a Docker container one first downloads the container's image:
-$ docker pull IMAGE_NAME
+Creating and Removing a Docker Image  
+         ----------------  
+In order to run a Docker container one first downloads the container's image:  
+$ docker pull IMAGE_NAME  
 # download a Docker image
 
-Note: Images have tags; tags designate versions of an image. If no tag is given, Docker downloads the latest version of the image
-$ docker pull IMAGE_NAME:TAG
-Example:
+Note: Images have tags; tags designate versions of an image. If no tag is given, Docker downloads the latest version of the image  
+$ docker pull IMAGE_NAME:TAG  
+Example:  
 $ docker pull ubuntu:17.05
 
-$ docker image ls
+$ docker image ls  
 #  lists all images stored on local system (under column called REPOSITORY) and see info about the images (tag, Image ID, when created, size)
 
-$ docker image rm IMAGE_NAME:TAG
+$ docker image rm IMAGE_NAME:TAG  
 # remove an image
 
-Running a Docker Container
-    --------------
-The run command creates and starts (runs) a container from an existing image.
-Commands from a Dockerfile and runtime input will be run within the container.
-Syntax:
-$ docker run [OPTIONS] IMAGE_NAME [COMMAND] [ARGUMENTS...]
-# bracketed items are not required
-Example:
-$ docker run -it ubuntu /bin/bash
-# -it = run the container in an interactive mode that allows you to directly interact with it (i is interactive; t is with a shell)
+Running a Docker Container  
+    --------------  
+The run command creates and starts (runs) a container from an existing image.  
+Commands from a Dockerfile and runtime input will be run within the container.  
+Syntax:  
+$ docker run [OPTIONS] IMAGE_NAME [COMMAND] [ARGUMENTS...]  
+# bracketed items are not required  
+Example:  
+$ docker run -it ubuntu /bin/bash  
+# -it = run the container in an interactive mode that allows you to directly interact with it (i is interactive; t is with a shell)  
 # /bin/bash = launch a bash shell within the container upon running it; the launching of the shell will cause the prompt to change to the container's hostname (which is the container's ID)
 
-$ docker ps
+$ docker ps  
 # list running containers

@@ -1,6 +1,6 @@
 From: https://tryhackme.com/room/encryptioncrypto101 ; Task 6 -  RSA - Rivest Shamir Adleman [with some editing, changes, and additions]
 
-The math(s) side
+The math(s) side  
 RSA is based on the mathematically difficult problem of working out the factors of a large number. It’s very quick to multiply two prime numbers together, say 17*23 = 391, but it’s quite difficult to work out what two prime numbers multiply together to make 14351 (113x127 for reference).
 
 The attacking side
@@ -17,7 +17,7 @@ The public key is n and e, the private key is n and d.
 
 “m” is used to represent the message (in plaintext) and “c” represents the ciphertext (encrypted text).
 
-CTFs involving RSA
+CTFs involving RSA  
 Crypto CTF challenges often present you with a set of these values, and you need to break the encryption and decrypt a message to retrieve the flag.
 
 There’s a lot more maths to RSA, and it gets quite complicated fairly quickly. If you want to learn the maths behind it, I recommend reading MuirlandOracle’s blog post here: https://muirlandoracle.co.uk/2020/01/29/rsa-encryption/.
