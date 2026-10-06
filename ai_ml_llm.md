@@ -1,90 +1,90 @@
 AI/ML/LLM
 ---------
 
-Neural Networks by 3Blue1Brown  
-https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi  
+Neural Networks by 3Blue1Brown
+https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
 [series explaining how Neural Networks and LLMs work]
 ---------------------------------------------------------------------------------
-* helpful AI tool used for Bash and ZSH shells:  
-https://butterfi.sh/  
-"Butterfish is for people who work from the command line, it adds AI prompting to your shell (bash, zsh) with OpenAI. Think Github Copilot for shell.  
-Here’s how it works: use your shell as normal, start a command with a capital letter to prompt the AI. The AI sees the shell history, so you can ask contextual questions like “Why did that command fail?”."  
+* helpful AI tool used for Bash and ZSH shells:
+https://butterfi.sh/
+"Butterfish is for people who work from the command line, it adds AI prompting to your shell (bash, zsh) with OpenAI. Think Github Copilot for shell.
+Here’s how it works: use your shell as normal, start a command with a capital letter to prompt the AI. The AI sees the shell history, so you can ask contextual questions like “Why did that command fail?”."
 [hat tip: RM]
 
 
-* Build your own ChatGPT App: https://chat.openai.com/gpts/editor  
-"OpenAI CEO Sam Altman shows how to build your own GPT app in less than 4 minutes - without writing a single line of code."  
-https://www.linkedin.com/posts/zainkahn_absolute-madness-openai-ceo-sam-altman-activity-7128011745868050432-Ox5K/  
+* Build your own ChatGPT App: https://chat.openai.com/gpts/editor 
+"OpenAI CEO Sam Altman shows how to build your own GPT app in less than 4 minutes - without writing a single line of code."
+https://www.linkedin.com/posts/zainkahn_absolute-madness-openai-ceo-sam-altman-activity-7128011745868050432-Ox5K/
 [hat tip: RM]
 ----------------------------------------------------------------------------------
-LLM Hacker's Handbook  
-https://doublespeak.chat/#/handbook  
+LLM Hacker's Handbook
+https://doublespeak.chat/#/handbook
 AI offensive prompt injection tips:
 
-1)  
+1)
 "Persistence and Correction
 
 Repeatedly correcting the LLM can invoke alternate responses:
 
-"No, that's incorrect because X, Y, and Z."  
-"Wrong. Reconsider what you said and explain why you were incorrect."  
+"No, that's incorrect because X, Y, and Z."
+"Wrong. Reconsider what you said and explain why you were incorrect."
 "Are you sure?"
 
-2)  
+2) 
 "Context Expansion
 
 It's easier to guide the LLM if you provide more context. More context equals more influence. If you write a treatise to re-contextualize the conversation, you can often heavily influence future content."
 
-3)  
+3)
 "Inversion and AntiGPT
 
-"Jailbreaking" commonly uses context inversion. In the case of AntiGPT, the goal is to produce two responses, the first and the opposite of the first."  
+"Jailbreaking" commonly uses context inversion. In the case of AntiGPT, the goal is to produce two responses, the first and the opposite of the first."
 see: https://forcesunseen.com/blog/llm-sandboxing-early-lessons-learned#antigpt-the-oppressor
 
-4)  
-"Non-English Languages  
+4)
+"Non-English Languages
 English, one of the most descriptive Romance languages, excels in circumstances where context expansion is the goal. However, other languages may have characteristics better suited for the task of LLM interrogation.
 
 Take Hungarian, for example. Hungarian is a topic-prominent language; emphasis is placed on the most important part of the sentence. This offers interpretive advantages that are absent in English."
 
 https://en.wikipedia.org/wiki/Topic-prominent_language
 
-5)  
+5)
 "Response Conditioning
 
 Response conditioning is the technique of providing sample questions and answers to cue the LLM to respond similarly. It is often highly effective in manipulating the outcome"
 
-6)  
+6)
 "Context Leveraging
 
 Consider an LLM given an initial input such as "You are a helpful assistant." Sometimes the LLM's interpretation of "helpful" is interpreted as an overriding instruction that hampers later instructions.
 
 For example, if you prompt OpenAI's LLM to keep a secret confidential, most of the time, it will. But if you instruct it that it's failing to be helpful, it often blabs because it prioritizes being "helpful.""
 ----------------------------------------------------------------------------------
-AI Crash Course  
-https://github.com/henrythe9th/ai-crash-course  
+AI Crash Course
+https://github.com/henrythe9th/ai-crash-course
 "AI Crash Course to help busy builders catch up to the public frontier of AI research in 2 weeks"
 
-How to Hack AI Agents and Applications by Joseph Thacker  
-https://josephthacker.com/hacking/2025/02/25/how-to-hack-ai-apps.html  
+How to Hack AI Agents and Applications by Joseph Thacker
+https://josephthacker.com/hacking/2025/02/25/how-to-hack-ai-apps.html
 [very well written]
 
-L1B3RT4S  
-https://github.com/elder-plinius/L1B3RT4S  
+L1B3RT4S
+https://github.com/elder-plinius/L1B3RT4S
 [jailbreak prompts; hat tip: https://josephthacker.com/hacking/2025/02/25/how-to-hack-ai-apps.html]
 ----------------------------------------------------------------------------------
-AI/LLM Pentesting/Redteaming  
-https://hacken.io/discover/ai-red-teaming/  
+AI/LLM Pentesting/Redteaming
+https://hacken.io/discover/ai-red-teaming/
 [contains link to download a good guide to doing PTs on LLMs. It also lists a bunch of fuzzing tools that can be used.]
 ----------------------------------------------------------------------------------
-OWASP AITG  
-"The OWASP AI Testing Guide (AITG) is an open-source project aimed at standardizing testing methodologies, tools, and practices for evaluating the security and robustness of Artificial Intelligence systems. This repository provides practical resources, templates, and documentation to help red teamers, security researchers, and developers test and assess LLMs and AI-powered applications.  
-https://github.com/OWASP/www-project-ai-testing-guide/  
+OWASP AITG
+"The OWASP AI Testing Guide (AITG) is an open-source project aimed at standardizing testing methodologies, tools, and practices for evaluating the security and robustness of Artificial Intelligence systems. This repository provides practical resources, templates, and documentation to help red teamers, security researchers, and developers test and assess LLMs and AI-powered applications.
+https://github.com/OWASP/www-project-ai-testing-guide/
 payloads: https://github.com/joey-melo/payloads/tree/main/OWASP%20AITG-APP
 ----------------------------------------------------------------------------------
 Abliteration
 
-https://github.com/p-e-w/heretic  
+https://github.com/p-e-w/heretic
 Fully automatic censorship removal for language models
 
 ----------------------------------------------------------------------------------

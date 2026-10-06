@@ -7,32 +7,32 @@ DNS records
 --------------------------------------------------
 Types of DNS Records
 --------------------
-A - links hostname (domain) to IPv4  
-AAAA - links hostname (domain) to IPv6  
-PTR (Pointer) - links IP address with a hostname (domain); always stored in a .arpa format  
-CNAME (Canonical Name) - points from one domain to another domain or subdomain; used instead of an A or AAAA in order to point to another domain/subdomain name instead of directly to an IP address; often used when a domain is no longer used by an org and the org wants to visitors to their old domain to be redirected to their new domain  
-MX (Mail Exchange) - directs emails to a mail server using SMTP; this record points to a domain name and not directly to an IP address (e.g. mails to diontraining.com get pointed to Google's mail servers since they run the mail server for diontraining.com  
-SOA (Start Of Authority) - contains important info re domain/zone (a zone is all the records about a domain: A, AAAA, MX, etc.); tells you who is responsible for a particular domain including stating which server is the authoratative server for the domain with the authority to distribute the correct DNS records for the domain around the internet to all the DNS servers  
-TXT (Text) - allows admins to add machine readable into DNS records; e.g. to say that a certain other service has authority to use a particular domain name (for example allowing your outsourced IT support to send emails with your domain name to your employees)  
-SRV (Service) - used to specify host and port to be used for a specific service (e.g. VoIP)  
+A - links hostname (domain) to IPv4
+AAAA - links hostname (domain) to IPv6
+PTR (Pointer) - links IP address with a hostname (domain); always stored in a .arpa format
+CNAME (Canonical Name) - points from one domain to another domain or subdomain; used instead of an A or AAAA in order to point to another domain/subdomain name instead of directly to an IP address; often used when a domain is no longer used by an org and the org wants to visitors to their old domain to be redirected to their new domain
+MX (Mail Exchange) - directs emails to a mail server using SMTP; this record points to a domain name and not directly to an IP address (e.g. mails to diontraining.com get pointed to Google's mail servers since they run the mail server for diontraining.com
+SOA (Start Of Authority) - contains important info re domain/zone (a zone is all the records about a domain: A, AAAA, MX, etc.); tells you who is responsible for a particular domain including stating which server is the authoratative server for the domain with the authority to distribute the correct DNS records for the domain around the internet to all the DNS servers
+TXT (Text) - allows admins to add machine readable into DNS records; e.g. to say that a certain other service has authority to use a particular domain name (for example allowing your outsourced IT support to send emails with your domain name to your employees)
+SRV (Service) - used to specify host and port to be used for a specific service (e.g. VoIP)
 NS (Nameserver) - used to specify which DNS server is authoritative for your domains; e.g. you might buy a domain name from a provider like GoDaddy and they would be your NS; later you might switch your provider to Google Domains and you would need to update the NS record
 --------------------------------------------------
-Examining DNS Records for OSINT can help to:  
-* identify addresses of servers being used by the domain (as hostnames or IPs)  
-* what type of web server, email server, record server, etc. is being used (can point to possible vulnerabilities that can be exploited)  
+Examining DNS Records for OSINT can help to:
+* identify addresses of servers being used by the domain (as hostnames or IPs)
+* what type of web server, email server, record server, etc. is being used (can point to possible vulnerabilities that can be exploited)
 * identify services being used by the domain (e.g. SaaS cloud based tools) - for this purpose the most important DNS records are: MX, TXT, and SR
 
-Command line tools to retrieve DNS records and domain ownership records [including points of contact]:  
-* nslookup  
-* dig  
-* host  
-* whois (both a Linux command line tool and a website)  
-$ whois tesla.com  
+Command line tools to retrieve DNS records and domain ownership records [including points of contact]:
+* nslookup
+* dig
+* host
+* whois (both a Linux command line tool and a website)
+$ whois tesla.com
 NOTE: whois info is no longer as valuable as it once was because there is now the option to for domain owners to maintain privacy and not disclose a lot of the info that used to be mandatory in a whois record; it is still worth checking though
 
 JD also recommends the website:
 
-CentralOps  
+CentralOps
 https://centralops.net/co/
 
 it has many useful free online tools to gather info about domains
@@ -40,10 +40,10 @@ it has many useful free online tools to gather info about domains
 [from: CompTIA Pentest+ (Ethical Hacking) Course & Practice Exam - Jason Dion - https://www.udemy.com/course/pentestplus/ - "DNS Information" and "Reconnaissance with CentralOps" (see the videos for a lot more info)]
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-https://securitytrails.com/  
-- search for all types of DNS records related to domain, IP, keyword, or hostname  
-- search for historical DNS records to see changes  
-- search for subdomains  
+https://securitytrails.com/
+- search for all types of DNS records related to domain, IP, keyword, or hostname
+- search for historical DNS records to see changes
+- search for subdomains
 [recommended by RM]
 
 

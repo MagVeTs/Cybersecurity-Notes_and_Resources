@@ -1,23 +1,23 @@
-https://osintcurio.us/2021/03/03/using-archive-org-for-osint-investigations/  
-https://www.whois.com/whois/  
-https://domainnamestat.com/ (hat tip: ThriveDX)  
-https://whois.domaintools.com/ (hat tip: ThriveDX)  
-https://www.isitdownrightnow.com/ (hat tip: ThriveDX)  
-https://viewdns.info/ (hat tip: ThriveDX)  
-http://site-overview.com/ (hat tip: ThriveDX)  
-https://haveibeenpwned.com/ (hat tip: ThriveDX)  
-https://www.google.com/advanced_search (hat tip: ThriveDX)  
-https://www.exploit-db.com/ (hat tip: ThriveDX)  
-https://www.exploit-db.com/google-hacking-database (hat tip: ThriveDX)  
+https://osintcurio.us/2021/03/03/using-archive-org-for-osint-investigations/
+https://www.whois.com/whois/
+https://domainnamestat.com/ (hat tip: ThriveDX)
+https://whois.domaintools.com/ (hat tip: ThriveDX)
+https://www.isitdownrightnow.com/ (hat tip: ThriveDX)
+https://viewdns.info/ (hat tip: ThriveDX)
+http://site-overview.com/ (hat tip: ThriveDX)
+https://haveibeenpwned.com/ (hat tip: ThriveDX)
+https://www.google.com/advanced_search (hat tip: ThriveDX)
+https://www.exploit-db.com/ (hat tip: ThriveDX)
+https://www.exploit-db.com/google-hacking-database (hat tip: ThriveDX)
 https://www.shodan.io/ (hat tip: ThriveDX)
 
 https://securitytrails.com/blog/hacker-search-engines
 
-Comprehensive List of OSINT Tools:  
+Comprehensive List of OSINT Tools:
 https://www.youtube.com/watch?v=SMxya-M6KhU
 
 ----------------------------------
-https://dnsdumpster.com/  
+https://dnsdumpster.com/
 [hat tip: TryHackMe]
 
 https://thatsthem.com/
@@ -30,86 +30,86 @@ https://haveibeenpwned.com/
 
 https://pimeyes.com
 
-Scamalytics  
-https://scamalytics.com/  
-"IP Address Fraud Checker  
-Use this free Scamalytics tool to check user IPs for potential fraud score"  
+Scamalytics
+https://scamalytics.com/
+"IP Address Fraud Checker
+Use this free Scamalytics tool to check user IPs for potential fraud score"
 [hat tip: RM]
 ----------------------------------
-https://rocketreach.co/  
-"Connect directly with the right decision makers, using the world's largest and most accurate database of emails and direct dials."  
+https://rocketreach.co/
+"Connect directly with the right decision makers, using the world's largest and most accurate database of emails and direct dials."
 [hat tip: Alexander Sharubski]
 
-https://emailrep.io/  
-"Simple Email Reputation"  
-[hat tip: Alexander Sharubski]  
+https://emailrep.io/
+"Simple Email Reputation"
+[hat tip: Alexander Sharubski]
 [also can tell where email was used on internet, e.g. Twitter]
 
 ----------------------------------
 Here are 30 cybersecurity search engines:
 
-1. Dehashed—View leaked credentials.  
-2. SecurityTrails—Extensive DNS data.  
-3. DorkSearch—Really fast Google dorking.  
-4. ExploitDB—Archive of various exploits.  
-5. ZoomEye—Gather information about targets.  
-6. Pulsedive—Search for threat intelligence.  
-7. GrayHatWarefare—Search public S3 buckets.  
-8. PolySwarm—Scan files and URLs for threats.  
-9. Fofa—Search for various threat intelligence.  
-10. LeakIX—Search publicly indexed information.  
-11. DNSDumpster—Search for DNS records quickly.  
-13. FullHunt—Search and discovery attack surfaces.  
-14. AlienVault—Extensive threat intelligence feed.  
-12. ONYPHE—Collects cyber-threat intelligence data.  
-15. Grep App—Search across a half million git repos.  
-17. URL Scan—Free service to scan and analyse websites.  
-18. Vulners—Search vulnerabilities in a large database.  
-19. WayBackMachine—View content from deleted websites.  
-16. Shodan—Search for devices connected to the internet.  
-21. Netlas—Search and monitor internet connected assets.  
-22. CRT sh—Search for certs that have been logged by CT.  
-20. Wigle—Database of wireless networks, with statistics.  
-23. PublicWWW—Marketing and affiliate marketing research.  
-24. Binary Edge—Scans the internet for threat intelligence.  
-25. GreyNoise—Search for devices connected to the internet.  
-26. Hunter—Search for email addresses belonging to a website.  
-27. Censys—Assessing attack surface for internet connected devices.  
-28. IntelligenceX—Search Tor, I2P, data leaks, domains, and emails.  
-29. Packet Storm Security—Browse latest vulnerabilities and exploits.  
-30. SearchCode—Search 75 billion lines of code from 40 million projects  
+1. Dehashed—View leaked credentials.
+2. SecurityTrails—Extensive DNS data.
+3. DorkSearch—Really fast Google dorking.
+4. ExploitDB—Archive of various exploits.
+5. ZoomEye—Gather information about targets.
+6. Pulsedive—Search for threat intelligence.
+7. GrayHatWarefare—Search public S3 buckets.
+8. PolySwarm—Scan files and URLs for threats.
+9. Fofa—Search for various threat intelligence.
+10. LeakIX—Search publicly indexed information.
+11. DNSDumpster—Search for DNS records quickly.
+13. FullHunt—Search and discovery attack surfaces.
+14. AlienVault—Extensive threat intelligence feed.
+12. ONYPHE—Collects cyber-threat intelligence data.
+15. Grep App—Search across a half million git repos.
+17. URL Scan—Free service to scan and analyse websites.
+18. Vulners—Search vulnerabilities in a large database.
+19. WayBackMachine—View content from deleted websites.
+16. Shodan—Search for devices connected to the internet.
+21. Netlas—Search and monitor internet connected assets.
+22. CRT sh—Search for certs that have been logged by CT.
+20. Wigle—Database of wireless networks, with statistics.
+23. PublicWWW—Marketing and affiliate marketing research.
+24. Binary Edge—Scans the internet for threat intelligence.
+25. GreyNoise—Search for devices connected to the internet.
+26. Hunter—Search for email addresses belonging to a website.
+27. Censys—Assessing attack surface for internet connected devices.
+28. IntelligenceX—Search Tor, I2P, data leaks, domains, and emails.
+29. Packet Storm Security—Browse latest vulnerabilities and exploits.
+30. SearchCode—Search 75 billion lines of code from 40 million projects
 [hat tip: Cyber Together 2 [Whatsapp channel]
 --------------------------------------
 https://rigorousthemes.com/blog/best-dehashed-alternatives/
 
 --------------------------------------
-https://buckets.grayhatwarfare.com/  
-Search Public Buckets  
-email sent on 06/01/23:  
-"We now have a database of 308577 AWS buckets, 95065 open Azure containers, 10873 Digital Ocean Spaces buckets, 106896 Google Cloud Buckets and 9.3 billion publicly accessible files (+200 million files).  
-Also, we have removed old and empty buckets and their content and this is a complete reindex – meaning that we have completely rescanned all buckets, not only the new ones, so this is 100% fresh accessible (right now) content, with no duplicates.  
-This complete fresh index is available only to premium members, so every one of you that has a premium account can login right away and see the new results. Unregistered and free register users can see the first 2.5Billion results and 138400 buckets, 10000 azure blobs, 2100 Digital Ocean Spaces Buckets and 3000 Google Cloud Buckets. These are the oldest buckets but reindexed, fresh content is available only on premium.  
-To get our updates first, follow us on twitter: https://twitter.com/grayhatwarfare"  
+https://buckets.grayhatwarfare.com/
+Search Public Buckets
+email sent on 06/01/23:
+"We now have a database of 308577 AWS buckets, 95065 open Azure containers, 10873 Digital Ocean Spaces buckets, 106896 Google Cloud Buckets and 9.3 billion publicly accessible files (+200 million files).
+Also, we have removed old and empty buckets and their content and this is a complete reindex – meaning that we have completely rescanned all buckets, not only the new ones, so this is 100% fresh accessible (right now) content, with no duplicates.
+This complete fresh index is available only to premium members, so every one of you that has a premium account can login right away and see the new results. Unregistered and free register users can see the first 2.5Billion results and 138400 buckets, 10000 azure blobs, 2100 Digital Ocean Spaces Buckets and 3000 Google Cloud Buckets. These are the oldest buckets but reindexed, fresh content is available only on premium.
+To get our updates first, follow us on twitter: https://twitter.com/grayhatwarfare"
 [hat tip: RM]
 
-https://shorteners.grayhatwarfare.com/  
-Search Shortener Urls  
+https://shorteners.grayhatwarfare.com/
+Search Shortener Urls
 [see here: https://grayhatwarfare.medium.com/how-to-search-urls-exposed-by-shortener-services-f68e199cd560]
 ----------------------------------------
 FROM: https://flashpoint.io/blog/osint-tools-library/
 
-* Source Code Search Engine  
-"Find any alphanumeric snippet, signature or keyword in the web pages HTML, JS and CSS code."  
+* Source Code Search Engine
+"Find any alphanumeric snippet, signature or keyword in the web pages HTML, JS and CSS code."
 https://publicwww.com/
 
-* Find deep web data  
+* Find deep web data
 90% of the internet isn’t indexed by search engines. This includes many internal links and deep websites. If you’re looking for a file that was shared by a company between two people or organizations, you most likely won’t be able to find it in Google or any other search engine. URLScan (https://urlscan.io/) has many of these links indexed in their historical scans. If you type in a domain for any website into their search engine, you’ll find multiple links from that domain in the search results. It’s a great way to do deep web research without needing access or logins.
 
-Search for Bitcoin addresses  
+Search for Bitcoin addresses
 Blockchain and cryptocurrency investigations have been a rather recent development in the OSINT space and are gaining relevance as more threat actors and scams begin using cryptocurrency as their transaction method of choice. If you’re looking into a crypto wallet that might be related to ransomware, blackmailing, fraud, etc., check out BitcoinAbuse (https://www.bitcoinabuse.com/) It’s a public database of addresses used for nefarious reasons. They also have an API if you’re looking to build an OSINT tool for crypto.
 ----------------------------------------------------------------
-Source Code Search Engine  
-https://publicwww.com/  
+Source Code Search Engine
+https://publicwww.com/
 "Find any alphanumeric snippet, signature or keyword in the web pages HTML, JS and CSS code."
 
 

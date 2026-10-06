@@ -1,42 +1,42 @@
 YARA Rules
 ------------
 
-YARA  
-https://github.com/VirusTotal/yara  
+YARA
+https://github.com/VirusTotal/yara
 https://github.com/Yara-Rules/rules
 
-* YARA documentation  
+* YARA documentation 
   https://yara.readthedocs.io/en/stable/index.html 
 
 * https://yara.readthedocs.io/en/stable/writingrules.html
 
 * https://www.malwarebytes.com/blog/news/2017/09/explained-yara-rules
 
-* Classify Malware with YARA  
-  John Hammond  
+* Classify Malware with YARA
+  John Hammond
   https://www.youtube.com/watch?v=fu71CljrxsU
 
-* What are Yara Rules (and How Cybersecurity Analysts Use Them)  
-  Gerald Auger, PhD - Simply Cyber  
+* What are Yara Rules (and How Cybersecurity Analysts Use Them)
+  Gerald Auger, PhD - Simply Cyber
   https://www.youtube.com/watch?v=BM23_H2GGMA
 
 * YARA cheat sheet: https://medium.com/malware-buddy/security-infographics-9c4d3bd891ef#18dd
 
-* There exists platforms/modules that allow you to create YARA rules directly from the malware files:  
-- https://cuckoosandbox.org/  
+* There exists platforms/modules that allow you to create YARA rules directly from the malware files:
+- https://cuckoosandbox.org/ 
 - https://pypi.org/project/pefile/
 
-* Pre-created YARA rules:  
-- Awesome YARA  
-  "A curated list of awesome YARA rules, tools, and people."  
+* Pre-created YARA rules:
+- Awesome YARA
+  "A curated list of awesome YARA rules, tools, and people."
   https://github.com/InQuest/awesome-yara
 
-* Also see: https://valhalla.nextron-systems.com/  
+* Also see: https://valhalla.nextron-systems.com/
 Web interface to search for YARA and Sigma rules by keyword, tag, ATT&CK technique, SHA256, or rule name
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 from: https://tryhackme.com/room/yara 
 
-* When running YARA rules there are always two arguments: 1) the name of the rule being run and 2) the file/directory/PID (Process ID) the rule is being run against:  
+* When running YARA rules there are always two arguments: 1) the name of the rule being run and 2) the file/directory/PID (Process ID) the rule is being run against:
 $ yara <RULE_NAME>.yar <DIRECTORY_NAME>
 
 * YARA rules themselves have the syntax:
@@ -46,140 +46,140 @@ rule {
 
 } 
 
-The entire rule except the word "rule" and the rule name is written within the curly brackets.  
+The entire rule except the word "rule" and the rule name is written within the curly brackets.
 YARA rules must always contain at least 1) the rule name [which comes after "rule" and before the opening curly bracket] and 2) the condition upon which the rule obtains, e.g.:
 
-rule examplerule {  
-        condition: true  
+rule examplerule {
+        condition: true
 }
 
-In this case "examplerule" is the name of the rule and "true" is the condition. "condition: true" means that the rule checks whether the the file/directory/PID against which it is run is "true", .i.e. exists.  
-So if you ran the rule as follows:  
-$ yara examplerule.yar test.txt  
-and test.txt did exist, the response would be:  
-examplerule test.txt  
-meaning that test.txt meets the condition of the rule because it is "true" in regards to existing  
-If test.txt did not exist an error message would be generated:  
+In this case "examplerule" is the name of the rule and "true" is the condition. "condition: true" means that the rule checks whether the the file/directory/PID against which it is run is "true", .i.e. exists.
+So if you ran the rule as follows:
+$ yara examplerule.yar test.txt
+and test.txt did exist, the response would be:
+examplerule test.txt
+meaning that test.txt meets the condition of the rule because it is "true" in regards to existing
+If test.txt did not exist an error message would be generated:
 error scanning test.txt: could not open file
 
-* YARA rules can have a meta section (see: https://www.malwarebytes.com/blog/news/2017/09/explained-yara-rules) which does not affect the actual use of the rule but rather give metadata about the rule, e.g.:  
-rule examplerule {  
-        meta:  
-             created = <DATE>  
-             author = <NAME>  
-             desc = <EXPLANATION OF PURPOSE OF RULE>  
-        condition: true  
+* YARA rules can have a meta section (see: https://www.malwarebytes.com/blog/news/2017/09/explained-yara-rules) which does not affect the actual use of the rule but rather give metadata about the rule, e.g.:
+rule examplerule {
+        meta: 
+             created = <DATE>
+             author = <NAME>
+             desc = <EXPLANATION OF PURPOSE OF RULE>
+        condition: true
 }
 
-* YARA rules usally combine a strings section which lists strings to search for with conditions that define when the rule is triggered by those strings.  
+* YARA rules usally combine a strings section which lists strings to search for with conditions that define when the rule is triggered by those strings.
 Here are some examples:
 -------------
-rule helloworld_checker1{  
-	strings:  
+rule helloworld_checker1{
+	strings:
 		$string1 = "Hello World!"
 
-	condition:  
-		$string1  
-}  
+	condition:
+		$string1
+}
 # rule is true for a target if that target contains the string "Hello World!" exactly as written
 -------------
-rule helloworld_checker2{  
-	strings:  
-		$string1 = "Hello World!"  
-		$string2 = "hello world"  
+rule helloworld_checker2{
+	strings:
+		$string1 = "Hello World!"
+		$string2 = "hello world"
 		$string3 = "HELLO WORLD"
 
-	condition:  
-		any of them  
-}  
+	condition:
+		any of them
+}
 # rule is true for a target if the target contains any one of the three strings
 -------------
-rule helloworld_checker3{  
-	strings:  
+rule helloworld_checker3{
+	strings:
 		$string1 = "Hello World!"
 
-	condition:  
-       $string1 <= 10  
-}  
+	condition:
+       $string1 <= 10
+}
 # rule is true for a target if the target contains "Hello World!" (exactly as written) 10 or less times
 -------------
-rule helloworld_checker4{  
-	strings:  
+rule helloworld_checker4{
+	strings:
 		$string1 = "Hello World!" 
         
-        condition:  
-	        $string1 and filesize < 10KB  
-}  
+        condition:
+	        $string1 and filesize < 10KB 
+}
 # rule is true for a target if the target contains "Hello World!" (exactly as written) AND the target file is less than 10KB in size
 -------------
-Some useful conditions operators:  
-<= {less than or equal to}  
->= {more than or equal to}  
-!= {not equal to}  
-and  
-not  
+Some useful conditions operators:
+<= {less than or equal to}
+>= {more than or equal to}
+!= {not equal to}
+and
+not
 or 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Using the tool called Loki to scan files for YARA rule matches:
 
-see: https://github.com/Neo23x0/Loki/tree/master  
-     https://github.com/Neo23x0/Loki/blob/master/README.md  
+see: https://github.com/Neo23x0/Loki/tree/master
+     https://github.com/Neo23x0/Loki/blob/master/README.md
      https://github.com/Neo23x0/Loki/releases - to download the newest release
 
-from: https://tryhackme.com/room/yara ; Task 7 - "Other tools and Yara" and Task 8 - "Using LOKI and its Yara rule set"  
-"LOKI is a free open-source IOC (Indicator of Compromise) scanner created/written by Florian Roth."  
-It draws upon the following to match and alert on suspicious/malicious files:  
-1) File Names  
-2) Yara Rules  
-3) Hashes  
+from: https://tryhackme.com/room/yara ; Task 7 - "Other tools and Yara" and Task 8 - "Using LOKI and its Yara rule set"
+"LOKI is a free open-source IOC (Indicator of Compromise) scanner created/written by Florian Roth."
+It draws upon the following to match and alert on suspicious/malicious files:
+1) File Names
+2) Yara Rules
+3) Hashes
 4) Connections to known C2s servers 
 
-syntax:  
-$ python3 loki.py -h  
+syntax:
+$ python3 loki.py -h
 # help menu
 
-$ python3 loki.py --update  
+$ python3 loki.py --update
 # run before scanning to update the `signature-base` directory within the `Loki` directory with up-to-date YARA rules that will be used for scanning
 
-$ python3 loki.py -p path/to/directory/or/file/being/scanned  
+$ python3 loki.py -p path/to/directory/or/file/being/scanned
 # run this command from within the `Loki` directory to scan a directory/file that is elsewhere; `-p` stands for path
 
-$ python3 path/to/Loki/loki.py -p .  
+$ python3 path/to/Loki/loki.py -p .
 # run this command from within a directory to scan the directory
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-yarGen  
-https://github.com/Neo23x0/yarGen  
+yarGen
+https://github.com/Neo23x0/yarGen
 "yarGen is a generator for YARA rules"
 
-from: https://tryhackme.com/room/yara ; Task 9 - " Creating Yara rules with yarGen"  
+from: https://tryhackme.com/room/yara ; Task 9 - " Creating Yara rules with yarGen"
 If one discovers a malicious file that does not yet have a YARA rule written for it, then it becomes necessary to create a new YARA rule. The tool yarGen came be used to create YARA rules. It can extract strings from the malware file and then filter out all strings found in its database of strings that are also present in goodware. It then uses the strings which are unique to the malware to produce a YARA rule that is less likely to trigger false positives.
 
 Syntax:
 
-$ python3 yarGen.py --update  
+$ python3 yarGen.py --update
 # update before running to ensure that you are working with an up-to-date DB of goodware strings
 
-$ python3 yarGen.py -m /path/to/malware/file --excludegood -o /path/where/to/output/new/yaraRule.yar  
+$ python3 yarGen.py -m /path/to/malware/file --excludegood -o /path/where/to/output/new/yaraRule.yar
 # --excludegood = remove all strings that are also found in goodware before creating new YARA rule
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-also see:  
-yarAnalyzer  
-https://github.com/Neo23x0/yarAnalyzer/  
-"Yara Rule Analyzer and Statistics  
-yarAnalyzer creates statistics on a yara rule set and files in a sample directory."  
+also see: 
+yarAnalyzer
+https://github.com/Neo23x0/yarAnalyzer/
+"Yara Rule Analyzer and Statistics
+yarAnalyzer creates statistics on a yara rule set and files in a sample directory."
 [hat tip: from: https://tryhackme.com/room/yara ; Task 9 - " Creating Yara rules with yarGen"]
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-also see:  
-How to write YARA rules:  
-* https://www.nextron-systems.com/2015/02/16/write-simple-sound-yara-rules/  
-* https://www.nextron-systems.com/2015/10/17/how-to-write-simple-but-sound-yara-rules-part-2/  
-* https://www.nextron-systems.com/2016/04/15/how-to-write-simple-but-sound-yara-rules-part-3/  
+also see:
+How to write YARA rules:
+* https://www.nextron-systems.com/2015/02/16/write-simple-sound-yara-rules/
+* https://www.nextron-systems.com/2015/10/17/how-to-write-simple-but-sound-yara-rules-part-2/
+* https://www.nextron-systems.com/2016/04/15/how-to-write-simple-but-sound-yara-rules-part-3/
 [hat tip: from: https://tryhackme.com/room/yara ; Task 9 - " Creating Yara rules with yarGen"]
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-https://valhalla.nextron-systems.com/  
+https://valhalla.nextron-systems.com/
 "an online Yara feed created and hosted by Nextron-Systems ... Per the website, "VALHALLA boosts your detection capabilities with the power of thousands of hand-crafted high-quality YARA rules."--TryHackMe [https://tryhackme.com/room/yara]
 -------------------------------------------
-YARA TOOLKIT  
+YARA TOOLKIT
 https://yaratoolkit.securitybreak.io/
 -------------------------------------------
 

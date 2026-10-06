@@ -1,20 +1,20 @@
-Mitre ATT&CK  
+Mitre ATT&CK
 https://attack.mitre.org/
 
-THREAT REPORT ATT&CK MAPPER (TRAM)  
-https://mitre-engenuity.org/blog/2021/09/30/threat-report-attck-mapper-tram/#project-resources  
-https://github.com/center-for-threat-informed-defense/tram#installation  
+THREAT REPORT ATT&CK MAPPER (TRAM)
+https://mitre-engenuity.org/blog/2021/09/30/threat-report-attck-mapper-tram/#project-resources
+https://github.com/center-for-threat-informed-defense/tram#installation
 "TRAM is an open-source platform designed to advance research into automating the mapping of cyber threat intelligence reports to MITRE ATT&CK®. TRAM enables researchers to test and refine Machine Learning (ML) models for identifying ATT&CK techniques in prose-based threat intel reports and allows threat intel analysts to train ML models and validate ML results."
 
 
-Great set of mind maps of Mitre ATT&CK:  
-https://github.com/JPMinty/MindMaps/tree/master/MITRE%20ATT%26CK/  
+Great set of mind maps of Mitre ATT&CK:
+https://github.com/JPMinty/MindMaps/tree/master/MITRE%20ATT%26CK/
 [hat tip: RM]
 
-Mappings Explorer  
-https://center-for-threat-informed-defense.github.io/mappings-explorer/external/  
-"The Center for Threat-Informed Defense (https://ctid.mitre.org/) has created the following mappings of security capabilities to MITRE ATT&CK®, empowering defenders with data. Mappings Explorer provides a central location where all Center mapping resources are provided in a more accessible and connected manner, improving a defender’s ability to make threat-informed decisions based on mapped security capabilities."  
-- currently maps MITRE ATT&CK to: AWS, GCP, Azure cloud infrastuctures; to M365 (SaaS); and to CVE, NIST 800-53, and VERIS  
+Mappings Explorer
+https://center-for-threat-informed-defense.github.io/mappings-explorer/external/
+"The Center for Threat-Informed Defense (https://ctid.mitre.org/) has created the following mappings of security capabilities to MITRE ATT&CK®, empowering defenders with data. Mappings Explorer provides a central location where all Center mapping resources are provided in a more accessible and connected manner, improving a defender’s ability to make threat-informed decisions based on mapped security capabilities."
+- currently maps MITRE ATT&CK to: AWS, GCP, Azure cloud infrastuctures; to M365 (SaaS); and to CVE, NIST 800-53, and VERIS
 [hat tip: RM]
 
 

@@ -2,143 +2,143 @@ From: https://systemweakness.com/25-cybersecurity-search-engines-68bfcc2418ff ; 
 
 Internet Connected Devices and Networks
 ---------------------------------------
-Shodan  
-https://www.shodan.io/  
+Shodan
+https://www.shodan.io/
 Search for devices connected to the internet
 
-Wigle  
-https://www.wigle.net/  
+Wigle
+https://www.wigle.net/
 Database of wireless networks, with statistics
 
-GreyNoise  
-https://www.greynoise.io/  
+GreyNoise
+https://www.greynoise.io/
 Search for devices connected to the internet
 
-Netlas  
-https://netlas.io/  
+Netlas
+https://netlas.io/
 Search and monitor internet connected assets
 
-FullHunt  
-https://fullhunt.io/  
+FullHunt
+https://fullhunt.io/
 Search and discovery attack surfaces
 
 IOC Analysis
 ------------
-VirusTotal  
-https://www.virustotal.com/gui/home/upload  
+VirusTotal
+https://www.virustotal.com/gui/home/upload
 Analyse suspicious files, domains, IPs, and URLs to detect malware
 
-URL Scan  
-https://urlscan.io/  
+URL Scan
+https://urlscan.io/
 Free service to scan and analyse websites 
 
 Vulnerabilities and Exploits
 -----------------------------
-Vulners  
-https://vulners.com/  
+Vulners
+https://vulners.com/
 Search for vulnerabilities in a large database
 
-ExploitDB  
-https://www.exploit-db.com/  
+ExploitDB
+https://www.exploit-db.com/
 Archive of Various Exploits
 
-CVE  
-https://cve.mitre.org/  
+CVE
+https://cve.mitre.org/
 The CVE website was created to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities 
 
-Packet Storm Security  
-https://packetstormsecurity.com/  
+Packet Storm Security
+https://packetstormsecurity.com/
 Browse latest vulnerabilities and exploits
 
 Cyber Threat Intelligence (CTI)
 -------------------------------
-ONYPHE  
-https://www.onyphe.io/  
+ONYPHE
+https://www.onyphe.io/
 Collects cyber-threat intelligence data
 
-AlienVault  
-https://otx.alienvault.com/  
+AlienVault
+https://otx.alienvault.com/
 Open Threat Intelligence Community 
 
-BinaryEdge  
-https://www.binaryedge.io/  
+BinaryEdge
+https://www.binaryedge.io/
 Scans the internet for threat intelliegence
 
-PulseDive  
-https://pulsedive.com/  
+PulseDive
+https://pulsedive.com/
 Search for threat intelligence
 
 Data Leaks
 ----------
-LeakIX  
-https://leakix.net/  
+LeakIX
+https://leakix.net/
 Search publicly indexed information
 
-IntelligenceX  
-https://intelx.io/  
+IntelligenceX
+https://intelx.io/
 Search Tor, I2P, Data Leaks, Domains and Emails 
 
-Dehashed  
+Dehashed
 https://www.dehashed.com/
 
 Miscellaneous
 -------------
-OSINT Framework  
-https://osintframework.com/  
+OSINT Framework
+https://osintframework.com/
 OSINT (Open Source Intelligence) Framework website, some links don’t work anymore but it’s still a good website
 
-GrepApp  
-https://grep.app/  
+GrepApp
+https://grep.app/
 Search across a half million git repos 
 
-GreyHatWarfare  
-https://grayhatwarfare.com/  
+GreyHatWarfare
+https://grayhatwarfare.com/
 Search public S3 buckets
 
-WayBackMachine  
-https://web.archive.org/  
+WayBackMachine
+https://web.archive.org/
 View content from deleted websites or take a deep dive into the history of the web
 
-TinEye  
-https://tineye.com/  
+TinEye
+https://tineye.com/
 Reverse Image Search 
 
-Hunter.io  
-https://hunter.io/  
+Hunter.io
+https://hunter.io/
 Search for email addresses belonging to a website
 
-DNSDumpster  
-https://dnsdumpster.com/  
+DNSDumpster
+https://dnsdumpster.com/
 DNS Recon & Research, Find & Lookup DNS Records
 
-CRT sh  
-https://crt.sh/  
+CRT sh
+https://crt.sh/
 Search for certs that have been logged by CT
 
 --------------------------------------------------------------------------
-From: https://www.linkedin.com/in/danielmakelley  
+From: https://www.linkedin.com/in/danielmakelley
 Here are 21 cybersecurity search engines:
 
-1. Shodan—Search for devices connected to the internet.  
-2. Wigle—Database of wireless networks, with statistics.  
-3. Grep App—Search across a half million git repos.  
-4. Binary Edge—Scans the internet for threat intelligence.  
-5. ONYPHE—Collects cyber-threat intelligence data.  
-6. GreyNoise—Search for devices connected to the internet.  
-7. Censys—Assessing attack surface for internet connected devices.  
-8. Hunter—Search for email addresses belonging to a website.  
-9. Fofa—Search for various threat intelligence.  
-10. ZoomEye—Gather information about targets.  
-11. LeakIX—Search publicly indexed information.  
-12. IntelligenceX—Search Tor, I2P, data leaks, domains, and emails.  
-13. Netlas—Search and monitor internet connected assets.  
-14. URL Scan—Free service to scan and analyse websites.  
-15. PublicWWW—Marketing and affiliate marketing research.  
-16. FullHunt—Search and discovery attack surfaces.  
-17. CRT sh—Search for certs that have been logged by CT.  
-18. Vulners—Search vulnerabilities in a large database.  
-19 Pulsedive—Search for threat intelligence.  
-20. Packet Storm Security—Browse latest vulnerabilities and exploits.  
+1. Shodan—Search for devices connected to the internet.
+2. Wigle—Database of wireless networks, with statistics.
+3. Grep App—Search across a half million git repos.
+4. Binary Edge—Scans the internet for threat intelligence.
+5. ONYPHE—Collects cyber-threat intelligence data.
+6. GreyNoise—Search for devices connected to the internet.
+7. Censys—Assessing attack surface for internet connected devices.
+8. Hunter—Search for email addresses belonging to a website.
+9. Fofa—Search for various threat intelligence.
+10. ZoomEye—Gather information about targets.
+11. LeakIX—Search publicly indexed information.
+12. IntelligenceX—Search Tor, I2P, data leaks, domains, and emails.
+13. Netlas—Search and monitor internet connected assets.
+14. URL Scan—Free service to scan and analyse websites.
+15. PublicWWW—Marketing and affiliate marketing research.
+16. FullHunt—Search and discovery attack surfaces.
+17. CRT sh—Search for certs that have been logged by CT.
+18. Vulners—Search vulnerabilities in a large database.
+19 Pulsedive—Search for threat intelligence.
+20. Packet Storm Security—Browse latest vulnerabilities and exploits.
 21. GrayHatWarefare—Search public S3 buckets.
 ---------------------------------------------------------------------------
 

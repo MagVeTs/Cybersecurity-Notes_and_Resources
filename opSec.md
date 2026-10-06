@@ -1,25 +1,25 @@
-Network Chuck - learning hacking? DON'T make this mistake!! (hide yourself with Kali Linux and ProxyChains)  
+Network Chuck - learning hacking? DON'T make this mistake!! (hide yourself with Kali Linux and ProxyChains)
 https://www.youtube.com/watch?v=qsA8zREbt6g&list=PLIhvC56v63IJ9SYBtdDsNnORfTNFCXR8_&index=6
 
-In order to check if you have successfully changed your IP by using VPN or ProxyChain, check:  
-https://www.whatismyip.com/  
-Also, make sure to check:  
+In order to check if you have successfully changed your IP by using VPN or ProxyChain, check:
+https://www.whatismyip.com/
+Also, make sure to check:
 https://www.dnsleaktest.com/
 
-If you have changed your browser's user-agent, check here to confirm that the user-agent you selected is the one your browser is now broadcasting:  
+If you have changed your browser's user-agent, check here to confirm that the user-agent you selected is the one your browser is now broadcasting:
 https://dnschecker.org/user-agent-info.php
 
-In order to confirm that your location has been hidden through VPN or ProxyChaining check here:  
+In order to confirm that your location has been hidden through VPN or ProxyChaining check here:
 https://where-am-i.org/
 
 ---------------------------------------------------------
 https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 ----------------------------------------------------------------------------------
-Network Chuck - learning hacking? DON'T make this mistake!! (hide yourself with Kali Linux and ProxyChains)  
+Network Chuck - learning hacking? DON'T make this mistake!! (hide yourself with Kali Linux and ProxyChains)
 https://www.youtube.com/watch?v=qsA8zREbt6g&list=PLIhvC56v63IJ9SYBtdDsNnORfTNFCXR8_&index=6
 ----------------------------------------------------------------------------------
-CLOAK (Concealment Layers for Online Anonymity and Knowledge)  
-https://github.com/Mickinthemiddle/CLOAK  
+CLOAK (Concealment Layers for Online Anonymity and Knowledge)
+https://github.com/Mickinthemiddle/CLOAK
 https://opsectechniques.com/
 ----------------------------------------------------------------------------------
 

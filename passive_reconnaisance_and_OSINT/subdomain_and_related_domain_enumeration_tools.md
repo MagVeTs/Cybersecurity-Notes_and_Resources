@@ -1,30 +1,30 @@
-- Assetfinder  
+- Assetfinder
 see tools > Assetfinder in this repository
 
-- Amass  
+- Amass
 see tools > Amass in this repository
 
-Security Trails  
-https://securitytrails.com/  
-- search for all types of DNS records related to domain, IP, keyword, or hostname  
-- search for historical DNS records to see changes  
-- search for subdomains  
+Security Trails
+https://securitytrails.com/
+- search for all types of DNS records related to domain, IP, keyword, or hostname
+- search for historical DNS records to see changes
+- search for subdomains
 [recommended by RM]
 
-Project Discovery  
-https://cloud.projectdiscovery.io/ - in browser option that has limited free account or paid account versions  
-also see: https://github.com/projectdiscovery [open source; one can self host]  
-also see: https://docs.projectdiscovery.io/home  
+Project Discovery
+https://cloud.projectdiscovery.io/ - in browser option that has limited free account or paid account versions
+also see: https://github.com/projectdiscovery [open source; one can self host]
+also see: https://docs.projectdiscovery.io/home
 [combines many tools and offers the ability to both discover and conduct vulnerability scans on what is discovered]
 
-Host.io  
-[this is excellent for discovering related domains; especially other domains that automatically redirect to the domain you are searching for; many other tools just provide subdomains of the the domain that are entered; there is a browser interface for searching for one domain and they also have an API (that costs something) for automating multiple searches]  
-- https://host.io/  
+Host.io
+[this is excellent for discovering related domains; especially other domains that automatically redirect to the domain you are searching for; many other tools just provide subdomains of the the domain that are entered; there is a browser interface for searching for one domain and they also have an API (that costs something) for automating multiple searches]
+- https://host.io/
 [hat tip: ULT]
 
-dnsTwist  
-[This tool helps locate similarly named domains which can help in locating typosquatting or phishing domains]  
-- https://github.com/elceef/dnstwist  
-[Domain name permutation engine for detecting homograph phishing attacks, typo squatting, and brand impersonation]  
-- https://dnstwist.it/  
+dnsTwist
+[This tool helps locate similarly named domains which can help in locating typosquatting or phishing domains]
+- https://github.com/elceef/dnstwist
+[Domain name permutation engine for detecting homograph phishing attacks, typo squatting, and brand impersonation]
+- https://dnstwist.it/
 [in browser interface with the same capabilities; use for immediate single domain searches]

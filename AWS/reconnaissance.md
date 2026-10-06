@@ -4,61 +4,61 @@ Reconnaissance
 
 S3 Buckets
 ----------------------------
-from: https://tryhackme.com/room/awss3service ; Task 5 - "Lab: Identifying Misconfigured CloudFront Distributions"  
+from: https://tryhackme.com/room/awss3service ; Task 5 - "Lab: Identifying Misconfigured CloudFront Distributions"
 from: https://tryhackme.com/room/awss3service ; Task 6 - "Lab: Attacking Public S3 Buckets"
 
-1)  
+1)
 AWS provides a URL that is publicly accessible with the contents of each bucket (buckets can, of course, be made non-public and since 2018 are default private).
 
 Public S3 buckets naming conventions:
 
-http://s3.amazonaws.com/bucket/key (for a bucket created in the US East (N. Virginia) region)  
-https://s3.amazonaws.com/bucket/key  
-http://s3-region.amazonaws.com/bucket/key  
-https://s3-region.amazonaws.com/bucket/key  
-http://s3.region.amazonaws.com/bucket/key  
-https://s3.region.amazonaws.com/bucket/key  
-http://s3.dualstack.region.amazonaws.com/bucket/key (for requests using IPv4 or IPv6)  
-https://s3.dualstack.region.amazonaws.com/bucket/key  
-http://bucket.s3.amazonaws.com/key  
-http://bucket.s3-region.amazonaws.com/key  
-http://bucket.s3.region.amazonaws.com/key  
-http://bucket.s3.dualstack.region.amazonaws.com/key (for requests using IPv4 or IPv6)  
-http://bucket.s3-website.region.amazonaws.com/key (if static website hosting is enabled on the bucket)  
-http://bucket.s3-accelerate.amazonaws.com/key (where the filetransfer exits Amazon's network at the last possible moment so as to give the fastest possible transfer speed and lowest latency)  
-http://bucket.s3-accelerate.dualstack.amazonaws.com/key  
-http://bucket/key (where bucket is a DNS CNAME record pointing to bucket.s3.amazonaws.com)  
-https://access_point_name-account ID.s3-accesspoint.region.amazonaws.com (for requests via an access point granting restricted access to a bucket)  
+http://s3.amazonaws.com/bucket/key (for a bucket created in the US East (N. Virginia) region)
+https://s3.amazonaws.com/bucket/key
+http://s3-region.amazonaws.com/bucket/key
+https://s3-region.amazonaws.com/bucket/key
+http://s3.region.amazonaws.com/bucket/key
+https://s3.region.amazonaws.com/bucket/key
+http://s3.dualstack.region.amazonaws.com/bucket/key (for requests using IPv4 or IPv6)
+https://s3.dualstack.region.amazonaws.com/bucket/key
+http://bucket.s3.amazonaws.com/key
+http://bucket.s3-region.amazonaws.com/key
+http://bucket.s3.region.amazonaws.com/key
+http://bucket.s3.dualstack.region.amazonaws.com/key (for requests using IPv4 or IPv6)
+http://bucket.s3-website.region.amazonaws.com/key (if static website hosting is enabled on the bucket)
+http://bucket.s3-accelerate.amazonaws.com/key (where the filetransfer exits Amazon's network at the last possible moment so as to give the fastest possible transfer speed and lowest latency)
+http://bucket.s3-accelerate.dualstack.amazonaws.com/key
+http://bucket/key (where bucket is a DNS CNAME record pointing to bucket.s3.amazonaws.com)
+https://access_point_name-account ID.s3-accesspoint.region.amazonaws.com (for requests via an access point granting restricted access to a bucket)
 [Source: Wikipedia]
 
-2)  
+2)
 Companies often use the following naming conventions for S3 buckets:
 
 assets.{domain_name}.com.s3.amazonaws.com/
 
 {org_name}-prod.s3.amazonaws.com/
 
-3)  
+3)
 Keeping in mind the naming conventions mentioned in #2 and that search engines (e.g. Google) index the s3.amazonaws.com subdomain, one can use the following search to locate an index of a public S3 bucket:
 
-Google Search example:  
+Google Search example:
 org: bestcloudcompany site: s3.amazonaws.com
 
 
-4)  
-Another place to find an orgs S3 buckets is in the sourcecode of their website.  
-One may find refs to S3 buckets embedded to provide images or other static content or there may be embedded Javascript scripts that point to S3 buckets.  
-One can peruse the sourcecode in the developer's view of the website or use the follwoing tools to scan the site:  
-* https://github.com/GerbenJavado/LinkFinder  
-* https://github.com/w9w/JSA  
+4)
+Another place to find an orgs S3 buckets is in the sourcecode of their website.
+One may find refs to S3 buckets embedded to provide images or other static content or there may be embedded Javascript scripts that point to S3 buckets.
+One can peruse the sourcecode in the developer's view of the website or use the follwoing tools to scan the site:
+* https://github.com/GerbenJavado/LinkFinder
+* https://github.com/w9w/JSA
 * https://github.com/lc/subjs
 
-5)  
+5)
 In general, use the `nslookup` command against domains, subdomains, and IPs to find AWS resources. The site: https://crt.sh/ is also helpful in discovering subdomains as is subdomain discovery tools such as ffuf. Once located these subdomains can be converted into the known S3 naming conventions and then searched for in `nslookup` or searched for in Google using the syntax mentioned in #3.
 
-6) Once a public S3 bucket is identified it can be dumped using the following command from your Attack Box (after configuring the AWS CLI on the box, see here: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)  
-kali@kali$ aws s3 sync s3://{bucket-name} . --no-sign-request  
-# --no-sign-request = no AWS credentials used to sign the request; works when bucket is public  
-IMPORTANT NOTE: If, for example, the bucket is called "assets.bestcloudcompany.org.s3.amazonaws.com" you would remove the ".s3.amazonaws.com" in the above command; the command would be:  
-kali@kali$ aws s3 sync s3://assets.bestcloudcompany.org . --no-sign-request  
+6) Once a public S3 bucket is identified it can be dumped using the following command from your Attack Box (after configuring the AWS CLI on the box, see here: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+kali@kali$ aws s3 sync s3://{bucket-name} . --no-sign-request
+# --no-sign-request = no AWS credentials used to sign the request; works when bucket is public
+IMPORTANT NOTE: If, for example, the bucket is called "assets.bestcloudcompany.org.s3.amazonaws.com" you would remove the ".s3.amazonaws.com" in the above command; the command would be:
+kali@kali$ aws s3 sync s3://assets.bestcloudcompany.org . --no-sign-request
 [hat tip: Tyler Ramesby ; AWS S3 - Attack and Defense --- [Attacking & Defending AWS - TryHackMe - Part 10] ; https://www.youtube.com/watch?v=-ctOmHsAnlw]

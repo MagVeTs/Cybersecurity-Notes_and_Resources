@@ -1,11 +1,11 @@
 hashcat
 --------
 
-https://hashcat.net/hashcat/  
+https://hashcat.net/hashcat/
 includes wiki
 --------------------
-Network Chuck - how to HACK a password // password cracking with Kali Linux and HashCat  
-https://www.youtube.com/watch?v=z4_oqTZJqCo&list=PLIhvC56v63IIJZRa3lzK6IeBQOH_VFjUQ&index=9  
+Network Chuck - how to HACK a password // password cracking with Kali Linux and HashCat
+https://www.youtube.com/watch?v=z4_oqTZJqCo&list=PLIhvC56v63IIJZRa3lzK6IeBQOH_VFjUQ&index=9
 [note: I think he misinterprets the HashCat output at a couple of points in the video. He says that: 'Candidates.#1 eminem --> bearsbeets' are HashCat giving two options as to what the password might be. I believe they are just the beginning an end of the list of possible passwords that HashCat compared the hash to. In order to see the actual password that was matched to the hash, you need to check the output file you designated using the -o argument.]
 --------------------
 https://geekflare.com/password-cracking-with-hashcat/
@@ -13,23 +13,23 @@ https://geekflare.com/password-cracking-with-hashcat/
 [from Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course ; https://academy.tcm-sec.com/courses/1152300/lectures/48478207]
 
 
-* When trying to find the hashcat module for the type of hash you want to crack run the command:  
-> hashcat --help | grep <type_of_hash>  
+* When trying to find the hashcat module for the type of hash you want to crack run the command:
+> hashcat --help | grep <type_of_hash>
 the output will give you the module number you need to enter after the `-m` argument
 
-* Once a hash has been cracked once it gets stored in what is called a potfile. The benefit of this is that if the same hash shows up again it will be quickly found by hashcat in the potfile without hashcat needing to go through the whole password dictionary file (e.g. rockyou.txt) to find the password. However, if you try to crack a hash that is already in the potfile again the password will not be shown unless you add the `--show` argument to the command, e.g.:  
+* Once a hash has been cracked once it gets stored in what is called a potfile. The benefit of this is that if the same hash shows up again it will be quickly found by hashcat in the potfile without hashcat needing to go through the whole password dictionary file (e.g. rockyou.txt) to find the password. However, if you try to crack a hash that is already in the potfile again the password will not be shown unless you add the `--show` argument to the command, e.g.:
 > hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --show
 
-* hashcat (and other hash cracking tools) should preferably be run on bare metal so that the computer can use its GPU to do the cracking (which is faster than using the CPU). Sometimes hashcat may not work at all in a VM. If that happens, you can try the `--force` argument and that may work, e.g.:  
-> hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force  
+* hashcat (and other hash cracking tools) should preferably be run on bare metal so that the computer can use its GPU to do the cracking (which is faster than using the CPU). Sometimes hashcat may not work at all in a VM. If that happens, you can try the `--force` argument and that may work, e.g.:
+> hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force
 [note: however, see below, that using  `--force` can lead to both false positives and false negatives]
 
 * When running hashcat on metal it is a good idea to add `-O` (for optimize) as that optimizes (speeds up) the speed of the cracking.
 
-* The file rockyou2021 is available and is much, much bigger than the original rockyou file  
+* The file rockyou2021 is available and is much, much bigger than the original rockyou file
 [Note: I found a copy here: https://github.com/ohmybahgosh/RockYou2021.txt --MagVeTs]
 
-* Using the `-r` argument with a ruleset you can take a password list and fuzz it to generate more passwords to be hashed and compared to the hash you have. A helpful ruleset to use is OneRule.  
+* Using the `-r` argument with a ruleset you can take a password list and fuzz it to generate more passwords to be hashed and compared to the hash you have. A helpful ruleset to use is OneRule.
 [Note: I found a copy here: https://github.com/NotSoSecure/password_cracking_rules (also see: https://notsosecure.com/one-rule-to-rule-them-all) --MagVeTs]
 
 * For CTFs, usually, the regular rockyou file (without adding rulesets) is enough.
@@ -38,12 +38,12 @@ the output will give you the module number you need to enter after the `-m` argu
 ------------------------------
 From: https://tryhackme.com/room/passwordattacks ; Task 5 [with edits, etc.]
 
-"Dictionary attack  
+"Dictionary attack
 A dictionary attack is a technique used to guess passwords by using well-known words or phrases. The dictionary attack relies entirely on pre-gathered wordlists that were previously generated or found. It is important to choose or create the best candidate wordlist for your target in order to succeed in this attack."
 
 sample hashcat syntax for a dictionary attack:
 
-hashcat -a 0 -m 0 f806fc5a2a0d5ba2471600758452799c /usr/share/wordlists/rockyou.txt  
+hashcat -a 0 -m 0 f806fc5a2a0d5ba2471600758452799c /usr/share/wordlists/rockyou.txt
 -a 0  - sets the attack mode to a dictionary attack
 
 -m 0  - sets the hash mode for cracking MD5 hashes; for other types, run hashcat -h for a list of supported hashes. [Use `hashid` or `hash-identifier` on the hash first in order to identify it and learn the hashcat mode for the identified hash type.]
@@ -52,47 +52,47 @@ f806fc5a2a0d5ba2471600758452799c - this option could be a single hash like our e
 
 /usr/share/wordlists/rockyou.txt - the wordlist/dictionary file for our attack
 
-Note: once a password has been cracked you can quickly show it again by `--show`  
-so, in the above example you would first run:  
-hashcat -a 0 -m 0 f806fc5a2a0d5ba2471600758452799c /usr/share/wordlists/rockyou.txt  
+Note: once a password has been cracked you can quickly show it again by `--show`
+so, in the above example you would first run:
+hashcat -a 0 -m 0 f806fc5a2a0d5ba2471600758452799c /usr/share/wordlists/rockyou.txt
 The output would be:
 
 f806fc5a2a0d5ba2471600758452799c:rockyou         
                                                  
-Session..........: hashcat  
-Status...........: Cracked  
-Hash.Name........: MD5  
-Hash.Target......: f806fc5a2a0d5ba2471600758452799c  
-Time.Started.....: Mon Jul 24 19:54:36 2023 (0 secs)  
-Time.Estimated...: Mon Jul 24 19:54:36 2023 (0 secs)  
-Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)  
-Guess.Queue......: 1/1 (100.00%)  
-Speed.#1.........:   545.8 kH/s (0.87ms) @ Accel:1024 Loops:1 Thr:1 Vec:8  
-Recovered........: 1/1 (100.00%) Digests  
-Progress.........: 2048/14344384 (0.01%)  
-Rejected.........: 0/2048 (0.00%)  
-Restore.Point....: 0/14344384 (0.00%)  
-Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1  
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: MD5
+Hash.Target......: f806fc5a2a0d5ba2471600758452799c
+Time.Started.....: Mon Jul 24 19:54:36 2023 (0 secs)
+Time.Estimated...: Mon Jul 24 19:54:36 2023 (0 secs)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:   545.8 kH/s (0.87ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 2048/14344384 (0.01%)
+Rejected.........: 0/2048 (0.00%)
+Restore.Point....: 0/14344384 (0.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
 Candidates.#1....: 123456 -> lovers1
 
-Started: Mon Jul 24 19:53:57 2023  
+Started: Mon Jul 24 19:53:57 2023
 Stopped: Mon Jul 24 19:54:37 2023
 
-If you ran hashcat and the hash again with `--show`, like this:  
-$ hashcat F806FC5A2A0D5BA2471600758452799C --show  
-the output would be:  
+If you ran hashcat and the hash again with `--show`, like this:
+$ hashcat F806FC5A2A0D5BA2471600758452799C --show
+the output would be:
 f806fc5a2a0d5ba2471600758452799c:rockyou
 ---------------------------
-Brute-Force attack  
-"a brute-force attack aims to try all combinations of a character or characters. For example, let's assume that we have a bank account to which we need unauthorized access. We know that the PIN contains 4 digits as a password. We can perform a brute-force attack that starts from 0000 to 9999 to guess the valid PIN based on this knowledge. In other cases, a sequence of numbers or letters can be added to existing words in a list, such as admin0, admin1, .. admin9999."  
-hashcat has charset options that could be used to generate your own combinations. The charsets can be found in hashcat help option [`hashcat --help`]  
-sample bruteforce syntax:  
-$ hashcat -a 3 ?d?d?d?d --stdout  
-# -a 3 = sets the attacking mode as a brute-force attack  
-# ?d?d?d?d = the ?d tells hashcat to use a digit. In our case, ?d?d?d?d for four digits starting with 0000 and ending at 9999  
+Brute-Force attack
+"a brute-force attack aims to try all combinations of a character or characters. For example, let's assume that we have a bank account to which we need unauthorized access. We know that the PIN contains 4 digits as a password. We can perform a brute-force attack that starts from 0000 to 9999 to guess the valid PIN based on this knowledge. In other cases, a sequence of numbers or letters can be added to existing words in a list, such as admin0, admin1, .. admin9999."
+hashcat has charset options that could be used to generate your own combinations. The charsets can be found in hashcat help option [`hashcat --help`]
+sample bruteforce syntax:
+$ hashcat -a 3 ?d?d?d?d --stdout
+# -a 3 = sets the attacking mode as a brute-force attack
+# ?d?d?d?d = the ?d tells hashcat to use a digit. In our case, ?d?d?d?d for four digits starting with 0000 and ending at 9999
 # --stdout = print the result to the terminal
 ---------------------------
-from: https://tryhackme.com/room/hashingcrypto101 ; Task 5 - "Password Cracking"  
+from: https://tryhackme.com/room/hashingcrypto101 ; Task 5 - "Password Cracking"
 "NEVER (I repeat, NEVER!) use --force for hashcat. It can lead to false positives (wrong passwords being given to you) and false negatives (skips over the correct hash)."
 
 

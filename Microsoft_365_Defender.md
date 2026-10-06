@@ -2,10 +2,10 @@ Microsoft 365 Defender
 ----------------------
 
 -----------------------------------------------------
-Playbook for compromised users:  
-* revoke sessions  
-* reset password  
-* enforce conditional access if not already enforced (see below "Enforcing MFA on a User")  
+Playbook for compromised users:
+* revoke sessions
+* reset password
+* enforce conditional access if not already enforced (see below "Enforcing MFA on a User")
 * designate user as compromised (see below "Designating User as Compromised"
 
 -----------------------------------------------------
@@ -13,50 +13,50 @@ Enforcing MFA on a User
 
 portal.azure.com
 
-In order to require "conditional access" (MFA) for a user in response to alerts in 365 Defender:  
-1) log-in to portal.azure.com  
-2) Go to:  
-   Home > Conditional Access Policies  
-3) Enforce on user  
+In order to require "conditional access" (MFA) for a user in response to alerts in 365 Defender:
+1) log-in to portal.azure.com
+2) Go to:
+   Home > Conditional Access Policies
+3) Enforce on user
 4) Make sure to click the Save button at bottom left of screen
 
 ----------------------------------------------------
-Designating User as Compromised  
-security.microsoft.com  
-1) go to Alerts and choose the alert for the user  
-2) Click on ... next to user's name and choose "Open user page"  
+Designating User as Compromised
+security.microsoft.com
+1) go to Alerts and choose the alert for the user
+2) Click on ... next to user's name and choose "Open user page"
 3) In upper left corner of user page choose "Confirm user compromised"
 ----------------------------------------------------
 security.microsoft.com
 
-* In order to block/delete/mark-as-phishing a specific email go to the email (in "Explorer" ([under "Email & collaboration"] and click on email; then choose "Take Actions".  
-Note: it appears that the deletion/blocking of the email will only apply to the specific user who received the email.  
-Note: Make sure to also designate the email as phishing/malware in "Alerts".  
+* In order to block/delete/mark-as-phishing a specific email go to the email (in "Explorer" ([under "Email & collaboration"] and click on email; then choose "Take Actions".
+Note: it appears that the deletion/blocking of the email will only apply to the specific user who received the email.
+Note: Make sure to also designate the email as phishing/malware in "Alerts".
 Note: Check to see who else received the email.
 
 
-* In order to block (for the entire 365 domain) an IP or URL that is in the body of an email, go to:  
+* In order to block (for the entire 365 domain) an IP or URL that is in the body of an email, go to:
 settings > endpoints > indicators > urls/domains
 
-* In order to block (for the entire 365 domain) an IP/URL as an email sender domain, go to:  
+* In order to block (for the entire 365 domain) an IP/URL as an email sender domain, go to:
 Email & collaboration > Policies & rules > Threat policies > Tenant allow and block list
 -----------------------------------------------------
-* When investigating a potentially compromised user check their Sign-logs and Audit logs; these are accessible from https://portal.azure.com/ (after searching for and selecting the user; you will see them in the left-hand column).  
-* It may be necessary to check the much more extensive audit logs available by going to https://security.microsoft.com/ and choosing the "Audit" option in the left-hand column. Then you can search by user, dates, etc. This audit may take a few minutes to complete. You may need to click refresh above the list of searches to see that the search is done.  
-* Note: phishing emails might come into group mailboxes. In such cases, one should also check who are the other members of the group mailboxes and investigate whether they also were compromised.  
+* When investigating a potentially compromised user check their Sign-logs and Audit logs; these are accessible from https://portal.azure.com/ (after searching for and selecting the user; you will see them in the left-hand column).
+* It may be necessary to check the much more extensive audit logs available by going to https://security.microsoft.com/ and choosing the "Audit" option in the left-hand column. Then you can search by user, dates, etc. This audit may take a few minutes to complete. You may need to click refresh above the list of searches to see that the search is done.
+* Note: phishing emails might come into group mailboxes. In such cases, one should also check who are the other members of the group mailboxes and investigate whether they also were compromised.
 - In order to check which users are members of a specific group, sign-in to admin.microsoft.com
 -----------------------------------------------------
 Kusto Query Language (KQL) query to retrieve any user connections with a domain or domains:
 
-let Domains = pack_array("rejasypuertas.es", "fincalosaljibes.com");  
-DeviceNetworkEvents  
-| where Timestamp > ago(30d)  
+let Domains = pack_array("rejasypuertas.es", "fincalosaljibes.com"); 
+DeviceNetworkEvents
+| where Timestamp > ago(30d) 
 | where RemoteUrl in(Domains)
 
-[NOTE: go to https://security.microsoft.com/ and then Hunting > Advanced Hunting in order to input the query]  
-[NOTE: replace example domains with actual domains]  
+[NOTE: go to https://security.microsoft.com/ and then Hunting > Advanced Hunting in order to input the query]
+[NOTE: replace example domains with actual domains]
 [hat tip: YS]
 -----------------------------------------------------
-Defender may raise an alert regarding a sign-in from an anomalous IP address. If the user who signed-in is an IT provider this may sometimes be a False Positive (FP) caused in the following way. The IT professional may have remotely accessed the device of another user (using a remote desktop app such as AnyDesk or RDP) in order to fix something on the user's device. This could lead  Defender to associate the assisted user's sign-in IP with the IT professional's sign-in logs and raise an alert for an anomalous IP. One clue that can point to the fact that this is not a compromise is if the MFA record shows that the MFA passed because the device had already authenticated at an earlier time (e.g. " MFA not required during Windows broker logon flow"). Of course, this data point can not rule out the possiblity that the device itself was compromised at some earlier point. In order to identify a situation where the anomalous IP is caused by the IT professional accessing the user's device remotely, it is recommended to go to https://portal.azure.com/ and then go to Users > Sign-in logs. (One does not choose a specific user but rather retrieves the user sign-in logs for the entire environment.) One filters the logs using the anomalous IP address. If that IP address appears as associated with a user in the environment this would indicate the likelihood that the IT professional was accessing that user's device remotely and that was what caused the alert.  
+Defender may raise an alert regarding a sign-in from an anomalous IP address. If the user who signed-in is an IT provider this may sometimes be a False Positive (FP) caused in the following way. The IT professional may have remotely accessed the device of another user (using a remote desktop app such as AnyDesk or RDP) in order to fix something on the user's device. This could lead  Defender to associate the assisted user's sign-in IP with the IT professional's sign-in logs and raise an alert for an anomalous IP. One clue that can point to the fact that this is not a compromise is if the MFA record shows that the MFA passed because the device had already authenticated at an earlier time (e.g. " MFA not required during Windows broker logon flow"). Of course, this data point can not rule out the possiblity that the device itself was compromised at some earlier point. In order to identify a situation where the anomalous IP is caused by the IT professional accessing the user's device remotely, it is recommended to go to https://portal.azure.com/ and then go to Users > Sign-in logs. (One does not choose a specific user but rather retrieves the user sign-in logs for the entire environment.) One filters the logs using the anomalous IP address. If that IP address appears as associated with a user in the environment this would indicate the likelihood that the IT professional was accessing that user's device remotely and that was what caused the alert.
 [hat tip: YS and SW]
 

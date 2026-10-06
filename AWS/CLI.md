@@ -1,42 +1,42 @@
 ------------------------------------------------------------------------
 AWS CLI 
 --------
-* AWS provides a CLI within its console interface called CloudShell  
+* AWS provides a CLI within its console interface called CloudShell
 * In addtion the AWS CLI can be installed on diverse devices by following the instructions found here: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 ------------------------------------------------------------------------
 Usage of the AWS CLI on your own device (Attack Box):
 
-user@machine$ aws configure  
-AWS Access Key ID [None]: <ACCESS_KEY>  
-AWS Secret Access Key [None]: <SECRET_ACCESS_KEY>  
-Default region name [None]: <e.g.: us-east-1>  
+user@machine$ aws configure
+AWS Access Key ID [None]: <ACCESS_KEY>
+AWS Secret Access Key [None]: <SECRET_ACCESS_KEY>
+Default region name [None]: <e.g.: us-east-1>
 Default output format [None]: <choices are: text, yaml, yaml-stream, table>
 
 NOTE: the above creates the "default" profile on your Attack Box. You can create other profiles (and then switch between them as necessary) as follows:
 
-user@machine$ aws configure --profile <PROFILE_NAME>  
-AWS Access Key ID [None]: <ACCESS_KEY>  
-AWS Secret Access Key [None]: <SECRET_ACCESS_KEY>  
-Default region name [None]: <e.g.: us-east-1>  
+user@machine$ aws configure --profile <PROFILE_NAME>
+AWS Access Key ID [None]: <ACCESS_KEY>
+AWS Secret Access Key [None]: <SECRET_ACCESS_KEY>
+Default region name [None]: <e.g.: us-east-1>
 Default output format [None]: <choices are: text, yaml, yaml-stream, table>
 
-NOTE: You can also add a session token to your profile after it has been configured, as follows:  
+NOTE: You can also add a session token to your profile after it has been configured, as follows:
 user@machine$ aws configure --profile <PROFILE_NAME> set aws_session_token <SESSION_TOKEN>
 
 NOTE: You can pull info about your profile as follows:
 
-user@machine$ aws sts get-caller-identity --profile <PROFILE_NAME>  
-{  
-    "UserId": "AROASTZ6PFXLI5HNQFIFD:i-005203abca3ed64b2",  
-    "Account": "123456789012",  
-    "Arn": "arn:aws:sts::123456789012:assumed-role/XXXXXX/i-005203abca3ed64b2"  
+user@machine$ aws sts get-caller-identity --profile <PROFILE_NAME>
+{
+    "UserId": "AROASTZ6PFXLI5HNQFIFD:i-005203abca3ed64b2",
+    "Account": "123456789012",
+    "Arn": "arn:aws:sts::123456789012:assumed-role/XXXXXX/i-005203abca3ed64b2"
 }
 
-from: https://tryhackme.com/room/amazonec2dataexfiltration  
+from: https://tryhackme.com/room/amazonec2dataexfiltration
 also see: https://medium.com/@prateek.malhotra004/mastering-aws-cli-a-comprehensive-guide-to-command-line-power-ca2260167839
 ------------------------------------------------------------------------
-from: https://tryhackme.com/room/iamprincipals ; Task 5 - "Root User & AWS Account"  
-* IAM Users cannot see the root email address of the account they are in  
+from: https://tryhackme.com/room/iamprincipals ; Task 5 - "Root User & AWS Account"
+* IAM Users cannot see the root email address of the account they are in
 * If the AWS Account is part of a greater AWS Organization the email of the Organization's Master Account can be found from the CLI:
 
 > aws organizations describe-organization
@@ -44,57 +44,57 @@ from: https://tryhackme.com/room/iamprincipals ; Task 5 - "Root User & AWS Accou
 ------------------------------------------------------------------------
 S3 syntax:
 
-* aws s3 ls s3://<url>  
+* aws s3 ls s3://<url> 
 lists files in S3 bucket
 
-* aws s3 cp s3://<url>/<file_to_be_copied> <file_name_to_create_on_your device>  
+* aws s3 cp s3://<url>/<file_to_be_copied> <file_name_to_create_on_your device>
 copies files from S3 bucket to your device
 
-add:  
---profile <your_profile_name>  
+add:
+--profile <your_profile_name>
 --no-sign-request [in order to access publicly accessible S3 buckets]
 -------------------------------------------------------------------------
 
-AWS Access Keys  
+AWS Access Keys
 [from: https://tryhackme.com/room/iamcredentials ; Task 5 - "AWS API Access Key"]
 
 NOTE: the Access Key ID for Long Term Access Keys always begin with the string `AKIA`.
 
-user@machine$ aws iam create-access-key --user-name student  
+user@machine$ aws iam create-access-key --user-name student
 # create Long Term AWS Access Key
 
-user@machine$ aws iam update-access-key --access-key-id <AKIA...> --status Inactive  
+user@machine$ aws iam update-access-key --access-key-id <AKIA...> --status Inactive
 # deactivate Long Term AWS Access Key
 
-user@machine$ aws iam update-access-key --access-key-id <AKIA...> --status Active  
+user@machine$ aws iam update-access-key --access-key-id <AKIA...> --status Active
 # reactivate Long Term AWS Access Key
 
-user@machine$ aws iam delete-access-key --access-key-id <AKIA...>  
+user@machine$ aws iam delete-access-key --access-key-id <AKIA...>
 # delete Long Term AWS Access Key
 
-user@machine$ aws sts get-session-token  
+user@machine$ aws sts get-session-token
 # create Temporary Session key
 
 -------------------------------------------------------------------------
 Reconnaissance
 ---------------
 
-user@machine$ aws sts get-access-key-info --access-key-id <AKIA...>  
-# identify an AWS Account from an Access Key ID that was found somewhere (e.g. in a GitHub repository)  
+user@machine$ aws sts get-access-key-info --access-key-id <AKIA...>
+# identify an AWS Account from an Access Key ID that was found somewhere (e.g. in a GitHub repository)
 [from: https://tryhackme.com/room/iamcredentials ; Task 6 - "MFA in AWS and Best Practices around Credentials"]
 
-user@machine$ aws iam list-virtual-mfa-devices  
-# check from within an account which users in the account have MFA enabled  
+user@machine$ aws iam list-virtual-mfa-devices
+# check from within an account which users in the account have MFA enabled
 [from: https://tryhackme.com/room/iamcredentials ; Task 6 - "MFA in AWS and Best Practices around Credentials"; hint to the 1st question]
 -------------------------------------------------------------------------
 Credentials
 --------------
-user@machine$ curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI  
-# to retrieve ECS Container's credentials; "$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variable is populated if IAM Roles for Tasks is configured"  
+user@machine$ curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
+# to retrieve ECS Container's credentials; "$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variable is populated if IAM Roles for Tasks is configured"
 [from: https://tryhackme.com/room/iamcredentials ; Task 7 - "How services get credentials"]
 
-user@machine$ curl $AWS_CONTAINER_CREDENTIALS_FULL_URI -H "X-aws-ec2-metadata-token: $AWS_CONTAINER_AUTHORIZATION_TOKEN"  
-# get temporary credentials through CloudShell  
+user@machine$ curl $AWS_CONTAINER_CREDENTIALS_FULL_URI -H "X-aws-ec2-metadata-token: $AWS_CONTAINER_AUTHORIZATION_TOKEN" 
+# get temporary credentials through CloudShell
 [from: https://tryhackme.com/room/iamcredentials ; Task 7 - "How services get credentials"]
 
 -------------------------------------------------------------------------
@@ -103,67 +103,67 @@ user@machine$ curl $AWS_CONTAINER_CREDENTIALS_FULL_URI -H "X-aws-ec2-metadata-to
 Creating a User; Adding the User to a Group; Creating an Access Key for the User by which the User can authenticate throught the AWS API; having the user temporarily assume the role of another user
 
 
-1)  
-user@machine$ aws iam create-user --user-name <USER_NAME>  
+1)
+user@machine$ aws iam create-user --user-name <USER_NAME>
 # create a user (AWS CloudShell CLI)
 
-2)  
-user@machine$ aws iam add-user-to-group --user-name <USER_NAME> --group-name <GROUP_NAME>  
+2)
+user@machine$ aws iam add-user-to-group --user-name <USER_NAME> --group-name <GROUP_NAME>
 # add user to a group (AWS CloudShell CLI)
 
-3)  
-user@machine$ aws iam list-groups-for-user --user-name <USER_NAME>  
+3)
+user@machine$ aws iam list-groups-for-user --user-name <USER_NAME>
 # list groups to which a user belongs (AWS CloudShell CLI)
 
-4)  
-user@machine$ aws iam create-access-key --user-name <USER_NAME>  
+4)
+user@machine$ aws iam create-access-key --user-name <USER_NAME>
 # create an Access Key for a user (AWS CloudShell CLI)
 
-5)  
-user@machine$ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
-user@machine$ export AWS_ACCESS_KEY_ID=AKIA...  
+5)
+user@machine$ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+user@machine$ export AWS_ACCESS_KEY_ID=AKIA...
 # these commands issued on the Attack Box allow it to connect to the associated AWS account using the AWS API
 
-6)  
-user@machine$ aws sts get-caller-identity  
+6)
+user@machine$ aws sts get-caller-identity
 # this command issued on the Attack Box after inputting the AWS_SECRET_ACCESS_KEY and AWS_ACCESS_KEY_ID will return the current AWS IAM User (it is for AWS what `whoami` is for Linux)
 
-7)  
-user@machine$ aws sts assume-role --role-arn arn:aws:iam::<ACCOUNT_ID_OF_AWS_ACCOUNT>:role/<NAME_OF_ROLE> --role-session-name <NAME_CHOSEN_FOR_THIS_ROLE_ASSuMING_SESSION>  
+7)
+user@machine$ aws sts assume-role --role-arn arn:aws:iam::<ACCOUNT_ID_OF_AWS_ACCOUNT>:role/<NAME_OF_ROLE> --role-session-name <NAME_CHOSEN_FOR_THIS_ROLE_ASSuMING_SESSION>
 # this command issued on the Attack Box (assuming the current user [as set in #5] is part of a group that allows him to assume the chosen role) will return temporary credentials (good for 60 minutes) that will be inputted in the Attack Box in the next step (#8); the `--role-session-name` is required in order to assist admins with monitoring by providing a name for the session during which a role was assumed
 
-8)  
-user@machine$ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxx  
-user@machine$ export AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxxxxxxxxxx  
-user@machine$ export AWS_SESSION_TOKEN=xxxxxxxxxxxxxxxxxxxxxxx  
+8)
+user@machine$ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxx
+user@machine$ export AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxxxxxxxxxx
+user@machine$ export AWS_SESSION_TOKEN=xxxxxxxxxxxxxxxxxxxxxxx
 # these commands issued on the Attack Box will grant the user the temporary role requested in the previous step (#7)
 
-9)  
-user@machine$ aws sts get-caller-identity  
+9)
+user@machine$ aws sts get-caller-identity
 # this command issued on the Attack Box should show the role that was temporarily assumed
 ----------------------------------------------------------------------------------------------------------------
 
 Dumping a public S3 Bucket
 --------------------------
-Once a public S3 bucket is identified it can be dumped using the following command from your Attack Box:  
-kali@kali$ aws s3 sync s3://{bucket-name} . --no-sign-request  
+Once a public S3 bucket is identified it can be dumped using the following command from your Attack Box:
+kali@kali$ aws s3 sync s3://{bucket-name} . --no-sign-request
 # --no-sign-request = no AWS credentials used to sign the request; works when bucket is public
 
-IMPORTANT NOTE: If, for example, the bucket is called "assets.bestcloudcompany.org.s3.amazonaws.com" you would remove the ".s3.amazonaws.com" in the above command; the command would be:  
-kali@kali$ aws s3 sync s3://assets.bestcloudcompany.org . --no-sign-request  
+IMPORTANT NOTE: If, for example, the bucket is called "assets.bestcloudcompany.org.s3.amazonaws.com" you would remove the ".s3.amazonaws.com" in the above command; the command would be:
+kali@kali$ aws s3 sync s3://assets.bestcloudcompany.org . --no-sign-request
 [hat tip: Tyler Ramesby ; AWS S3 - Attack and Defense --- [Attacking & Defending AWS - TryHackMe - Part 10] ; https://www.youtube.com/watch?v=-ctOmHsAnlw]
 
 
 [from: https://tryhackme.com/room/awss3service ; Task 6 - "Lab: Attacking Public S3 Buckets"]
 ----------------------------------------------------------------------------------------------------------------
-[from: https://tryhackme.com/room/awss3service ; Task 8 - "Lab: S3 - Abusing the Substrate"]  
+[from: https://tryhackme.com/room/awss3service ; Task 8 - "Lab: S3 - Abusing the Substrate"]
 Generate an Amazon Machine Image (AMI) from a .ami binary file found in an S3 bucket; it may contain sensitive info such as UN/PW combinations)
 
-kali@kali$ aws configure  
+kali@kali$ aws configure
 # input creds to access the AWS account
 
-kali@kali$ aws ec2 create-restore-image-task --object-key {AMI_Object_ID} --bucket <NAME_OF_S3_BUCKET> --name {Unique_Name}  
-# {AMI_Object_ID} = replace with full name of the AMI image including the .ami  
+kali@kali$ aws ec2 create-restore-image-task --object-key {AMI_Object_ID} --bucket <NAME_OF_S3_BUCKET> --name {Unique_Name}
+# {AMI_Object_ID} = replace with full name of the AMI image including the .ami
 # {Unique_Name} = replace with a name you choose
 
 kali@kali$ aws ec2 create-key-pair --key-name <NAME_CHOSEN_FOR_KEY> --query "KeyMaterial" --output text > ~/.ssh/<NAME_CHOSEN_FOR_KEY_FILE>.pem

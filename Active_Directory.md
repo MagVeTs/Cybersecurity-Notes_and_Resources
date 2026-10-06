@@ -1,21 +1,21 @@
-PowerView-3.0-tricks.ps1  
-https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993  
-[used for exploiting Active Directory]  
+PowerView-3.0-tricks.ps1
+https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
+[used for exploiting Active Directory]
 [hat tip: TryHackMe]
 
-PowerView 3.0 Cheat Sheets  
+PowerView 3.0 Cheat Sheets
 https://gist.github.com/macostag/44591910288d9cc8a1ed6ea35ac4f30f
 
-PowerView Common Commands  
-"This is my cheat sheet for PowerView. These are some PowerView commands that I find useful for Active Directory/Domain enumeration. PowerView is a PowerShell tool to gain network situational awareness on Windows domains."  
+PowerView Common Commands
+"This is my cheat sheet for PowerView. These are some PowerView commands that I find useful for Active Directory/Domain enumeration. PowerView is a PowerShell tool to gain network situational awareness on Windows domains."
 https://aksheet10.medium.com/powerview-common-commands-60f9a9ad6a80
 
-https://github.com/infosecn1nja/AD-Attack-Defense  
+https://github.com/infosecn1nja/AD-Attack-Defense
 "Attack and defend active directory using modern post exploitation adversary tradecraft activity"
 
 see Tools > PingCastle in this repository for an AD/AzureAD vuln scanning platform
 
-"Most common Active Directory misconfigurations and default settings that put your organization at risk"  
-https://blog.nviso.eu/2023/10/26/most-common-active-directory-misconfigurations-and-default-settings-that-put-your-organization-at-risk/  
-* list of really important things to search for when doing PT on an AD environment (uses PowerShell searches and the tool Rubeus)  
+"Most common Active Directory misconfigurations and default settings that put your organization at risk"
+https://blog.nviso.eu/2023/10/26/most-common-active-directory-misconfigurations-and-default-settings-that-put-your-organization-at-risk/
+* list of really important things to search for when doing PT on an AD environment (uses PowerShell searches and the tool Rubeus)
 also see: Tools > Rubeus in this repository

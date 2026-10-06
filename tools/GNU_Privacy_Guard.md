@@ -7,13 +7,13 @@ https://gnupg.org/
 
 Encrypting and Decrypting documents using GNU Privacy Guard
 
-$ gpg --version  
+$ gpg --version
 # check supported ciphers
 
-$ gpg --symmetric --cipher-algo <CIPHER> <FILE_NAME>.txt  
-# <CIPHER> = name of chosen cipher  
-# <FILE_NAME>.txt = name of file being encrypted; encrypted output file will be saved as "<FILE_NAME>.txt.gpg"  
+$ gpg --symmetric --cipher-algo <CIPHER> <FILE_NAME>.txt
+# <CIPHER> = name of chosen cipher
+# <FILE_NAME>.txt = name of file being encrypted; encrypted output file will be saved as "<FILE_NAME>.txt.gpg"
 # default output is in OpenPGP format (binary); to output in armored ASCII (openable in any text editor) add argument `--armor`
 
-$ gpg --output original_message.txt --decrypt <FILE_NAME>.txt.gpg  
+$ gpg --output original_message.txt --decrypt <FILE_NAME>.txt.gpg
 # decrypts encrypted message and outputs it to a file with the value assigned by the `--output` argument

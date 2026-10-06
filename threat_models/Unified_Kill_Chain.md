@@ -1,2 +1,2 @@
-https://www.unifiedkillchain.com/  
+https://www.unifiedkillchain.com/
 [hat tip: TryHackMe]

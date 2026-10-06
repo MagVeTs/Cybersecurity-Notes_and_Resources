@@ -1,48 +1,48 @@
-https://cheatography.com/  
+https://cheatography.com/
 excellent collection of cheatsheets on computer related and general topics
 
-https://quickref.me/  
+https://quickref.me/
 another excellent collection of cheatsheet on computer related topics
 ----------------------------------------------------
 Nmap
 
-https://highon.coffee/blog/nmap-cheat-sheet/  
+https://highon.coffee/blog/nmap-cheat-sheet/
 [hat tip: ThriveDX]
 
-https://www.tutorialspoint.com/nmap-cheat-sheet#  
+https://www.tutorialspoint.com/nmap-cheat-sheet#
 [hat tip: ThriveDX]
 
 ---------------------------------------------------
-https://github.com/hadenlabs/cheatsheet  
+https://github.com/hadenlabs/cheatsheet
 [tons of cheatsheets; listed alphabetically]
 
 ---------------------------------------------------
-https://pentestbook.six2dez.com/  
-"This book contains a bunch of info, scripts and knowledge used during my pentests."  
+https://pentestbook.six2dez.com/
+"This book contains a bunch of info, scripts and knowledge used during my pentests."
 [hat tip: WhatsApp group - SIEM/SOC/PT Group 2]
 
-https://book.hacktricks.xyz/  
-"Welcome to the page where you will find each hacking trick/technique/whatever I have learnt from CTFs, real life apps, reading researches, and news."  
+https://book.hacktricks.xyz/
+"Welcome to the page where you will find each hacking trick/technique/whatever I have learnt from CTFs, real life apps, reading researches, and news."
 [hat tip: WhatsApp group - SIEM/SOC/PT Group 2]
 
-Exploit Notes  
-https://exploit-notes.hdks.org/  
-"Sticky notes for pentesting. Search hacking techniques and tools for penetration testings, bug bounty, CTF."  
+Exploit Notes
+https://exploit-notes.hdks.org/
+"Sticky notes for pentesting. Search hacking techniques and tools for penetration testings, bug bounty, CTF."
 [hat tip: WhatsApp group - SIEM/SOC/PT Group 2]
 ---------------------------------------------------
 
-PowerView-3.0-tricks.ps1  
+PowerView-3.0-tricks.ps1
 https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
 
 ----------------------------------------------------
 https://github.com/bluecapesecurity/PWF/blob/main/Resources/PracticalWindowsForensics-cheat-sheet.pdf
 ----------------------------------------------------
-HackFast  
-https://hackfa.st/  
+HackFast
+https://hackfa.st/
 "Hackfast is a well-structured, easy-to-navigate knowledge base built to help you hack faster and more effectively. It’s packed with practical cybersecurity techniques, step-by-step guides, checklists, and real-world examples. But it’s more than just tools and techniques, Hackfast also includes productivity strategies and philosophical insights to sharpen your thinking and workflow. Whether you’re a beginner or leveling up advanced skills, Hackfast gives you the knowledge and mindset to hack faster and stay ahead in the game."
 
 -----------------------------------------------------
-Markdown  
+Markdown
 see here: https://github.com/MagVeTs/Cybersecurity-Notes_and_Resources/blob/main/Markdown.md
 
 

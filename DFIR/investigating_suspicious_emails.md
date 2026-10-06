@@ -15,5 +15,5 @@ the output will look like this:
 
 v=spf1 include:_spf.google.com include:example.net ~all
 
-In this case the SPF record gives server names (as opposed to IPs) that are authorized to send emails for the domain (example.com). The ~all at the end means other servers should "soft fail", showing that they are not authorized but not completely rejected  
+In this case the SPF record gives server names (as opposed to IPs) that are authorized to send emails for the domain (example.com). The ~all at the end means other servers should "soft fail", showing that they are not authorized but not completely rejected
 [from ChatGPT]

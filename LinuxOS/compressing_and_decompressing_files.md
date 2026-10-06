@@ -1,168 +1,168 @@
 compressing_and_decompressing_files
 ------------------------------------
 
-To check how much disk usage is taken up by a file use the 'du' command  
-syntax:  
-$ du <FILENAME>  
-# NOTE: you can also use these arguments:  
-# -h (file size in human readable format)  
-# -hc (file sizes and total size)  
+To check how much disk usage is taken up by a file use the 'du' command
+syntax:
+$ du <FILENAME>
+# NOTE: you can also use these arguments:
+# -h (file size in human readable format)
+# -hc (file sizes and total size)
 [From: Linux Tutorials | Compressing and Archiving Files in Linux | tar and zip commands | GeeksforGeeks; https://www.youtube.com/watch?v=KucqplDh7LI&list=PLqM7alHXFySFc4KtwEZTANgmyJm3NqS_L&index=31]
 
 ----------------------------------------------------------------------------------------------------------------------------------
 zip/unzip
 ----------
 
-from:  
-* https://www.networkworld.com/article/968632/how-to-compress-files-on-linux-5-ways.html  
+from:
+* https://www.networkworld.com/article/968632/how-to-compress-files-on-linux-5-ways.html
 * https://www.cyberciti.biz/faq/how-to-unzip-a-zip-file-using-the-linux-and-unix-bash-shell-terminal/
 
-$ zip ./bigfile.zip bigfile  
-# note: original file is last argument in the command  
-# note: the zip command leaves the original file as is; it just creates an additional compressed file  
+$ zip ./bigfile.zip bigfile
+# note: original file is last argument in the command
+# note: the zip command leaves the original file as is; it just creates an additional compressed file
 # note: zip compressed files can also be opened on Windows OS; not just UNIX/Linux OS
 
 unzip
 -----
 "Unzip is a program to unpack, list, test, and compressed (extract) files and it may not be installed by default."
 
-$ sudo apt-get install unzip  
-OR  
-$ sudo apt install unzip  
+$ sudo apt-get install unzip
+OR
+$ sudo apt install unzip
 # if unzip is not already installed, use these commands to install it on Ubuntu/Debian systems (see: https://www.cyberciti.biz/faq/how-to-unzip-a-zip-file-using-the-linux-and-unix-bash-shell-terminal/ for info on installing it on other Linux distros)
 
-$ man unzip  
+$ man unzip
 # read full unzip manual
 
-$ unzip --help  
+$ unzip --help
 # read basic help info for unzip
 
-$ unzip <FILE_NAME>.zip  
+$ unzip <FILE_NAME>.zip
 # extract a file; extracted file will be in the directory you are presently in
 
-$ unzip <ARCHIVE_NAME>.zip  
+$ unzip <ARCHIVE_NAME>.zip
 # extract an archive
 
-$ unzip -d /destination/directory/path <FILE_NAME>.zip  
+$ unzip -d /destination/directory/path <FILE_NAME>.zip
 # extract to a particular location
 ----------------------------------------------------------------------------------------------------------------------------------
 tar
 ---
-from:  
-* https://www.networkworld.com/article/968632/how-to-compress-files-on-linux-5-ways.html  
-* https://www.cyberciti.biz/faq/how-to-unzip-a-zip-file-using-the-linux-and-unix-bash-shell-terminal/  
-Note: tar is mainly intended to take a bunch of files and create a "tar ball" of them; meaning clump them all together into one filr called an "archive"; tar can then compress that archive file using gzip  
-Note: use of tar requires that unzip is already installed  
+from:
+* https://www.networkworld.com/article/968632/how-to-compress-files-on-linux-5-ways.html
+* https://www.cyberciti.biz/faq/how-to-unzip-a-zip-file-using-the-linux-and-unix-bash-shell-terminal/
+Note: tar is mainly intended to take a bunch of files and create a "tar ball" of them; meaning clump them all together into one filr called an "archive"; tar can then compress that archive file using gzip
+Note: use of tar requires that unzip is already installed
 Note: the tar command leaves the original files as is; it just creates a tar archive of them in addition to the original files
 
-$ man tar  
+$ man tar
 # read full tar manual
 
-$ tar --help  
+$ tar --help
 # read basic help info for tar
 
-$ tar cfz bin.tgz bin/*  
-          ^         ^  
-          |         +-- files to include in the archive  
-          + new archive file  
+$ tar cfz bin.tgz bin/*
+          ^         ^
+          |         +-- files to include in the archive
+          + new archive file
 # this command (with the `cfz` flags) creates the archive (tar ball) and then compresses it
 
-$ tar xvf <FILE_NAME>.zip  
-OR  
-$ tar -xvf <FILE_NAME>.zip  
+$ tar xvf <FILE_NAME>.zip
+OR
+$ tar -xvf <FILE_NAME>.zip
 # extract a file; extracted file will be in the directory you are presently in
 
-$ tar xvf <FILE_NAME>.zip -C /destination/directory/path  
-OR  
-$ tar -xvf <FILE_NAME>.zip -C /destination/directory/path  
+$ tar xvf <FILE_NAME>.zip -C /destination/directory/path
+OR
+$ tar -xvf <FILE_NAME>.zip -C /destination/directory/path
 # extract to a particular location
 ----------------------------------------------------------------------------------------------------------------------------------
 gzip
 -----
 from: https://www.networkworld.com/article/968632/how-to-compress-files-on-linux-5-ways.html
 
-$ gzip bigfile  
-# compresses named file  
+$ gzip bigfile
+# compresses named file
 # NOTE: gzip replaces the original file with the compressed file; compressed file has .gz extension
 
-$ gunzip bigfile.gz  
+$ gunzip bigfile.gz
 # decompresses named file
 ----------------------------------------------------------------------------------------------------------------------------------
 bzip2
 -----
 from: https://www.networkworld.com/article/968632/how-to-compress-files-on-linux-5-ways.html
 
-$ bzip bigfile  
-# compresses named file  
+$ bzip bigfile
+# compresses named file
 # NOTE: bzip2 replaces the original file with the compressed file; compressed file has .bz2 extension
 
-$ bunzip2 bigfile.bz2  
+$ bunzip2 bigfile.bz2
 # decompresses named files
 ----------------------------------------------------------------------------------------------------------------------------------
 xz
 ---
-$ xz bigfile  
-# compresses named file  
-# NOTE: xz replaces the original file with the compressed file; compressed file has .xz extension  
+$ xz bigfile
+# compresses named file
+# NOTE: xz replaces the original file with the compressed file; compressed file has .xz extension
 # xz is newer than other tools; compresses files to a smaller size than other tools; takes longer than other tools
 
-$ xz -d bigfile.xz  
-OR  
-$ unxz bigfile.xz  
+$ xz -d bigfile.xz
+OR
+$ unxz bigfile.xz
 # decompresses named file
 ----------------------------------------------------------------------------------------------------------------------------------
 rar
 ---
-from:  
-* https://www.howtogeek.com/create-extract-list-rar-files-on-linux/  
-* https://www.tecmint.com/how-to-open-extract-and-create-rar-files-in-linux/  
-NOTE: rar creates an archive taking multiple files and turning them into one compressed archive file  
+from:
+* https://www.howtogeek.com/create-extract-list-rar-files-on-linux/
+* https://www.tecmint.com/how-to-open-extract-and-create-rar-files-in-linux/
+NOTE: rar creates an archive taking multiple files and turning them into one compressed archive file
 NOTE: rar is mainly used for WindowsOS and needs to be installed in Linux
 
-for Debian based distros (like Kali Linux) the installation command is:  
+for Debian based distros (like Kali Linux) the installation command is:
 $ sudo apt-get install unrar-free
 
-to create a rar archive:  
-$ rar a test.rar test1.txt test2.txt test3.txt test4.txt test5.txt  
-# the `a` flag tells system to take multiple files and compressing them into an archive  
-# test.rar = example name you are giving the archive you are creating  
+to create a rar archive:
+$ rar a test.rar test1.txt test2.txt test3.txt test4.txt test5.txt
+# the `a` flag tells system to take multiple files and compressing them into an archive
+# test.rar = example name you are giving the archive you are creating
 # test1.txt test2.txt test3.txt test4.txt test5.txt = example files you are archiving 
 
-to extract files from a rar archive:  
-$ unrar e test.rar  
-# the `e` flag tells system to extract the individual files out of the archive  
-# test.rar = example name of rar archive file from which individual files are being extracted  
+to extract files from a rar archive:
+$ unrar e test.rar
+# the `e` flag tells system to extract the individual files out of the archive
+# test.rar = example name of rar archive file from which individual files are being extracted
 # default is to extract the files to current directory; if you want the files to be extracted elsewhere, add path to desired directory at the end of the command
 
-$ unrar x files.rar  
+$ unrar x files.rar
 # `x` flag tells system to output the directory structure of the files extracted from the rar archive (what files are within what directories)
 
-$ unrar l files.rar  
+$ unrar l files.rar
 # list files/directories in rar without extracting
 
-$ unrar t files.rar  
+$ unrar t files.rar
 # test files in rar for errors; if there are no errors they will be marked OK
 
-$ rar u test.rar test6.txt​​​​​  
+$ rar u test.rar test6.txt​​​​​
 # update test.rar by adding test6.txt to the rar archive
 
-$ rar d test.rar test6.txt  
+$ rar d test.rar test6.txt
 # delete test6.txt from test.rar
 
-$ rar r test.rar  
+$ rar r test.rar
 # repair a rar archive
 
-$ rar a -v1M files.part.rar test1.txt test2.txt  
+$ rar a -v1M files.part.rar test1.txt test2.txt
 # takes test1.txt and test2.txt and archives them as files.part.rar; then splits files.part.rar into 1MB chunks which will be named "files.part.rar", "files.part2.rar", "files.part3.rar", etc.
 
-$ rar a -p files.rar  
-# adds password for accessing rar archive  
-# for rar archives for which the password is missing, see:  
-- https://www.afterdawn.com/software/security/misc_security_tools/free-rar-password-cracker-expert.cfm  
-- https://www.softpedia.com/get/System/Back-Up-and-Recovery/Free-RAR-Password-Recovery.shtml  
+$ rar a -p files.rar
+# adds password for accessing rar archive
+# for rar archives for which the password is missing, see:
+- https://www.afterdawn.com/software/security/misc_security_tools/free-rar-password-cracker-expert.cfm
+- https://www.softpedia.com/get/System/Back-Up-and-Recovery/Free-RAR-Password-Recovery.shtml
 (rar password crackers recommemded by: https://www.lifewire.com/rar-file-2622216)
 
-$ rar k files.rar  
+$ rar k files.rar
 $ locks rar archive and prevents it from being modified
 
 -----------------------------------------------------------------------------------------------------------------

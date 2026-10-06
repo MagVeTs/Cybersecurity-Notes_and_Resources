@@ -3,69 +3,69 @@ john the ripper
 
 
 ------------------------------------------
-see: https://medium.com/infosec-adventures/identifying-and-cracking-hashes-7d580b9fd7f1  
+see: https://medium.com/infosec-adventures/identifying-and-cracking-hashes-7d580b9fd7f1
 see: MagVeTs/Cybersecurity/passwords_hashes_cryptography_encoding/linux_etc_passwd_file
 ------------------------------------------
-Cracking a hash found in Linux's /etc/shadow file in order to get a password  
-1) cat /etc/shadow  
-example output:  
+Cracking a hash found in Linux's /etc/shadow file in order to get a password
+1) cat /etc/shadow
+example output:
 matt:$6$WHmIjebL7MA7KN9A$C4UBJB4WVI37r.Ct3Hbhd3YOcua3AUowO2w2RUNauW8IigHAyVlHzhLrIUxVSGa.twjHc71MoBJfjCTxrkiLR.:18798:0:99999:7:::
 
-2) copy hash and paste it into text file:  
-$6$WHmIjebL7MA7KN9A$C4UBJB4WVI37r.Ct3Hbhd3YOcua3AUowO2w2RUNauW8IigHAyVlHzhLrIUxVSGa.twjHc71MoBJfjCTxrkiLR.  
+2) copy hash and paste it into text file:
+$6$WHmIjebL7MA7KN9A$C4UBJB4WVI37r.Ct3Hbhd3YOcua3AUowO2w2RUNauW8IigHAyVlHzhLrIUxVSGa.twjHc71MoBJfjCTxrkiLR.
 save text file; in this case we will call it Matt
 
-3) run john the ripper as follows:  
-john --wordlist=/usr/share/wordlists/rockyou.txt matt  
+3) run john the ripper as follows:
+john --wordlist=/usr/share/wordlists/rockyou.txt matt
 the password retrieved from the cracked hash will be shown amongst other data
 
-4) after having run john the ripper you can show just the password by the following command:  
+4) after having run john the ripper you can show just the password by the following command:
 john matt --show
 
 ---------------------------------------------
 [From: https://tryhackme.com/room/johntheripper0 ; (with some editing, etc.)]
 
-Setting Up John The Ripper  
+Setting Up John The Ripper
 John the Ripper is supported on many different Operating Systems, not just Linux Distributions. As a note before we go through this, there are multiple versions of John, the standard "core" distribution, as well as multiple community editions- which extend the feature set of the original John distribution. The most popular of these distributions is the "Jumbo John"- which we will be using specific features of later.
 
 
-Parrot, Kali and AttackBox  
+Parrot, Kali and AttackBox
 If you're using Parrot OS, Kali Linux or TryHackMe's own AttackBox- you should already have Jumbo John installed. You can double check this by typing john into the terminal. You should be met with a usage guide for john, with the first line reading: "John the Ripper 1.9.0-jumbo-1" or similar with a different version number. If not, you can use sudo apt install john to install it.
 
 
-Blackarch  
+Blackarch
 If you're using Blackarch, or the Blackarch repositories you may or may not have Jumbo John installed, to check if you do, use the command pacman -Qe | grep "john" You should be met with an output similar to "john 1.9.0.jumbo1-5" or similar with a different version number. If you do not have it installed, you can simply use pacman -S john to install it.
 
-Building from Source for Linux  
+Building from Source for Linux
 If you wish to build the package from source to meet your system requirements, you can do this in five fairly straightforward steps. Further advice on the installation process and how to configure your build from source can be found here.
 
-Use git clone https://github.com/openwall/john -b bleeding-jumbo john to clone the jumbo john repository to your current working  
-Then cd john/src/ to change your current directory to where the source code is.  
-Once you're in this directory, use ./configure to check the required dependencies and options that have been configured.  
-If you're happy with this output, and have installed any required dependencies that are needed, use make -s clean && make -sj4 to build a binary of john. This binary will be in the above run directory, which you can change to with cd ../run  
+Use git clone https://github.com/openwall/john -b bleeding-jumbo john to clone the jumbo john repository to your current working
+Then cd john/src/ to change your current directory to where the source code is. 
+Once you're in this directory, use ./configure to check the required dependencies and options that have been configured.
+If you're happy with this output, and have installed any required dependencies that are needed, use make -s clean && make -sj4 to build a binary of john. This binary will be in the above run directory, which you can change to with cd ../run
 You can test this binary using ./john --test
 
-Installing on Windows  
+Installing on Windows
 To install Jumbo John the Ripper on Windows, you just need to download and install the zipped binary for either 64 bit systems here: https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip; or for 32 bit systems here: https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip.
 ------------------------------------------------------------------
 [From: https://tryhackme.com/room/johntheripper0 ; Task 3 (with some editing, etc.)]
 
-Wordlists  
+Wordlists
 [I]n order to dictionary attack hashes, you need a list of words that you can hash and compare, unsurprisingly this is called a wordlist. There are many different wordlists out there, a good collection to use can be found in the SecLists repository (https://github.com/danielmiessler/SecLists).
 
 There are also a few places you can look for wordlists on your attacking system of choice, we will quickly run through where you can find them:
 
-Parrot, Kali and AttackBox  
+Parrot, Kali and AttackBox
 On Parrot, Kali and TryHackMe's AttackBox- you can find a series of amazing wordlists in the /usr/share/wordlists directory.
 
-RockYou  
+RockYou
 [There is also] the infamous rockyou.txt wordlist- which is a very large common password wordlist, obtained from a data breach on a website called rockyou.com in 2009. If you are not using any of the above distributions, you can get the rockyou.txt wordlist from the SecLists repository under the /Passwords/Leaked-Databases subsection. You may need to extract it from .tar.gz format, using tar xvzf rockyou.txt.tar.gz.
 ----------------------------------------------------------------------
-[From: https://tryhackme.com/room/johntheripper0 ; Task 4 (with some editing, etc.)]  
-Cracking Basic Hashes  
+[From: https://tryhackme.com/room/johntheripper0 ; Task 4 (with some editing, etc.)]
+Cracking Basic Hashes
 There are multiple ways to use John the Ripper to crack simple hashes, we're going to walk through a few, before moving on to cracking some ourselves.
 
-John Basic Syntax  
+John Basic Syntax
 The basic syntax of John the Ripper commands is as follows. We will cover the specific options and modifiers used as we use them.
 
 john [options] [path to file]
@@ -75,7 +75,7 @@ john - Invokes the John the Ripper program
 [path to file] - The file containing the hash you're trying to crack, if it's in the same directory you won't need to name a path, just the file.
 
 
-Automatic Cracking  
+Automatic Cracking
 John has built-in features to detect what type of hash it's being given, and to select appropriate rules and formats to crack it for you, this isn't always the best idea as it can be unreliable- but if you can't identify what hash type you're working with and just want to try cracking it, it can be a good option! To do this we use the following syntax:
 
 john --wordlist=[path to wordlist] [path to file]
@@ -90,7 +90,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.txt
 
 
 
-Identifying Hashes  
+Identifying Hashes
 Sometimes John won't play nicely with automatically recognising and loading hashes, that's okay! We're able to use other tools to identify the hash, and then set john to use a specific format. There are multiple ways to do this, such as using an online hash identifier like this one: https://hashes.com/en/tools/hash_identifier. I like to use a tool called hash-identifier (https://gitlab.com/kalilinux/packages/hash-identifier/-/tree/kali/master), a Python tool that is super easy to use and will tell you what different types of hashes the one you enter is likely to be, giving you more options if the first one fails.
 
 To use hash-identifier, you can just pull the python file from gitlab using:wget https://gitlab.com/kalilinux/packages/hash-identifier/-/raw/kali/master/hash-id.py.
@@ -98,7 +98,7 @@ To use hash-identifier, you can just pull the python file from gitlab using:wget
 Then simply launch it with python3 hash-id.py and then enter the hash you're trying to identify- and it will give you possible formats!
 
 
-Format-Specific Cracking  
+Format-Specific Cracking
 Once you have identified the hash that you're dealing with, you can tell john to use it while cracking the provided hash using the following syntax:
 
 john --format=[format] --wordlist=[path to wordlist] [path to file]
@@ -113,23 +113,23 @@ john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.
 
 A Note on Formats:
 
-When you are telling john to use formats, if you're dealing with a standard hash type, e.g. md5 as in the example above, you have to prefix it with raw- to tell john you're just dealing with a standard hash type, though this doesn't always apply. To check if you need to add the prefix or not, you can list all of John's formats using john --list=formats and either check manually, or grep for your hash type using something like:  
+When you are telling john to use formats, if you're dealing with a standard hash type, e.g. md5 as in the example above, you have to prefix it with raw- to tell john you're just dealing with a standard hash type, though this doesn't always apply. To check if you need to add the prefix or not, you can list all of John's formats using john --list=formats and either check manually, or grep for your hash type using something like:
 john --list=formats | grep -iF "md5".
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/johntheripper0 ; Task 5 (with some editing, etc.)]  
-Cracking Windows Hashes  
+[From: https://tryhackme.com/room/johntheripper0 ; Task 5 (with some editing, etc.)]
+Cracking Windows Hashes
 Now that we understand the basic syntax and usage of John the Ripper- lets move on to cracking something a little bit more difficult, something that you may even want to attempt if you're on a real Penetration Test or Red Team engagement. Authentication hashes are the hashed versions of passwords that are stored by operating systems, it is sometimes possible to crack them using the brute-force methods that we're using. To get your hands on these hashes, you must often already be a privileged user- so we will explain some of the hashes that we plan on cracking as we attempt them.
 
 
-NTHash / NTLM  
+NTHash / NTLM
 NThash is the hash format that modern Windows Operating System machines will store user and service passwords in. It's also commonly referred to as "NTLM" which references the previous version of Windows format for hashing passwords known as "LM", thus "NT/LM".
 
 A little bit of history, the NT designation for Windows products originally meant "New Technology", and was used- starting with Windows NT, to denote products that were not built up from the MS-DOS Operating System. Eventually, the "NT" line became the standard Operating System type to be released by Microsoft and the name was dropped, but it still lives on in the names of some Microsoft technologies. 
 
 You can acquire NTHash/NTLM hashes by dumping the SAM database on a Windows machine, by using a tool like Mimikatz or from the Active Directory database: NTDS.dit. You may not have to crack the hash to continue privilege escalation- as you can often conduct a "pass the hash" attack instead, but sometimes hash cracking is a viable option if there is a weak password policy.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/johntheripper0 ; Task 6 (with some editing, etc.)]  
-Cracking Hashes from /etc/shadow  
+[From: https://tryhackme.com/room/johntheripper0 ; Task 6 (with some editing, etc.)]
+Cracking Hashes from /etc/shadow
 The /etc/shadow file is the file on Linux machines where password hashes are stored. It also stores other information, such as the date of last password change and password expiration information. It contains one entry per line for each user or user account of the system. This file is usually only accessible by the root user- so in order to get your hands on the hashes you must have sufficient privileges, but if you do- there is a chance that you will be able to crack some of the hashes.
 
 Unshadowing
@@ -165,33 +165,33 @@ Contains the /etc/shadow line for the root user:
 root:$6$2nwjN454g.dv4HN/$m9Z/r2xVfweYVkrr.v5Ft8Ws3/YYksfNwq96UL1FX0OJjY1L6l.DS3KEVsZ9rOVLB/ldTeEL/OIhJZ4GMFMGA0:18576::::::
 
 
-Cracking  
+Cracking
 We're then able to feed the output from unshadow, in our example use case called "unshadowed.txt" directly into John. We should not need to specify a mode here as we have made the input specifically for John, however in some cases you will need to specify the format ... using [for example]: --format=sha512crypt
 
 example syntax: john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/johntheripper0 ; Task 7 (with some editing, etc.)]  
-Single Crack Mode  
+[From: https://tryhackme.com/room/johntheripper0 ; Task 7 (with some editing, etc.)]
+Single Crack Mode
 So far we've been using John's wordlist mode to deal with brute forcing simple., and not so simple hashes. But John also has another mode, called Single Crack mode. In this mode, John uses only the information provided in the username, to try and work out possible passwords heuristically, by slightly changing the letters and numbers contained within the username.
 
 
-Word Mangling  
+Word Mangling
 The best way to show what Single Crack mode is, and what word mangling is, is to actually go through an example:
 
 If we take the username: Markus
 
 Some possible passwords could be:
 
-Markus1, Markus2, Markus3 (etc.)  
-MArkus, MARkus, MARKus (etc.)  
-Markus!, Markus$, Markus* (etc.)  
+Markus1, Markus2, Markus3 (etc.)
+MArkus, MARkus, MARKus (etc.)
+Markus!, Markus$, Markus* (etc.)
 This technique is called word mangling. John is building it's own dictionary based on the information that it has been fed and uses a set of rules called "mangling rules" which define how it can mutate the word it started with to generate a wordlist based off of relevant factors for the target you're trying to crack. This is exploiting how poor passwords can be based off of information about the username, or the service they're logging into.
 
 
-GECOS  
+GECOS
 John's implementation of word mangling also features compatibility with the Gecos fields of the UNIX operating system, and other UNIX-like operating systems such as Linux. So what are Gecos? Remember in the last task where we were looking at the entries of both /etc/shadow and /etc/passwd? Well if you look closely You can see that each field is seperated by a colon ":". Each one of the fields that these records are split into are called Gecos fields. John can take information stored in those records, such as full name and home directory name to add in to the wordlist it generates when cracking /etc/shadow hashes with single crack mode.
 
-Using Single Crack Mode  
+Using Single Crack Mode
 To use single crack mode, we use roughly the same syntax that we've used to so far, for example if we wanted to crack the password of the user named "Mike", using single mode, we'd use:
 
 john --single --format=[format] [path to file]
@@ -214,20 +214,20 @@ To
 
 mike:1efee03cdcb96d90ad48ccc7b8666033
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/johntheripper0 ; Task 8 (with some editing, etc.)]  
-What are Custom Rules?  
+[From: https://tryhackme.com/room/johntheripper0 ; Task 8 (with some editing, etc.)]
+What are Custom Rules?
 As we journeyed through our exploration of what John can do in Single Crack Mode- you may have some ideas about what some good mangling patterns would be, or what patterns your passwords often use- that could be replicated with a certain mangling pattern. The good news is you can define your own sets of rules, which John will use to dynamically create passwords. This is especially useful when you know more information about the password structure of whatever your target is.
 
-Common Custom Rules  
+Common Custom Rules
 Many organisations will require a certain level of password complexity to try and combat dictionary attacks, meaning that if you create an account somewhere, go to create a password and enter:
 
 polopassword
 
 You may receive a prompt telling you that passwords have to contain at least one of the following:
 
-Capital letter  
-Number  
-Symbol  
+Capital letter
+Number
+Symbol
 This is good! However, we can exploit the fact that most users will be predictable in the location of these symbols. For the above criteria, many users will use something like the following:
 
 Polopassword1!
@@ -238,7 +238,7 @@ Now this does meet the password complexity requirements, however as an attacker 
 
 
 
-How to create Custom Rules  
+How to create Custom Rules
 Custom rules are defined in the john.conf file, usually located in /etc/john/john.conf if you have installed John using a package manager or built from source with 'make' and in /opt/john/john.conf on the TryHackMe Attackbox.
 
 Let's go over the syntax of these custom rules, using the example above as our target pattern. Note that there is a massive level of granular control that you can define in these rules, I would suggest taking a look at the wiki here in order to get a full view of the types of modifier you can use, as well as more examples of rule implementation.
@@ -296,7 +296,7 @@ A number in the range 0-9 - [0-9]
 Followed by a symbol that is one of [!£$%@]
 
 
-Using Custom Rules  
+Using Custom Rules
 We could then call this custom rule as a John argument using the  --rule=PoloPassword flag.
 
 As a full command: john --wordlist=[path to wordlist] --rule=PoloPassword [path to file]
@@ -306,8 +306,8 @@ As a note I find it helpful to talk out the patterns if you're writing a rule- a
 
 Jumbo John already comes with a large list of custom rules, which contain modifiers for use almost all cases. If you get stuck, try looking at those rules [around line 678] if your syntax isn't working properly.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[From: https://tryhackme.com/room/johntheripper0 ; Task 9 (with some editing, etc.)]  
-Cracking a Password Protected Zip File  
+[From: https://tryhackme.com/room/johntheripper0 ; Task 9 (with some editing, etc.)]
+Cracking a Password Protected Zip File
 ...We can use John to crack the password on password protected Zip files. Again, we're going to be using a separate part of the john suite of tools to convert the zip file into a format that John will understand, but for all intents and purposes, we're going to be using the syntax that you're already pretty familiar with by now.
 
 
@@ -330,18 +330,18 @@ Example Usage
 zip2john zipfile.zip > zip_hash.txt
 
 
-Cracking  
+Cracking
 We're then able to take the file we output from zip2john in our example use case called "zip_hash.txt" and, as we did with unshadow, feed it directly into John as we have made the input specifically for it.
 
 john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [From: https://tryhackme.com/room/johntheripper0 ; Task 10 (with some editing, etc.)]
 
-Cracking a Password Protected RAR Archive  
+Cracking a Password Protected RAR Archive
 We can use a similar process to ... to obtain the password for rar archives. If you aren't familiar, rar archives are compressed files created by the Winrar archive manager. Just like zip files they compress a wide variety of folders and files.
 
 
-Rar2John  
+Rar2John
 Almost identical to the zip2john tool [we can use] use the rar2john tool to convert the rar file into a hash format that John is able to understand. The basic syntax is as follows:
 
 rar2john [rar file] > [output file]
@@ -352,24 +352,24 @@ rar2john - Invokes the rar2john tool
 
 > - This is the output director, we're using this to send the output from this file to the...
 
-[output file] - This is the file that will store the output from [the rar2john process]  
+[output file] - This is the file that will store the output from [the rar2john process]
 Example Usage
 
 rar2john rarfile.rar > rar_hash.txt
 
 
 
-Cracking  
+Cracking
 Once again, we're then able to take the file we output from rar2john in our example use case called "rar_hash.txt" and, as we did with zip2john we can feed it directly into John..
 
 john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [From: https://tryhackme.com/room/johntheripper0 ; Task 11 (with some editing, etc.)]
 
-Cracking SSH Key Passwords  
+Cracking SSH Key Passwords
 Unless configured otherwise, you authenticate your SSH login using a password. However, you can configure key-based authentication, which lets you use your private key, id_rsa, as an authentication key to login to a remote machine over SSH. However, doing so will often require a password- here we will be using John to crack this password to allow authentication over SSH using the key.
 
-SSH2John  
+SSH2John
 ... As the name suggests ssh2john converts the id_rsa private key that you use to login to the SSH session into hash format that john can work with... The syntax is about what you'd expect. Note that if you don't have ssh2john installed, you can use ssh2john.py, which is located in the /opt/john/ssh2john.py. If you're doing this, replace the ssh2john command with python3 /opt/ssh2john.py or on Kali, python /usr/share/john/ssh2john.py.
 
 ssh2john [id_rsa private key file] > [output file]
@@ -389,7 +389,7 @@ ssh2john id_rsa > id_rsa_hash.txt
 
 
 
-Cracking  
+Cracking
 For the final time, we're feeding the file we output from ssh2john, which in our example use case is called "id_rsa_hash.txt" and, as we did with rar2john we can use this seamlessly with John:
 
 john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
@@ -398,13 +398,13 @@ From TryHackMe: https://www.openwall.com/john/ ("more information about using Jo
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 From: https://tryhackme.com/room/passwordattacks ; Task 6 [with edits, etc.]
 
-Rule-Based attacks  
+Rule-Based attacks
 "Rule-Based attacks are also known as hybrid attacks. Rule-Based attacks assume the attacker knows something about the password policy. Rules are applied to create passwords within the guidelines of the given password policy and should, in theory, only generate valid passwords. Using pre-existing wordlists may be useful when generating passwords that fit a policy — for example, manipulating or 'mangling' a password such as 'password': p@ssword, Pa$$word, Passw0rd, and so on."
 
-One can use john the ripper [or hashcat] to mangle a wordlist of passwords.  
-"John the ripper has a config file that contains rule sets, which is located at /etc/john/john.conf or /opt/john/john.conf depending on your distro or how john was installed. You can read /etc/john/john.conf and look for List.Rules to see all the available rules."  
-One can take a wordlist and run it through John the ripper having chosen on of john's many available rule-sets and receive an output that contains the original wordlist together with many new variations  
-example syntax:  
+One can use john the ripper [or hashcat] to mangle a wordlist of passwords.
+"John the ripper has a config file that contains rule sets, which is located at /etc/john/john.conf or /opt/john/john.conf depending on your distro or how john was installed. You can read /etc/john/john.conf and look for List.Rules to see all the available rules."
+One can take a wordlist and run it through John the ripper having chosen on of john's many available rule-sets and receive an output that contains the original wordlist together with many new variations
+example syntax:
 john --wordlist=/tmp/single-password-list.txt --rules=KoreLogic --stdout
 
 --wordlist= to specify the wordlist or dictionary file. 
@@ -413,11 +413,11 @@ john --wordlist=/tmp/single-password-list.txt --rules=KoreLogic --stdout
 
 --stdout to print the output to the terminal.
 
-Custom rules  
-One can also add custom rules to the end if the john.conf file and use them  
-example syntax:  
-user@machine$ sudo vi /etc/john/john.conf  
-[List.Rules:THM-Password-Attacks]  
+Custom rules
+One can also add custom rules to the end if the john.conf file and use them
+example syntax:
+user@machine$ sudo vi /etc/john/john.conf 
+[List.Rules:THM-Password-Attacks] 
 Az"[0-9]" ^[!@#$]
 
 [List.Rules:THM-Password-Attacks] - specify the rule name THM-Password-Attacks.

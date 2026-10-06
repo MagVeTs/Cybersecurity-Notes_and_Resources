@@ -1,8 +1,8 @@
-netdiscover -r <range_to_scan>  
-ex: netdiscover -r 192.168.100.0/24  
--  
-or  
--  
+netdiscover -r <range_to_scan>
+ex: netdiscover -r 192.168.100.0/24
+-
+or
+-
 arp-scan -l
 ----------------------------------------
 also see: tools > Nmap

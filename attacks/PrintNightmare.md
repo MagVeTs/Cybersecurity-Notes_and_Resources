@@ -1,15 +1,15 @@
 PrintNightmare
 --------------
-from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course  
+from: Heath Adams - The Cyber Mentor ; Practical Ethical Hacking - The Complete Course
 "PrintNightmare (CVE-2021-1675) Walkthrough" - https://academy.tcm-sec.com/courses/1152300/lectures/33637715
 
 
-There are a few PrintNightmare attacks. HA does walkthrough of:  
-cube0x0 RCE - https://github.com/cube0x0/CVE-2021-1675  
+There are a few PrintNightmare attacks. HA does walkthrough of:
+cube0x0 RCE - https://github.com/cube0x0/CVE-2021-1675
 which is a Remote Code Execution (RCE) attack
 
-[He also provides a link to this one:  
-calebstewart LPE - https://github.com/calebstewart/CVE-2021-1675  
+[He also provides a link to this one:
+calebstewart LPE - https://github.com/calebstewart/CVE-2021-1675
 which is a Local Privilege Escalation (LPE) attack]
 
 

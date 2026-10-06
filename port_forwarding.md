@@ -1,7 +1,7 @@
 Port Forwarding (with SSH; also known as SSH Tunneling)
 ---------------------------------------------------------
 
-from: https://phoenixnap.com/kb/ssh-port-forwarding  
+from: https://phoenixnap.com/kb/ssh-port-forwarding
 "To use SSH tunneling in Linux, you need to provide your client with the source and destination port numbers, as well as the location of the destination server. The location can either be an IP address or a hostname.
 
 The basic syntax for a local port forward command is straightforward:
@@ -20,16 +20,16 @@ $ ssh –L 5901:188.17.0.5:4492 pnap@ssh.server.com
 
 In the example above, all traffic sent to port 5901 on your local host is being forwarded to port 4492 on the remote server located at 188.17.0.5."
 -----------------------------------------------------------
-SSH Tunnelling / Port Forwarding  
-https://www.ired.team/offensive-security/lateral-movement/ssh-tunnelling-port-forwarding  
+SSH Tunnelling / Port Forwarding
+https://www.ired.team/offensive-security/lateral-movement/ssh-tunnelling-port-forwarding
 [hat tip: YS]
 
-SSH Port Forwarding  
-https://notes.benheater.com/books/network-pivoting/page/ssh-port-forwarding  
+SSH Port Forwarding
+https://notes.benheater.com/books/network-pivoting/page/ssh-port-forwarding
 [hat tip: YS]
 
-Port Forwarding with Chisel  
-https://notes.benheater.com/books/network-pivoting/page/port-forwarding-with-chisel  
+Port Forwarding with Chisel
+https://notes.benheater.com/books/network-pivoting/page/port-forwarding-with-chisel
 [hat tip: YS]
 
 

@@ -6,85 +6,85 @@ Analyzing email headers for spoofing:
 
 Capturing the email headers:
 
-How to Get Email Headers  
-"Every single Internet e-mail message is made up of two parts the header and the message body of the email. Every single email you send or receive on the Internet contains an Internet Header, a full and valid e-mail header provides a detailed log of the network path taken by the message between the mail sender and the mail receiver(s) (email servers).  
-Your email client program will usually hide the full header or display only lines, such as From, To, Date, and Subject, see below for more information on pulling headers for your email client" -- https://mxtoolbox.com  
-Where to find the full email headers:  
+How to Get Email Headers
+"Every single Internet e-mail message is made up of two parts the header and the message body of the email. Every single email you send or receive on the Internet contains an Internet Header, a full and valid e-mail header provides a detailed log of the network path taken by the message between the mail sender and the mail receiver(s) (email servers).
+Your email client program will usually hide the full header or display only lines, such as From, To, Date, and Subject, see below for more information on pulling headers for your email client" -- https://mxtoolbox.com
+Where to find the full email headers:
 https://mxtoolbox.com/Public/Content/EmailHeaders/
 
-Email Header Analyzer  
-https://mxtoolbox.com/EmailHeaders.aspx  
-"This tool will make email headers human readable by parsing them according to RFC 822.  Email headers are present on every email you receive via the Internet and can provide valuable diagnostic information like hop delays, anti-spam results and more."  
+Email Header Analyzer
+https://mxtoolbox.com/EmailHeaders.aspx
+"This tool will make email headers human readable by parsing them according to RFC 822.  Email headers are present on every email you receive via the Internet and can provide valuable diagnostic information like hop delays, anti-spam results and more."
 [hat tip: Reddit post by Strong_Effective_508]
 
 ---
 or
 ---
 
-Message Header Analyzer  
-https://mha.azurewebsites.net/  
+Message Header Analyzer
+https://mha.azurewebsites.net/
 [hat tip: Reddit post by CaptCoolie]
 ----------------------------------------
-Messageheader (part of: Google Admin Toolbox)  
-"Messageheader analyzes SMTP message headers..."  
-https://toolbox.googleapps.com/apps/messageheader/analyzeheader  
+Messageheader (part of: Google Admin Toolbox)
+"Messageheader analyzes SMTP message headers..."
+https://toolbox.googleapps.com/apps/messageheader/analyzeheader
 [hat tip: TryHackMe]
 
-Message Header Analyzer  
-https://mha.azurewebsites.net/  
+Message Header Analyzer
+https://mha.azurewebsites.net/
 [hat tip: TryHackMe]
 
-Mail Header Analysis  
-https://mailheader.org  
+Mail Header Analysis
+https://mailheader.org
 [hat tip: TryHackMe]
 
 [Note: TryHackMe points out that it is worthwhile to use more than one of these tools because different tools may reveal different types of information; I saw this in practice.]
 --------------------------------------
-URL Extractor For Web Pages and Text  
-https://www.convertcsv.com/url-extractor.htm  
-Paste email message header into this site and it will extract URLs from the text. CyberChef (https://gchq.github.io/CyberChef/) has a "Extract URLs" option that does this too.  
+URL Extractor For Web Pages and Text
+https://www.convertcsv.com/url-extractor.htm
+Paste email message header into this site and it will extract URLs from the text. CyberChef (https://gchq.github.io/CyberChef/) has a "Extract URLs" option that does this too.
 [hat tip: TryHackMe]
 -------------------------------------
-PhishTool  
-https://www.phishtool.com/  
-"PhishTool gives human analysts the power to reverse engineer phishing emails, to better defend against them. PhishTool is to phishing emails as a disassembler is to malware or a forensic toolkit is to file systems...PhishTool combines threat intelligence, OSINT, email metadata and battle tested auto-analysis pathways into one powerful phishing response platform..."  
+PhishTool
+https://www.phishtool.com/
+"PhishTool gives human analysts the power to reverse engineer phishing emails, to better defend against them. PhishTool is to phishing emails as a disassembler is to malware or a forensic toolkit is to file systems...PhishTool combines threat intelligence, OSINT, email metadata and battle tested auto-analysis pathways into one powerful phishing response platform..."
 [hat tip: TryHackMe]
 -------------------------------------
-SPF (Sender Policy Framework)  
-""Sender Policy Framework (SPF) is used to authenticate the sender of an email. With an SPF record in place, Internet Service Providers can verify that a mail server is authorized to send email for a specific domain. An SPF record is a DNS TXT record containing a list of the IP addresses that are allowed to send email on behalf of your domain." -- https://dmarcian.com/what-is-spf/  
-Understanding SPF Syntax:  
-https://dmarcian.com/spf-syntax-table/  
-https://dmarcian.com/what-is-the-difference-between-spf-all-and-all/  
+SPF (Sender Policy Framework)
+""Sender Policy Framework (SPF) is used to authenticate the sender of an email. With an SPF record in place, Internet Service Providers can verify that a mail server is authorized to send email for a specific domain. An SPF record is a DNS TXT record containing a list of the IP addresses that are allowed to send email on behalf of your domain." -- https://dmarcian.com/what-is-spf/
+Understanding SPF Syntax:
+https://dmarcian.com/spf-syntax-table/
+https://dmarcian.com/what-is-the-difference-between-spf-all-and-all/
 [hat tip: TryHackMe]
 
-DKIM (DomainKeys Identified Mail)  
-"DKIM stands for DomainKeys Identified Mail and is used for the authentication of an email that’s being sent. Like SPF, DKIM is an open standard for email authentication that is used for DMARC alignment. A DKIM record exists in the DNS, but it is a bit more complicated than SPF. DKIM’s advantage is that it can survive forwarding, which makes it superior to SPF and a foundation for securing your email." -- https://dmarcian.com/what-is-dkim/  
-DKIM Selectors:  
-https://dmarcian.com/dkim-selectors/  
-DKIM DNS record overview:  
-https://help.returnpath.com/hc/en-us/articles/222481088-DKIM-DNS-record-overview  
+DKIM (DomainKeys Identified Mail)
+"DKIM stands for DomainKeys Identified Mail and is used for the authentication of an email that’s being sent. Like SPF, DKIM is an open standard for email authentication that is used for DMARC alignment. A DKIM record exists in the DNS, but it is a bit more complicated than SPF. DKIM’s advantage is that it can survive forwarding, which makes it superior to SPF and a foundation for securing your email." -- https://dmarcian.com/what-is-dkim/
+DKIM Selectors:
+https://dmarcian.com/dkim-selectors/
+DKIM DNS record overview:
+https://help.returnpath.com/hc/en-us/articles/222481088-DKIM-DNS-record-overview
 [hat tip: TryHackMe]
 
-DMARC (Domain-Based Message Authentication, Reporting, and Conformance)  
-"DMARC, (Domain-based  Message Authentication Reporting, & Conformance) an open source standard, uses a concept called alignment to tie the result of two other open source standards, SPF (a published list of servers that are authorized to send email on behalf of a domain) and DKIM (a tamper-evident domain seal associated with a piece of email), to the content of an email. If not already deployed, putting a DMARC record into place for your domain will give you feedback that will allow you to troubleshoot your SPF and DKIM configurations if needed." -- https://dmarcian.com/getting-started-with-dmarc/  
-Breakdown of DMARC Record:  
-https://dmarcian.com/what-is-a-dmarc-record/  
-Overview of how DMARC works and of DMARC record syntax:  
-https://dmarc.org/overview/  
-DMARC Domain Health Checker:  
-"Use our DMARC Domain Checker to find out if an email domain is protected against phishing, spoofing or fraud. Our domain checker offers you quick insights by inspecting DMARC, SPF and DKIM records and shows you if there are any actions you need to take."  
-https://dmarcian.com/domain-checker/  
+DMARC (Domain-Based Message Authentication, Reporting, and Conformance)
+"DMARC, (Domain-based  Message Authentication Reporting, & Conformance) an open source standard, uses a concept called alignment to tie the result of two other open source standards, SPF (a published list of servers that are authorized to send email on behalf of a domain) and DKIM (a tamper-evident domain seal associated with a piece of email), to the content of an email. If not already deployed, putting a DMARC record into place for your domain will give you feedback that will allow you to troubleshoot your SPF and DKIM configurations if needed." -- https://dmarcian.com/getting-started-with-dmarc/
+Breakdown of DMARC Record:
+https://dmarcian.com/what-is-a-dmarc-record/
+Overview of how DMARC works and of DMARC record syntax:
+https://dmarc.org/overview/
+DMARC Domain Health Checker:
+"Use our DMARC Domain Checker to find out if an email domain is protected against phishing, spoofing or fraud. Our domain checker offers you quick insights by inspecting DMARC, SPF and DKIM records and shows you if there are any actions you need to take."
+https://dmarcian.com/domain-checker/
 [hat tip: TryHackMe]
 
-S/MIME (Secure/Multipurpose Internet Mail Extensions)  
-"S/MIME (Secure/Multipurpose internet Mail Extensions) is a widely accepted protocol for sending digitally signed and encrypted messages." -- https://docs.microsoft.com/en-us/exchange/security-and-compliance/smime-exo/smime-exo  
-S/MIME for message signing and encryption in Exchange Online - https://learn.microsoft.com/en-us/exchange/security-and-compliance/smime-exo/smime-exo  
+S/MIME (Secure/Multipurpose Internet Mail Extensions)
+"S/MIME (Secure/Multipurpose internet Mail Extensions) is a widely accepted protocol for sending digitally signed and encrypted messages." -- https://docs.microsoft.com/en-us/exchange/security-and-compliance/smime-exo/smime-exo
+S/MIME for message signing and encryption in Exchange Online - https://learn.microsoft.com/en-us/exchange/security-and-compliance/smime-exo/smime-exo
 [hat tip: TryHackMe]
 
-EasyDmarc  
-https://easydmarc.com/  
-"Smart DMARC Monitoring & Reporting Solution  
-Thousands of IT Managers and Sysadmins use EasyDMARC  
+EasyDmarc
+https://easydmarc.com/
+"Smart DMARC Monitoring & Reporting Solution
+Thousands of IT Managers and Sysadmins use EasyDMARC 
 every day to manage, monitor, and secure email infrastructure."
 
 Information on DMARC and Best DMARC Policies
@@ -94,55 +94,55 @@ https://www.emailonacid.com/blog/article/email-deliverability/why-strong-dmarc-p
 
 
 --------------------------------------------------
-SMTP (Simple Mail Transfer Protocol) Network Traffic information (helpful for examining PCAP files in Wireshark)  
-https://www.wireshark.org/docs/dfref/s/smtp.html  
-https://www.mailersend.com/blog/smtp-codes  
+SMTP (Simple Mail Transfer Protocol) Network Traffic information (helpful for examining PCAP files in Wireshark)
+https://www.wireshark.org/docs/dfref/s/smtp.html
+https://www.mailersend.com/blog/smtp-codes
 [hat tip: TryHackMe]
 
-IMF (Internet Message Format) Network Traffic information (helpful for examining PCAP files in Wireshark)  
-https://www.wireshark.org/docs/dfref/i/imf.html  
+IMF (Internet Message Format) Network Traffic information (helpful for examining PCAP files in Wireshark)
+https://www.wireshark.org/docs/dfref/i/imf.html
 [hat tip: TryHackMe]
 ---------------------------------------------------
-Mail Spoofer (6Point6)  
-https://github.com/6point6/mail-spoofer  
-"A proof of concept email spoofing tool built on Docker.  
-One of the biggest mistakes the cybersecurity industry has made is believing SPF, DKIM, and ARC prevent email contents spoofing.  
-Mail Spoofer is a Proof-of-Concept email spoofing tool built on Docker. We created it to target domains with missing or misconfigured DMARC records.  
-The tool reduces the effort of setting up PTR, SPF, DKIM and ARC infrastructure. Our guiding principle is to reduce the complexity of spoofing attacks, educate the cybersecurity industry and force organizations into universally applying DMARC records."  
+Mail Spoofer (6Point6)
+https://github.com/6point6/mail-spoofer
+"A proof of concept email spoofing tool built on Docker.
+One of the biggest mistakes the cybersecurity industry has made is believing SPF, DKIM, and ARC prevent email contents spoofing.
+Mail Spoofer is a Proof-of-Concept email spoofing tool built on Docker. We created it to target domains with missing or misconfigured DMARC records.
+The tool reduces the effort of setting up PTR, SPF, DKIM and ARC infrastructure. Our guiding principle is to reduce the complexity of spoofing attacks, educate the cybersecurity industry and force organizations into universally applying DMARC records."
 [hat tip: YS]
 
-How to Spoof 97% of Email Accounts (6Point6)  
-Chris Powell  
-https://www.youtube.com/watch?v=j6NJnFcyIhQ  
+How to Spoof 97% of Email Accounts (6Point6)
+Chris Powell
+https://www.youtube.com/watch?v=j6NJnFcyIhQ
 [hat tip: YS]
 ---------------------------------------------------
-How to Analyze Email Headers and How Spoofed Email Works  
-John Hubbard  
+How to Analyze Email Headers and How Spoofed Email Works
+John Hubbard
 https://www.youtube.com/watch?v=reRzWHUwI80
 ---------------------------------------------------
-Email Header Analysis and Forensic Investigation  
-13Cubed  
+Email Header Analysis and Forensic Investigation
+13Cubed
 https://www.youtube.com/watch?v=nK5QpGSBR8c
 ----------------------------------------------------
-Syntax on Linux to check SPF record for a domain. It will tell you the IP range permitted to send emails from that domain.  
-dig <domain name> TXT +short  
+Syntax on Linux to check SPF record for a domain. It will tell you the IP range permitted to send emails from that domain.
+dig <domain name> TXT +short 
 [from: YS]
 
-https://linuxways.net/ubuntu/how-to-use-the-dig-command-in-linux/  
-DKIM Records Lookup  
-For querying DomainKeys Identified Mail (DKIM) we need the selector. It provides a digital signature and encryption key that authenticates email messages.  
-You need to find out the selector of the domain. If you look at the details of an email sent from google/gmail, you can find out the selector for google. Similarly, you can find other domain selectors. For querying it we have to execute the command as below. In the output, we can view the DKIM signature published in their DNS record.  
-$ dig txt 20161025._domainkey.google.com  
+https://linuxways.net/ubuntu/how-to-use-the-dig-command-in-linux/
+DKIM Records Lookup
+For querying DomainKeys Identified Mail (DKIM) we need the selector. It provides a digital signature and encryption key that authenticates email messages.
+You need to find out the selector of the domain. If you look at the details of an email sent from google/gmail, you can find out the selector for google. Similarly, you can find other domain selectors. For querying it we have to execute the command as below. In the output, we can view the DKIM signature published in their DNS record.
+$ dig txt 20161025._domainkey.google.com
 [from: YS]
 ------------------------------------------------------
 Easily check the headers on an email from a user account within your domain to see whether it is passing SPF/DKIM/DMARC and if there is alignment between the FROM vs RETURN PATH and the d= fields:
 
-- https://www.mail-tester.com/  
+- https://www.mail-tester.com/
 - https://dkimvalidator.com/
 ------------------------------------------------------
-LearnDMARC  
-https://www.learndmarc.com/  
-"Welcome to the "Learn and Test DMARC" console! Here, you'll get a visual breakdown of how email servers communicate, giving you a better understanding of SPF, DKIM, and DMARC and how they work together."  
-[This tool provides a temporary email address to send test emails to. One can then see the emails headers. It also allows one to test spoofing one's email and it teached about SPF/DKIM/DMARC.]  
+LearnDMARC
+https://www.learndmarc.com/
+"Welcome to the "Learn and Test DMARC" console! Here, you'll get a visual breakdown of how email servers communicate, giving you a better understanding of SPF, DKIM, and DMARC and how they work together."
+[This tool provides a temporary email address to send test emails to. One can then see the emails headers. It also allows one to test spoofing one's email and it teached about SPF/DKIM/DMARC.]
 [hat tip: "Smashing Security" podcast; Episode 426 - 17 July, 2025]
 ------------------------------------------------------

@@ -1,8 +1,8 @@
-VulnHub  
+VulnHub
 https://www.vulnhub.com/
 
 
-VulHub  
-https://github.com/vulhub/vulhub  
-"Pre-Built Vulnerable Environments Based on Docker-Compose"  
+VulHub
+https://github.com/vulhub/vulhub
+"Pre-Built Vulnerable Environments Based on Docker-Compose"
 [hat tip: Network Chuck - https://www.youtube.com/watch?v=DM65_JyGxCo]

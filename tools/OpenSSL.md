@@ -8,17 +8,17 @@ from: https://tryhackme.com/room/cryptographyintro ; "Symmetric Cryptography" - 
 
 syntax:
 
-$ openssl aes-256-cbc -e -in message.txt -out encrypted_message  
+$ openssl aes-256-cbc -e -in message.txt -out encrypted_message
 # encrypts the file named "message.txt" and outputs it as a file called "encrypted_message"
 
-$ openssl aes-256-cbc -d -in encrypted_message -out original_message.txt  
+$ openssl aes-256-cbc -d -in encrypted_message -out original_message.txt
 # decrypts the encrypted file named "encrypted_message" and outputs the decrypted text as a file called "original_message.txt"
 
-$ openssl aes-256-cbc -pbkdf2 -iter <NUMBER> -e -in message.txt -out encrypted_message  
-# encrypts; the `-pbkdf2` argument uses Password-Based Key Derivation Function 2 (PBKDF2) to add protection against brute-force attacks; the `-iter` argument chooses how many times to iterate the password in order to create the encryption key (e.g. `-iter 10000` will iterate 10,000 times)  
+$ openssl aes-256-cbc -pbkdf2 -iter <NUMBER> -e -in message.txt -out encrypted_message
+# encrypts; the `-pbkdf2` argument uses Password-Based Key Derivation Function 2 (PBKDF2) to add protection against brute-force attacks; the `-iter` argument chooses how many times to iterate the password in order to create the encryption key (e.g. `-iter 10000` will iterate 10,000 times)
 # "PBKDF2 (Password-Based Key Derivation Function 2). PBKDF2 takes the password and the salt and submits it through a certain number of iterations, usually hundreds of thousands" [from https://tryhackme.com/room/cryptographyintro - Task 7 "Authenticating with passwords]
 
-$ openssl aes-256-cbc -pbkdf2 -iter 10000 -d -in encrypted_message -out original_message.txt  
+$ openssl aes-256-cbc -pbkdf2 -iter 10000 -d -in encrypted_message -out original_message.txt
 # decrypts a file that has been encrypted with 10,000 iterations
 
 
@@ -29,20 +29,20 @@ from: https://tryhackme.com/room/cryptographyintro ; "Assymmetric Cryptography" 
 
 syntax:
 
-$ openssl genrsa -out private-key.pem 2048  
+$ openssl genrsa -out private-key.pem 2048
 # `genrsa` uses RSA asymmetric encryption to generate an RSA private key; `-out` saves the resultant private key as a file called "private-key.pem"; "2048" sets the key size to be 2048 bits 
 
-$ openssl rsa -in private-key.pem -pubout -out public-key.pem  
+$ openssl rsa -in private-key.pem -pubout -out public-key.pem
 # takes the private key created in the previous command and inputs it in the form of the "private-key.pem" file; we then generate the matching public key with the argument `-pubout`; we save the public key with the argument `-out public-key.pem` which creates a file containing the public key
 
-$ openssl rsa -in private-key.pem -text -noout  
-# this command will give information regarding the RSA variables that were used to create the key  
+$ openssl rsa -in private-key.pem -text -noout
+# this command will give information regarding the RSA variables that were used to create the key
 # the values of p, q, N, e, and d are given as prime1, prime2, modulus, publicExponent, and privateExponent respectively
 
-$ openssl pkeyutl -encrypt -in plaintext.txt -out ciphertext -inkey public-key.pem -pubin  
+$ openssl pkeyutl -encrypt -in plaintext.txt -out ciphertext -inkey public-key.pem -pubin
 # this command is given when starting with the public key; it will encrypt a file using the public key
 
-$ openssl pkeyutl -decrypt -in ciphertext -inkey private-key.pem -out decrypted.txt  
+$ openssl pkeyutl -decrypt -in ciphertext -inkey private-key.pem -out decrypted.txt
 # the owner of the private key can issue this command to use his private key to decrypt the text that was encrypted using his public key.
 
 
@@ -52,12 +52,12 @@ from: https://tryhackme.com/room/cryptographyintro ; "Diffie-Hellman Key Exchang
 
 syntax:
 
-$ openssl dhparam -out dhparams.pem 2048  
-# dhparam = specifies that you want to create a Diffie-Hellman Key  
-# -out dhparams.pem = name of file that is outputted and conatins the key  
+$ openssl dhparam -out dhparams.pem 2048
+# dhparam = specifies that you want to create a Diffie-Hellman Key
+# -out dhparams.pem = name of file that is outputted and conatins the key
 # 2048 = chosen size in bits (could also be 4096 for example)
 
-$ openssl dhparam -in dhparams.pem -text -noout  
+$ openssl dhparam -in dhparams.pem -text -noout
 # this command allows you to view the parameters of the key that has been created; "P" will show the prime number that was used (written in hexadecimal); "G" will show the Generator
 
 

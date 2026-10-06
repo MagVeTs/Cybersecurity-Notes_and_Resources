@@ -2,125 +2,125 @@ https://github.com/yehogits?tab=stars
 
 https://y4nush.com/
 
-https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections  
-his is collections of APT and cybercriminals campaign. Please fire issue to me if any lost APT/Malware events/campaigns.  
+https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections
+his is collections of APT and cybercriminals campaign. Please fire issue to me if any lost APT/Malware events/campaigns.
 🤷The password of malware samples could be 'virus' or 'infected'
 
-https://github.com/swisskyrepo/PayloadsAllTheThings  
+https://github.com/swisskyrepo/PayloadsAllTheThings
 A list of useful payloads and bypass for Web Application Security and Pentest/CTF
 
-https://github.com/danielmiessler/SecLists  
-"SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more. The goal is to enable a security tester to pull this repository onto a new testing box and have access to every type of list that may be needed.  
-This project is maintained by Daniel Miessler, Jason Haddix, and g0tmi1k."  
+https://github.com/danielmiessler/SecLists
+"SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more. The goal is to enable a security tester to pull this repository onto a new testing box and have access to every type of list that may be needed.
+This project is maintained by Daniel Miessler, Jason Haddix, and g0tmi1k."
 [hat tip: TryHackMe]
 
-https://github.com/themixedcoder/IT-Resources  
-Links and Resources to look at to teach you more about Programming , Hardware ,Hacking , and Networking  
+https://github.com/themixedcoder/IT-Resources
+Links and Resources to look at to teach you more about Programming , Hardware ,Hacking , and Networking
 created by Moshe Levy - https://www.linkedin.com/in/moshelevy01/
 
-https://github.com/payloadbox  
-Attack payloads only 📦  
+https://github.com/payloadbox
+Attack payloads only 📦
 [hat tip: TryHackMe]
 
-https://github.com/n30n-g10w  
+https://github.com/n30n-g10w
 [M.B.'s github]
 
-https://github.com/0xsyr0/Awesome-Cybersecurity-Handbooks  
+https://github.com/0xsyr0/Awesome-Cybersecurity-Handbooks
 "A huge chunk of my personal notes since i started playing CTFs and working as a Red Teamer."
 
-https://github.com/hadenlabs/cheatsheet  
+https://github.com/hadenlabs/cheatsheet
 [tons of cheatsheets; listed alphabetically]
 
-GTFOBins  
-https://gtfobins.github.io/  
-GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems. The project collects legitimate functions of Unix binaries that can be abused to ... break out restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate the other post-exploitation tasks.  
-It is important to note that this is not a list of exploits, and the programs listed here are not vulnerable per se, rather, GTFOBins is a compendium about how to live off the land when you only have certain binaries available.  
-[like LOLBAS but for UNIX based systems]  
+GTFOBins
+https://gtfobins.github.io/
+GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems. The project collects legitimate functions of Unix binaries that can be abused to ... break out restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate the other post-exploitation tasks.
+It is important to note that this is not a list of exploits, and the programs listed here are not vulnerable per se, rather, GTFOBins is a compendium about how to live off the land when you only have certain binaries available.
+[like LOLBAS but for UNIX based systems]
 [hat tip: TryHackMe]
 --------------------------------------------------------------------------------------------------
-LOLBAS  
-https://lolbas-project.github.io/  
-Living Off The Land Binaries and Scripts (and now also Libraries)  
-Goal  
+LOLBAS
+https://lolbas-project.github.io/
+Living Off The Land Binaries and Scripts (and now also Libraries)
+Goal
 The goal of the LOLBAS project is to document every binary, script, and library that can be used for Living Off The Land techniques.
 
-Criteria  
+Criteria
 A LOLBin/Lib/Script must:
 
-Be a Microsoft-signed file, either native to the OS or downloaded from Microsoft.  
-Have extra "unexpected" functionality. It is not interesting to document intended use cases.  
-Exceptions are application whitelisting bypasses  
-Have functionality that would be useful to an APT or red team  
+Be a Microsoft-signed file, either native to the OS or downloaded from Microsoft.
+Have extra "unexpected" functionality. It is not interesting to document intended use cases.
+Exceptions are application whitelisting bypasses
+Have functionality that would be useful to an APT or red team
 Interesting functionality can include:
 
-Executing code  
-Arbitrary code execution  
-Pass-through execution of other programs (unsigned) or scripts (via a LOLBin)  
-Compiling code  
-File operations  
-Downloading  
-Upload  
-Copy  
-Persistence  
-Pass-through persistence utilizing existing LOLBin  
-Persistence (e.g. hide data in ADS, execute at logon)  
-UAC bypass  
-Credential theft  
-Dumping process memory  
-Surveillance (e.g. keylogger, network trace)  
-Log evasion/modification  
-DLL side-loading/hijacking without being relocated elsewhere in the filesystem.  
+Executing code
+Arbitrary code execution
+Pass-through execution of other programs (unsigned) or scripts (via a LOLBin)
+Compiling code
+File operations
+Downloading
+Upload
+Copy
+Persistence
+Pass-through persistence utilizing existing LOLBin
+Persistence (e.g. hide data in ADS, execute at logon)
+UAC bypass
+Credential theft
+Dumping process memory
+Surveillance (e.g. keylogger, network trace)
+Log evasion/modification
+DLL side-loading/hijacking without being relocated elsewhere in the filesystem.
 [like GTFOBins but for Windows OS]
 ----------------------------------------------------------------------------------------------------
-https://github.com/A-poc/BlueTeam-Tools  
-"This github repository contains a collection of 35+ tools and resources that can be useful for blue teaming activities.  
-Some of the tools may be specifically designed for blue teaming, while others are more general-purpose and can be adapted for use in a blue teaming context."  
+https://github.com/A-poc/BlueTeam-Tools
+"This github repository contains a collection of 35+ tools and resources that can be useful for blue teaming activities.
+Some of the tools may be specifically designed for blue teaming, while others are more general-purpose and can be adapted for use in a blue teaming context."
 [hat tip: RM]
 
-https://github.com/A-poc/RedTeam-Tools  
-"This github repository contains a collection of 115+ tools and resources that can be useful for red teaming activities.  
+https://github.com/A-poc/RedTeam-Tools
+"This github repository contains a collection of 115+ tools and resources that can be useful for red teaming activities.
 Some of the tools may be specifically designed for red teaming, while others are more general-purpose and can be adapted for use in a red teaming context."
 ----------------------------------------------------------------------------------------------------
-hAcKtive Directory Forensics  
-Compiled by 1nTh35h311 (#yossi_sassi)  
-https://github.com/YossiSassi/hAcKtive-Directory-Forensics  
+hAcKtive Directory Forensics
+Compiled by 1nTh35h311 (#yossi_sassi)
+https://github.com/YossiSassi/hAcKtive-Directory-Forensics
 [hat tip: RM]
 ----------------------------------------------------------------------------------------------------
-Awesome Cybersecurity Blue Team  
-https://github.com/fabacab/awesome-cybersecurity-blueteam  
-"A collection of awesome resources, tools, and other shiny things for cybersecurity blue teams."  
-[hat tip: RM]  
+Awesome Cybersecurity Blue Team
+https://github.com/fabacab/awesome-cybersecurity-blueteam
+"A collection of awesome resources, tools, and other shiny things for cybersecurity blue teams."
+[hat tip: RM]
 [hat tip: RM]
 -----------------------------------------------------------------------------------------------------
-Security Development Tools  
-https://github.com/paulveillard/cybersecurity-tools  
+Security Development Tools
+https://github.com/paulveillard/cybersecurity-tools
 "A collection of cybsecurity tools, software, libraries, learning tutorials, frameworks, academic and practical resources in security. Thanks to all contributors, you're awesome and wouldn't be possible without you! Our goal is to build a categorized community-driven collection of very well-known resources."
 -----------------------------------------------------------------------------------------------------
-Awesome Network Security  
-https://github.com/SubediBibek-cmd/awesome-network-security  
-"This is a repository for network security tools and technologies."  
+Awesome Network Security
+https://github.com/SubediBibek-cmd/awesome-network-security
+"This is a repository for network security tools and technologies."
 [hat tip: Shai Peri in SIEM/SOC/PT Group 2 (WhatsApp)]
 -----------------------------------------------------------------------------------------------------
-Eric Zimmerman's Tools  
+Eric Zimmerman's Tools
 https://ericzimmerman.github.io/#!index.md
 
 -----------------------------------------------------------------------------------------------------
-Berkanktk - CyberSecurity  
-https://github.com/Berkanktk/CyberSecurity  
-"This is a repository where i collect my knowledge to different kind of topics related to cybersecurity."  
-"I have created quite a big repository related to lots of topics in Cybersecurity, which also contains useful links, command tutorials etc. It should be pretty need for newer students. So feel free to take a look. BTW, don’t forget to look at the /More folder👀" -u/Berkanktk (Reddit)  
+Berkanktk - CyberSecurity
+https://github.com/Berkanktk/CyberSecurity
+"This is a repository where i collect my knowledge to different kind of topics related to cybersecurity."
+"I have created quite a big repository related to lots of topics in Cybersecurity, which also contains useful links, command tutorials etc. It should be pretty need for newer students. So feel free to take a look. BTW, don’t forget to look at the /More folder👀" -u/Berkanktk (Reddit)
 This is a huge repository with great stuff (including guide to basic Linux commands)!
 ------------------------------------------------------------------------------------------------------
-OffSec Tools  
-https://offsec.tools/  
-"A vast collection of security tools for bug bounty, pentest and red teaming"  
+OffSec Tools
+https://offsec.tools/
+"A vast collection of security tools for bug bounty, pentest and red teaming"
 [hat tip: DA]
 ------------------------------------------------------------------------------------------------------
-https://redteam.guide/  
+https://redteam.guide/
 https://redteam.guide/docs/guides
 ------------------------------------------------------------------------------------------------------
-https://github.com/rmusser01/Infosec_Reference  
+https://github.com/rmusser01/Infosec_Reference
 Some really nice cheat sheets
 ------------------------------------------------------------------------------------------------------
-Heath Adams - The Cyber Mentor  
+Heath Adams - The Cyber Mentor
 https://github.com/hmaverickadams
