@@ -4,6 +4,8 @@
 
 - [Creating an Effective Sock Puppet for OSINT Investigations – Introduction](https://web.archive.org/web/20210125191016/https://jakecreps.com/2018/11/02/sock-puppets/)
 
+- [r/OSINT](https://www.reddit.com/r/OSINT/)
+
 - Reddit post called: ["My process for setting up anonymous sockpuppet accounts"](https://www.reddit.com/r/OSINT/comments/dp70jr/my_process_for_setting_up_anonymous_sockpuppet/) - by u/garrettmickley in r/OSINT
 
 - [Fake Name Generator](https://www.fakenamegenerator.com/)
