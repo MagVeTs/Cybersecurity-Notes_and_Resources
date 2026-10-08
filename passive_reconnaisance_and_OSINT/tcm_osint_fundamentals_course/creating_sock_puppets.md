@@ -11,4 +11,5 @@
 - [This Person Does Not Exist](https://www.thispersondoesnotexist.com/) - generate photos of nonexistent people
 
 - [Privacy](https://www.privacy.com/)
+  
 "Privacy Virtual Cards - Virtual cards are automatically generated 16-digit card numbers that can be generated instantly. By using a Privacy Card for online transactions, you can keep your financial information safe from prying eyes."
